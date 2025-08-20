@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rent / Tenant Issues - Pocket Lawyer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #fdfcfb);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      animation: fadeInSlide 1s ease;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e3a59;
+      font-size: 36px;
+      margin-bottom: 20px;
+      animation: popIn 0.8s ease;
+    }
+
+    .law-section {
+      margin-bottom: 25px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .law-section h2 {
+      font-size: 24px;
+      color: #444;
+      margin-bottom: 10px;
+      border-left: 4px solid #ff6f00;
+      padding-left: 10px;
+    }
+
+    .law-section p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    .document-list {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .document-list li {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    @keyframes fadeInSlide {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+        header, footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+ body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            z-index: 999;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Header Section */
+header {
+  background: #ffffff; /* White background for clean official look */
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Heading area */
+.headers {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  height: 75px;
+}
+
+.mainheading {
+  font-size: 35px;
+  font-weight: bold;
+  color: #2c3e50;  /* Dark official text */
+  background: #ffffff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Navigation Menu */
+.topnav {
+  margin-top: 20px;
+  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.topnav ul li {
+  display: inline-block;
+}
+.topnav ul {
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 70px;
+}
+
+.topnav ul li a {
+   display: inline-block;
+  color: #2c3e50; /* normal text color */
+  padding: 10px 5px;
+  border-radius: 8px;
+  text-decoration: none; /* remove underline */
+  transition: all 0.3s ease; /* smooth effect */
+  font-size: 22px;   /* 👈 change this value */
+  font-weight: 600;
+}
+
+
+.topnav ul li a:hover {
+    background: #696969; /* #2F4F4F    #6495ED*/
+  color: #000; /* keep text visible */
+  padding: 12px 24px; /* increase size on hover */
+  border-radius: 12px; /* smoother corners */
+}
+
+
+
+/* Hover underline animation */
+.topnav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 50%;
+  bottom: -6px;
+  
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.topnav ul li a:hover {
+  color: whitesmoke; 
+}
+
+.topnav ul li a:hover::after {
+ width: 100%;
+  left: 0;
+}
+
+        
+        .site-footer {
+            background-color: #1e1e2f;
+            color: #f0f0f0;
+            padding: 40px 20px 20px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1 1 220px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            color: #FF9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        .footer-section ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FF9800;
+        }
+
+        .footer-credits {
+            max-width: 1200px;
+            margin: 30px auto 10px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .footer-credits ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            /* padding-top: 15px;
+            margin-top: 30px; */
+            font-size: 14px;
+            color: #ccc;
+        }
+
+  </style>
+</head>
+<body>
+<header>
+    <div class="headers">
+        <img class="logo" src="images/logo_transparent_resized(1).png">
+        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="topnav">
+        <ul>
+            <li><a href="index.html" id="home">🏠 Home</a></li>
+            <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
+            <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
+            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+            <li><a href="contact.html" id="contact">📞 Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+  <div class="container">
+    <h1 id="rentheading">Rent / Tenant Disputes</h1>
+
+    <div class="law-section">
+      <h2 id="overview">Overview</h2>
+      <p id="rentp">Rent and tenant issues in India are governed primarily by state-specific Rent Control Acts. These laws aim to balance the rights of both landlords and tenants. Common problems include illegal eviction, non-payment of rent, lack of rent agreement, excessive rent hikes, and denial of basic facilities.</p>
+    </div>
+
+    <div class="law-section">
+      <h2 id="rentlegal">Your Legal Rights as a Tenant</h2>
+      <p id="rentp2">As a tenant, you have the right to:</p>
+      <ul class="document-list">
+        <li id="rentl1">Receive a written notice before eviction.</li>
+        <li id="rentl2">Live in a property that meets basic living conditions.</li>
+        <li id="rentl3">Refuse arbitrary rent hikes without due notice.</li>
+        <li id="rentl4">Receive rent receipts and access to utilities.</li>
+        <li id="rentl5">Be protected against harassment or threats from the landlord.</li>
+      </ul>
+    </div>
+
+    <div class="law-section">
+      <h2 id="renth2">What To Do If You're Facing Issues</h2>
+      <p id="rentp3">If you’re facing issues like wrongful eviction, non-return of security deposit, or harassment, follow these steps:</p>
+      <ul class="document-list">
+        <li id="rentl6">Speak to your landlord and try to resolve the matter amicably.</li>
+        <li id="rentl7">Send a legal notice if issues persist.</li>
+        <li id="rentl8">File a complaint with the Rent Controller or Consumer Forum.</li>
+        <li id="rentl9">Document all communication, payment receipts, and rental agreements.</li>
+      </ul>
+    </div>
+
+    <div class="law-section">
+      <h2 id="rentdoc">Documents Required for Complaint</h2>
+      <ul class="document-list">
+        <li id="rentl10">Copy of the Rental Agreement</li>
+        <li id="rentl11">Rent payment receipts or bank statements</li>
+        <li id="rentl12">Copy of legal notice (if any)</li>
+        <li id="rentl13">Proof of identity and address</li>
+        <li id="rentl14">Photos/videos of property condition (if applicable)</li>
+      </ul>
+    </div>
+
+    <div class="law-section">
+      <h2 id="rentsam">Sample Complaint Letter</h2>
+      <p id="rentp4">You can use our <strong>Generate Complaint Letter</strong> tool, or write your own like this:</p>
+      <pre style="background:#f0f0f0; padding: 15px; border-radius: 10px; font-size: 15px; white-space: pre-wrap;" id="rentcontent">
+To,  
+The Rent Control Officer,  
+[City Name]  
+
+Subject: Complaint Against Landlord for Harassment / Rent Dispute
+
+Respected Sir/Madam,  
+
+I am writing to bring to your attention the issues I am facing as a tenant at [Your Full Address]. Despite fulfilling my responsibilities by paying rent regularly and maintaining the property, my landlord [Landlord’s Name] has been [mention issue: forcing eviction, refusing to return deposit, etc.].
+
+I request your assistance in resolving the matter as per the relevant provisions of the Rent Control Act. I have attached necessary documents including the rental agreement, rent receipts, and previous communication for your reference.
+
+Kindly take necessary action and provide me relief at the earliest.  
+
+Yours faithfully,  
+[Your Full Name]  
+[Contact Number]  
+[Date]  
+      </pre>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-container">
+        <!-- Quick Links -->
+        <div class="footer-section">
+            <h3 id="llink">Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lawcategories.html">Law Categories</a></li>
+                <li><a href="generatedocuments.html">Generate Documents</a></li>
+                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="footer-section">
+            <h3 id="llegal">Legal</h3>
+            <ul>
+                <li><a href="#" id="lpp">Privacy Policy</a></li>
+                <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                <li><a href="#" id="ld">Disclaimer</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+            <h3 id="lch">Contact</h3>
+            <ul>
+                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                <li id="lphone">Phone: +91-8985579260</li>
+                <li id="laddress">Address: Pulivendula, India</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Credits Section -->
+    <div class="footer-credits">
+        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+        <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
+        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+        <ul>
+            <li id="geethika">Geethika Reddy Marujolla</li>
+            <li id="reshma">Reshma Shaik</li>
+            <li id="snehitha">Snehitha Reddy Moilla</li>
+        </ul>
+        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+    </div>
+</footer>
+  <script src="js/translations.js"></script>
+  <script src="js/languageManager.js"></script>
+  <script>
+    // Initialize on DOM load
+document.addEventListener("DOMContentLoaded", () => {
+  // Set language from localStorage or default to 'en'
+  languageManager.applyTranslations();
+
+  // Update language selector (if present)
+  const langSelector = document.getElementById("languageSelector");
+  if (langSelector) {
+    langSelector.value = languageManager.currentLanguage;
+    langSelector.addEventListener("change", (e) => {
+      languageManager.setLanguage(e.target.value);
+    });
+  }
+});
+  </script>
+</body>
+</html>

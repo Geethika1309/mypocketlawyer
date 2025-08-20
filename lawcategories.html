@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Law Categories | Pocket Lawyer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://use.typekit.net/yfw3xxz.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #fff, #f4f4f4);
+        }
+        .grid-title {
+            text-align: center;
+            font-size: 30px;
+            color: #2c3e50;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 30px;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .category-box {
+            width: 230px;
+            background: white;
+            border-radius: 18px;
+            padding: 25px 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 6px solid transparent;
+        }
+
+        .category-box i {
+            font-size: 38px;
+            margin-bottom: 10px;
+            color: #4B0082;
+        }
+
+        .category-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Unique colors for each box using nth-child */
+        .category-box:nth-child(1) {
+            border-top-color: #8e44ad;
+        }
+
+        .category-box:nth-child(2) {
+            border-top-color: #e67e22;
+        }
+
+        .category-box:nth-child(3) {
+            border-top-color: #2980b9;
+        }
+
+        .category-box:nth-child(4) {
+            border-top-color: #16a085;
+        }
+
+        .category-box:nth-child(5) {
+            border-top-color: #f39c12;
+        }
+
+        .category-box:nth-child(6) {
+            border-top-color: #c0392b;
+        }
+
+        .category-box:nth-child(7) {
+            border-top-color: #27ae60;
+        }
+
+        .category-box:nth-child(8) {
+            border-top-color: #9b59b6;
+        }
+
+        .category-box:nth-child(9) {
+            border-top-color: #34495e;
+        }
+
+        .category-box:nth-child(10) {
+            border-top-color: #d35400;
+        }
+
+        .category-box:nth-child(11) {
+            border-top-color: #3f51b5;
+        }
+
+        .category-box:nth-child(12) {
+            border-top-color: #e91e63;
+        }
+
+        .category-box:nth-child(13) {
+            border-top-color: #009688;
+        }
+
+        .category-box:nth-child(14) {
+            border-top-color: #f44336;
+        }
+
+        .category-box:nth-child(15) {
+            border-top-color: #795548;
+        }
+
+        .category-box:nth-child(16) {
+            border-top-color: #03a9f4;
+        }
+
+        @media (max-width: 600px) {
+            .category-box {
+                width: 90%;
+            }
+
+            header h1 {
+                font-size: 18px;
+            }
+
+            nav a {
+                margin-left: 10px;
+                font-size: 14px;
+            }
+        }
+            header, footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+ body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            z-index: 999;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Header Section */
+header {
+  background: #ffffff; /* White background for clean official look */
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Heading area */
+.headers {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  height: 75px;
+}
+
+.mainheading {
+  font-size: 35px;
+  font-weight: bold;
+  color: #2c3e50;  /* Dark official text */
+  background: #ffffff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Navigation Menu */
+.topnav {
+  margin-top: 20px;
+  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.topnav ul li {
+  display: inline-block;
+}
+.topnav ul {
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 70px;
+}
+
+.topnav ul li a {
+   display: inline-block;
+  color: #2c3e50; /* normal text color */
+  padding: 10px 5px;
+  border-radius: 8px;
+  text-decoration: none; /* remove underline */
+  transition: all 0.3s ease; /* smooth effect */
+  font-size: 22px;   /* 👈 change this value */
+  font-weight: 600;
+}
+
+
+.topnav ul li a:hover {
+    background: #696969; /* #2F4F4F    #6495ED*/
+  color: #000; /* keep text visible */
+  padding: 12px 24px; /* increase size on hover */
+  border-radius: 12px; /* smoother corners */
+}
+
+
+
+/* Hover underline animation */
+.topnav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 50%;
+  bottom: -6px;
+  
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.topnav ul li a:hover {
+  color: whitesmoke; 
+}
+
+.topnav ul li a:hover::after {
+ width: 100%;
+  left: 0;
+}
+
+        
+        .site-footer {
+            background-color: #1e1e2f;
+            color: #f0f0f0;
+            padding: 40px 20px 20px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1 1 220px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            color: #FF9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        .footer-section ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FF9800;
+        }
+
+        .footer-credits {
+            max-width: 1200px;
+            margin: 30px auto 10px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .footer-credits ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            /* padding-top: 15px;
+            margin-top: 30px; */
+            font-size: 14px;
+            color: #ccc;
+        }
+        .grid-title{
+            font-size: 40px;
+            color:#009688;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="headers">
+        <img class="logo" src="images/logo_transparent_resized(1).png">
+        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="topnav">
+        <ul>
+            <li><a href="index.html" id="home">🏠 Home</a></li>
+            <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
+            <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
+            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+            <li><a href="contact.html" id="contact">📞 Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="grid-title" id="lcheading">Explore Legal Categories</div>
+
+    <div class="grid">
+        <a href="law.html?id=rent-dispute" class="category-box">
+    <i class="fas fa-home"></i>
+    <div id="lcdiv1">Rent or Tenant Issues</div>
+</a>
+<a href="law.html?id=cybercrime-itact" class="category-box">
+    <i class="fas fa-laptop-code"></i>
+    <div id="lcdiv2">Cyber Crime</div>
+</a>
+<a href="law.html?id=domestic-violence" class="category-box">
+    <i class="fas fa-hand-holding-heart"></i>
+    <div id="lcdiv3">Domestic Violence</div>
+</a>
+<a href="law.html?id=consumer-act-12" class="category-box">
+    <i class="fas fa-shopping-cart"></i>
+    <div id="lcdiv4">Consumer Complaints</div>
+</a>
+<a href="law.html?id=mva-traffic-violation" class="category-box">
+    <i class="fas fa-car-crash"></i>
+    <div id="lcdiv5">Traffic Violations</div>
+</a>
+<a href="law.html?id=cyberbullying" class="category-box">
+    <i class="fas fa-user-shield"></i>
+    <div id="lcdiv6">Cyber Bullying</div>
+</a>
+<a href="law.html?id=ipc-294" class="category-box">
+    <i class="fas fa-venus"></i>
+    <div id="lcdiv7">Eve Teasing</div>
+</a>
+<a href="law.html?id=employment" class="category-box">
+    <i class="fas fa-briefcase"></i>
+    <div id="lcdiv8">Employment Rights</div>
+</a>
+<a href="law.html?id=ipc-326a" class="category-box">
+    <i class="fas fa-burn"></i>
+    <div id="lcdiv9">Acid Attack</div>
+</a>
+<a href="law.html?id=ipc-268" class="category-box">
+    <i class="fas fa-bullhorn"></i>
+    <div id="lcdiv10">Public Nuisance</div>
+</a>
+<a href="law.html?id=ipc-354d" class="category-box">
+    <i class="fas fa-user-secret"></i>
+    <div id="lcdiv11">Harassment & Stalking</div>
+</a>
+<a href="law.html?id=propertydispute" class="category-box">
+    <i class="fa-solid fa-house-chimney"></i>
+    <div id="lcdiv12">Property Dispute</div>
+</a>
+<a href="law.html?id=clp-1986" class="category-box">
+    <i class="fa-solid fa-child"></i>
+    <div id="lcdiv13">Child Labour</div>
+</a>
+<a href="law.html?id=mpc-001" class="category-box">
+    <i class="fa-solid fa-user-slash"></i>
+    <div id="lcdiv14">Missing Person</div>
+</a>
+<a href="law.html?id=briberycorruption" class="category-box">
+    <i class="fa-solid fa-handshake-simple"></i>
+    <div id="lcdiv15">Bribery & Corruption</div>
+</a>
+<a href="law.html?id=passportvisa" class="category-box">
+    <i class="fa-solid fa-passport"></i>
+    <div id="lcdiv16">Passport/Visa Issues</div>
+</a>
+
+    </div>
+    <footer class="site-footer">
+    <div class="footer-container">
+        <!-- Quick Links -->
+        <div class="footer-section">
+            <h3 id="llink">Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lawcategories.html">Law Categories</a></li>
+                <li><a href="generatedocuments.html">Generate Documents</a></li>
+                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="footer-section">
+            <h3 id="llegal">Legal</h3>
+            <ul>
+                <li><a href="#" id="lpp">Privacy Policy</a></li>
+                <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                <li><a href="#" id="ld">Disclaimer</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+            <h3 id="lch">Contact</h3>
+            <ul>
+                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                <li id="lphone">Phone: +91-8985579260</li>
+                <li id="laddress">Address: Pulivendula, India</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Credits Section -->
+    <div class="footer-credits">
+        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+        <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
+        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+        <ul>
+            <li id="geethika">Geethika Reddy Marujolla</li>
+            <li id="reshma">Reshma Shaik</li>
+            <li id="snehitha">Snehitha Reddy Moilla</li>
+        </ul>
+        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+    </div>
+</footer>
+    <script src="js/translations.js"></script>
+    <script src="js/languageManager.js"></script>
+    <script>
+        // Initialize on DOM load
+document.addEventListener("DOMContentLoaded", () => {
+  // Set language from localStorage or default to 'en'
+  languageManager.applyTranslations();
+
+  // Update language selector (if present)
+  const langSelector = document.getElementById("languageSelector");
+  if (langSelector) {
+    langSelector.value = languageManager.currentLanguage;
+    langSelector.addEventListener("change", (e) => {
+      languageManager.setLanguage(e.target.value);
+    });
+  }
+});
+
+// In lawcategories.html
+document.addEventListener("DOMContentLoaded", function() {
+  // Get current language from localStorage
+  const lang = localStorage.getItem('language') || 'en';
+  
+  // Update all law links to include language parameter
+  document.querySelectorAll('.category-box').forEach(link => {
+    const currentHref = link.getAttribute('href');
+    const separator = currentHref.includes('?') ? '&' : '?';
+    link.setAttribute('href', `${currentHref}${separator}lang=${lang}`);
+  });
+});
+
+    </script>
+</body>
+
+</html>
+

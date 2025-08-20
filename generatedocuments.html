@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Legal Document</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form input,
+    form select {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #0077cc;
+      color: white;
+      padding: 12px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    .preview-box {
+      background: #f4f4f4;
+      padding: 20px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      margin-top: 15px;
+    }
+
+    .button-group {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .button-group button {
+      flex: 1;
+    }
+        header, footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+ body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            z-index: 999;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Header Section */
+header {
+  background: #ffffff; /* White background for clean official look */
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Heading area */
+.headers {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  height: 75px;
+}
+
+.mainheading {
+  font-size: 35px;
+  font-weight: bold;
+  color: #2c3e50;  /* Dark official text */
+  background: #ffffff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Navigation Menu */
+.topnav {
+  margin-top: 20px;
+  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.topnav ul li {
+  display: inline-block;
+}
+.topnav ul {
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 70px;
+}
+
+.topnav ul li a {
+   display: inline-block;
+  color: #2c3e50; /* normal text color */
+  padding: 10px 5px;
+  border-radius: 8px;
+  text-decoration: none; /* remove underline */
+  transition: all 0.3s ease; /* smooth effect */
+  font-size: 22px;   /* 👈 change this value */
+  font-weight: 600;
+}
+
+
+.topnav ul li a:hover {
+    background: #696969; /* #2F4F4F    #6495ED*/
+  color: #000; /* keep text visible */
+  padding: 12px 24px; /* increase size on hover */
+  border-radius: 12px; /* smoother corners */
+}
+
+
+
+/* Hover underline animation */
+.topnav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 50%;
+  bottom: -6px;
+  
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.topnav ul li a:hover {
+  color: whitesmoke; 
+}
+
+.topnav ul li a:hover::after {
+ width: 100%;
+  left: 0;
+}
+
+        
+        .site-footer {
+            background-color: #1e1e2f;
+            color: #f0f0f0;
+            padding: 40px 20px 20px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1 1 220px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            color: #FF9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        .footer-section ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FF9800;
+        }
+
+        .footer-credits {
+            max-width: 1200px;
+            margin: 30px auto 10px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .footer-credits ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            /* padding-top: 15px;
+            margin-top: 30px; */
+            font-size: 14px;
+            color: #ccc;
+        }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="headers">
+        <img class="logo" src="images/logo_transparent_resized(1).png">
+        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="topnav">
+        <ul>
+            <li><a href="index.html" id="home">🏠 Home</a></li>
+            <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
+            <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
+            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+            <li><a href="contact.html" id="contact">📞 Contact</a></li>
+        </ul>
+    </nav>
+</header><br><br>
+
+  <main class="container">
+    <h1 id="generateDocHeading">📝 Generate Legal Document</h1>
+
+    <!-- Step 1: Select Document Type -->
+    <section id="select-document">
+      
+      <label for="documentType"><strong data-translate="chooseDocument"></strong></label>
+<select id="documentType" onchange="showForm(this.value)">
+    <option value="" id="doc_none" data-translate="selectDocument">-- Select a Document --</option>
+    <option value="nda" id="doc_nda" data-translate="nda">Non-Disclosure Agreement</option>
+    <option value="lease" id="doc_lease" data-translate="lease">Residential Lease</option>
+    <option value="employment" id="doc_employment" data-translate="employment">Employment Contract</option>
+    <option value="powerOfAttorney" id="doc_poa" data-translate="poa">Power of Attorney</option>
+    <option value="will" id="doc_will" data-translate="will">Simple Will</option>
+    <option value="affidavit" id="doc_affidavit" data-translate="affidavit">Affidavit</option>
+    <option value="rentalAgreement" id="doc_rental" data-translate="rental">Rental Agreement</option>
+    <option value="partnershipAgreement" id="doc_partnership" data-translate="partnership">Partnership Agreement</option>
+    <option value="saleDeed" id="doc_sale" data-translate="saleDeed">Sale Deed</option>
+    <option value="rtiApplication" id="doc_rti" data-translate="rtiApplication">RTI Application</option>
+    <option value="mutualDivorce" id="doc_divorce" data-translate="mutualDivorce">Mutual Divorce Agreement</option>
+</select>
+    </section>
+
+    <!-- Step 2: Form for NDA -->
+    <form id="form-nda" class="form-section" style="display:none;">
+      <h2 data-translate="ndahead">Non-Disclosure Agreement</h2>
+      <input type="text" placeholder="Party 1 Full Name" data-placeholder="party1" id="nda-party1" required>
+      <input type="text" placeholder="Party 2 Full Name" data-placeholder="party2" id="nda-party2" required>
+      <input type="date" id="nda-date" required>
+      <input type="number" placeholder="Term in Months" data-placeholder="term" id="nda-term" required>
+      <input type="text" placeholder="Jurisdiction" data-placeholder="jurisdiction" id="nda-jurisdiction" required>
+      <button type="button" onclick="generateNDA()" data-translate="preview1">Preview Document</button>
+    </form>
+
+    <!-- Step 2: Form for Lease Agreement -->
+    <form id="form-lease" class="form-section" style="display:none;">
+      <h2 data-translate="residenthead">Residential Lease Agreement</h2>
+      <input type="text" placeholder="Landlord Name" data-placeholder="landlord" id="lease-landlord" required>
+      <input type="text" placeholder="Tenant Name" data-placeholder="tenant" id="lease-tenant" required>
+      <input type="text" placeholder="Property Address" data-placeholder="property" id="lease-address" required>
+      <input type="date" id="lease-start" required>
+      <input type="date" id="lease-end" required>
+      <input type="text" placeholder="Rent Amount" data-placeholder="rent" id="lease-rent" required>
+      <button type="button" onclick="generateLease()" data-translate="preview2">Preview Document</button>
+    </form>
+
+    <!-- Step 2: Form for Employment Contract -->
+    <form id="form-employment" class="form-section" style="display:none;">
+      <h2 data-translate="emphead">Employment Contract</h2>
+      <input type="text" placeholder="Employer Name" data-placeholder="employer" id="emp-employer" required>
+      <input type="text" placeholder="Employee Name" data-placeholder="employee" id="emp-employee" required>
+      <input type="date" id="emp-start" required>
+      <input type="text" placeholder="Job Title" data-placeholder="job" id="emp-title" required>
+      <input type="text" placeholder="Salary" data-placeholder="salary" id="emp-salary" required>
+      <button type="button" onclick="generateEmployment()" data-translate="preview3">Preview Document</button>
+    </form>
+    <!-- Power of Attorney Form -->
+    <form id="form-powerOfAttorney" class="form-section" style="display:none;">
+      <h2 data-translate="powerhead">Power of Attorney</h2>
+      <input type="text" placeholder="Principal Full Name" data-placeholder="principal" id="poa-principal" required>
+      <input type="text" placeholder="Agent Full Name" data-placeholder="agent" id="poa-agent" required>
+      <input type="date" id="poa-date" required>
+      <input type="text" placeholder="Powers Granted (e.g., financial, medical)" data-placeholder="powers" id="poa-powers" required>
+      <button type="button" onclick="generatePowerOfAttorney()" data-translate="preview4">Preview Document</button>
+    </form>
+
+    <!-- Simple Will Form -->
+    <form id="form-will" class="form-section" style="display:none;">
+      <h2 data-translate="simplehead">Simple Will</h2>
+      <input type="text" placeholder="Testator Full Name" data-placeholder="testator" id="will-testator" required>
+      <input type="text" placeholder="Executor Full Name" data-placeholder="executor" id="will-executor" required>
+      <input type="text" placeholder="Beneficiaries" data-placeholder="beneficiaries" id="will-beneficiaries" required>
+      <input type="date" id="will-date" required>
+      <button type="button" onclick="generateWill()" id="preview5">Preview Document</button>
+    </form>
+    <form id="form-affidavit" class="form-section" style="display: none;">
+      <h2 data-translate="affidhead">Affidavit</h2>
+      <input type="text" placeholder="Full Name" data-placeholder="full" id="affidavit-name" required>
+      <input type="text" placeholder="Affidavit Address" data-placeholder="address" id="affidavit-address" required>
+      <input type="text" placeholder="Purpose of Affidavit" data-placeholder="purpose" id="affidavit-purpose" required>
+      <button type="button" onclick="generateAffidavit()" data-translate="preview6">Preview Document</button>
+    </form>
+    <form id="form-rentalAgreement" class="form-section" style="display: none;">
+      <h2 data-translate="renthead">Rental Agreement</h2>
+      <input type="text" placeholder="Landlord Name"" data-placeholder="rlandlord" id="rental-landlord" required>
+      <input type="text" placeholder="Tenant Name" data-placeholder="rtenant" id="rental-tenant" required>
+      <input type="text" placeholder="Rental Property Address" data-placeholder="rrental" id="rental-address" required>
+      <input type="number" placeholder="Monthly Rent (in ₹)" data-placeholder="monthly" id="rental-amount" required>
+      <input type="number" placeholder="Duration (in months)" data-placeholder="duration" id="rental-duration" required>
+      <label for="rental-start" data-translate="rentStart">Start Date:</label>
+      <input type="date" id="rental-start" required>
+      <button type="button" onclick="generateRentalAgreement()" data-translate="preview7">Preview Document</button>
+    </form>
+    <form id="form-partnershipAgreement" class="form-section" style="display: none;">
+      <h2 data-translate="partnerhead">Partnership Agreement</h2>
+      <input type="text" placeholder="Partner 1 Name" data-placeholder="Partner1" id="partner1" required>
+      <input type="text" placeholder="Partner 2 Name" data-placeholder="Partner2" id="partner2" required>
+      <input type="text" placeholder="Business Name" data-placeholder="Business" id="business-name" required>
+      <input type="number" placeholder="Initial Capital (₹)" data-placeholder="InitialCap" id="capital" required>
+      <label for="start-date" data-translate="start">Start Date:</label>
+      <input type="date" id="start-date" required>
+      <button type="button" onclick="generatePartnershipAgreement()" data-translate="preview8">Preview Document</button>
+    </form>
+    <form id="form-saleDeed" class="form-section" style="display: none;">
+      <h2 data-translate="salehead">Sale Deed</h2>
+      <input type="text" placeholder="Seller Name" data-placeholder="Seller" id="seller-name" required>
+      <input type="text" placeholder="Buyer Name" data-placeholder="Buyer" id="buyer-name" required>
+      <input type="text" placeholder="Property Address" data-placeholder="Property" id="property-address" required>
+      <input type="number" placeholder="Sale Amount (₹)" data-placeholder="Sale" id="sale-amount" required>
+      <label for="sale-date" data-translate="sale">Sale Date:</label>
+      <input type="date" id="sale-date" required>
+      <button type="button" onclick="generateSaleDeed()" data-translate="preview9">Preview Document</button>
+    </form>
+    <form id="form-rtiApplication" class="form-section" style="display: none;">
+      <h2 data-translate="rtihead">RTI Application</h2>
+      <input type="text" placeholder="Applicant Name" data-placeholder="Applicant" id="rti-name" required>
+      <input type="text" placeholder="Applicant Address" data-placeholder="ApplicantAddress" id="rti-address" required>
+      <textarea placeholder="Information Requested" data-placeholder="Information" id="rti-info" rows="4" required></textarea>
+      <button type="button" onclick="generateRTIApplication()" data-translate="preview10">Preview Document</button>
+    </form>
+    <form id="form-mutualDivorce" class="form-section" style="display: none;">
+      <h2 data-translate="mutualhead">Mutual Divorce Agreement</h2>
+      <input type="text" placeholder="Spouse 1 Name" data-placeholder="Spouse1" id="spouse1-name" required>
+      <input type="text" placeholder="Spouse 2 Name" data-placeholder="Spouse2" id="spouse2-name" required>
+      <label for="marriage-date" data-translate="marriage">Marriage Date:</label>
+      <input type="date" id="marriage-date" required>
+      <input type="text" placeholder="Reason for Divorce" data-placeholder="Reason" id="divorce-reason" required>
+      <label for="agreement-date" data-translate="agreedate">Agreement Date:</label>
+      <input type="date" id="agreement-date" required>
+
+      <button type="button" onclick="generateMutualDivorce()" data-translate="preview11">Preview Document</button>
+
+    </form>
+
+
+
+    <!-- Step 3: Document Preview -->
+    <section id="preview-section" style="display:none;">
+      <h2 data-translate="previewhead">📄 Document Preview</h2>
+      <div id="preview" class="preview-box"></div>
+      <div class="button-group">
+        <button onclick="window.print()" data-translate="printbutton">🖨️ Print</button>
+        <button onclick="downloadText()" data-translate="downloadbutton">⬇️ Download Document</button>
+      </div>
+    </section>
+  </main><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<footer class="site-footer">
+    <div class="footer-container">
+        <!-- Quick Links -->
+        <div class="footer-section">
+            <h3 id="llink">Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lawcategories.html">Law Categories</a></li>
+                <li><a href="generatedocuments.html">Generate Documents</a></li>
+                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="footer-section">
+            <h3 id="llegal">Legal</h3>
+            <ul>
+                <li><a href="#" id="lpp">Privacy Policy</a></li>
+                <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                <li><a href="#" id="ld">Disclaimer</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+            <h3 id="lch">Contact</h3>
+            <ul>
+                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                <li id="lphone">Phone: +91-8985579260</li>
+                <li id="laddress">Address: Pulivendula, India</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Credits Section -->
+    <div class="footer-credits">
+        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+        <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
+        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+        <ul>
+            <li id="geethika">Geethika Reddy Marujolla</li>
+            <li id="reshma">Reshma Shaik</li>
+            <li id="snehitha">Snehitha Reddy Moilla</li>
+        </ul>
+        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+    </div>
+</footer>
+  <script>
+    function showForm(type) {
+      document.querySelectorAll('.form-section').forEach(form => form.style.display = 'none');
+      document.getElementById('preview-section').style.display = 'none';
+
+      if (type === 'nda') {
+        document.getElementById('form-nda').style.display = 'block';
+      } else if (type === 'lease') {
+        document.getElementById('form-lease').style.display = 'block';
+      } else if (type === 'employment') {
+        document.getElementById('form-employment').style.display = 'block';
+      } else if (type === 'powerOfAttorney') {
+        document.getElementById('form-powerOfAttorney').style.display = 'block';
+      } else if (type === 'will') {
+        document.getElementById('form-will').style.display = 'block';
+      } else if (type === 'affidavit') {
+        document.getElementById('form-affidavit').style.display = 'block';
+      } else if (type === 'rentalAgreement') {
+        document.getElementById('form-rentalAgreement').style.display = 'block';
+      } else if (type === 'partnershipAgreement') {
+        document.getElementById('form-partnershipAgreement').style.display = 'block';
+      } else if (type === 'saleDeed') {
+        document.getElementById('form-saleDeed').style.display = 'block';
+      } else if (type === 'rtiApplication') {
+        document.getElementById('form-rtiApplication').style.display = 'block';
+      } else if (type === 'mutualDivorce') {
+        document.getElementById('form-mutualDivorce').style.display = 'block';
+      }
+    }
+
+
+    function generateNDA() {
+  const lang = localStorage.getItem("language") || "en";
+  const party1 = document.getElementById('nda-party1').value;
+  const party2 = document.getElementById('nda-party2').value;
+  const date = new Date(document.getElementById('nda-date').value).toLocaleDateString(lang, {
+    month: 'long', day: 'numeric', year: 'numeric'
+  });
+  const term = document.getElementById('nda-term').value;
+  const jurisdiction = document.getElementById('nda-jurisdiction').value;
+
+  const content = `
+<div style="text-align: center;">
+  <h2>${translations[lang].ndaTitle}</h2>
+  <p><strong>${translations[lang].ndaEffectiveDate}:</strong> ${date}</p>
+</div>
+
+<p>${translations[lang].ndaIntro} <strong>${party1}</strong> ${translations[lang].ndaAnd} <strong>${party2}</strong> ${translations[lang].ndaAsOf}</p>
+
+<ol>
+  <li><strong>${translations[lang].ndaConfidentialInfo}.</strong> ${translations[lang].ndaConfidentialInfoText}</li>
+
+  <li><strong>${translations[lang].ndaObligations}.</strong>
+    <ul>
+      <li>${translations[lang].ndaObligation1}</li>
+      <li>${translations[lang].ndaObligation2}</li>
+    </ul>
+  </li>
+
+  <li><strong>${translations[lang].ndaTerm}.</strong> ${translations[lang].ndaTermText} <strong>${term} ${translations[lang].ndaMonths}</strong> ${translations[lang].ndaUnlessExtended}</li>
+
+  <li><strong>${translations[lang].ndaJurisdiction}.</strong> ${translations[lang].ndaJurisdictionText} <strong>${jurisdiction}</strong>.</li>
+
+  <li><strong>${translations[lang].ndaEntireAgreement}.</strong> ${translations[lang].ndaEntireAgreementText}</li>
+</ol>
+
+<p>${translations[lang].ndaWitness}</p>
+
+<br><br>
+<table style="width:100%; margin-top: 30px;">
+  <tr>
+    <td>
+      <p>_________________________<br>${party1}</p>
+    </td>
+    <td style="text-align:right;">
+      <p>_________________________<br>${party2}</p>
+    </td>
+  </tr>
+</table>
+`;
+
+  showPreview(content);
+}
+
+
+    function generateLease() {
+  const lang = localStorage.getItem("language") || "en";
+  const landlord = document.getElementById('lease-landlord').value;
+  const tenant = document.getElementById('lease-tenant').value;
+  const address = document.getElementById('lease-address').value;
+  const start = new Date(document.getElementById('lease-start').value).toLocaleDateString(lang, {
+    month: 'long', day: 'numeric', year: 'numeric'
+  });
+  const end = new Date(document.getElementById('lease-end').value).toLocaleDateString(lang, {
+    month: 'long', day: 'numeric', year: 'numeric'
+  });
+  const rent = document.getElementById('lease-rent').value;
+
+  const content = `
+<div style="text-align: center;">
+  <h2>${translations[lang].leaseTitle}</h2>
+  <p><strong>${translations[lang].leaseTerm}: ${start} ${translations[lang].leaseTo} ${end}</strong></p>
+</div>
+
+<p>${translations[lang].leaseIntro} <strong>${landlord}</strong> ("${translations[lang].leaseLandlord}") ${translations[lang].leaseAnd} <strong>${tenant}</strong> ("${translations[lang].leaseTenant}").</p>
+
+<ol>
+  <li><strong>${translations[lang].leasePremises}.</strong> ${translations[lang].leasePremisesText} <strong>${address}</strong>.</li>
+
+  <li><strong>${translations[lang].leaseTermClause}.</strong> ${translations[lang].leaseTermText} <strong>${start}</strong> ${translations[lang].leaseAndEnd} <strong>${end}</strong>, ${translations[lang].leaseUnlessTerminated}</li>
+
+  <li><strong>${translations[lang].leaseRent}.</strong>
+    <ul>
+      <li>${translations[lang].leaseRentAmount}<strong>${rent}</strong>, ${translations[lang].leasePayable}</li>
+      <li>${translations[lang].leasePaymentMethods}</li>
+    </ul>
+  </li>
+
+  <li><strong>${translations[lang].leaseUse}.</strong> ${translations[lang].leaseUseText}</li>
+
+  <li><strong>${translations[lang].leaseDeposit}.</strong> ${translations[lang].leaseDepositText}</li>
+</ol>
+
+<p>${translations[lang].leaseWitness}</p>
+
+<br><br>
+<table style="width:100%; margin-top: 30px;">
+  <tr>
+    <td>
+      <p>_________________________<br>${landlord}</p>
+    </td>
+    <td style="text-align:right;">
+      <p>_________________________<br>${tenant}</p>
+    </td>
+  </tr>
+</table>
+`;
+
+  showPreview(content);
+}
+
+
+  function generateEmployment() {
+  const lang = localStorage.getItem("language") || "en";
+  const employer = document.getElementById('emp-employer').value;
+  const employee = document.getElementById('emp-employee').value;
+  const start = document.getElementById('emp-start').value;
+  const title = document.getElementById('emp-title').value;
+  const salary = document.getElementById('emp-salary').value;
+
+  const today = new Date().toLocaleDateString(lang, {
+    month: 'long', day: 'numeric', year: 'numeric'
+  });
+
+  const formattedStart = new Date(start).toLocaleDateString(lang, {
+    month: 'long', day: 'numeric', year: 'numeric'
+  });
+
+  const content = `
+<div style="text-align: center;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Blue_logo_icon.png/600px-Blue_logo_icon.png" alt="Company Logo" width="100" style="margin-bottom: 10px;" />
+  <h2>${employer}</h2>
+  <p><strong>${translations[lang].employmentOfferHeading}</strong></p>
+</div>
+
+<p>${translations[lang].employmentDate}: ${today}</p>
+
+<p>${translations[lang].employmentDear} ${employee},</p>
+
+<p>${employer} ${translations[lang].employmentPleased}</p>
+
+<ol>
+  <li><strong>${translations[lang].employmentPosition}.</strong> ${translations[lang].employmentPositionText1} <strong>${title}</strong>. ${translations[lang].employmentPositionText2}</li>
+
+  <li><strong>${translations[lang].employmentStartDate}.</strong> ${translations[lang].employmentStartDateText1} <strong>${formattedStart}</strong>. ${translations[lang].employmentStartDateText2}</li>
+
+  <li><strong>${translations[lang].employmentCompensation}.</strong>
+    <ul>
+      <li>${translations[lang].employmentSalaryText}${salary} ${translations[lang].employmentPerAnnum}.</li>
+      <li>${translations[lang].employmentTaxes}</li>
+      <li>${translations[lang].employmentBenefits}</li>
+    </ul>
+  </li>
+
+  <li><strong>${translations[lang].employmentOtherTerms}.</strong>
+    <ul>
+      <li>${translations[lang].employmentNonCompete}</li>
+      <li>${translations[lang].employmentConfidentiality}</li>
+      <li>${translations[lang].employmentSupersede}</li>
+    </ul>
+  </li>
+</ol>
+
+<p>${translations[lang].employmentClosing}</p>
+
+<br><br>
+
+<table style="width:100%; margin-top: 30px;">
+  <tr>
+    <td>
+      <p>${translations[lang].employmentSincerely},</p>
+      <p><strong>${translations[lang].employmentHrManager}</strong><br>${employer}</p>
+    </td>
+    <td style="text-align:right;">
+      <p>${translations[lang].employmentAccepted}:</p>
+      <p>_________________________<br>${employee}</p>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="text-align:right;">
+      <p>${translations[lang].employmentDate}: ${today}</p>
+    </td>
+  </tr>
+</table>
+`;
+
+  showPreview(content);
+}
+
+    function generatePowerOfAttorney() {
+  const lang = localStorage.getItem("language") || "en";
+  const principal = document.getElementById('poa-principal').value;
+  const agent = document.getElementById('poa-agent').value;
+  const date = new Date(document.getElementById('poa-date').value).toLocaleDateString(lang, {
+    month: 'long', day: 'numeric', year: 'numeric'
+  });
+  const powers = document.getElementById('poa-powers').value;
+
+  // Replace placeholders in the intro text
+  const introText = translations[lang].poaIntro
+    .replace('${principal}', principal)
+    .replace('${agent}', agent);
+
+  const content = `
+<div style="text-align: center;">
+  <h2>${translations[lang].poaTitle}</h2>
+  <p><strong>${translations[lang].poaDate}:</strong> ${date}</p>
+</div>
+
+<p>${introText}</p>
+
+<p><strong>${translations[lang].poaPowers}:</strong> ${powers}</p>
+
+<p>${translations[lang].poaEffect}</p>
+
+<p>${translations[lang].poaWitness}</p>
+
+<br><br>
+<table style="width:100%; margin-top: 30px;">
+  <tr>
+    <td>
+      <p>_________________________<br>${principal}</p>
+    </td>
+  </tr>
+</table>
+`;
+
+  showPreview(content);
+}
+
+    function generateWill() {
+  const lang = localStorage.getItem("language") || "en";
+  const testator = document.getElementById('will-testator').value;
+  const executor = document.getElementById('will-executor').value;
+  const beneficiaries = document.getElementById('will-beneficiaries').value.split(',').map(b => b.trim());
+  const date = new Date(document.getElementById('will-date').value).toLocaleDateString(lang, {
+    month: 'long', day: 'numeric', year: 'numeric'
+  });
+
+  const beneficiariesList = beneficiaries.map(b => `<li>${b}</li>`).join('');
+
+  // Replace placeholders in the texts
+  const introText = translations[lang].willIntro.replace('${testator}', testator);
+  const executorText = translations[lang].willExecutorText.replace('${executor}', executor);
+
+  const content = `
+<div style="text-align: center;">
+  <h2>${translations[lang].willTitle}</h2>
+  <p><strong>${translations[lang].willDate}:</strong> ${date}</p>
+</div>
+
+<p>${introText}</p>
+
+<ol>
+  <li><strong>${translations[lang].willExecutor}.</strong> ${executorText}</li>
+  <li><strong>${translations[lang].willBeneficiaries}.</strong> ${translations[lang].willBeneficiariesText}
+    <ul>
+      ${beneficiariesList}
+    </ul>
+  </li>
+  <li><strong>${translations[lang].willOtherProvisions}.</strong> ${translations[lang].willOtherProvisionsText}</li>
+</ol>
+
+<p>${translations[lang].willWitness}</p>
+
+<br><br>
+<table style="width:100%; margin-top: 30px;">
+  <tr>
+    <td>
+      <p>_________________________<br>${testator}</p>
+    </td>
+  </tr>
+</table>
+`;
+
+  showPreview(content);
+}
+    function generateAffidavit() {
+  const lang = localStorage.getItem("language") || "en";
+  const name = document.getElementById('affidavit-name').value;
+  const address = document.getElementById('affidavit-address').value;
+  const purpose = document.getElementById('affidavit-purpose').value;
+  const date = new Date().toLocaleDateString(lang, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  // Replace placeholders in the texts
+  const introText = translations[lang].affidavitIntro
+    .replace('${name}', name)
+    .replace('${address}', address);
+    
+  const purposeText = translations[lang].affidavitPurpose
+    .replace('${purpose}', purpose);
+    
+  const verifiedText = translations[lang].affidavitVerified
+    .replace('${date}', date);
+
+  const content = `
+<div style="text-align: center;">
+  <h2>${translations[lang].affidavitTitle}</h2>
+  <p><strong>${translations[lang].affidavitDate}:</strong> ${date}</p>
+</div>
+
+<p>${introText}</p>
+
+<p>1. ${purposeText}</p>
+
+<p>2. ${translations[lang].affidavitTruth}</p>
+
+<p>${verifiedText}</p>
+
+<br><br>
+<p>_________________________<br><strong>${translations[lang].affidavitSignature}:</strong> ${name}</p>
+`;
+
+  showPreview(content);
+}
+    function generateRentalAgreement() {
+  const lang = localStorage.getItem("language") || "en";
+  const landlord = document.getElementById('rental-landlord').value;
+  const tenant = document.getElementById('rental-tenant').value;
+  const address = document.getElementById('rental-address').value;
+  const rent = document.getElementById('rental-amount').value;
+  const duration = document.getElementById('rental-duration').value;
+  const startDate = new Date(document.getElementById('rental-start').value).toLocaleDateString(lang, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  // Replace placeholders in the texts
+  const introText = translations[lang].rentalIntro
+    .replace('${landlord}', landlord)
+    .replace('${tenant}', tenant);
+    
+  const propertyText = translations[lang].rentalProperty
+    .replace('${address}', address)
+    .replace('${rent}', rent)
+    .replace('${duration}', duration)
+    .replace('${startDate}', startDate);
+
+  const content = `
+<div style="text-align: center;">
+  <h2>${translations[lang].rentalTitle}</h2>
+  <p><strong>${translations[lang].rentalEffectiveDate}:</strong> ${startDate}</p>
+</div>
+
+<p>${introText}</p>
+
+<p>${propertyText}</p>
+
+<p>${translations[lang].rentalCompliance}</p>
+
+<br><br>
+<table style="width:100%; margin-top: 30px;">
+  <tr>
+    <td>
+      <p>_________________________<br>${translations[lang].rentalLandlord}: ${landlord}</p>
+    </td>
+    <td style="text-align:right;">
+      <p>_________________________<br>${translations[lang].rentalTenant}: ${tenant}</p>
+    </td>
+  </tr>
+</table>
+`;
+
+  showPreview(content);
+}
+function generatePartnershipAgreement() {
+  const lang = localStorage.getItem("language") || "en";
+  const partner1 = document.getElementById('partner1').value;
+  const partner2 = document.getElementById('partner2').value;
+  const businessName = document.getElementById('business-name').value;
+  const capital = document.getElementById('capital').value;
+  const startDate = new Date(document.getElementById('start-date').value).toLocaleDateString(lang, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  // Replace placeholders in the texts
+  const introText = translations[lang].partnershipIntro
+    .replace('${partner1}', partner1)
+    .replace('${partner2}', partner2)
+    .replace('${businessName}', businessName);
+    
+  const capitalText = translations[lang].partnershipCapital
+    .replace('${capital}', capital);
+
+  const content = `
+<div style="text-align: center;">
+  <h2>${translations[lang].partnershipTitle}</h2>
+  <p><strong>${translations[lang].partnershipDate}:</strong> ${startDate}</p>
+</div>
+
+<p>${introText}</p>
+
+<p>${capitalText}</p>
+
+<p>${translations[lang].partnershipProfitSharing}</p>
+
+<br><br>
+<table style="width:100%; margin-top: 30px;">
+  <tr>
+    <td>
+      <p>_________________________<br>${translations[lang].partnershipPartner}: ${partner1}</p>
+    </td>
+    <td style="text-align:right;">
+      <p>_________________________<br>${translations[lang].partnershipPartner}: ${partner2}</p>
+    </td>
+  </tr>
+</table>
+`;
+
+  showPreview(content);
+}
+    function generateSaleDeed() {
+  const lang = localStorage.getItem("language") || "en";
+  const seller = document.getElementById('seller-name').value;
+  const buyer = document.getElementById('buyer-name').value;
+  const property = document.getElementById('property-address').value;
+  const amount = document.getElementById('sale-amount').value;
+  const date = new Date(document.getElementById('sale-date').value).toLocaleDateString(lang, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  const introText = translations[lang].saleDeedIntro
+    .replace('${date}', date)
+    .replace('${seller}', seller)
+    .replace('${buyer}', buyer);
+
+  const propertyText = translations[lang].saleDeedProperty
+    .replace('${property}', property)
+    .replace('${amount}', amount);
+
+  const content = `
+<div style="text-align: center;">
+  <h2>${translations[lang].saleDeedTitle}</h2>
+  <p><strong>${translations[lang].saleDeedDate}:</strong> ${date}</p>
+</div>
+
+<p>${introText}</p>
+
+<p>${propertyText}</p>
+
+<p>${translations[lang].saleDeedTerms}</p>
+
+<br><br>
+<table style="width:100%; margin-top: 30px;">
+  <tr>
+    <td>
+      <p>_________________________<br>${translations[lang].saleDeedSeller}: ${seller}</p>
+    </td>
+    <td style="text-align:right;">
+      <p>_________________________<br>${translations[lang].saleDeedBuyer}: ${buyer}</p>
+    </td>
+  </tr>
+</table>
+`;
+
+  showPreview(content);
+}
+
+function generateRTIApplication() {
+  const lang = localStorage.getItem("language") || "en";
+  const applicant = document.getElementById('rti-name').value;
+  const address = document.getElementById('rti-address').value;
+  const info = document.getElementById('rti-info').value;
+  const date = new Date().toLocaleDateString(lang, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  const introText = translations[lang].rtiIntro
+    .replace('${applicant}', applicant)
+    .replace('${address}', address);
+
+  const content = `
+<div style="text-align: center;">
+  <h2>${translations[lang].rtiTitle}</h2>
+  <p><strong>${translations[lang].rtiDate}:</strong> ${date}</p>
+</div>
+
+<p>${translations[lang].rtiTo}<br>${translations[lang].rtiOfficer}</p>
+
+<p>${translations[lang].rtiSalutation}</p>
+
+<p>${introText}</p>
+
+<p><strong>${info}</strong></p>
+
+<p>${translations[lang].rtiDeclaration}</p>
+
+<br><br>
+<p>${translations[lang].rtiClosing}<br>${applicant}</p>
+`;
+
+  showPreview(content);
+}
+
+function generateMutualDivorce() {
+  const lang = localStorage.getItem("language") || "en";
+  const spouse1 = document.getElementById('spouse1-name').value.trim();
+  const spouse2 = document.getElementById('spouse2-name').value.trim();
+  const marriageDate = new Date(document.getElementById('marriage-date').value).toLocaleDateString(lang, {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+  const reason = document.getElementById('divorce-reason').value.trim();
+  const currentDate = new Date().toLocaleDateString(lang, {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  const introText = translations[lang].divorceIntro
+    .replace('${spouse1}', spouse1)
+    .replace('${spouse2}', spouse2)
+    .replace('${currentDate}', currentDate);
+
+  const marriageText = translations[lang].divorceMarriageText
+    .replace('${marriageDate}', marriageDate);
+
+  const content = `
+<div style="text-align: center;">
+  <h2 style="text-decoration: underline;">${translations[lang].divorceTitle}</h2>
+  <p><strong>${translations[lang].saleDeedDate}:</strong> ${currentDate}</p>
+</div>
+
+<p>${introText}</p>
+
+<h3>${translations[lang].divorceMarriage}</h3>
+<p>${marriageText}</p>
+
+<h3>${translations[lang].divorceGrounds}</h3>
+<p>${translations[lang].divorceGroundsText}</p>
+<blockquote><em>"${reason}"</em></blockquote>
+
+<h3>${translations[lang].divorceConsent}</h3>
+<p>${translations[lang].divorceConsentText}</p>
+
+<h3>${translations[lang].divorceSettlement}</h3>
+<p>${translations[lang].divorceSettlementText}</p>
+
+<h3>${translations[lang].divorceLegal}</h3>
+<p>${translations[lang].divorceLegalText}</p>
+
+<h3>${translations[lang].divorceFinal}</h3>
+<p>${translations[lang].divorceFinalText}</p>
+
+<br><br>
+<table style="width: 100%; margin-top: 30px;">
+  <tr>
+    <td style="text-align: left;">
+      <p>_________________________<br><strong>${spouse1}</strong><br>${translations[lang].divorceSpouse1}</p>
+    </td>
+    <td style="text-align: right;">
+      <p>_________________________<br><strong>${spouse2}</strong><br>${translations[lang].divorceSpouse2}</p>
+    </td>
+  </tr>
+</table>
+`;
+
+  showPreview(content);
+}
+
+
+
+
+    function showPreview(content) {
+      document.getElementById('preview').innerHTML = content;
+      document.getElementById('preview-section').style.display = 'block';
+    }
+
+    function downloadText() {
+      const text = document.getElementById('preview').innerText;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = "Legal_Document.txt";
+      link.click();
+    }
+    // Initialize on DOM load
+document.addEventListener("DOMContentLoaded", () => {
+  // Set language from localStorage or default to 'en'
+  languageManager.applyTranslations();
+
+  // Update language selector (if present)
+  const langSelector = document.getElementById("languageSelector");
+  if (langSelector) {
+    langSelector.value = languageManager.currentLanguage;
+    langSelector.addEventListener("change", (e) => {
+      languageManager.setLanguage(e.target.value);
+    });
+  }
+});
+  </script>
+  <script src="js/translations.js"></script>
+  <script src="js/languageManager.js"></script>
+</body>
+
+</html>

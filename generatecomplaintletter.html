@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Generate Complaint Letter</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #fffaf5, #f7f4ee);
+      margin: 0;
+      padding: 40px 20px;
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      color: #2e3a59;
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .input-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    input[type="text"] {
+      width: 60%;
+      max-width: 500px;
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1.5px solid #bbb;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #2e3a59;
+      outline: none;
+      box-shadow: 0 0 8px rgba(46, 58, 89, 0.3);
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: #2e3a59;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b23b3b;
+      transform: translateY(-2px);
+    }
+
+    .output-section {
+      max-width: 800px;
+      margin: auto;
+      background: #fefefe;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .output-section.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    h2 {
+      color: #2e3a59;
+      margin-bottom: 15px;
+    }
+
+    #letterContent {
+      line-height: 1.6;
+      white-space: pre-wrap;
+      font-size: 16px;
+      color: #333;
+    }
+
+    #downloadBtn {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #2e3a59;
+      color: white;
+      padding: 10px 18px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    #downloadBtn:hover {
+      background-color: #b23b3b;
+      transform: scale(1.03);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .letter-container {
+  position: relative;
+}
+
+#copyBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #2e3a59;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 10;
+}
+
+#copyBtn:hover {
+  background-color: #4b5d89;
+  transform: translateY(-5px);
+}
+
+#copyBtn i {
+  pointer-events: none;
+}
+
+/* Tooltip-like animation when copied */
+#copyBtn.copied::after {
+  content: "Copied!";
+  position: absolute;
+  top: -25px;
+  right: 0;
+  background-color: #4caf50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 1; /* start fully visible */
+  animation: fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+    header, footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+ body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            z-index: 999;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Header Section */
+header {
+  background: #ffffff; /* White background for clean official look */
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Heading area */
+.headers {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  height: 75px;
+}
+
+.mainheading {
+  font-size: 35px;
+  font-weight: bold;
+  color: #2c3e50;  /* Dark official text */
+  background: #ffffff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Navigation Menu */
+.topnav {
+  margin-top: 20px;
+  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.topnav ul li {
+  display: inline-block;
+}
+.topnav ul {
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 70px;
+}
+
+.topnav ul li a {
+   display: inline-block;
+  color: #2c3e50; /* normal text color */
+  padding: 10px 5px;
+  border-radius: 8px;
+  text-decoration: none; /* remove underline */
+  transition: all 0.3s ease; /* smooth effect */
+  font-size: 22px;   /* 👈 change this value */
+  font-weight: 600;
+}
+
+
+.topnav ul li a:hover {
+    background: #696969; /* #2F4F4F    #6495ED*/
+  color: #000; /* keep text visible */
+  padding: 12px 24px; /* increase size on hover */
+  border-radius: 12px; /* smoother corners */
+}
+
+
+
+/* Hover underline animation */
+.topnav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 50%;
+  bottom: -6px;
+  
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.topnav ul li a:hover {
+  color: whitesmoke; 
+}
+
+.topnav ul li a:hover::after {
+ width: 100%;
+  left: 0;
+}
+
+        
+        .site-footer {
+            background-color: #1e1e2f;
+            color: #f0f0f0;
+            padding: 40px 20px 20px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1 1 220px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            color: #FF9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        .footer-section ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FF9800;
+        }
+
+        .footer-credits {
+            max-width: 1200px;
+            margin: 30px auto 10px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .footer-credits ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            /* padding-top: 15px;
+            margin-top: 30px; */
+            font-size: 14px;
+            color: #ccc;
+        }
+        @keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+    display: none;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="headers">
+        <img class="logo" src="images/logo_transparent_resized(1).png">
+        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="topnav">
+        <ul>
+            <li><a href="index.html" id="home">🏠 Home</a></li>
+            <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
+            <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
+            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+            <li><a href="contact.html" id="contact">📞 Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+  <h1 data-translate="generatecomplaintheading">Generate Complaint Letter</h1>
+
+  <div class="input-section">
+    <input type="text" id="lawInput" placeholder="Enter law or legal issue..." data-placeholder="generatelaw"/>
+    <button onclick="generateLetter()" data-translate="generatebutton">Generate</button>
+  </div>
+
+  <div class="output-section" id="letterSection">
+    <h2>Complaint Letter</h2>
+    <p id="letterContent"></p>
+    <button id="copyBtn" style="position: absolute; top: 10px; right: 10px; background: #004080; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+    <i class="fas fa-copy"></i> Copy</button>
+    <a id="downloadBtn" download="complaint_letter.txt">Download Letter</a>
+  </div><br><br><br><br><br><br><br><br><br>
+<footer class="site-footer">
+    <div class="footer-container">
+        <!-- Quick Links -->
+        <div class="footer-section">
+            <h3 id="llink">Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lawcategories.html">Law Categories</a></li>
+                <li><a href="generatedocuments.html">Generate Documents</a></li>
+                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="footer-section">
+            <h3 id="llegal">Legal</h3>
+            <ul>
+                <li><a href="#" id="lpp">Privacy Policy</a></li>
+                <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                <li><a href="#" id="ld">Disclaimer</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+            <h3 id="lch">Contact</h3>
+            <ul>
+                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                <li id="lphone">Phone: +91-8985579260</li>
+                <li id="laddress">Address: Pulivendula, India</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Credits Section -->
+    <div class="footer-credits">
+        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+        <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
+        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+        <ul>
+            <li id="geethika">Geethika Reddy Marujolla</li>
+            <li id="reshma">Reshma Shaik</li>
+            <li id="snehitha">Snehitha Reddy Moilla</li>
+        </ul>
+        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+    </div>
+</footer>
+  <script src="js/lawdata.js"></script>
+  <script src="js/languageManager.js"></script>
+  <script src="js/translations.js"></script>
+  <script>
+//     function generateLetter() {
+//       const input = document.getElementById("lawInput").value.trim().toLowerCase();
+//       const law = lawData.find(l =>
+//         l.id.toLowerCase() === input ||
+//         l.title.toLowerCase().includes(input) ||
+//         (l.keywords && l.keywords.some(k => k.toLowerCase() === input))
+//       );
+
+//       const letterSection = document.getElementById("letterSection");
+//       const letterContent = document.getElementById("letterContent");
+
+//       if (!law) {
+//         alert("No matching law found. Please check your input.");
+//         letterSection.classList.remove("visible");
+//         return;
+//       }
+
+//       const content = law.section4;
+//       letterContent.innerText = content;
+//       letterSection.classList.add("visible");
+
+//       const blob = new Blob([content], { type: "text/plain" });
+//       const url = URL.createObjectURL(blob);
+//       document.getElementById("downloadBtn").href = url;
+//     }
+//     // Initialize on DOM load
+// document.addEventListener("DOMContentLoaded", () => {
+//   // Set language from localStorage or default to 'en'
+//   languageManager.applyTranslations();
+
+//   // Update language selector (if present)
+//   const langSelector = document.getElementById("languageSelector");
+//   if (langSelector) {
+//     langSelector.value = languageManager.currentLanguage;
+//     langSelector.addEventListener("change", (e) => {
+//       languageManager.setLanguage(e.target.value);
+//     });
+//   }
+// });
+function generateLetter() {
+  const input = document.getElementById("lawInput").value.trim().toLowerCase();
+  const lang = languageManager.currentLanguage || 'en'; // Get current language
+  
+  // Find matching law (checks ID, title, and keywords in ALL languages)
+  const law = lawData.find(l => {
+    // Check ID (English)
+    if (l.id.toLowerCase() === input) return true;
+    
+    // Check title in ALL languages
+    for (const langKey in l.title) {
+      if (l.title[langKey]?.toLowerCase().includes(input)) return true;
+    }
+    
+    // Check keywords in ALL languages
+    for (const langKey in l.keywords) {
+      if (l.keywords[langKey]?.some(k => k.toLowerCase() === input)) return true;
+    }
+    
+    return false;
+  });
+
+  const letterSection = document.getElementById("letterSection");
+  const letterContent = document.getElementById("letterContent");
+
+  if (!law) {
+    alert("No matching law found. Please check your input.");
+    letterSection.classList.remove("visible");
+    return;
+  }
+
+  // Get content in CURRENT language (fallback to English)
+  const content = law.section4[lang] || law.section4.en || "Content not available";
+  
+  letterContent.innerText = content;
+  letterSection.classList.add("visible");
+document.addEventListener("DOMContentLoaded", function () {
+    const copyBtn = document.getElementById('copyBtn');
+    const copiedText = document.getElementById('copiedText');
+    const section4 = document.getElementById('section4');
+
+    copyBtn.addEventListener('click', function () {
+      const text = section4.textContent;
+
+      navigator.clipboard.writeText(text).then(() => {
+        copiedText.style.display = 'inline';
+        copiedText.style.animation = 'fadeOut 1.5s forwards';
+
+        setTimeout(() => {
+          copiedText.style.display = 'none';
+          copiedText.style.animation = '';
+        }, 1500);
+      }).catch(err => {
+        console.error('Copy failed:', err);
+      });
+    });
+  });
+
+  // Set up download
+  const blob = new Blob([content], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  document.getElementById("downloadBtn").href = url;
+  document.getElementById("downloadBtn").download = `complaint_${law.id}_${lang}.txt`;
+}
+document.getElementById("copyBtn").addEventListener("click", function () {
+  const letter = document.getElementById("letterContent").innerText;
+
+  navigator.clipboard.writeText(letter).then(() => {
+    const copyBtn = document.getElementById("copyBtn");
+    copyBtn.classList.add("copied");
+
+    setTimeout(() => {
+      copyBtn.classList.remove("copied");
+    }, 1500);
+  }).catch(err => {
+    alert("Failed to copy: " + err);
+  });
+});
+
+  </script>
+</body>
+
+</html>

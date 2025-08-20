@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic Violations | Pocket Lawyer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
+    <!-- Replace with your FontAwesome Kit -->
+    <!-- AOS CSS for animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #4B0082;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subheading {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        section {
+            background: #fff;
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+        }
+
+        section h2 {
+            color: #ff6f00;
+            margin-bottom: 10px;
+        }
+
+        section ul {
+            padding-left: 20px;
+        }
+
+        section ul li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-buttons a {
+            background-color: #ff6f00;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 0 10px;
+            transition: 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-buttons a:hover {
+            background-color: #e65100;
+        }
+            header, footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+ body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            z-index: 999;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Header Section */
+header {
+  background: #ffffff; /* White background for clean official look */
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Heading area */
+.headers {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  height: 75px;
+}
+
+.mainheading {
+  font-size: 35px;
+  font-weight: bold;
+  color: #2c3e50;  /* Dark official text */
+  background: #ffffff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Navigation Menu */
+.topnav {
+  margin-top: 20px;
+  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.topnav ul li {
+  display: inline-block;
+}
+.topnav ul {
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 70px;
+}
+
+.topnav ul li a {
+   display: inline-block;
+  color: #2c3e50; /* normal text color */
+  padding: 10px 5px;
+  border-radius: 8px;
+  text-decoration: none; /* remove underline */
+  transition: all 0.3s ease; /* smooth effect */
+  font-size: 22px;   /* 👈 change this value */
+  font-weight: 600;
+}
+
+
+.topnav ul li a:hover {
+    background: #696969; /* #2F4F4F    #6495ED*/
+  color: #000; /* keep text visible */
+  padding: 12px 24px; /* increase size on hover */
+  border-radius: 12px; /* smoother corners */
+}
+
+
+
+/* Hover underline animation */
+.topnav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 50%;
+  bottom: -6px;
+  
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.topnav ul li a:hover {
+  color: whitesmoke; 
+}
+
+.topnav ul li a:hover::after {
+ width: 100%;
+  left: 0;
+}
+
+        
+        .site-footer {
+            background-color: #1e1e2f;
+            color: #f0f0f0;
+            padding: 40px 20px 20px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1 1 220px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            color: #FF9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        .footer-section ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FF9800;
+        }
+
+        .footer-credits {
+            max-width: 1200px;
+            margin: 30px auto 10px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .footer-credits ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            /* padding-top: 15px;
+            margin-top: 30px; */
+            font-size: 14px;
+            color: #ccc;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+    <div class="headers">
+        <img class="logo" src="images/logo_transparent_resized(1).png">
+        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="topnav">
+        <ul>
+            <li><a href="index.html" id="home">🏠 Home</a></li>
+            <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
+            <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
+            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+            <li><a href="contact.html" id="contact">📞 Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+        <h1 data-aos="fade-down" id="trafficheading"><i class="fa-solid fa-car-burst"></i> Traffic Violations</h1>
+        <p class="subheading" data-aos="fade-up" id="trp">Know your rights and learn what steps to take when faced with traffic
+            fines or violations.</p>
+
+        <section data-aos="fade-right">
+            <h2 id="trh2">🔍 What Are Traffic Violations?</h2>
+            <p id="trp2">Traffic violations are offenses committed by drivers while operating a vehicle. In India, these are
+                governed under the Motor Vehicles Act, 1988 and include:</p>
+            <ul>
+                <li id="trl1">Driving without a valid license</li>
+                <li id="trl2">Over-speeding or rash driving</li>
+                <li id="trl3">Not wearing a helmet or seatbelt</li>
+                <li id="trl4">Signal jumping and lane violations</li>
+                <li id="trl5">Driving under the influence (DUI)</li>
+                <li id="trl6">Using mobile phone while driving</li>
+            </ul>
+        </section>
+
+        <section data-aos="fade-left">
+            <h2 id="trtrh2">🛠 Steps to Take If You Are Fined</h2>
+            <ul>
+                <li id="trl7">Check the challan status on <a href="https://echallan.parivahan.gov.in"
+                        target="_blank">echallan.parivahan.gov.in</a></li>
+                <li id="trl8">Pay the fine online using UPI, Netbanking, or card.</li>
+                <li id="trl9">If wrongly fined, visit your local traffic police station with evidence (CCTV footage, documents,
+                    etc.).</li>
+                <li id="trl10">Keep a digital or printed copy of the payment receipt.</li>
+            </ul>
+        </section>
+
+        <section data-aos="zoom-in">
+            <h2 id="th2">📄 Required Documents</h2>
+            <ul>
+                <li id="trl11">Driving License</li>
+                <li id="trl12">Vehicle Registration Certificate (RC)</li>
+                <li id="trl13">Insurance Certificate</li>
+                <li id="trl14">Pollution Under Control (PUC) Certificate</li>
+                <li id="trl15">Challan receipt (if already fined)</li>
+            </ul>
+        </section>
+
+        <section data-aos="flip-left">
+            <h2 id="trimp">📌 Important Tips</h2>
+            <ul>
+                <li id="trl16">Always follow speed limits and wear safety gear.</li>
+                <li id="trl17">Install a dashcam—it can be useful in case of disputes.</li>
+                <li id="trl18">Save the helpline numbers of local traffic departments.</li>
+            </ul>
+        </section>
+
+        <section data-aos="fade-up">
+            <h2 id="trsam">📝 Sample Complaint Letter</h2>
+            <div
+                style="white-space: pre-wrap; background-color: #fdfdfd; border-left: 4px solid #4B0082; padding: 20px; border-radius: 8px;" id="trcontent">
+                To,<br>
+                The Officer In-Charge,<br>
+                Traffic Police Department,<br>
+                [City Name].<br><br>
+
+                Subject: Complaint regarding repeated traffic violations and rash driving<br><br>
+
+                Respected Sir/Madam,<br><br>
+
+                I am writing to lodge a formal complaint against an individual for repeated traffic violations that pose
+                a serious threat to public safety. The individual, driving a [vehicle type and color], bearing
+                registration number [Vehicle Number], has been observed violating traffic norms in the [specific
+                area/location] on multiple occasions.<br><br>
+
+                The violations include rash driving, jumping red lights, overspeeding, and endangering pedestrians.
+                These actions have not only caused inconvenience to other road users but also risked serious accidents
+                and injuries.<br><br>
+
+                I request you to kindly investigate this matter and take appropriate legal and administrative action
+                under the relevant sections of the Motor Vehicles Act. I am willing to provide further details or
+                witness statements if required.<br><br>
+
+                I hope immediate action will be taken to ensure road safety and discipline.<br><br>
+
+                Thank you.<br><br>
+
+                Yours faithfully,<br>
+                [Your Full Name]<br>
+                [Contact Number]<br>
+                [Full Address]
+            </div>
+        </section>
+
+    </div>
+    <footer class="site-footer">
+    <div class="footer-container">
+        <!-- Quick Links -->
+        <div class="footer-section">
+            <h3 id="llink">Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lawcategories.html">Law Categories</a></li>
+                <li><a href="generatedocuments.html">Generate Documents</a></li>
+                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="footer-section">
+            <h3 id="llegal">Legal</h3>
+            <ul>
+                <li><a href="#" id="lpp">Privacy Policy</a></li>
+                <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                <li><a href="#" id="ld">Disclaimer</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+            <h3 id="lch">Contact</h3>
+            <ul>
+                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                <li id="lphone">Phone: +91-8985579260</li>
+                <li id="laddress">Address: Pulivendula, India</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Credits Section -->
+    <div class="footer-credits">
+        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+        <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
+        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+        <ul>
+            <li id="geethika">Geethika Reddy Marujolla</li>
+            <li id="reshma">Reshma Shaik</li>
+            <li id="snehitha">Snehitha Reddy Moilla</li>
+        </ul>
+        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+    </div>
+</footer>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src = "js/translations.js"></script>
+    <script src="js/languageManager.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        // Initialize on DOM load
+document.addEventListener("DOMContentLoaded", () => {
+  // Set language from localStorage or default to 'en'
+  languageManager.applyTranslations();
+
+  // Update language selector (if present)
+  const langSelector = document.getElementById("languageSelector");
+  if (langSelector) {
+    langSelector.value = languageManager.currentLanguage;
+    langSelector.addEventListener("change", (e) => {
+      languageManager.setLanguage(e.target.value);
+    });
+  }
+});
+
+    </script>
+</body>
+
+</html>

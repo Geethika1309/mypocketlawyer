@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Law Explanation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fefefe;
+      padding: 30px;
+      animation: fadeInBody 1s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 30px;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    section {
+      background: #f2f6f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      animation: slideFadeIn 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.4s; }
+    section:nth-child(4) { animation-delay: 0.6s; }
+    section:nth-child(5) { animation-delay: 0.8s; }
+
+    section h2 {
+      color: #004080;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    #section4 {
+      background: #fff;
+      border-left: 4px solid #004080;
+      padding: 15px;
+      border-radius: 6px;
+      white-space: pre-wrap;
+    }
+
+    /* Key Animations */
+    @keyframes slideFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInBody {
+      from {
+        background-color: #eaeaea;
+      }
+      to {
+        background-color: #fefefe;
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Download button styling */
+    .download-button {
+      display: inline-block;
+      background-color: #b23b3b;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .download-button:hover {
+      background-color: #922e2e;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 15px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      animation: fadeInBody 0.5s ease-in-out;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      animation: zoomIn 0.3s ease-in-out;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .modal-content button {
+      background-color: #2e3a59;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-content button:hover {
+      background-color: #1d2b45;
+    }
+
+    .close {
+      color: #888;
+      float: right;
+      font-size: 28px;
+      cursor: pointer;
+    }
+        header, footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+ body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            z-index: 999;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Header Section */
+header {
+  background: #ffffff; /* White background for clean official look */
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Heading area */
+.headers {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  height: 75px;
+}
+
+.mainheading {
+  font-size: 35px;
+  font-weight: bold;
+  color: #2c3e50;  /* Dark official text */
+  background: #ffffff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Navigation Menu */
+.topnav {
+  margin-top: 20px;
+  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.topnav ul li {
+  display: inline-block;
+}
+.topnav ul {
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 70px;
+}
+
+.topnav ul li a {
+   display: inline-block;
+  color: #2c3e50; /* normal text color */
+  padding: 10px 5px;
+  border-radius: 8px;
+  text-decoration: none; /* remove underline */
+  transition: all 0.3s ease; /* smooth effect */
+  font-size: 22px;   /* 👈 change this value */
+  font-weight: 600;
+}
+
+
+.topnav ul li a:hover {
+    background: #696969; /* #2F4F4F    #6495ED*/
+  color: #000; /* keep text visible */
+  padding: 12px 24px; /* increase size on hover */
+  border-radius: 12px; /* smoother corners */
+}
+
+
+
+/* Hover underline animation */
+.topnav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 50%;
+  bottom: -6px;
+  
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.topnav ul li a:hover {
+  color: whitesmoke; 
+}
+
+.topnav ul li a:hover::after {
+ width: 100%;
+  left: 0;
+}
+
+        
+        .site-footer {
+            background-color: #1e1e2f;
+            color: #f0f0f0;
+            padding: 40px 20px 20px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1 1 220px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            color: #FF9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        .footer-section ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FF9800;
+        }
+
+        .footer-credits {
+            max-width: 1200px;
+            margin: 30px auto 10px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .footer-credits ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            /* padding-top: 15px;
+            margin-top: 30px; */
+            font-size: 14px;
+            color: #ccc;
+        }
+        @keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+    display: none;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+<header>
+    <div class="headers">
+        <img class="logo" src="images/logo_transparent_resized(1).png">
+        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="topnav">
+        <ul>
+            <li><a href="index.html" id="home">🏠 Home</a></li>
+            <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
+            <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
+            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+            <li><a href="contact.html" id="contact">📞 Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+  <header>
+    <h1 id="lawTitle">Loading Law Title...</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2 id="sect1"><i class="fas fa-gavel"></i> What This Law Says</h2>
+      <p id="section1">Loading...</p>
+    </section>
+
+    <section>
+      <h2 id="sect2"><i class="fas fa-hands-helping"></i> What To Do If This Happens To You</h2>
+      <p id="section2">Loading...</p>
+    </section>
+
+    <section>
+      <h2 id="sect3"><i class="fas fa-folder-open"></i> Documents You May Need</h2>
+      <ul id="section3"></ul>
+    </section>
+
+    <section>
+      <h2 id="sect4"><i class="fas fa-pen-alt"></i> Auto-Generated Complaint Letter</h2>
+      <div style="position: relative;">
+  <div id="section4" style="white-space: pre-wrap;">Loading complaint letter...</div>
+  <button id="copyBtn" style="position: absolute; top: 10px; right: 10px; background: #004080; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+    <i class="fas fa-copy"></i> Copy
+  </button>
+  <span id="copiedText" style="display:none; position: absolute; top: 10px; right: 100px; background: #27ae60; color: white; padding: 5px 10px; border-radius: 5px; font-size: 14px; animation: fadeOut 1.5s forwards;">Copied!</span>
+</div>
+
+    </section>
+
+    <section style="text-align: center; margin-top: 20px;">
+      <a id="downloadLetterBtn" class="download-button" download="complaint_letter.txt">
+        📄 Download Complaint Letter
+      </a>
+      
+    </section>
+
+    <!-- Complaint Modal -->
+    <div id="complaintModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeComplaintForm()">&times;</span>
+        <h2>Generate Complaint Letter</h2>
+        <textarea rows="10" id="letterContent" readonly></textarea>
+        <br>
+        <button onclick="copyLetter()">Copy to Clipboard</button>
+      </div>
+    </div>
+
+    <!-- Ask a Question Modal -->
+    <div id="questionModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeQuestionForm()">&times;</span>
+        <h2>Ask a Legal Question</h2>
+        <form action="https://formsubmit.co/pocketlawyerindia1950@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="name" placeholder="Your Name" required><br>
+          <input type="email" name="email" placeholder="Your Email" required><br>
+          <textarea name="question" rows="6" placeholder="Type your legal question here..." required></textarea><br>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <!-- Quick Links -->
+        <div class="footer-section">
+            <h3 id="llink">Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lawcategories.html">Law Categories</a></li>
+                <li><a href="generatedocuments.html">Generate Documents</a></li>
+                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="footer-section">
+            <h3 id="llegal">Legal</h3>
+            <ul>
+                <li><a href="#" id="lpp">Privacy Policy</a></li>
+                <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                <li><a href="#" id="ld">Disclaimer</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+            <h3 id="lch">Contact</h3>
+            <ul>
+                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                <li id="lphone">Phone: +91-8985579260</li>
+                <li id="laddress">Address: Pulivendula, India</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Credits Section -->
+    <div class="footer-credits">
+        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+        <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
+        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+        <ul>
+            <li id="geethika">Geethika Reddy Marujolla</li>
+            <li id="reshma">Reshma Shaik</li>
+            <li id="snehitha">Snehitha Reddy Moilla</li>
+        </ul>
+        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+    </div>
+</footer>
+<script src="js/lawdata.js"></script>
+<script src="js/main.js"></script>
+<script src="js/languageManager.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Get URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const lawId = urlParams.get('id') || urlParams.get('query');
+  const lang = urlParams.get('lang') || localStorage.getItem('language') || 'en';
+
+  // Section title translations
+  const sectionTitles = {
+    en: {
+      sect1: "What This Law Says",
+      sect2: "What To Do If This Happens To You",
+      sect3: "Documents You May Need",
+      sect4: "Auto-Generated Complaint Letter",
+      download: "Download Complaint Letter"
+    },
+    hi: {
+      sect1: "यह कानून क्या कहता है",
+      sect2: "अगर आपके साथ ऐसा हो तो क्या करें",
+      sect3: "आवश्यक दस्तावेज़",
+      sect4: "स्वचालित शिकायत पत्र",
+      download: "शिकायत पत्र डाउनलोड करें"
+    },
+    te: {
+      sect1: "ఈ చట్టం ఏమి చెబుతుంది",
+      sect2: "ఇది మీకు జరిగితే ఏమి చేయాలి",
+      sect3: "మీకు అవసరమైన పత్రాలు",
+      sect4: "స్వయంచాలక ఫిర్యాదు లేఖ",
+      download: "ఫిర్యాదు లేఖ డౌన్లోడ్ చేయండి"
+    }
+  };
+
+  // Apply section title translations
+  document.getElementById('sect1').textContent = sectionTitles[lang]?.sect1 || sectionTitles.en.sect1;
+  document.getElementById('sect2').textContent = sectionTitles[lang]?.sect2 || sectionTitles.en.sect2;
+  document.getElementById('sect3').textContent = sectionTitles[lang]?.sect3 || sectionTitles.en.sect3;
+  document.getElementById('sect4').textContent = sectionTitles[lang]?.sect4 || sectionTitles.en.sect4;
+  document.getElementById('downloadLetterBtn').textContent = sectionTitles[lang]?.download || sectionTitles.en.download;
+
+  // Find the matching law
+  const law = lawData.find(item => 
+    item.id === lawId || 
+    (item.keywords && item.keywords[lang]?.some(kw => kw.toLowerCase() === lawId?.toLowerCase()))
+  );
+
+  if (law) {
+    // Set content in selected language with English fallback
+    document.getElementById('lawTitle').textContent = law.title[lang] || law.title.en;
+    document.getElementById('section1').textContent = law.section1[lang] || law.section1.en;
+    document.getElementById('section2').textContent = law.section2[lang] || law.section2.en;
+
+    // Documents list
+    const docsList = document.getElementById('section3');
+    docsList.innerHTML = '';
+    const documents = law.section3[lang] || law.section3.en;
+    documents.forEach(doc => {
+      const li = document.createElement('li');
+      li.textContent = doc;
+      docsList.appendChild(li);
+    });
+
+    // Complaint letter
+    document.getElementById('section4').textContent = law.section4[lang] || law.section4.en;
+  } else {
+    // Handle law not found
+    const notFoundTitles = {
+      en: "Law Not Found",
+      hi: "कानून नहीं मिला",
+      te: "చట్టం కనుగొనబడలేదు"
+    };
+    const notFoundTexts = {
+      en: "The requested law could not be found.",
+      hi: "अनुरोधित कानून नहीं मिल सका।",
+      te: "అభ్యర్థించిన చట్టం కనుగొనబడలేదు."
+    };
+    
+    document.getElementById('lawTitle').textContent = notFoundTitles[lang] || notFoundTitles.en;
+    document.getElementById('section1').textContent = notFoundTexts[lang] || notFoundTexts.en;
+  }
+
+  // Download button functionality
+  document.getElementById('downloadLetterBtn').addEventListener('click', function() {
+    const content = document.getElementById('section4').textContent;
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `complaint_${lawId || 'letter'}_${lang}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+});
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const copyBtn = document.getElementById('copyBtn');
+    const copiedText = document.getElementById('copiedText');
+    const section4 = document.getElementById('section4');
+
+    copyBtn.addEventListener('click', function () {
+      const text = section4.textContent;
+
+      navigator.clipboard.writeText(text).then(() => {
+        copiedText.style.display = 'inline';
+        copiedText.style.animation = 'fadeOut 1.5s forwards';
+
+        setTimeout(() => {
+          copiedText.style.display = 'none';
+          copiedText.style.animation = '';
+        }, 1500);
+      }).catch(err => {
+        console.error('Copy failed:', err);
+      });
+    });
+  });
+
+
+</script>
+
+
+</html>
