@@ -11,24 +11,130 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://use.typekit.net/yfw3xxz.css">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Segoe UI', sans-serif;
             margin: 0;
             background: linear-gradient(to bottom, #fff, #f4f4f4);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+
+        /* Header Section */
+        header {
+            background: #ffffff;
+            padding: 15px 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .headers {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+        }
+
+        .mainheading {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            background: #ffffff;
+            padding: 5px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Hamburger menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background: #2c3e50;
+            border-radius: 5px;
+            transition: all 0.3s linear;
+        }
+
+        /* Navigation */
+        .topnav {
+            background: #f8f9fa;
+            padding: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .topnav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .topnav ul li a {
+            color: #2c3e50;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .topnav ul li a:hover {
+            background: #696969;
+            color: #fff;
+            padding: 12px 18px;
+        }
+
+        /* Main Content */
         .grid-title {
             text-align: center;
-            font-size: 30px;
-            color: #2c3e50;
+            font-size: 40px;
+            color: #009688;
             margin-top: 40px;
             margin-bottom: 20px;
+            padding: 0 15px;
         }
 
         .grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             padding: 30px;
             max-width: 1300px;
             margin: auto;
@@ -146,145 +252,15 @@
         .category-box:nth-child(24) {
             border-top-color:lightcoral;
         }
-        @media (max-width: 600px) {
-            .category-box {
-                width: 90%;
-            }
 
-            header h1 {
-                font-size: 18px;
-            }
-
-            nav a {
-                margin-left: 10px;
-                font-size: 14px;
-            }
-        }
-            header, footer {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
- body,
-        html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            height: 100%;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            z-index: 999;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        /* Header Section */
-header {
-  background: #ffffff; /* White background for clean official look */
-  padding: 20px 40px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-/* Heading area */
-.headers {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.logo {
-  height: 75px;
-}
-
-.mainheading {
-  font-size: 35px;
-  font-weight: bold;
-  color: #2c3e50;  /* Dark official text */
-  background: #ffffff;
-  padding: 5px 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-/* Navigation Menu */
-.topnav {
-  margin-top: 20px;
-  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
-  padding: 15px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.topnav ul li {
-  display: inline-block;
-}
-.topnav ul {
-  list-style: none;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 70px;
-}
-
-.topnav ul li a {
-   display: inline-block;
-  color: #2c3e50; /* normal text color */
-  padding: 10px 5px;
-  border-radius: 8px;
-  text-decoration: none; /* remove underline */
-  transition: all 0.3s ease; /* smooth effect */
-  font-size: 22px;   /* 👈 change this value */
-  font-weight: 600;
-}
-
-
-.topnav ul li a:hover {
-    background: #696969; /* #2F4F4F    #6495ED*/
-  color: #000; /* keep text visible */
-  padding: 12px 24px; /* increase size on hover */
-  border-radius: 12px; /* smoother corners */
-}
-
-
-
-/* Hover underline animation */
-.topnav ul li a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 3px;
-  left: 50%;
-  bottom: -6px;
-  
-  transition: all 0.3s ease;
-  border-radius: 5px;
-}
-
-.topnav ul li a:hover {
-  color: whitesmoke; 
-}
-
-.topnav ul li a:hover::after {
- width: 100%;
-  left: 0;
-}
-
-        
+        /* Footer */
         .site-footer {
             background-color: #1e1e2f;
             color: #f0f0f0;
             padding: 40px 20px 20px;
             font-family: 'Segoe UI', sans-serif;
             font-size: 15px;
-            position: relative;
-            z-index: 1;
+            margin-top: auto;
         }
 
         .footer-container {
@@ -323,34 +299,93 @@ header {
             color: #FF9800;
         }
 
-        .footer-credits {
-            max-width: 1200px;
-            margin: 30px auto 10px;
-            padding-top: 15px;
-            border-top: 1px solid #444;
-            font-size: 14px;
-            color: #ccc;
-            text-align: center;
-            line-height: 1.8;
-        }
-
-        .footer-credits ul {
-            list-style: none;
-            padding: 0;
-            margin: 8px 0;
-        }
-
         .footer-bottom {
             text-align: center;
             border-top: 1px solid #444;
-            /* padding-top: 15px;
-            margin-top: 30px; */
+            padding-top: 15px;
+            margin-top: 30px;
             font-size: 14px;
             color: #ccc;
         }
-        .grid-title{
-            font-size: 40px;
-            color:#009688;
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .headers {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .topnav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .topnav.active {
+                display: block;
+            }
+            
+            .topnav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .mainheading {
+                font-size: 24px;
+            }
+            
+            .logo {
+                height: 50px;
+            }
+            
+            .grid-title {
+                font-size: 32px;
+            }
+            
+            .grid {
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .category-box {
+                width: 100%;
+                max-width: 300px;
+                padding: 20px 10px;
+            }
+            
+            .category-box i {
+                font-size: 32px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .topnav {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-title {
+                font-size: 28px;
+            }
+            
+            header {
+                padding: 15px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
@@ -538,6 +573,27 @@ header {
     <script src="translations.js"></script>
     <script src="languageManager.js"></script>
     <script>
+        // Toggle mobile menu
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.topnav').classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.querySelector('.topnav');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (!menu.contains(event.target) && !toggle.contains(event.target) && window.innerWidth <= 768) {
+                menu.classList.remove('active');
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.querySelector('.topnav').classList.remove('active');
+            }
+        });
         // Initialize on DOM load
 document.addEventListener("DOMContentLoaded", () => {
   // Set language from localStorage or default to 'en'
@@ -570,4 +626,5 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 
 </html>
+
 
