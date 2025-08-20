@@ -27,101 +27,168 @@
         }
 
         /* Header Section */
-        header {
-            background: #ffffff;
-            padding: 15px 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+       /* Header Section */
+header {
+    background: #ffffff;
+    padding: 1rem 5%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* Heading area */
+.headers {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-        .headers {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+.logo {
+    height: 70px;
+    width: auto;
+}
 
-        .logo {
-            height: 60px;
-            width: auto;
-        }
+.mainheading {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: bold;
+    color: #2c3e50;
+    background: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
 
-        .mainheading {
-            font-size: 28px;
-            font-weight: bold;
-            color: #2c3e50;
-            background: #ffffff;
-            padding: 5px 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
+/* Navigation Menu */
+.topnav {
+    margin-top: 1rem;
+    padding: 1rem 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    justify-content: center;
+}
 
-        /* Hamburger menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 30px;
-            height: 25px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1001;
-        }
+.topnav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-        .menu-toggle span {
-            width: 100%;
-            height: 3px;
-            background: #2c3e50;
-            border-radius: 5px;
-            transition: all 0.3s linear;
-            transform-origin: 1px;
-        }
+.topnav ul li {
+    width: 100%;
+    text-align: center;
+}
 
-        /* Navigation */
-        .topnav {
-            background: #f8f9fa;
-            padding: 15px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+.topnav ul li a {
+    display: block;
+    color: #2c3e50;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
 
-        .topnav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 0;
-            padding: 0;
-        }
+.topnav ul li a:hover {
+    background: #696969;
+    color: #000;
+    padding: 0.9rem 1.1rem;
+    border-radius: 12px;
+}
 
-        .topnav ul li a {
-            color: #2c3e50;
-            padding: 10px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 18px;
-            font-weight: 600;
-            display: block;
-        }
+/* Hamburger menu for mobile */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;
+}
 
-        .topnav ul li a:hover {
-            background: #696969;
-            color: #fff;
-            padding: 12px 18px;
-        }
+.menu-toggle span {
+    width: 2rem;
+    height: 0.25rem;
+    background: #2c3e50;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+}
 
+/* Media Queries for Responsiveness */
+@media (min-width: 768px) {
+    /* Tablet and larger */
+    .headers {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+    
+    .topnav ul {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+    
+    .topnav ul li {
+        width: auto;
+    }
+    
+    .menu-toggle {
+        display: none;
+    }
+    
+    .logo {
+        height: 90px;
+    }
+}
+
+@media (min-width: 992px) {
+    /* Desktop */
+    header {
+        padding: 1.25rem 2.5rem;
+    }
+    
+    .topnav ul {
+        gap: 4rem;
+    }
+    
+    .topnav ul li a {
+        font-size: 1.4rem;
+    }
+}
+
+/* Mobile menu activation */
+@media (max-width: 767px) {
+    .topnav {
+        display: none;
+        width: 100%;
+    }
+    
+    .topnav.active {
+        display: block;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .headers {
+        justify-content: space-between;
+    }
+}
         /* Contact Page Styles */
         .contact-title {
             text-align: center;
@@ -281,102 +348,6 @@
             color: #ccc;
         }
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: row;
-                text-align: center;
-            }
-            
-            .headers {
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .topnav {
-                display: none;
-                width: 100%;
-                margin-top: 15px;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background: white;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-                z-index: 999;
-            }
-            
-            .topnav.active {
-                display: block;
-            }
-            
-            .topnav ul {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            .topnav ul li {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .topnav ul li a {
-                padding: 15px;
-                border-radius: 0;
-            }
-            
-            .mainheading {
-                font-size: 24px;
-            }
-            
-            .logo {
-                height: 50px;
-            }
-            
-            .contact-title {
-                font-size: 32px;
-            }
-            
-            .contact-container {
-                padding: 15px;
-                gap: 20px;
-            }
-            
-            .contact-info-box,
-            .contact-form-box {
-                width: 100%;
-                padding: 20px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .topnav {
-                display: block !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .contact-title {
-                font-size: 28px;
-            }
-            
-            header {
-                padding: 15px;
-            }
-            
-            .footer-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .headers {
-                flex-wrap: wrap;
-            }
-        }
-
         /* Animation for hamburger menu */
         .menu-toggle.active span:nth-child(1) {
             transform: rotate(45deg);
@@ -394,30 +365,27 @@
 
 <body>
     <header>
-        <div class="header-container">
-            <div class="headers">
-                <img class="logo" src="logo_transparent_resized(1).png">
-                <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
-                <button class="menu-toggle" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-            
-            <!-- Top Navbar -->
-            <nav class="topnav">
-                <ul>
-                    <li><a href="index.html" id="home">🏠 Home</a></li>
-                    <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
-                    <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
-                    <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
-                    <li><a href="contact.html" id="contact">📞 Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div class="headers">
+        <img class="logo" src="logo_transparent_resized(1).png">
+        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+        <button class="menu-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
 
+    <!-- Top Navbar -->
+    <nav class="topnav">
+        <ul>
+            <li><a href="index.html" id="home">🏠 Home</a></li>
+            <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
+            <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
+            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+            <li><a href="contact.html" id="contact">📞 Contact</a></li>
+        </ul>
+    </nav>
+</header>
     <div class="contact-title" id="contactheading">📞 Contact Pocket Lawyer</div>
 
     <div class="contact-container">
@@ -517,77 +485,59 @@
     <script src="languageManager.js"></script>
     <script>
         // Toggle mobile menu
-        const menuToggle = document.querySelector('.menu-toggle');
-        const topNav = document.querySelector('.topnav');
-        
-        if (menuToggle && topNav) {
-            menuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                topNav.classList.toggle('active');
-                menuToggle.classList.toggle('active');
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!topNav.contains(event.target) && !menuToggle.contains(event.target) && window.innerWidth <= 768) {
-                    topNav.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                }
-            });
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    topNav.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                }
-            });
-        }
-        
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+const menuToggle = document.querySelector('.menu-toggle');
+const topNav = document.querySelector('.topnav');
 
-            const form = e.target;
-            const thankYou = document.getElementById('thankYou');
-            const formData = new FormData(form);
+if (menuToggle && topNav) {
+    menuToggle.addEventListener('click', function() {
+        topNav.classList.toggle('active');
+    });
+}
 
-            fetch("https://formsubmit.co/ajax/pocketlawyerindia1950@gmail.com", {
-                method: "POST",
-                body: formData
-            })
-                .then(response => {
-                    if (response.ok) {
-                        form.reset();
-                        thankYou.style.display = "block";
-                        setTimeout(() => {
-                            thankYou.style.display = "none";
-                        }, 5000);
-                    } else {
-                        alert("Something went wrong. Please try again.");
-                    }
-                })
-                .catch(error => {
-                    alert("Error: " + error.message);
-                });
-        });
-        
-        // Initialize on DOM load
-        document.addEventListener("DOMContentLoaded", () => {
-            // Set language from localStorage or default to 'en'
-            if (typeof languageManager !== 'undefined') {
-                languageManager.applyTranslations();
+// Form submission handling
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const thankYou = document.getElementById('thankYou');
+    const formData = new FormData(form);
+
+    fetch("https://formsubmit.co/ajax/pocketlawyerindia1950@gmail.com", {
+        method: "POST",
+        body: formData
+    })
+        .then(response => {
+            if (response.ok) {
+                form.reset();
+                thankYou.style.display = "block";
+                setTimeout(() => {
+                    thankYou.style.display = "none";
+                }, 5000);
+            } else {
+                alert("Something went wrong. Please try again.");
             }
-
-            // Update language selector (if present)
-            const langSelector = document.getElementById("languageSelector");
-            if (langSelector) {
-                langSelector.value = languageManager.currentLanguage;
-                langSelector.addEventListener("change", (e) => {
-                    languageManager.setLanguage(e.target.value);
-                });
-            }
+        })
+        .catch(error => {
+            alert("Error: " + error.message);
         });
-    </script>
+});
+
+// Initialize on DOM load
+document.addEventListener("DOMContentLoaded", () => {
+    // Set language from localStorage or default to 'en'
+    if (typeof languageManager !== 'undefined') {
+        languageManager.applyTranslations();
+    }
+
+    // Update language selector (if present)
+    const langSelector = document.getElementById("languageSelector");
+    if (langSelector) {
+        langSelector.value = languageManager.currentLanguage;
+        langSelector.addEventListener("change", (e) => {
+            languageManager.setLanguage(e.target.value);
+        });
+    }
+});    </script>
 </body>
 </html>
+
