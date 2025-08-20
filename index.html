@@ -10,7 +10,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://use.typekit.net/yfw3xxz.css">
     <style>
-      please change the entire css accordingly body,
+        body,
         html {
             margin: 0;
             padding: 0;
@@ -394,11 +394,6 @@ header {
             <li><a href="contact.html" id="contact">📞 Contact</a></li>
         </ul>
     </nav>
-    <button class="menu-toggle" aria-label="Toggle navigation menu">
-    <span></span>
-    <span></span>
-    <span></span>
-</button>
 </header>
 
         
@@ -428,14 +423,21 @@ header {
             <h1 class="category-section" id="popular">Popular Law Categories:</h1>
             <div class="grid">
                 <div class="column">
-                    <a href="trafficviolations.html" class="category-box" id="traffic">🚗💥Traffic Violations</a>
-                    <a href="rentortenantissues.html" class="category-box" id="renthome">🏠Rent/Tenant Issues</a>
-                    <a href="womenssafetylaws.html" class="category-box" id="women">👧Women's Safety Laws</a>
+                    <a href="trafficviolations.html" class="category-box" id="traffic">🚗💥<br>
+                        <span>Traffic Violations</span></a>
+                    <a href="rentortenantissues.html" class="category-box" id="renthome">🏠
+                        <span>Rent/Tenant Issues</span></a>
+                    <a href="womenssafetylaws.html" class="category-box" id="women">👧
+                        <span>Women's Safety Laws</span></a>
                 </div>
                 <div class="column">
-                    <a href="consumercomplaints.html" class="category-box" id="consumer">📦📦Consumer Complaints</a>
-                    <a href="cyberbullying.html" class="category-box" id="cyber">🛡️Cyberbullying and Digital Safety</a>
-                    <a href="howtofileacomplaint.html" class="category-box" id="file">📄How to file a complaint</a>
+                    <a href="consumercomplaints.html" class="category-box" id="consumer">📦📦
+                        <span>Consumer Complaints</span></a>
+                    <a href="cyberbullying.html" class="category-box" id="cyber">🛡️
+                        <span>Cyber
+                            bullying and Digital Safety</span></a>
+                    <a href="howtofileacomplaint.html" class="category-box" id="file">📄
+                        <span>How to file a complaint</span></a>
                 </div>
             </div>
             <div class="work-section">
@@ -459,15 +461,15 @@ header {
                 </h2>
                 <div class="cards">
                     <div class="card">
-                        <p id="ldata1">"I resolved my tenant issue without hiring a lawyer. Pocket Lawyer helped me understand the Rental Laws and generate a proper notice. Saved me time and money!"</p>
+                        <p id="ldata1">"I created a complaint within 2 minutes. Very helpful!"</p>
                         <h4 id="lvalue1">- Rajesh, Mumbai</h4>
                     </div>
                     <div class="card">
-                        <p id="ldata2">"The Hindi interface made it so easy to understand consumer rights. I filed a complaint against an e-commerce company and got my refund within 2 weeks!"</p>
+                        <p id="ldata2">"Filing a complaint in my language was so easy."</p>
                         <h4 id="lvalue2">- Priya, Delhi</h4>
                     </div>
                     <div class="card">
-                        <p id="ldata3">"As a woman living alone, I always worried about my legal rights. Pocket Lawyer explained the laws in simple Telugu and helped me prepare necessary documents for my safety."</p>
+                        <p id="ldata3">"I didn't even need a lawyer for basic help."</p>
                         <h4 id="lvalue3">- Lakshmi, Hyderabad</h4>
                     </div>
                 </div>
@@ -530,19 +532,25 @@ header {
     </div>
 </footer>
     </main>
-    <script src="translations.js"></script>
-    <script src="languageManager.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/languageManager.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const topNav = document.querySelector('.topnav');
-    
-    if (menuToggle && topNav) {
-        menuToggle.addEventListener('click', function() {
-            topNav.classList.toggle('active');
-        });
-    }
-});
+//         async function loadLayout() {
+//     try {
+//         // Load header.html into #header div
+//         const headerHtml = await (await fetch("header.html")).text();
+//         document.getElementById("header").innerHTML = headerHtml;
+
+//         // Load footer.html into #footer div
+//         const footerHtml = await (await fetch("footer.html")).text();
+//         document.getElementById("footer").innerHTML = footerHtml;
+//     } catch (err) {
+//         console.error("Error loading header/footer:", err);
+//     }
+// }
+
+// // Call it immediately
+// loadLayout();
 
         document.getElementById("searchLawBtn").addEventListener("click", function () {
             const query = document.getElementById("searchQuery").value.trim();
@@ -594,17 +602,9 @@ header {
         });
     </script>
 
-    <script src="lawdata.js"></script>
-    <script src="main.js"></script>
+    <script src="js/lawdata.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 
 </html>
-
-
-
-
-
-
-
-
