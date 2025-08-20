@@ -2,305 +2,245 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us | Pocket Lawyer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://use.typekit.net/yfw3xxz.css">
-    <style>
-        * {
-            box-sizing: border-box;
+  <meta charset="UTF-8">
+  <title>Contact Us | Pocket Lawyer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    .contact-container {
+      max-width: 900px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .contact-container h1 {
+      color: #4B0082;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .contact-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+    }
+
+    .contact-info,
+    .contact-form {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .contact-info i {
+      font-size: 22px;
+      color: #ff6f00;
+      margin-right: 10px;
+    }
+
+    .contact-info p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-form button {
+      padding: 12px;
+      font-size: 16px;
+      background-color: #4B0082;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact-form button:hover {
+      background-color: #371060;
+    }
+
+    .thank-you-message {
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    #contactphone {
+    color: inherit !important;
+}
+#contactphone a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+    header, footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+ body,
+        html {
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100%;
+            background-color: #f4f4f4;
         }
 
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            background: linear-gradient(to bottom, #fff, #f4f4f4);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        header {
+            z-index: 999;
+        }
+
+        a {
+            text-decoration: none;
         }
 
         /* Header Section */
-       /* Header Section */
 header {
-    background: #ffffff;
-    padding: 1rem 5%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  background: #ffffff; /* White background for clean official look */
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 /* Heading area */
 .headers {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .logo {
-    height: 70px;
-    width: auto;
+  height: 75px;
 }
 
 .mainheading {
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    font-weight: bold;
-    color: #2c3e50;
-    background: #ffffff;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 35px;
+  font-weight: bold;
+  color: #2c3e50;  /* Dark official text */
+  background: #ffffff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* Navigation Menu */
 .topnav {
-    margin-top: 1rem;
-    padding: 1rem 0;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    display: flex;
-    justify-content: center;
+  margin-top: 20px;
+  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
-.topnav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    gap: 0.5rem;
-}
-
 .topnav ul li {
-    width: 100%;
-    text-align: center;
+  display: inline-block;
+}
+.topnav ul {
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 70px;
 }
 
 .topnav ul li a {
-    display: block;
-    color: #2c3e50;
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
-    font-weight: 600;
+   display: inline-block;
+  color: #2c3e50; /* normal text color */
+  padding: 10px 5px;
+  border-radius: 8px;
+  text-decoration: none; /* remove underline */
+  transition: all 0.3s ease; /* smooth effect */
+  font-size: 22px;   /* 👈 change this value */
+  font-weight: 600;
+}
+
+
+.topnav ul li a:hover {
+    background: #696969; /* #2F4F4F    #6495ED*/
+  color: #000; /* keep text visible */
+  padding: 12px 24px; /* increase size on hover */
+  border-radius: 12px; /* smoother corners */
+}
+
+
+
+/* Hover underline animation */
+.topnav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 50%;
+  bottom: -6px;
+  
+  transition: all 0.3s ease;
+  border-radius: 5px;
 }
 
 .topnav ul li a:hover {
-    background: #696969;
-    color: #000;
-    padding: 0.9rem 1.1rem;
-    border-radius: 12px;
+  color: whitesmoke; 
 }
 
-/* Hamburger menu for mobile */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 2rem;
-    height: 2rem;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin-left: auto;
+.topnav ul li a:hover::after {
+ width: 100%;
+  left: 0;
 }
 
-.menu-toggle span {
-    width: 2rem;
-    height: 0.25rem;
-    background: #2c3e50;
-    border-radius: 10px;
-    transition: all 0.3s linear;
-    position: relative;
-    transform-origin: 1px;
-}
-
-/* Media Queries for Responsiveness */
-@media (min-width: 768px) {
-    /* Tablet and larger */
-    .headers {
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-    }
-    
-    .topnav ul {
-        flex-direction: row;
-        gap: 1.5rem;
-    }
-    
-    .topnav ul li {
-        width: auto;
-    }
-    
-    .menu-toggle {
-        display: none;
-    }
-    
-    .logo {
-        height: 90px;
-    }
-}
-
-@media (min-width: 992px) {
-    /* Desktop */
-    header {
-        padding: 1.25rem 2.5rem;
-    }
-    
-    .topnav ul {
-        gap: 4rem;
-    }
-    
-    .topnav ul li a {
-        font-size: 1.4rem;
-    }
-}
-
-/* Mobile menu activation */
-@media (max-width: 767px) {
-    .topnav {
-        display: none;
-        width: 100%;
-    }
-    
-    .topnav.active {
-        display: block;
-    }
-    
-    .menu-toggle {
-        display: flex;
-    }
-    
-    .headers {
-        justify-content: space-between;
-    }
-}
-        /* Contact Page Styles */
-        .contact-title {
-            text-align: center;
-            font-size: 40px;
-            color: #009688;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding: 0 15px;
-        }
-
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            padding: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contact-info-box {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-top: 6px solid #4B0082;
-        }
-
-        .contact-form-box {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-top: 6px solid #ff6f00;
-        }
-
-        .contact-info-box h2,
-        .contact-form-box h2 {
-            color: #4B0082;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .contact-info-item i {
-            font-size: 22px;
-            color: #ff6f00;
-            margin-right: 15px;
-            margin-top: 5px;
-        }
-
-        .contact-info-item p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 15px;
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .contact-form button {
-            padding: 12px;
-            font-size: 16px;
-            background-color: #4B0082;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-
-        .contact-form button:hover {
-            background-color: #371060;
-        }
-
-        .thank-you-message {
-            margin-top: 10px;
-            color: green;
-            font-weight: bold;
-            display: none;
-        }
-
-        /* Footer */
+        
         .site-footer {
             background-color: #1e1e2f;
             color: #f0f0f0;
             padding: 40px 20px 20px;
             font-family: 'Segoe UI', sans-serif;
             font-size: 15px;
-            margin-top: auto;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-container {
@@ -339,40 +279,40 @@ header {
             color: #FF9800;
         }
 
+        .footer-credits {
+            max-width: 1200px;
+            margin: 30px auto 10px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .footer-credits ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
         .footer-bottom {
             text-align: center;
             border-top: 1px solid #444;
-            padding-top: 15px;
-            margin-top: 30px;
+            /* padding-top: 15px;
+            margin-top: 30px; */
             font-size: 14px;
             color: #ccc;
         }
 
-        /* Animation for hamburger menu */
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg);
-        }
-        
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg);
-        }
-    </style>
+  </style>
 </head>
 
 <body>
-    <header>
+  <header>
     <div class="headers">
         <img class="logo" src="logo_transparent_resized(1).png">
         <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
-        <button class="menu-toggle" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </div>
 
     <!-- Top Navbar -->
@@ -386,158 +326,135 @@ header {
         </ul>
     </nav>
 </header>
-    <div class="contact-title" id="contactheading">📞 Contact Pocket Lawyer</div>
+<br><br>
+  <div class="contact-container">
+    <h1 id="contactheading">📞 Contact Pocket Lawyer</h1>
+    <div class="contact-box">
 
-    <div class="contact-container">
-        <div class="contact-info-box">
-            <h2>Get In Touch</h2>
-            <div class="contact-info-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <p id="contactplace">Pulivendula, Andhra Pradesh, India</p>
-            </div>
-            <div class="contact-info-item">
-                <i class="fa-solid fa-envelope"></i>
-                <p id="contactemail">pocketlawyerindia1950@gmail.com</p>
-            </div>
-            <div class="contact-info-item">
-                <i class="fas fa-phone"></i>
-                <p id="contactphone">+91-8985579260</p>
-            </div>
-            <div class="contact-info-item">
-                <i class="fas fa-globe"></i>
-                <p>www.mypocketlawyer.top</p>
-            </div>
+      <div class="contact-info">
+        <p id="contactplace"><i class="fa-solid fa-location-dot"></i> Pulivendula, Andhra Pradesh, India</p>
+        <p id="contactemail"><i class="fa-solid fa-envelope"></i> pocketlawyerindia1950@gmail.com</p>
+        <p id="contactphone"><i class="fas fa-phone"></i> +91-8985579260</p>
+        <p><i class="fas fa-globe"></i> www.mypocketlawyer.top</p>
+      </div>
+
+      <div class="contact-form">
+        <form id="contactForm" action="https://formsubmit.co/pocketlawyerindia1950@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_subject" value="New Contact Form Submission!">
+          <input type="hidden" name="_next" value="https://yourdomain.com/thankyou.html">
+
+
+          <input type="text" name="name" placeholder="Your Name" data-placeholder="contactnamepl" required>
+          <input type="email" name="email" placeholder="Your Email" data-placeholder="contactemailpl" required>
+          <textarea name="message" placeholder="Your Message or Concern..." data-placeholder="contactplpl" required></textarea>
+          <button type="submit" id="contactmsg"><i class="fas fa-paper-plane"></i> Send Message</button>
+          <p id="thankYou" class="thank-you-message" id="contactthanks">✅ Thank you! Your message has been sent.</p>
+        </form>
+      </div>
+
+    </div>
+  </div><br>
+<footer class="site-footer">
+    <div class="footer-container">
+        <!-- Quick Links -->
+        <div class="footer-section">
+            <h3 id="llink">Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lawcategories.html">Law Categories</a></li>
+                <li><a href="generatedocuments.html">Generate Documents</a></li>
+                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </div>
 
-        <div class="contact-form-box">
-            <h2>Send Us a Message</h2>
-            <form id="contactForm" action="https://formsubmit.co/pocketlawyerindia1950@gmail.com" method="POST" class="contact-form">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_subject" value="New Contact Form Submission!">
-                <input type="hidden" name="_next" value="https://yourdomain.com/thankyou.html">
+        <!-- Legal Links -->
+        <div class="footer-section">
+            <h3 id="llegal">Legal</h3>
+            <ul>
+                <li><a href="#" id="lpp">Privacy Policy</a></li>
+                <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                <li><a href="#" id="ld">Disclaimer</a></li>
+            </ul>
+        </div>
 
-                <input type="text" name="name" placeholder="Your Name" data-placeholder="contactnamepl" required>
-                <input type="email" name="email" placeholder="Your Email" data-placeholder="contactemailpl" required>
-                <textarea name="message" placeholder="Your Message or Concern..." data-placeholder="contactplpl" required></textarea>
-                <button type="submit" id="contactmsg"><i class="fas fa-paper-plane"></i> Send Message</button>
-                <p id="thankYou" class="thank-you-message" id="contactthanks">✅ Thank you! Your message has been sent.</p>
-            </form>
+        <!-- Contact Info -->
+        <div class="footer-section">
+            <h3 id="lch">Contact</h3>
+            <ul>
+                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                <li id="lphone">Phone: +91-8985579260</li>
+                <li id="laddress">Address: Pulivendula, India</li>
+            </ul>
         </div>
     </div>
-    
-    <footer class="site-footer">
-        <div class="footer-container">
-            <!-- Quick Links -->
-            <div class="footer-section">
-                <h3 id="llink">Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="lawcategories.html">Law Categories</a></li>
-                    <li><a href="generatedocuments.html">Generate Documents</a></li>
-                    <li><a href="askalawyer.html">Ask a Lawyer</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
 
-            <!-- Legal Links -->
-            <div class="footer-section">
-                <h3 id="llegal">Legal</h3>
-                <ul>
-                    <li><a href="#" id="lpp">Privacy Policy</a></li>
-                    <li><a href="#" id="ltc">Terms & Conditions</a></li>
-                    <li><a href="#" id="ld">Disclaimer</a></li>
-                </ul>
-            </div>
+    <!-- Credits Section -->
+    <div class="footer-credits">
+        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+        <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
+        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+        <ul>
+            <li id="geethika">Geethika Reddy Marujolla</li>
+            <li id="reshma">Reshma Shaik</li>
+            <li id="snehitha">Snehitha Reddy Moilla</li>
+        </ul>
+        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+    </div>
 
-            <!-- Contact Info -->
-            <div class="footer-section">
-                <h3 id="lch">Contact</h3>
-                <ul>
-                    <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
-                    <li id="lphone">Phone: +91-8985579260</li>
-                    <li id="laddress">Address: Pulivendula, India</li>
-                </ul>
-            </div>
-        </div>
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+    </div>
+</footer>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
 
-        <!-- Credits Section -->
-        <div class="footer-credits">
-            <p id="ljustice">🌟 Made for Justice, by Students of India</p>
-            <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
-            <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
-            <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
-            <ul>
-                <li id="geethika">Geethika Reddy Marujolla</li>
-                <li id="reshma">Reshma Shaik</li>
-                <li id="snehitha">Snehitha Reddy Moilla</li>
-            </ul>
-            <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
-        </div>
+      const form = e.target;
+      const thankYou = document.getElementById('thankYou');
+      const formData = new FormData(form);
 
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
-        </div>
-    </footer>
-    
-    <script src="translations.js"></script>
-    <script src="languageManager.js"></script>
-    <script>
-        // Toggle mobile menu
-const menuToggle = document.querySelector('.menu-toggle');
-const topNav = document.querySelector('.topnav');
-
-if (menuToggle && topNav) {
-    menuToggle.addEventListener('click', function() {
-        topNav.classList.toggle('active');
-    });
-}
-
-// Form submission handling
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const thankYou = document.getElementById('thankYou');
-    const formData = new FormData(form);
-
-    fetch("https://formsubmit.co/ajax/pocketlawyerindia1950@gmail.com", {
+      fetch("https://formsubmit.co/ajax/pocketlawyerindia1950@gmail.com", {
         method: "POST",
         body: formData
-    })
+      })
         .then(response => {
-            if (response.ok) {
-                form.reset();
-                thankYou.style.display = "block";
-                setTimeout(() => {
-                    thankYou.style.display = "none";
-                }, 5000);
-            } else {
-                alert("Something went wrong. Please try again.");
-            }
+          if (response.ok) {
+            form.reset();
+            thankYou.style.display = "block";
+          } else {
+            alert("Something went wrong. Please try again.");
+          }
         })
         .catch(error => {
-            alert("Error: " + error.message);
+          alert("Error: " + error.message);
         });
-});
-
-// Initialize on DOM load
+    });
+    // Initialize on DOM load
 document.addEventListener("DOMContentLoaded", () => {
-    // Set language from localStorage or default to 'en'
-    if (typeof languageManager !== 'undefined') {
-        languageManager.applyTranslations();
-    }
+  // Set language from localStorage or default to 'en'
+  languageManager.applyTranslations();
 
-    // Update language selector (if present)
-    const langSelector = document.getElementById("languageSelector");
-    if (langSelector) {
-        langSelector.value = languageManager.currentLanguage;
-        langSelector.addEventListener("change", (e) => {
-            languageManager.setLanguage(e.target.value);
-        });
-    }
-});    </script>
+  // Update language selector (if present)
+  const langSelector = document.getElementById("languageSelector");
+  if (langSelector) {
+    langSelector.value = languageManager.currentLanguage;
+    langSelector.addEventListener("change", (e) => {
+      languageManager.setLanguage(e.target.value);
+    });
+  }
+});
+  </script>
+  <script src="translations.js"></script>
+  <script src="languageManager.js"></script>
 </body>
+
+
 </html>
+
+
 
