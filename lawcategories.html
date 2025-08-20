@@ -76,6 +76,7 @@
             border: none;
             cursor: pointer;
             padding: 0;
+            z-index: 1001;
         }
 
         .menu-toggle span {
@@ -84,6 +85,7 @@
             background: #2c3e50;
             border-radius: 5px;
             transition: all 0.3s linear;
+            transform-origin: 1px;
         }
 
         /* Navigation */
@@ -311,7 +313,7 @@
         /* Responsive styles */
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
+                flex-direction: row;
                 text-align: center;
             }
             
@@ -328,6 +330,12 @@
                 display: none;
                 width: 100%;
                 margin-top: 15px;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: white;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                z-index: 999;
             }
             
             .topnav.active {
@@ -336,7 +344,17 @@
             
             .topnav ul {
                 flex-direction: column;
-                gap: 10px;
+                gap: 0;
+            }
+            
+            .topnav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .topnav ul li a {
+                padding: 15px;
+                border-radius: 0;
             }
             
             .mainheading {
@@ -386,245 +404,266 @@
                 flex-direction: column;
                 gap: 20px;
             }
+            
+            .headers {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Animation for hamburger menu */
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
         }
     </style>
 </head>
 
 <body>
-<header>
-    <div class="headers">
-        <img class="logo" src="logo_transparent_resized(1).png">
-        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
-    </div>
-
-    <!-- Top Navbar -->
-    <nav class="topnav">
-        <ul>
-            <li><a href="index.html" id="home">🏠 Home</a></li>
-            <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
-            <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
-            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
-            <li><a href="contact.html" id="contact">📞 Contact</a></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <div class="header-container">
+            <div class="headers">
+                <img class="logo" src="logo_transparent_resized(1).png">
+                <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Top Navbar -->
+            <nav class="topnav">
+                <ul>
+                    <li><a href="index.html" id="home">🏠 Home</a></li>
+                    <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
+                    <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
+                    <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+                    <li><a href="contact.html" id="contact">📞 Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <div class="grid-title" id="lcheading">Explore Legal Categories</div>
 
     <div class="grid">
         <a href="law.html?id=rent-dispute" class="category-box">
-    <i class="fas fa-home"></i>
-    <div id="lcdiv1">Rent or Tenant Issues</div>
-</a>
-<a href="law.html?id=cybercrime-itact" class="category-box">
-    <i class="fas fa-laptop-code"></i>
-    <div id="lcdiv2">Cyber Crime</div>
-</a>
-<a href="law.html?id=domestic-violence" class="category-box">
-    <i class="fas fa-hand-holding-heart"></i>
-    <div id="lcdiv3">Domestic Violence</div>
-</a>
-<a href="law.html?id=consumer-act-12" class="category-box">
-    <i class="fas fa-shopping-cart"></i>
-    <div id="lcdiv4">Consumer Complaints</div>
-</a>
-<a href="law.html?id=mva-traffic-violation" class="category-box">
-    <i class="fas fa-car-crash"></i>
-    <div id="lcdiv5">Traffic Violations</div>
-</a>
-<a href="law.html?id=cyberbullying" class="category-box">
-    <i class="fas fa-user-shield"></i>
-    <div id="lcdiv6">Cyber Bullying</div>
-</a>
-<a href="law.html?id=ipc-294" class="category-box">
-    <i class="fas fa-venus"></i>
-    <div id="lcdiv7">Eve Teasing</div>
-</a>
-<a href="law.html?id=employment" class="category-box">
-    <i class="fas fa-briefcase"></i>
-    <div id="lcdiv8">Employment Rights</div>
-</a>
-<a href="law.html?id=ipc-326a" class="category-box">
-    <i class="fas fa-burn"></i>
-    <div id="lcdiv9">Acid Attack</div>
-</a>
-<a href="law.html?id=ipc-268" class="category-box">
-    <i class="fas fa-bullhorn"></i>
-    <div id="lcdiv10">Public Nuisance</div>
-</a>
-<a href="law.html?id=ipc-354d" class="category-box">
-    <i class="fas fa-user-secret"></i>
-    <div id="lcdiv11">Harassment & Stalking</div>
-</a>
-<a href="law.html?id=propertydispute" class="category-box">
-    <i class="fa-solid fa-house-chimney"></i>
-    <div id="lcdiv12">Property Dispute</div>
-</a>
-<a href="law.html?id=clp-1986" class="category-box">
-    <i class="fa-solid fa-child"></i>
-    <div id="lcdiv13">Child Labour</div>
-</a>
-<a href="law.html?id=mpc-001" class="category-box">
-    <i class="fa-solid fa-user-slash"></i>
-    <div id="lcdiv14">Missing Person</div>
-</a>
-<a href="law.html?id=briberycorruption" class="category-box">
-    <i class="fa-solid fa-handshake-simple"></i>
-    <div id="lcdiv15">Bribery & Corruption</div>
-</a>
-<a href="law.html?id=passportvisa" class="category-box">
-    <i class="fa-solid fa-passport"></i>
-    <div id="lcdiv16">Passport/Visa Issues</div>
-</a>
-<a href="law.html?id=drugabuse" class="category-box">
-  <i class="fa-solid fa-pills"></i>
-  <div id="lcdiv17">Drug Related Offences</div>
-</a>
-
-<a href="law.html?id=humantrafficking" class="category-box">
-  <i class="fa-solid fa-handcuffs"></i>
-  <div id="lcdiv18">Human Trafficking</div>
-</a>
-
-<a href="law.html?id=publicdrinking" class="category-box">
-  <i class="fa-solid fa-wine-bottle"></i>
-  <div id="lcdiv19">Public Drinking</div>
-</a>
-
-<a href="law.html?id=foodadulteration" class="category-box">
-  <i class="fa-solid fa-burger"></i>
-  <div id="lcdiv20">Food Adulteration</div>
-</a>
-
-<a href="law.html?id=ipc-302" class="category-box">
-  <i class="fa-solid fa-skull-crossbones"></i>
-  <div id="lcdiv21">Murder</div>
-</a>
-
-<a href="law.html?id=domesticanimals" class="category-box">
-  <i class="fa-solid fa-dog"></i>
-  <div id="lcdiv22">Cruelty to Animals</div>
-</a>
-
-<a href="law.html?id=environmentprotection" class="category-box">
-  <i class="fa-solid fa-leaf"></i>
-  <div id="lcdiv23">Environment Protection</div>
-</a>
-<a href="law.html?id=water-act-27" class="category-box">
-  <i class="fa-solid fa-droplet"></i>
-  <div id="lcdiv24">Water Pollution</div>
-</a>
-
+            <i class="fas fa-home"></i>
+            <div id="lcdiv1">Rent or Tenant Issues</div>
+        </a>
+        <a href="law.html?id=cybercrime-itact" class="category-box">
+            <i class="fas fa-laptop-code"></i>
+            <div id="lcdiv2">Cyber Crime</div>
+        </a>
+        <a href="law.html?id=domestic-violence" class="category-box">
+            <i class="fas fa-hand-holding-heart"></i>
+            <div id="lcdiv3">Domestic Violence</div>
+        </a>
+        <a href="law.html?id=consumer-act-12" class="category-box">
+            <i class="fas fa-shopping-cart"></i>
+            <div id="lcdiv4">Consumer Complaints</div>
+        </a>
+        <a href="law.html?id=mva-traffic-violation" class="category-box">
+            <i class="fas fa-car-crash"></i>
+            <div id="lcdiv5">Traffic Violations</div>
+        </a>
+        <a href="law.html?id=cyberbullying" class="category-box">
+            <i class="fas fa-user-shield"></i>
+            <div id="lcdiv6">Cyber Bullying</div>
+        </a>
+        <a href="law.html?id=ipc-294" class="category-box">
+            <i class="fas fa-venus"></i>
+            <div id="lcdiv7">Eve Teasing</div>
+        </a>
+        <a href="law.html?id=employment" class="category-box">
+            <i class="fas fa-briefcase"></i>
+            <div id="lcdiv8">Employment Rights</div>
+        </a>
+        <a href="law.html?id=ipc-326a" class="category-box">
+            <i class="fas fa-burn"></i>
+            <div id="lcdiv9">Acid Attack</div>
+        </a>
+        <a href="law.html?id=ipc-268" class="category-box">
+            <i class="fas fa-bullhorn"></i>
+            <div id="lcdiv10">Public Nuisance</div>
+        </a>
+        <a href="law.html?id=ipc-354d" class="category-box">
+            <i class="fas fa-user-secret"></i>
+            <div id="lcdiv11">Harassment & Stalking</div>
+        </a>
+        <a href="law.html?id=propertydispute" class="category-box">
+            <i class="fa-solid fa-house-chimney"></i>
+            <div id="lcdiv12">Property Dispute</div>
+        </a>
+        <a href="law.html?id=clp-1986" class="category-box">
+            <i class="fa-solid fa-child"></i>
+            <div id="lcdiv13">Child Labour</div>
+        </a>
+        <a href="law.html?id=mpc-001" class="category-box">
+            <i class="fa-solid fa-user-slash"></i>
+            <div id="lcdiv14">Missing Person</div>
+        </a>
+        <a href="law.html?id=briberycorruption" class="category-box">
+            <i class="fa-solid fa-handshake-simple"></i>
+            <div id="lcdiv15">Bribery & Corruption</div>
+        </a>
+        <a href="law.html?id=passportvisa" class="category-box">
+            <i class="fa-solid fa-passport"></i>
+            <div id="lcdiv16">Passport/Visa Issues</div>
+        </a>
+        <a href="law.html?id=drugabuse" class="category-box">
+            <i class="fa-solid fa-pills"></i>
+            <div id="lcdiv17">Drug Related Offences</div>
+        </a>
+        <a href="law.html?id=humantrafficking" class="category-box">
+            <i class="fa-solid fa-handcuffs"></i>
+            <div id="lcdiv18">Human Trafficking</div>
+        </a>
+        <a href="law.html?id=publicdrinking" class="category-box">
+            <i class="fa-solid fa-wine-bottle"></i>
+            <div id="lcdiv19">Public Drinking</div>
+        </a>
+        <a href="law.html?id=foodadulteration" class="category-box">
+            <i class="fa-solid fa-burger"></i>
+            <div id="lcdiv20">Food Adulteration</div>
+        </a>
+        <a href="law.html?id=ipc-302" class="category-box">
+            <i class="fa-solid fa-skull-crossbones"></i>
+            <div id="lcdiv21">Murder</div>
+        </a>
+        <a href="law.html?id=domesticanimals" class="category-box">
+            <i class="fa-solid fa-dog"></i>
+            <div id="lcdiv22">Cruelty to Animals</div>
+        </a>
+        <a href="law.html?id=environmentprotection" class="category-box">
+            <i class="fa-solid fa-leaf"></i>
+            <div id="lcdiv23">Environment Protection</div>
+        </a>
+        <a href="law.html?id=water-act-27" class="category-box">
+            <i class="fa-solid fa-droplet"></i>
+            <div id="lcdiv24">Water Pollution</div>
+        </a>
     </div>
+    
     <footer class="site-footer">
-    <div class="footer-container">
-        <!-- Quick Links -->
-        <div class="footer-section">
-            <h3 id="llink">Quick Links</h3>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="lawcategories.html">Law Categories</a></li>
-                <li><a href="generatedocuments.html">Generate Documents</a></li>
-                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+        <div class="footer-container">
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3 id="llink">Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="lawcategories.html">Law Categories</a></li>
+                    <li><a href="generatedocuments.html">Generate Documents</a></li>
+                    <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal Links -->
+            <div class="footer-section">
+                <h3 id="llegal">Legal</h3>
+                <ul>
+                    <li><a href="#" id="lpp">Privacy Policy</a></li>
+                    <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                    <li><a href="#" id="ld">Disclaimer</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3 id="lch">Contact</h3>
+                <ul>
+                    <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                    <li id="lphone">Phone: +91-8985579260</li>
+                    <li id="laddress">Address: Pulivendula, India</li>
+                </ul>
+            </div>
         </div>
 
-        <!-- Legal Links -->
-        <div class="footer-section">
-            <h3 id="llegal">Legal</h3>
+        <!-- Credits Section -->
+        <div class="footer-credits">
+            <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+            <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
+            <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+            <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
             <ul>
-                <li><a href="#" id="lpp">Privacy Policy</a></li>
-                <li><a href="#" id="ltc">Terms & Conditions</a></li>
-                <li><a href="#" id="ld">Disclaimer</a></li>
+                <li id="geethika">Geethika Reddy Marujolla</li>
+                <li id="reshma">Reshma Shaik</li>
+                <li id="snehitha">Snehitha Reddy Moilla</li>
             </ul>
+            <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
         </div>
 
-        <!-- Contact Info -->
-        <div class="footer-section">
-            <h3 id="lch">Contact</h3>
-            <ul>
-                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
-                <li id="lphone">Phone: +91-8985579260</li>
-                <li id="laddress">Address: Pulivendula, India</li>
-            </ul>
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
         </div>
-    </div>
-
-    <!-- Credits Section -->
-    <div class="footer-credits">
-        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
-        <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
-        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
-        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
-        <ul>
-            <li id="geethika">Geethika Reddy Marujolla</li>
-            <li id="reshma">Reshma Shaik</li>
-            <li id="snehitha">Snehitha Reddy Moilla</li>
-        </ul>
-        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
-    </div>
-
-    <!-- Copyright -->
-    <div class="footer-bottom">
-        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
-    </div>
-</footer>
+    </footer>
+    
     <script src="translations.js"></script>
     <script src="languageManager.js"></script>
     <script>
         // Toggle mobile menu
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.topnav').classList.toggle('active');
-        });
+        const menuToggle = document.querySelector('.menu-toggle');
+        const topNav = document.querySelector('.topnav');
         
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.querySelector('.topnav');
-            const toggle = document.querySelector('.menu-toggle');
+        if (menuToggle && topNav) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                topNav.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
             
-            if (!menu.contains(event.target) && !toggle.contains(event.target) && window.innerWidth <= 768) {
-                menu.classList.remove('active');
-            }
-        });
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!topNav.contains(event.target) && !menuToggle.contains(event.target) && window.innerWidth <= 768) {
+                    topNav.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    topNav.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        }
         
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                document.querySelector('.topnav').classList.remove('active');
-            }
-        });
         // Initialize on DOM load
-document.addEventListener("DOMContentLoaded", () => {
-  // Set language from localStorage or default to 'en'
-  languageManager.applyTranslations();
+        document.addEventListener("DOMContentLoaded", () => {
+            // Set language from localStorage or default to 'en'
+            if (typeof languageManager !== 'undefined') {
+                languageManager.applyTranslations();
+            }
 
-  // Update language selector (if present)
-  const langSelector = document.getElementById("languageSelector");
-  if (langSelector) {
-    langSelector.value = languageManager.currentLanguage;
-    langSelector.addEventListener("change", (e) => {
-      languageManager.setLanguage(e.target.value);
-    });
-  }
-});
-
-// In lawcategories.html
-document.addEventListener("DOMContentLoaded", function() {
-  // Get current language from localStorage
-  const lang = localStorage.getItem('language') || 'en';
-  
-  // Update all law links to include language parameter
-  document.querySelectorAll('.category-box').forEach(link => {
-    const currentHref = link.getAttribute('href');
-    const separator = currentHref.includes('?') ? '&' : '?';
-    link.setAttribute('href', `${currentHref}${separator}lang=${lang}`);
-  });
-});
-
+            // Update language selector (if present)
+            const langSelector = document.getElementById("languageSelector");
+            if (langSelector) {
+                langSelector.value = languageManager.currentLanguage;
+                langSelector.addEventListener("change", (e) => {
+                    languageManager.setLanguage(e.target.value);
+                });
+            }
+            
+            // Get current language from localStorage
+            const lang = localStorage.getItem('language') || 'en';
+            
+            // Update all law links to include language parameter
+            document.querySelectorAll('.category-box').forEach(link => {
+                const currentHref = link.getAttribute('href');
+                const separator = currentHref.includes('?') ? '&' : '?';
+                link.setAttribute('href', `${currentHref}${separator}lang=${lang}`);
+            });
+        });
     </script>
 </body>
-
 </html>
-
-
