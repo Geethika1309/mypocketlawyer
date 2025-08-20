@@ -6696,49 +6696,104 @@ Sincerely,
     te: ["బాధితుల వివరాలు", "ప్రదేశం", "తస్కర్ వివరాలు", "సాక్షుల సమాచారం"],
     hi: ["पीड़ित का विवरण", "स्थान", "तस्कर का विवरण", "गवाह की जानकारी"]
   },
-  section4: {
-    en: `To,  
+  section4: { 
+  en: `To,  
 The Officer In-Charge,  
 Anti Human Trafficking Unit,  
 [City Name]  
 
-Subject: Complaint regarding human trafficking  
+Subject: Urgent Complaint regarding Human Trafficking  
 
 Respected Sir/Madam,  
-I wish to report a case of human trafficking at [location]. Victims are being exploited/forced into [labor/sexual exploitation]. Kindly take strict action.  
+
+I am writing this letter to formally bring to your notice a serious case of human trafficking taking place in [location/area]. I have observed that a group of individuals are involved in the illegal transportation and exploitation of people, including [men/women/children]. These victims are being forced into [labor/sexual exploitation/begging/other illegal activities] against their will.  
+
+The traffickers appear to be operating in an organized manner, and they are using [house/building/vehicle name/details] as their base. I strongly believe that many innocent people are being trapped and exploited for unlawful purposes. This is causing immense suffering to the victims, and it poses a grave threat to the safety and dignity of human life.  
+
+I kindly request you to take immediate and strict action under IPC Sections 370, 371 and the Immoral Traffic (Prevention) Act. A prompt investigation and rescue operation can save the victims from further exploitation.  
+
+Enclosed/Attached are the details I could gather:  
+- Victim details: [names/age/gender if known]  
+- Location/Address: [exact place]  
+- Suspected traffickers: [names/physical description if possible]  
+- Witness information: [if available]  
+- Any supporting photos/videos/documents  
+
+I assure full cooperation from my side and I am ready to provide further details if required. I request you to kindly treat this matter with urgency, as every minute of delay may cause more harm to the victims.  
+
+Thanking you in anticipation for your swift action.  
 
 Sincerely,  
 [Your Name]  
-[Contact Details]`,
-    te: `కు,  
-అధికారి,  
-Anti Human Trafficking Unit,  
+[Address]  
+[Contact Details]  
+[Date]`,  
+
+  te: `కు,  
+అధికారి ఇన్-చార్జ్,  
+మానవ అక్రమ రవాణా విభాగం,  
 [నగరం పేరు]  
 
-విషయం: మానవ అక్రమ రవాణా పై ఫిర్యాదు  
+విషయం: మానవ అక్రమ రవాణా గురించి అత్యవసర ఫిర్యాదు  
 
 గౌరవనీయులైన సర్/మేడమ్,  
-నేను [ప్రదేశం]లో మానవ అక్రమ రవాణా కేసు గురించి నివేదించదలిచాను. బాధితులు [బలవంతపు శ్రమ/లైంగిక దోపిడీ]కి గురవుతున్నారు. దయచేసి కఠిన చర్యలు తీసుకోవాలి.  
+
+[స్థానం/ప్రాంతం]లో మానవ అక్రమ రవాణా జరుగుతున్న ఒక తీవ్రమైన కేసు గురించి మీ దృష్టికి తీసుకురావడానికి ఈ లేఖ రాస్తున్నాను. వ్యక్తుల ఒక గుంపు, పురుషులు/మహిళలు/పిల్లలను అక్రమంగా రవాణా చేసి బలవంతంగా [కూలి పని/లైంగిక దోపిడి/భిక్షాటన/ఇతర అక్రమ కార్యకలాపాలు] చేయిస్తున్నారు అని గమనించాను.  
+
+అక్రమ రవాణాదారులు ఒక గణనీయమైన విధంగా పనిచేస్తున్నారు మరియు వారు [ఇల్లు/భవనం/వాహనం వివరాలు]ని తమ కేంద్రంగా ఉపయోగిస్తున్నారు. అనేక నిర్దోషులు ఈ ఉచ్చులో చిక్కుకుని దుర్వినియోగం అవుతున్నారని నేను బలంగా నమ్ముతున్నాను. ఇది బాధితులకు తీవ్రమైన కష్టాలను కలిగిస్తుంది మరియు మానవ జీవిత భద్రత, గౌరవానికి ప్రమాదాన్ని కలిగిస్తుంది.  
+
+దయచేసి IPC సెక్షన్లు 370, 371 మరియు “అనైతిక రవాణా (నిరోధక) చట్టం” ప్రకారం తక్షణ చర్య తీసుకోవాలని నేను ప్రార్థిస్తున్నాను. వెంటనే దర్యాప్తు చేసి రక్షణ చర్య చేపడితే బాధితులను మరింత దోపిడీ నుండి కాపాడవచ్చు.  
+
+నేను సేకరించిన వివరాలు:  
+- బాధితుల సమాచారం: [పేర్లు/వయసు/లింగం తెలిసినట్లయితే]  
+- ప్రదేశం/చిరునామా: [ఖచ్చితమైన ప్రదేశం]  
+- అనుమానిత అక్రమ రవాణాదారులు: [పేర్లు/శారీరక వివరణ]  
+- సాక్షుల సమాచారం: [ఉంటే]  
+- ఆధారాలు: [ఫోటోలు/వీడియోలు/పత్రాలు]  
+
+నేను పూర్తి సహకారం అందిస్తాను. ఈ విషయాన్ని అత్యవసరంగా పరిగణించాలని నేను మనవి చేస్తున్నాను, ఎందుకంటే ప్రతి నిమిషం ఆలస్యం బాధితులకు మరింత ప్రమాదం కలిగించవచ్చు.  
+
+మీ తక్షణ చర్యకు ముందుగానే ధన్యవాదాలు.  
 
 భక్తితో,  
 [మీ పేరు]  
-[సంప్రదింపు వివరాలు]`,
-    hi: `से,  
-प्रभारी अधिकारी,  
-एंटी ह्यूमन ट्रैफिकिंग यूनिट,  
+[చిరునామా]  
+[సంప్రదింపు వివరాలు]  
+[తేదీ]`,  
+
+  hi: `से,  
+अधिकारी-प्रभारी,  
+मानव तस्करी निरोधक इकाई,  
 [शहर का नाम]  
 
-विषय: मानव तस्करी के संबंध में शिकायत  
+विषय: मानव तस्करी के संबंध में तात्कालिक शिकायत  
 
 मान्यवर/माननीया,  
-मैं [स्थान] पर मानव तस्करी का मामला रिपोर्ट करना चाहता/चाहती हूँ। पीड़ितों को [मज़दूरी/यौन शोषण] के लिए मजबूर किया जा रहा है। कृपया सख्त कार्रवाई करें।  
+
+मैं इस पत्र के माध्यम से आपके संज्ञान में एक गंभीर मानव तस्करी का मामला लाना चाहता/चाहती हूँ, जो [स्थान/क्षेत्र] में हो रहा है। मैंने देखा है कि कुछ लोग पुरुषों/महिलाओं/बच्चों को जबरन [मजदूरी/यौन शोषण/भिक्षावृत्ति/अन्य अवैध गतिविधियों] के लिए इस्तेमाल कर रहे हैं।  
+
+तस्कर संगठित ढंग से काम कर रहे हैं और [घर/भवन/वाहन विवरण] को अपना केंद्र बना रखा है। मुझे विश्वास है कि कई निर्दोष लोग इस जाल में फँसकर शोषित हो रहे हैं। यह पीड़ितों के लिए अत्यधिक कष्टकारी है और मानव जीवन की सुरक्षा और गरिमा के लिए गंभीर खतरा है।  
+
+अतः आपसे निवेदन है कि IPC की धारा 370, 371 और अनैतिक व्यापार (निवारण) अधिनियम के अंतर्गत तत्काल और सख्त कार्रवाई करें। शीघ्र जांच और बचाव कार्य से पीड़ितों को आगे के शोषण से बचाया जा सकता है।  
+
+संकलित विवरण इस प्रकार हैं:  
+- पीड़ितों का विवरण: [नाम/आयु/लिंग यदि ज्ञात हो]  
+- स्थान/पता: [सटीक जगह]  
+- संदिग्ध तस्कर: [नाम/शारीरिक विवरण]  
+- गवाह जानकारी: [यदि उपलब्ध हो]  
+- सहायक साक्ष्य: [फोटो/वीडियो/दस्तावेज]  
+
+मैं पूरी तरह से सहयोग करने को तैयार हूँ और आपसे अनुरोध है कि इस मामले को अति-आपातकालीन मानकर कार्रवाई करें। विलंब का प्रत्येक क्षण पीड़ितों के लिए और अधिक हानिकारक हो सकता है।  
+
+आपकी त्वरित कार्रवाई के लिए अग्रिम धन्यवाद।  
 
 भवदीय,  
 [आपका नाम]  
-[संपर्क विवरण]`
-  }
+[पता]  
+[संपर्क विवरण]  
+[तारीख]`  
+}
 },
-
 // ✅ Drug Abuse / Illegal Drugs
 {
   id: "drugabuse",
@@ -6808,4 +6863,5 @@ Sincerely,
 },
 
 ];
+
 
