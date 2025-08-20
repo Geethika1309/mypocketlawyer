@@ -5577,6 +5577,1235 @@ Sincerely,
     te: "కు,  \nస్టేషన్ హౌస్ ఆఫీసర్ గారికి,  \n\nనేను కట్న నిషేధ చట్టం, 1961 ప్రకారం [వరుడి పేరు] కుటుంబంపై ఫిర్యాదు చేయదలచుకున్నాను. వారు [తేదీ] న జరగబోయే వివాహానికి షరతుగా [మొత్తం/వస్తువులు] కట్నం డిమాండ్ చేశారు.\n\nఈ డిమాండ్ నా కుటుంబానికి మానసిక వేదన మరియు ఆర్థిక ఒత్తిడి కలిగించింది. చాట్ సందేశాలు, కాల్ రికార్డింగులు మరియు సాక్షుల వాంగ్మూలాలు వంటి ఆధారాలను జతపరుస్తున్నాను.\n\nకట్నం శిక్షార్హమైన నేరం, కాబట్టి ఇలాంటి ప్రవర్తనను నివారించడానికి నిందితులపై తక్షణమే చట్టపరమైన చర్యలు తీసుకోవాలని కోరుతున్నాను.\n\nభవదీయుడు,  \n[మీ పేరు]  \n[తండ్రి/తల్లి పేరు]  \n[సంప్రదింపు వివరాలు]  \n[తేదీ]",
     hi: "प्रति,  \nस्टेशन हाउस अधिकारी,  \n\nमैं दहेज निषेध अधिनियम, 1961 के तहत [दूल्हे का नाम] के परिवार के खिलाफ शिकायत दर्ज कराना चाहता/चाहती हूँ। उन्होंने [तारीख़] को होने वाली शादी के लिए शर्त के रूप में [राशि/सामान] का दहेज मांगा है।\n\nइस मांग से मेरे परिवार को मानसिक कष्ट और आर्थिक दबाव हुआ है। मैं चैट संदेश, कॉल रिकॉर्डिंग और गवाहों के बयान जैसे सबूत संलग्न कर रहा/रही हूँ।\n\nदहेज एक दंडनीय अपराध है, कृपया आरोपियों के खिलाफ तुरंत कानूनी कार्रवाई करें ताकि ऐसी प्रथाओं को रोका जा सके।\n\nसधन्यवाद,  \n[आपका नाम]  \n[पिता/माता का नाम]  \n[संपर्क विवरण]  \n[तारीख़]"
   }
-}
+},
+  {
+  id: "environmentprotection",
+  title: {
+    en: "Environment Protection Act",
+    te: "పర్యావరణ పరిరక్షణ చట్టం",
+    hi: "पर्यावरण संरक्षण अधिनियम"
+  },
+  keywords: {
+    en: ["pollution", "environment", "ecology", "air pollution", "water pollution", "waste"],
+    te: ["కాలుష్యం", "పర్యావరణం", "పరిశుభ్రత", "గాలి కాలుష్యం", "నీటి కాలుష్యం", "వ్యర్థాలు"],
+    hi: ["प्रदूषण", "पर्यावरण", "पारिस्थितिकी", "वायु प्रदूषण", "जल प्रदूषण", "कचरा"]
+  },
+  section1: {
+    en: "The Environment Protection Act, 1986 provides measures to control and reduce air, water, and soil pollution and preserve natural resources.",
+    te: "పర్యావరణ పరిరక్షణ చట్టం, 1986 ప్రకారం గాలి, నీరు, నేల కాలుష్యాన్ని నియంత్రించడానికి చర్యలు తీసుకోవాలి.",
+    hi: "पर्यावरण संरक्षण अधिनियम, 1986 वायु, जल और मृदा प्रदूषण को नियंत्रित करने और प्राकृतिक संसाधनों को बचाने के लिए उपाय करता है।"
+  },
+  section2: {
+    en: "Citizens can complain to the Pollution Control Board or local authorities about any industry or activity causing pollution.",
+    te: "కాలుష్యం సృష్టించే పరిశ్రమలపై ప్రజలు కాలుష్య నియంత్రణ బోర్డు లేదా స్థానిక అధికారులకు ఫిర్యాదు చేయవచ్చు.",
+    hi: "प्रदूषण पैदा करने वाले उद्योग या गतिविधि के खिलाफ नागरिक प्रदूषण नियंत्रण बोर्ड या स्थानीय अधिकारियों से शिकायत कर सकते हैं।"
+  },
+  section3: {
+    en: ["Proof of pollution (photos, videos)", "Medical report (if health affected)", "Address of polluting source"],
+    te: ["కాలుష్యం ఆధారాలు (ఫోటోలు, వీడియోలు)", "ఆరోగ్య ప్రభావం ఉంటే వైద్య నివేదిక", "కాలుష్య మూలం చిరునామా"],
+    hi: ["प्रदूषण का प्रमाण (फोटो, वीडियो)", "चिकित्सीय रिपोर्ट (यदि स्वास्थ्य प्रभावित हो)", "प्रदूषण स्रोत का पता"]
+  },
+  section4: {
+    en: `To,  
+The Pollution Control Board Officer,  
+[City/State]  
+
+Subject: Complaint against pollution  
+
+Respected Sir/Madam,  
+I am a resident of [Area]. There has been continuous pollution caused by [Factory/Activity]. This has affected the health of the people in the locality.  
+
+Kindly take strict action under the Environment Protection Act, 1986.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+కాలుష్య నియంత్రణ బోర్డు అధికారి,  
+[నగరం/రాష్ట్రం]  
+
+విషయం: కాలుష్యంపై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+నేను [ప్రాంతం] నివాసిని. [కర్మాగారం/చర్య] వల్ల నిరంతర కాలుష్యం జరుగుతోంది. దీని వల్ల ప్రజల ఆరోగ్యం దెబ్బతింటోంది.  
+
+దయచేసి పర్యావరణ పరిరక్షణ చట్టం, 1986 ప్రకారం చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+प्रदूषण नियंत्रण बोर्ड अधिकारी,  
+[शहर/राज्य]  
+
+विषय: प्रदूषण के खिलाफ शिकायत  
+
+मान्यवर/माननीया,  
+मैं [क्षेत्र] का निवासी हूँ। [कारखाना/गतिविधि] के कारण लगातार प्रदूषण हो रहा है। इससे स्थानीय लोगों के स्वास्थ्य पर असर पड़ रहा है।  
+
+कृपया पर्यावरण संरक्षण अधिनियम, 1986 के तहत सख्त कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+{
+  id: "domesticanimals",
+  title: {
+    en: "Cruelty to Animals Act",
+    te: "జంతువులపై క్రూరత్వం చట్టం",
+    hi: "पशु क्रूरता निवारण अधिनियम"
+  },
+  keywords: {
+    en: ["animal cruelty", "pets", "stray animals", "animal abuse", "animal protection"],
+    te: ["జంతు క్రూరత్వం", "పెంపుడు జంతువులు", "అనాథ జంతువులు", "జంతు వేధింపులు", "జంతు సంరక్షణ"],
+    hi: ["पशु क्रूरता", "पालतू पशु", "आवारा पशु", "पशु उत्पीड़न", "पशु संरक्षण"]
+  },
+  section1: {
+    en: "The Prevention of Cruelty to Animals Act, 1960 prevents abuse, neglect, and cruelty towards animals including pets and stray animals.",
+    te: "జంతువులపై క్రూరత్వం నిరోధక చట్టం, 1960 ప్రకారం పెంపుడు మరియు వీధి జంతువులను వేధించడం నిషేధం.",
+    hi: "पशु क्रूरता निवारण अधिनियम, 1960 के अनुसार पालतू और आवारा पशुओं पर अत्याचार निषिद्ध है।"
+  },
+  section2: {
+    en: "You can report cases of animal cruelty to the SPCA, local NGOs, or the nearest police station.",
+    te: "జంతువులపై క్రూరత్వం జరిగితే SPCA, స్థానిక NGOలు లేదా సమీప పోలీస్ స్టేషన్‌కి ఫిర్యాదు చేయవచ్చు.",
+    hi: "पशु क्रूरता के मामलों की शिकायत SPCA, स्थानीय NGO या निकटतम पुलिस स्टेशन में की जा सकती है।"
+  },
+  section3: {
+    en: ["Photos or videos of cruelty", "Veterinary medical certificate", "Witness statements"],
+    te: ["జంతు వేధింపుల ఫోటోలు లేదా వీడియోలు", "వెటర్నరీ వైద్య ధృవపత్రం", "సాక్షుల ప్రకటనలు"],
+    hi: ["क्रूरता की तस्वीरें या वीडियो", "पशु चिकित्सीय प्रमाणपत्र", "गवाह के बयान"]
+  },
+  section4: {
+    en: `To,  
+The Station House Officer,  
+[Police Station Name],  
+[City]  
+
+Subject: Complaint regarding animal cruelty  
+
+Respected Sir/Madam,  
+I would like to report an incident of cruelty against animals at [Location]. The animals were subjected to [type of cruelty].  
+
+Please take necessary action under the Prevention of Cruelty to Animals Act, 1960.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+స్టేషన్ హౌస్ ఆఫీసర్,  
+[పోలీస్ స్టేషన్ పేరు],  
+[నగరం]  
+
+విషయం: జంతువులపై క్రూరత్వంపై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[ప్రాంతం] వద్ద జంతువులపై క్రూరత్వం జరిగిన ఘటనను నేను నివేదించదలచాను. జంతువులు [క్రూరత్వం రకం]కు గురయ్యాయి.  
+
+దయచేసి జంతువులపై క్రూరత్వం నిరోధక చట్టం, 1960 ప్రకారం చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+स्टेशन हाउस ऑफिसर,  
+[थाना नाम],  
+[शहर]  
+
+विषय: पशु क्रूरता के खिलाफ शिकायत  
+
+मान्यवर/माननीया,  
+मैं [स्थान] पर पशुओं के साथ हुई क्रूरता की घटना की रिपोर्ट करना चाहता/चाहती हूँ। पशुओं को [क्रूरता का प्रकार] का शिकार बनाया गया।  
+
+कृपया पशु क्रूरता निवारण अधिनियम, 1960 के तहत आवश्यक कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+{
+  id: "righttoeducation",
+  title: {
+    en: "Right to Education Act",
+    te: "విద్య హక్కు చట్టం",
+    hi: "शिक्षा का अधिकार अधिनियम"
+  },
+  keywords: {
+    en: ["education", "RTE", "school", "children rights", "free education"],
+    te: ["విద్య", "RTE", "పాఠశాల", "బాలల హక్కులు", "ఉచిత విద్య"],
+    hi: ["शिक्षा", "आरटीई", "स्कूल", "बच्चों के अधिकार", "निःशुल्क शिक्षा"]
+  },
+  section1: {
+    en: "The Right of Children to Free and Compulsory Education Act, 2009 ensures free and compulsory education to children between the ages of 6 and 14.",
+    te: "2009 విద్య హక్కు చట్టం ప్రకారం 6 నుండి 14 సంవత్సరాల మధ్య ఉన్న పిల్లలకు ఉచిత మరియు తప్పనిసరి విద్య కల్పించబడుతుంది.",
+    hi: "शिक्षा का अधिकार अधिनियम, 2009 के तहत 6 से 14 वर्ष के बच्चों को निःशुल्क और अनिवार्य शिक्षा की गारंटी है।"
+  },
+  section2: {
+    en: "Parents can complain to the District Education Officer if schools deny admission or charge illegal fees.",
+    te: "పాఠశాలలు ప్రవేశం నిరాకరిస్తే లేదా అక్రమ రుసుము వసూలు చేస్తే తల్లిదండ్రులు జిల్లా విద్యాధికారి వద్ద ఫిర్యాదు చేయవచ్చు.",
+    hi: "यदि स्कूल प्रवेश से इनकार करता है या अवैध शुल्क लेता है तो अभिभावक जिला शिक्षा अधिकारी से शिकायत कर सकते हैं।"
+  },
+  section3: {
+    en: ["Child’s age proof", "Residence proof", "School admission denial document"],
+    te: ["పిల్ల వయసు ధృవీకరణ", "నివాస ధృవీకరణ", "ప్రవేశ నిరాకరణ పత్రం"],
+    hi: ["बच्चे की आयु प्रमाण", "निवास प्रमाण", "प्रवेश अस्वीकृति दस्तावेज"]
+  },
+  section4: {
+    en: `To,  
+The District Education Officer,  
+[City/District]  
+
+Subject: Complaint regarding denial of education  
+
+Respected Sir/Madam,  
+I, [Your Name], parent of [Child’s Name], aged [Age], wish to report that the school [School Name] has denied admission/charged illegal fees.  
+
+Kindly take action under the Right to Education Act, 2009.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+జిల్లా విద్యాధికారి,  
+[నగరం/జిల్లా]  
+
+విషయం: విద్య నిరాకరణపై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+నేను, [మీ పేరు], [పిల్ల పేరు] తల్లి/తండ్రిని. వయసు [వయసు]. [పాఠశాల పేరు] ప్రవేశం నిరాకరించింది/అక్రమ రుసుము వసూలు చేసింది.  
+
+దయచేసి విద్య హక్కు చట్టం, 2009 ప్రకారం చర్య తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+जिला शिक्षा अधिकारी,  
+[शहर/जिला]  
+
+विषय: शिक्षा से वंचित करने की शिकायत  
+
+मान्यवर/माननीया,  
+मैं, [आपका नाम], [बच्चे का नाम], आयु [आयु] का अभिभावक हूँ। [स्कूल का नाम] ने प्रवेश से इनकार/अवैध शुल्क वसूला है।  
+
+कृपया शिक्षा का अधिकार अधिनियम, 2009 के तहत कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+{
+  id: "foodadulteration",
+  title: {
+    en: "Food Adulteration Act",
+    te: "ఆహార కల్తీ చట్టం",
+    hi: "खाद्य मिलावट अधिनियम"
+  },
+  keywords: {
+    en: ["food safety", "adulteration", "fake food", "contaminated food", "FSSAI"],
+    te: ["ఆహార భద్రత", "కల్తీ", "నకిలీ ఆహారం", "కాలుష్యం", "FSSAI"],
+    hi: ["खाद्य सुरक्षा", "मिलावट", "नकली खाना", "प्रदूषित भोजन", "एफएसएसएआई"]
+  },
+  section1: {
+    en: "The Food Safety and Standards Act, 2006 prohibits the sale of adulterated or contaminated food items and ensures consumer safety.",
+    te: "2006 ఆహార భద్రత మరియు ప్రమాణాల చట్టం ప్రకారం కల్తీ లేదా కాలుష్యం కలిగిన ఆహారం విక్రయించడం నిషేధం.",
+    hi: "खाद्य सुरक्षा और मानक अधिनियम, 2006 के तहत मिलावटी या प्रदूषित भोजन की बिक्री प्रतिबंधित है।"
+  },
+  section2: {
+    en: "Consumers can complain to the Food Safety Officer or file a grievance on the FSSAI portal.",
+    te: "ప్రజలు ఆహార భద్రతా అధికారికి లేదా FSSAI పోర్టల్‌లో ఫిర్యాదు చేయవచ్చు.",
+    hi: "उपभोक्ता खाद्य सुरक्षा अधिकारी से शिकायत कर सकते हैं या FSSAI पोर्टल पर शिकायत दर्ज कर सकते हैं।"
+  },
+  section3: {
+    en: ["Sample of adulterated food", "Bill/receipt of purchase", "Medical report (if illness occurred)"],
+    te: ["కల్తీ ఆహారం నమూనా", "కొనుగోలు బిల్/రసీదు", "అనారోగ్యం ఉంటే వైద్య నివేదిక"],
+    hi: ["मिलावटी भोजन का नमूना", "खरीद की रसीद", "बीमारी होने पर मेडिकल रिपोर्ट"]
+  },
+  section4: {
+    en: `To,  
+The Food Safety Officer,  
+[City/District]  
+
+Subject: Complaint regarding adulterated food  
+
+Respected Sir/Madam,  
+I, [Your Name], purchased [Food Item] from [Shop/Restaurant] on [Date]. The item was adulterated/contaminated and caused [problem].  
+
+Kindly take strict action under the Food Safety and Standards Act, 2006.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+ఆహార భద్రతా అధికారి,  
+[నగరం/జిల్లా]  
+
+విషయం: కల్తీ ఆహారం పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+నేను, [మీ పేరు], [తేదీ]న [షాప్/రెస్టారెంట్] నుండి [ఆహార వస్తువు] కొనుగోలు చేశాను. ఇది కల్తీ/కాలుష్యం కలిగినదిగా తేలింది మరియు [సమస్య] కలిగించింది.  
+
+దయచేసి ఆహార భద్రత మరియు ప్రమాణాల చట్టం, 2006 ప్రకారం చర్య తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+खाद्य सुरक्षा अधिकारी,  
+[शहर/जिला]  
+
+विषय: मिलावटी भोजन के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+मैं, [आपका नाम], ने [दिनांक] को [दुकान/रेस्तरां] से [भोजन वस्तु] खरीदी। यह मिलावटी/प्रदूषित पाई गई और [समस्या] हुई।  
+
+कृपया खाद्य सुरक्षा और मानक अधिनियम, 2006 के तहत सख्त कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+{
+  id: "section144",
+  title: {
+    en: "Section 144 CrPC",
+    te: "క్రిమినల్ ప్రొసీజర్ కోడ్ సెక్షన్ 144",
+    hi: "दंड प्रक्रिया संहिता की धारा 144"
+  },
+  keywords: {
+    en: ["Section 144", "curfew", "prohibitory orders", "unlawful assembly", "public order"],
+    te: ["సెక్షన్ 144", "కర్ఫ్యూ", "నిషేధాజ్ఞలు", "అక్రమ గుంపు", "పబ్లిక్ ఆర్డర్"],
+    hi: ["धारा 144", "कर्फ्यू", "निषेधाज्ञा", "अवैध जमाव", "सार्वजनिक व्यवस्था"]
+  },
+  section1: {
+    en: "Section 144 of the Code of Criminal Procedure (CrPC) empowers a District Magistrate or Sub-divisional Magistrate to issue orders in urgent cases of nuisance or apprehended danger. It is often used to impose restrictions like curfew, prohibiting gatherings of 4 or more people.",
+    te: "క్రిమినల్ ప్రొసీజర్ కోడ్ (CrPC) సెక్షన్ 144 ప్రకారం జిల్లా మేజిస్ట్రేట్ లేదా సబ్-డివిజనల్ మేజిస్ట్రేట్ అత్యవసర పరిస్థితులలో ఆదేశాలు జారీ చేయవచ్చు. సాధారణంగా ఇది కర్ఫ్యూ లేదా 4 మందికిపైగా గుంపులు కూడడాన్ని నిషేధించడానికి ఉపయోగిస్తారు.",
+    hi: "दंड प्रक्रिया संहिता (CrPC) की धारा 144 जिला मजिस्ट्रेट या उपमंडलीय मजिस्ट्रेट को आपात स्थिति में आदेश जारी करने का अधिकार देती है। इसका उपयोग आमतौर पर कर्फ्यू या 4 से अधिक लोगों की भीड़ को रोकने के लिए किया जाता है।"
+  },
+  section2: {
+    en: "If Section 144 is imposed, individuals must follow the restrictions. Violation can lead to arrest under IPC Section 188.",
+    te: "సెక్షన్ 144 అమల్లో ఉన్నప్పుడు వ్యక్తులు ఆ నిబంధనలను పాటించాలి. ఉల్లంఘిస్తే IPC సెక్షన్ 188 ప్రకారం అరెస్ట్ అవుతారు.",
+    hi: "धारा 144 लागू होने पर व्यक्तियों को आदेशों का पालन करना अनिवार्य है। उल्लंघन करने पर आईपीसी धारा 188 के तहत गिरफ्तारी हो सकती है।"
+  },
+  section3: {
+    en: ["Copy of prohibitory order", "Identity proof", "Details of area and time of imposition"],
+    te: ["నిషేధాజ్ఞ ఆదేశం కాపీ", "ఐడెంటిటీ ప్రూఫ్", "ప్రాంతం మరియు అమలు కాలం వివరాలు"],
+    hi: ["निषेधाज्ञा की प्रति", "पहचान प्रमाण", "क्षेत्र और लागू होने की अवधि का विवरण"]
+  },
+  section4: {
+    en: `To,  
+The District Magistrate,  
+[District Name]  
+
+Subject: Request for relaxation under Section 144 CrPC  
+
+Respected Sir/Madam,  
+I, [Your Name], resident of [Address], respectfully request permission for [reason: e.g., essential work, medical emergency] during the period of Section 144 restrictions in [Area].  
+
+Kindly grant me necessary relaxation to avoid hardship.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+జిల్లా మేజిస్ట్రేట్,  
+[జిల్లా పేరు]  
+
+విషయం: సెక్షన్ 144 CrPC కింద మినహాయింపు అభ్యర్థన  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+నేను, [మీ పేరు], [చిరునామా] నివాసిని, [ప్రాంతం]లో అమల్లో ఉన్న సెక్షన్ 144 నిబంధనల సమయంలో [కారణం: ఉదా. అత్యవసర పని, వైద్య అవసరం] కోసం అనుమతి కోరుతున్నాను.  
+
+దయచేసి ఇబ్బందులు తప్పించుకోవడానికి అవసరమైన మినహాయింపు ఇవ్వగలరు.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+जिला मजिस्ट्रेट,  
+[जिले का नाम]  
+
+विषय: धारा 144 CrPC के अंतर्गत छूट हेतु आवेदन  
+
+मान्यवर/माननीया,  
+मैं, [आपका नाम], [पता] निवासी, [क्षेत्र] में लागू धारा 144 के दौरान [कारण: जैसे आवश्यक कार्य, चिकित्सीय आपात] हेतु अनुमति का निवेदन करता/करती हूँ।  
+
+कृपया असुविधा से बचने हेतु आवश्यक छूट प्रदान करने की कृपा करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+// ✅ 1. Noise Pollution
+{
+  id: "noisepollution",
+  title: {
+    en: "Noise Pollution",
+    te: "శబ్ద కాలుష్యం",
+    hi: "ध्वनि प्रदूषण"
+  },
+  keywords: {
+    en: ["noise", "loudspeaker", "dj", "sound pollution", "loud noise"],
+    te: ["శబ్దం", "లౌడ్‌స్పీకర్", "డిజే", "శబ్ద కాలుష్యం", "బిగ్గరగా శబ్దం"],
+    hi: ["शोर", "लाउडस्पीकर", "डीजे", "ध्वनि प्रदूषण", "तेज़ आवाज़"]
+  },
+  section1: {
+    en: "Noise pollution is regulated under IPC 268 and the Environment Protection Act. Loudspeakers, DJs, and construction noise beyond permissible limits are punishable.",
+    te: "శబ్ద కాలుష్యం IPC 268 మరియు పర్యావరణ పరిరక్షణ చట్టం కింద నియంత్రించబడుతుంది. లౌడ్‌స్పీకర్లు, డిజేలు, నిర్మాణ శబ్దం అనుమతించిన పరిమితులకు మించి ఉంటే శిక్షార్హం.",
+    hi: "ध्वनि प्रदूषण IPC 268 और पर्यावरण संरक्षण अधिनियम के तहत नियंत्रित है। लाउडस्पीकर, डीजे और निर्माण की तेज आवाज़ दंडनीय है।"
+  },
+  section2: {
+    en: "You can complain to the police or local municipal authorities against noise beyond 10 PM or exceeding prescribed decibel limits.",
+    te: "రాత్రి 10 తర్వాత లేదా అనుమతించిన శబ్ద పరిమితులు మించినప్పుడు పోలీసులకు లేదా మున్సిపల్ అధికారులకు ఫిర్యాదు చేయవచ్చు.",
+    hi: "रात 10 बजे के बाद या निर्धारित सीमा से अधिक ध्वनि होने पर पुलिस या नगर निगम अधिकारियों से शिकायत की जा सकती है।"
+  },
+  section3: {
+    en: ["Location details", "Audio/Video proof of noise", "Time & date of nuisance"],
+    te: ["ప్రదేశ వివరాలు", "శబ్దానికి సంబంధించిన ఆడియో/వీడియో రుజువు", "అసౌకర్యం జరిగిన సమయం & తేదీ"],
+    hi: ["स्थान का विवरण", "ध्वनि का ऑडियो/वीडियो प्रमाण", "उपद्रव का समय और तारीख"]
+  },
+  section4: {
+    en: `To,  
+The Station House Officer,  
+[Police Station Name]  
+
+Subject: Complaint against noise pollution  
+
+Respected Sir/Madam,  
+I wish to lodge a complaint regarding noise pollution caused by [details] at [location]. The noise is continuing beyond permitted hours and is causing disturbance.  
+
+I request you to kindly take necessary action.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+స్టేషన్ హౌస్ అధికారి,  
+[పోలీస్ స్టేషన్ పేరు]  
+
+విషయం: శబ్ద కాలుష్యం పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[ప్రదేశం] వద్ద [వివరాలు] వలన శబ్ద కాలుష్యం జరుగుతోంది. ఇది అనుమతించిన సమయాన్ని మించి కొనసాగుతూ ఇబ్బందులు కలిగిస్తోంది.  
+
+దయచేసి అవసరమైన చర్యలు తీసుకోవాలని ప్రార్థిస్తున్నాను.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+स्टेशन हाउस ऑफिसर,  
+[थाने का नाम]  
+
+विषय: ध्वनि प्रदूषण के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+[स्थान] पर [विवरण] द्वारा ध्वनि प्रदूषण हो रहा है। यह निर्धारित समय से अधिक जारी है और असुविधा का कारण बन रहा है।  
+
+कृपया आवश्यक कार्रवाई करने की कृपा करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// ✅ 2. Public Drinking / Intoxication
+{
+  id: "publicdrinking",
+  title: {
+    en: "Public Drinking or Intoxication",
+    te: "ప్రజా మద్యపానం లేదా మత్తు",
+    hi: "सार्वजनिक स्थान पर शराब पीना या नशा"
+  },
+  keywords: {
+    en: ["alcohol", "drinking in public", "intoxication", "excise law"],
+    te: ["మద్యం", "ప్రజల్లో తాగడం", "మత్తు", "ఎక్సైజ్ చట్టం"],
+    hi: ["शराब", "सार्वजनिक स्थान पर पीना", "नशा", "आबकारी कानून"]
+  },
+  section1: {
+    en: "Consuming alcohol in public places is prohibited under Excise Laws and IPC 510. Offenders may face fines or arrest.",
+    te: "ప్రజా ప్రదేశాల్లో మద్యం సేవించడం ఎక్సైజ్ చట్టాలు మరియు IPC 510 కింద నిషేధించబడింది. ఉల్లంఘనకారులు జరిమానా లేదా అరెస్టు ఎదుర్కొనవచ్చు.",
+    hi: "सार्वजनिक स्थानों पर शराब पीना आबकारी कानून और IPC 510 के तहत प्रतिबंधित है। उल्लंघनकर्ताओं को जुर्माना या गिरफ्तारी का सामना करना पड़ सकता है।"
+  },
+  section2: {
+    en: "Report incidents of public drinking to the nearest police station.",
+    te: "ప్రజల్లో మద్యం సేవించడం గమనించినట్లయితే సమీప పోలీస్ స్టేషన్‌కి తెలియజేయండి.",
+    hi: "सार्वजनिक स्थान पर शराब पीने की सूचना नजदीकी पुलिस स्टेशन को दें।"
+  },
+  section3: {
+    en: ["Location & time", "Photos/Videos (if safe)", "Details of offenders"],
+    te: ["ప్రదేశం & సమయం", "ఫోటోలు/వీడియోలు (సురక్షితం అయితే)", "నిందితుల వివరాలు"],
+    hi: ["स्थान और समय", "फोटो/वीडियो (यदि सुरक्षित हो)", "अपराधियों का विवरण"]
+  },
+  section4: {
+    en: `To,  
+The Station House Officer,  
+[Police Station Name]  
+
+Subject: Complaint regarding public drinking  
+
+Respected Sir/Madam,  
+This is to inform you that individuals are consuming alcohol in public at [location] on [date/time]. It is creating nuisance and is unlawful.  
+
+I request immediate action against the offenders.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+స్టేషన్ హౌస్ అధికారి,  
+[పోలీస్ స్టేషన్ పేరు]  
+
+విషయం: ప్రజల్లో మద్యపానం పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[తేదీ/సమయం]న [ప్రదేశం]లో కొంతమంది వ్యక్తులు ప్రజల్లో మద్యం సేవిస్తున్నారు. ఇది ఇబ్బంది కలిగిస్తూ చట్టవిరుద్ధంగా ఉంది.  
+
+దయచేసి నిందితులపై వెంటనే చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+स्टेशन हाउस ऑफिसर,  
+[थाने का नाम]  
+
+विषय: सार्वजनिक स्थान पर शराब पीने के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+[दिनांक/समय] को [स्थान] पर कुछ लोग सार्वजनिक स्थान पर शराब पी रहे हैं। यह असुविधा उत्पन्न कर रहा है और गैरकानूनी है।  
+
+कृपया दोषियों के विरुद्ध तत्काल कार्रवाई करने की कृपा करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+// ✅ 3. Spitting / Littering in Public Places
+{
+  id: "publiclittering",
+  title: {
+    en: "Spitting or Littering in Public Places",
+    te: "ప్రజా ప్రదేశాలలో ఉమ్మడం లేదా చెత్త వేయడం",
+    hi: "सार्वजनिक स्थानों पर थूकना या कचरा फेंकना"
+  },
+  keywords: {
+    en: ["spitting", "littering", "garbage", "public nuisance", "dirty streets"],
+    te: ["ఉమ్మడం", "చెత్త వేయడం", "చెత్త", "ప్రజా ఇబ్బంది", "అశుభ్ర వీధులు"],
+    hi: ["थूकना", "कचरा फेंकना", "कूड़ा", "सार्वजनिक उपद्रव", "गंदी सड़कें"]
+  },
+  section1: {
+    en: "Spitting or throwing garbage in public places is a punishable offense under IPC 268 and local Municipal laws.",
+    te: "ప్రజా ప్రదేశాలలో ఉమ్మడం లేదా చెత్త వేయడం IPC 268 మరియు మున్సిపల్ చట్టాల ప్రకారం శిక్షార్హం.",
+    hi: "सार्वजनिक स्थानों पर थूकना या कचरा फेंकना IPC 268 और नगर निगम कानूनों के तहत दंडनीय है।"
+  },
+  section2: {
+    en: "You can file a complaint with municipal authorities or the local police for such acts.",
+    te: "ఈ విధమైన చర్యల కోసం మీరు మున్సిపల్ అధికారులు లేదా స్థానిక పోలీసులకు ఫిర్యాదు చేయవచ్చు.",
+    hi: "ऐसी हरकतों के लिए आप नगर निगम अधिकारियों या स्थानीय पुलिस से शिकायत कर सकते हैं।"
+  },
+  section3: {
+    en: ["Photos/Videos of act", "Location details", "Time and date"],
+    te: ["చర్యకు సంబంధించిన ఫోటోలు/వీడియోలు", "ప్రదేశ వివరాలు", "సమయం మరియు తేదీ"],
+    hi: ["घटना की फोटो/वीडियो", "स्थान का विवरण", "समय और तारीख"]
+  },
+  section4: {
+    en: `To,  
+Municipal Commissioner,  
+[City Name]  
+
+Subject: Complaint against spitting/littering in public  
+
+Respected Sir/Madam,  
+I wish to complain against individuals who were spitting/littering at [location] on [date/time]. It is unhygienic and unlawful.  
+
+Please take action under relevant laws.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+మున్సిపల్ కమిషనర్,  
+[నగరం పేరు]  
+
+విషయం: ప్రజా ప్రదేశంలో ఉమ్మడం/చెత్త వేయడం పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[తేదీ/సమయం]న [ప్రదేశం] వద్ద కొంతమంది వ్యక్తులు ఉమ్మడం/చెత్త వేయడం గమనించాను. ఇది అనారోగ్యకరంగా మరియు చట్టవిరుద్ధంగా ఉంది.  
+
+దయచేసి సంబంధిత చట్టాల ప్రకారం చర్య తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+नगर निगम आयुक्त,  
+[शहर का नाम]  
+
+विषय: सार्वजनिक स्थान पर थूकने/कचरा फेंकने के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+मैं [दिनांक/समय] को [स्थान] पर कुछ लोगों को थूकते/कचरा फेंकते हुए देखी। यह अस्वच्छ और अवैध है।  
+
+कृपया संबंधित कानूनों के तहत कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// ✅ 4. Smoking in Public Places
+{
+  id: "publicsmoking",
+  title: {
+    en: "Smoking in Public Places",
+    te: "ప్రజా ప్రదేశాలలో పొగ త్రాగడం",
+    hi: "सार्वजनिक स्थानों पर धूम्रपान"
+  },
+  keywords: {
+    en: ["smoking", "cigarettes", "tobacco", "public smoking", "COTPA Act"],
+    te: ["పొగ త్రాగడం", "సిగరెట్లు", "పొగాకు", "ప్రజల్లో పొగ త్రాగడం", "COTPA చట్టం"],
+    hi: ["धूम्रपान", "सिगरेट", "तंबाकू", "सार्वजनिक धूम्रपान", "COTPA अधिनियम"]
+  },
+  section1: {
+    en: "Smoking in public places is prohibited under the Cigarettes and Other Tobacco Products Act (COTPA) 2003.",
+    te: "ప్రజా ప్రదేశాలలో పొగ త్రాగడం సిగరెట్లు మరియు ఇతర పొగాకు ఉత్పత్తుల చట్టం (COTPA) 2003 కింద నిషేధించబడింది.",
+    hi: "सार्वजनिक स्थानों पर धूम्रपान सिगरेट और अन्य तंबाकू उत्पाद अधिनियम (COTPA) 2003 के तहत प्रतिबंधित है।"
+  },
+  section2: {
+    en: "Report violations to police or health department officials.",
+    te: "ఉల్లంఘనలు గమనించినప్పుడు పోలీసులకు లేదా ఆరోగ్య శాఖ అధికారులకు తెలియజేయండి.",
+    hi: "उल्लंघन की रिपोर्ट पुलिस या स्वास्थ्य विभाग के अधिकारियों को करें।"
+  },
+  section3: {
+    en: ["Location of incident", "Photo/video evidence (if safe)", "Details of offender"],
+    te: ["ఘటన ప్రదేశం", "ఫోటో/వీడియో రుజువు (సురక్షితం అయితే)", "నిందితుల వివరాలు"],
+    hi: ["घटना का स्थान", "फोटो/वीडियो सबूत (यदि सुरक्षित हो)", "अपराधी का विवरण"]
+  },
+  section4: {
+    en: `To,  
+Health Officer,  
+[City Name]  
+
+Subject: Complaint regarding smoking in public  
+
+Respected Sir/Madam,  
+On [date/time], I observed individuals smoking at [location], which is a public place. This is a violation of the COTPA Act 2003.  
+
+Kindly take strict action.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+ఆరోగ్య అధికారి,  
+[నగరం పేరు]  
+
+విషయం: ప్రజా ప్రదేశంలో పొగ త్రాగడం పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[తేదీ/సమయం]న [ప్రదేశం] వద్ద కొంతమంది వ్యక్తులు ప్రజా ప్రదేశంలో పొగ త్రాగడం గమనించాను. ఇది COTPA చట్టం 2003 ఉల్లంఘన.  
+
+దయచేసి కఠిన చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+स्वास्थ्य अधिकारी,  
+[शहर का नाम]  
+
+विषय: सार्वजनिक स्थान पर धूम्रपान के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+[दिनांक/समय] को मैंने [स्थान] पर कुछ लोगों को सार्वजनिक स्थान पर धूम्रपान करते देखा। यह COTPA अधिनियम 2003 का उल्लंघन है।  
+
+कृपया सख्त कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// ✅ 5. Online Cheating / Cyber Fraud
+{
+  id: "onlinefraud",
+  title: {
+    en: "Online Cheating or Cyber Fraud",
+    te: "ఆన్‌లైన్ మోసం లేదా సైబర్ మోసం",
+    hi: "ऑनलाइन धोखाधड़ी या साइबर फ्रॉड"
+  },
+  keywords: {
+    en: ["online scam", "cyber fraud", "upi scam", "phishing", "fake website"],
+    te: ["ఆన్‌లైన్ మోసం", "సైబర్ మోసం", "UPI మోసం", "ఫిషింగ్", "నకిలీ వెబ్‌సైట్"],
+    hi: ["ऑनलाइन ठगी", "साइबर फ्रॉड", "यूपीआई घोटाला", "फ़िशिंग", "फर्जी वेबसाइट"]
+  },
+  section1: {
+    en: "Cyber frauds like UPI scams, phishing, and fake shopping websites are punishable under IPC 420 and the IT Act.",
+    te: "UPI మోసాలు, ఫిషింగ్, నకిలీ షాపింగ్ వెబ్‌సైట్‌లు వంటి సైబర్ మోసాలు IPC 420 మరియు IT చట్టం కింద శిక్షార్హం.",
+    hi: "यूपीआई घोटाले, फ़िशिंग और फर्जी शॉपिंग वेबसाइट जैसे साइबर फ्रॉड IPC 420 और आईटी अधिनियम के तहत दंडनीय हैं।"
+  },
+  section2: {
+    en: "Report cyber fraud to the Cyber Crime portal (cybercrime.gov.in) or the nearest Cyber Cell.",
+    te: "సైబర్ మోసాలను Cyber Crime పోర్టల్ (cybercrime.gov.in) లేదా సమీప సైబర్ సెల్‌కు నివేదించండి.",
+    hi: "साइबर फ्रॉड की शिकायत Cyber Crime पोर्टल (cybercrime.gov.in) या नजदीकी साइबर सेल में करें।"
+  },
+  section3: {
+    en: ["Transaction details", "Screenshots", "Bank statements", "Phone numbers/emails used"],
+    te: ["లావాదేవీ వివరాలు", "స్క్రీన్‌షాట్‌లు", "బ్యాంక్ స్టేట్‌మెంట్‌లు", "ఉపయోగించిన ఫోన్ నంబర్లు/ఈమెయిల్లు"],
+    hi: ["लेन-देन का विवरण", "स्क्रीनशॉट", "बैंक स्टेटमेंट", "प्रयुक्त फोन नंबर/ईमेल"]
+  },
+  section4: {
+    en: `To,  
+Cyber Crime Cell,  
+[City Name]  
+
+Subject: Complaint regarding cyber fraud  
+
+Respected Sir/Madam,  
+I was a victim of an online fraud on [date]. I lost [amount] through [UPI scam/fake website].  
+
+I request you to kindly investigate and take strict action.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+సైబర్ క్రైమ్ సెల్,  
+[నగరం పేరు]  
+
+విషయం: సైబర్ మోసం పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[తేదీ]న నేను ఆన్‌లైన్ మోసానికి గురయ్యాను. [UPI మోసం/నకిలీ వెబ్‌సైట్] ద్వారా నేను [మొత్తం] కోల్పోయాను.  
+
+దయచేసి దర్యాప్తు చేసి కఠిన చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+साइबर क्राइम सेल,  
+[शहर का नाम]  
+
+विषय: साइबर फ्रॉड के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+[दिनांक] को मैं ऑनलाइन फ्रॉड का शिकार हुआ। मैंने [यूपीआई घोटाला/फर्जी वेबसाइट] के माध्यम से [राशि] गंवाई।  
+
+कृपया जांच कर सख्त कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+// ✅ 6. Trespassing / Illegal Entry
+{
+  id: "trespassing",
+  title: {
+    en: "Trespassing or Illegal Entry",
+    te: "అనధికార ప్రవేశం లేదా అక్రమ ప్రవేశం",
+    hi: "अनधिकृत प्रवेश या अतिक्रमण"
+  },
+  keywords: {
+    en: ["trespass", "illegal entry", "property dispute", "house break-in"],
+    te: ["అక్రమ ప్రవేశం", "అనధికార ప్రవేశం", "ఆస్తి వివాదం", "ఇంటి దొంగతనం"],
+    hi: ["अतिक्रमण", "अनधिकृत प्रवेश", "संपत्ति विवाद", "घर में घुसपैठ"]
+  },
+  section1: {
+    en: "Entering another person's property without permission is trespassing under IPC Sections 441–447.",
+    te: "ఇతరుల ఆస్తిలో అనుమతి లేకుండా ప్రవేశించడం IPC సెక్షన్ 441–447 ప్రకారం అక్రమ ప్రవేశం.",
+    hi: "किसी अन्य की संपत्ति में बिना अनुमति प्रवेश करना IPC धारा 441–447 के अंतर्गत अतिक्रमण है।"
+  },
+  section2: {
+    en: "Complain to the local police station if someone unlawfully enters your property.",
+    te: "ఎవరైనా మీ ఆస్తిలో అక్రమంగా ప్రవేశిస్తే స్థానిక పోలీస్ స్టేషన్‌లో ఫిర్యాదు చేయండి.",
+    hi: "यदि कोई आपकी संपत्ति में अवैध रूप से प्रवेश करता है तो स्थानीय पुलिस स्टेशन में शिकायत करें।"
+  },
+  section3: {
+    en: ["Proof of ownership", "Photos/videos", "Details of trespasser"],
+    te: ["ఆస్తి పత్రాలు", "ఫోటోలు/వీడియోలు", "అక్రమ ప్రవేశం చేసిన వారి వివరాలు"],
+    hi: ["संपत्ति के दस्तावेज़", "फोटो/वीडियो", "अतिक्रमण करने वाले का विवरण"]
+  },
+  section4: {
+    en: `To,  
+The Station House Officer,  
+[Police Station Name]  
+
+Subject: Complaint against illegal trespassing  
+
+Respected Sir/Madam,  
+On [date/time], an individual illegally entered my property located at [address].  
+
+Please take action under IPC Sections 441–447.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+స్టేషన్ హౌస్ అధికారి,  
+[పోలీస్ స్టేషన్ పేరు]  
+
+విషయం: అక్రమ ప్రవేశం పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[తేదీ/సమయం]న [చిరునామా] వద్ద ఉన్న నా ఆస్తిలో ఒక వ్యక్తి అక్రమంగా ప్రవేశించాడు.  
+
+దయచేసి IPC సెక్షన్ 441–447 ప్రకారం చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+स्टेशन हाउस ऑफिसर,  
+[पुलिस स्टेशन का नाम]  
+
+विषय: अवैध अतिक्रमण के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+[दिनांक/समय] को एक व्यक्ति ने मेरे [पते] पर स्थित संपत्ति में अवैध रूप से प्रवेश किया।  
+
+कृपया IPC धारा 441–447 के तहत कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// ✅ 7. Overcharging by Auto/Taxi Drivers
+{
+  id: "overcharging",
+  title: {
+    en: "Overcharging by Auto/Taxi Drivers",
+    te: "ఆటో/టాక్సీ డ్రైవర్ల అధిక వసూళ్లు",
+    hi: "ऑटो/टैक्सी चालकों द्वारा अधिक किराया लेना"
+  },
+  keywords: {
+    en: ["auto fare", "taxi fare", "meter tampering", "overcharging"],
+    te: ["ఆటో ఛార్జీ", "టాక్సీ ఛార్జీ", "మీటర్ మోసం", "అధిక వసూళ్లు"],
+    hi: ["ऑटो किराया", "टैक्सी किराया", "मीटर से छेड़छाड़", "ज्यादा वसूली"]
+  },
+  section1: {
+    en: "Demanding extra fare or refusing to use the meter is an offense under the Motor Vehicles Act.",
+    te: "అధిక ఛార్జీలు అడగడం లేదా మీటర్ ఉపయోగించకుండా నిరాకరించడం మోటార్ వాహనాల చట్టం ప్రకారం నేరం.",
+    hi: "अधिक किराया मांगना या मीटर का उपयोग करने से इंकार करना मोटर वाहन अधिनियम के तहत अपराध है।"
+  },
+  section2: {
+    en: "Complain to RTO helpline or traffic police if auto/taxi drivers overcharge.",
+    te: "ఆటో/టాక్సీ డ్రైవర్లు అధిక వసూళ్లు చేస్తే RTO హెల్ప్‌లైన్ లేదా ట్రాఫిక్ పోలీసులకు ఫిర్యాదు చేయండి.",
+    hi: "यदि ऑटो/टैक्सी चालक अधिक वसूली करते हैं तो RTO हेल्पलाइन या ट्रैफिक पुलिस से शिकायत करें।"
+  },
+  section3: {
+    en: ["Vehicle number", "Driver details", "Location/time", "Fare charged"],
+    te: ["వాహన నంబర్", "డ్రైవర్ వివరాలు", "ప్రదేశం/సమయం", "వసూలు చేసిన ఛార్జీ"],
+    hi: ["वाहन संख्या", "ड्राइवर का विवरण", "स्थान/समय", "वसूला गया किराया"]
+  },
+  section4: {
+    en: `To,  
+The Regional Transport Officer,  
+[City Name]  
+
+Subject: Complaint against auto/taxi overcharging  
+
+Respected Sir/Madam,  
+On [date/time], auto/taxi number [vehicle no.] charged me extra fare at [location].  
+
+I request you to kindly take action under the Motor Vehicles Act.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+ప్రాంతీయ రవాణా అధికారి,  
+[నగరం పేరు]  
+
+విషయం: ఆటో/టాక్సీ అధిక వసూళ్లు పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[తేదీ/సమయం]న [వాహన నంబర్] ఆటో/టాక్సీ [ప్రదేశం] వద్ద నన్ను అధిక ఛార్జీలు వసూలు చేసింది.  
+
+దయచేసి మోటార్ వాహనాల చట్టం ప్రకారం చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+क्षेत्रीय परिवहन अधिकारी,  
+[शहर का नाम]  
+
+विषय: ऑटो/टैक्सी द्वारा अधिक वसूली के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+[दिनांक/समय] को ऑटो/टैक्सी नंबर [वाहन संख्या] ने [स्थान] पर मुझसे अधिक किराया वसूला।  
+
+कृपया मोटर वाहन अधिनियम के तहत कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// ✅ 8. Non-Payment of Salary
+{
+  id: "salarydelay",
+  title: {
+    en: "Non-Payment or Delay of Salary",
+    te: "జీతం చెల్లించకపోవడం లేదా ఆలస్యం చేయడం",
+    hi: "वेतन न देना या देरी करना"
+  },
+  keywords: {
+    en: ["salary", "payment delay", "wages", "employee rights"],
+    te: ["జీతం", "చెల్లింపు ఆలస్యం", "వేతనాలు", "ఉద్యోగి హక్కులు"],
+    hi: ["वेतन", "भुगतान में देरी", "मजदूरी", "कर्मचारी अधिकार"]
+  },
+  section1: {
+    en: "Employers must pay salaries on time as per the Payment of Wages Act and Labour Laws.",
+    te: "చెల్లింపు ఆఫ్ వేజెస్ చట్టం మరియు కార్మిక చట్టాల ప్రకారం యజమానులు సమయానికి జీతాలు చెల్లించాలి.",
+    hi: "भुगतान वेतन अधिनियम और श्रम कानूनों के अनुसार नियोक्ताओं को समय पर वेतन देना आवश्यक है।"
+  },
+  section2: {
+    en: "Complain to the Labour Commissioner if salary is delayed or denied.",
+    te: "జీతం ఆలస్యం లేదా చెల్లించకపోతే కార్మిక కమిషనర్‌కి ఫిర్యాదు చేయండి.",
+    hi: "यदि वेतन में देरी या भुगतान नहीं किया जाता है तो श्रम आयुक्त से शिकायत करें।"
+  },
+  section3: {
+    en: ["Appointment letter", "Salary slips", "Bank statements", "Employment details"],
+    te: ["నియామక లేఖ", "జీతం స్లిప్‌లు", "బ్యాంక్ స్టేట్‌మెంట్‌లు", "ఉద్యోగ వివరాలు"],
+    hi: ["नियुक्ति पत्र", "वेतन पर्ची", "बैंक स्टेटमेंट", "नौकरी का विवरण"]
+  },
+  section4: {
+    en: `To,  
+The Labour Commissioner,  
+[City Name]  
+
+Subject: Complaint regarding non-payment of salary  
+
+Respected Sir/Madam,  
+I have been employed with [company name] since [date]. My salary for the month(s) of [months] has not been paid.  
+
+Kindly take necessary action under the Payment of Wages Act.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+కార్మిక కమిషనర్,  
+[నగరం పేరు]  
+
+విషయం: జీతం చెల్లించకపోవడం పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+నేను [తేదీ] నుండి [కంపెనీ పేరు]లో పనిచేస్తున్నాను. [నెలలు] నెలల జీతం నాకు చెల్లించలేదు.  
+
+దయచేసి వేతన చట్టం ప్రకారం చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+श्रम आयुक्त,  
+[शहर का नाम]  
+
+विषय: वेतन न देने के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+मैं [दिनांक] से [कंपनी का नाम] में कार्यरत हूँ। [महीनों] का वेतन मुझे नहीं मिला है।  
+
+कृपया वेतन अधिनियम के तहत आवश्यक कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+// ✅ 9. Misuse of Social Media
+{
+  id: "socialmedia",
+  title: {
+    en: "Misuse of Social Media",
+    te: "సోషల్ మీడియా దుర్వినియోగం",
+    hi: "सोशल मीडिया का दुरुपयोग"
+  },
+  keywords: {
+    en: ["cyberbullying", "fake profile", "defamation", "online abuse", "threats"],
+    te: ["సైబర్ వేధింపులు", "నకిలీ ప్రొఫైల్", "అపకీర్తి", "ఆన్‌లైన్ దుర్వినియోగం", "బెదిరింపులు"],
+    hi: ["साइबरबुलिंग", "फर्जी प्रोफ़ाइल", "मानहानि", "ऑनलाइन दुर्व्यवहार", "धमकी"]
+  },
+  section1: {
+    en: "Creating fake accounts, spreading abusive content, or sending threats online is punishable under the IT Act and IPC Sections 499, 500, 507.",
+    te: "నకిలీ ఖాతాలు సృష్టించడం, దుర్వినియోగ కంటెంట్ పంచుకోవడం లేదా ఆన్‌లైన్‌లో బెదిరింపులు చేయడం IT చట్టం మరియు IPC సెక్షన్ 499, 500, 507 ప్రకారం శిక్షార్హం.",
+    hi: "फर्जी खाते बनाना, अपमानजनक सामग्री फैलाना या ऑनलाइन धमकियाँ देना IT अधिनियम और IPC धारा 499, 500, 507 के तहत दंडनीय है।"
+  },
+  section2: {
+    en: "Report to Cyber Crime Police if harassed or threatened online.",
+    te: "ఆన్‌లైన్‌లో వేధింపులకు గురైనప్పుడు లేదా బెదిరింపులు వచ్చినప్పుడు సైబర్ క్రైమ్ పోలీసులకు ఫిర్యాదు చేయండి.",
+    hi: "यदि ऑनलाइन परेशान या धमकाया जाए तो साइबर क्राइम पुलिस से शिकायत करें।"
+  },
+  section3: {
+    en: ["Screenshots", "Chat logs", "Profile links", "Phone numbers/emails"],
+    te: ["స్క్రీన్‌షాట్లు", "చాట్ లాగ్‌లు", "ప్రొఫైల్ లింక్‌లు", "ఫోన్ నంబర్లు/ఇమెయిల్‌లు"],
+    hi: ["स्क्रीनशॉट", "चैट लॉग्स", "प्रोफ़ाइल लिंक", "फ़ोन नंबर/ईमेल"]
+  },
+  section4: {
+    en: `To,  
+The Cyber Crime Officer,  
+[City Name]  
+
+Subject: Complaint against online harassment  
+
+Respected Sir/Madam,  
+I am receiving abusive/defamatory messages from [profile/link]. Please take strict action under IT Act & IPC.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+సైబర్ క్రైమ్ అధికారి,  
+[నగరం పేరు]  
+
+విషయం: ఆన్‌లైన్ వేధింపులపై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+నేను [ప్రొఫైల్/లింక్] నుండి దూషణాత్మక సందేశాలు అందుకుంటున్నాను. దయచేసి IT చట్టం & IPC ప్రకారం చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+साइबर क्राइम अधिकारी,  
+[शहर का नाम]  
+
+विषय: ऑनलाइन उत्पीड़न के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+मुझे [प्रोफ़ाइल/लिंक] से अपमानजनक संदेश प्राप्त हो रहे हैं। कृपया IT अधिनियम एवं IPC के तहत कड़ी कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// ✅ 10. Public Obscenity
+{
+  id: "obscenity",
+  title: {
+    en: "Public Obscenity",
+    te: "ప్రజల్లో అసభ్యత",
+    hi: "सार्वजनिक अश्लीलता"
+  },
+  keywords: {
+    en: ["obscene acts", "indecent songs", "vulgarity", "public indecency"],
+    te: ["అశ్లీల చర్యలు", "అసభ్య గీతాలు", "అసభ్యత", "ప్రజల్లో అసభ్యత"],
+    hi: ["अश्लील कार्य", "अशोभनीय गाने", "अश्लीलता", "सार्वजनिक अशोभनीयता"]
+  },
+  section1: {
+    en: "Singing obscene songs, showing vulgar gestures, or doing indecent acts in public is punishable under IPC Section 294.",
+    te: "ప్రజల్లో అసభ్య గీతాలు పాడటం, అసభ్య సంకేతాలు చేయడం లేదా అసభ్య చర్యలు చేయడం IPC సెక్షన్ 294 ప్రకారం శిక్షార్హం.",
+    hi: "सार्वजनिक स्थान पर अश्लील गीत गाना, अभद्र इशारे करना या अशोभनीय कार्य करना IPC धारा 294 के तहत दंडनीय है।"
+  },
+  section2: {
+    en: "Complain to local police if someone performs obscene acts in public.",
+    te: "ఎవరైనా ప్రజల్లో అసభ్య చర్యలు చేస్తే స్థానిక పోలీసులకు ఫిర్యాదు చేయండి.",
+    hi: "यदि कोई सार्वजनिक स्थान पर अशोभनीय कार्य करता है तो स्थानीय पुलिस से शिकायत करें।"
+  },
+  section3: {
+    en: ["Videos/photos", "Witness details", "Location & time"],
+    te: ["వీడియోలు/ఫోటోలు", "సాక్షుల వివరాలు", "ప్రదేశం & సమయం"],
+    hi: ["वीडियो/फोटो", "गवाहों का विवरण", "स्थान और समय"]
+  },
+  section4: {
+    en: `To,  
+The Station House Officer,  
+[Police Station Name]  
+
+Subject: Complaint regarding public obscenity  
+
+Respected Sir/Madam,  
+On [date/time], an individual performed obscene acts at [location]. Kindly take action under IPC Section 294.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+స్టేషన్ హౌస్ అధికారి,  
+[పోలీస్ స్టేషన్ పేరు]  
+
+విషయం: ప్రజల్లో అసభ్యతపై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[తేదీ/సమయం]న [ప్రదేశం] వద్ద ఒక వ్యక్తి అసభ్య చర్యలు చేశాడు. దయచేసి IPC సెక్షన్ 294 ప్రకారం చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+स्टेशन हाउस ऑफिसर,  
+[पुलिस स्टेशन का नाम]  
+
+विषय: सार्वजनिक अश्लीलता के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+[दिनांक/समय] को [स्थान] पर एक व्यक्ति ने अश्लील कार्य किए। कृपया IPC धारा 294 के तहत कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// ✅ Human Trafficking
+{
+  id: "humantrafficking",
+  title: {
+    en: "Human Trafficking",
+    te: "మానవ అక్రమ రవాణా",
+    hi: "मानव तस्करी"
+  },
+  keywords: {
+    en: ["trafficking", "exploitation", "forced labor", "sexual exploitation", "illegal trade"],
+    te: ["అక్రమ రవాణా", "దోపిడీ", "బలవంతపు శ్రమ", "లైంగిక దోపిడీ", "అక్రమ వ్యాపారం"],
+    hi: ["तस्करी", "शोषण", "जबरी मज़दूरी", "यौन शोषण", "ग़ैरक़ानूनी व्यापार"]
+  },
+  section1: {
+    en: "Human trafficking for labor, sexual exploitation, or illegal trade is punishable under IPC Sections 370, 371 and the Immoral Traffic (Prevention) Act.",
+    te: "బలవంతపు శ్రమ, లైంగిక దోపిడీ లేదా అక్రమ వ్యాపారం కోసం మానవ అక్రమ రవాణా IPC సెక్షన్ 370, 371 మరియు Immoral Traffic (Prevention) Act ప్రకారం శిక్షార్హం.",
+    hi: "मज़दूरी, यौन शोषण या ग़ैरक़ानूनी व्यापार के लिए मानव तस्करी IPC धारा 370, 371 और अनैतिक तस्करी (निवारण) अधिनियम के तहत दंडनीय है।"
+  },
+  section2: {
+    en: "Report immediately to Anti-Human Trafficking Unit (AHTU) or police.",
+    te: "తక్షణమే Anti-Human Trafficking Unit (AHTU) లేదా పోలీసులకు సమాచారం ఇవ్వండి.",
+    hi: "तुरंत एंटी-ह्यूमन ट्रैफिकिंग यूनिट (AHTU) या पुलिस को रिपोर्ट करें।"
+  },
+  section3: {
+    en: ["Victim details", "Location", "Trafficker details", "Witness info"],
+    te: ["బాధితుల వివరాలు", "ప్రదేశం", "తస్కర్ వివరాలు", "సాక్షుల సమాచారం"],
+    hi: ["पीड़ित का विवरण", "स्थान", "तस्कर का विवरण", "गवाह की जानकारी"]
+  },
+  section4: {
+    en: `To,  
+The Officer In-Charge,  
+Anti Human Trafficking Unit,  
+[City Name]  
+
+Subject: Complaint regarding human trafficking  
+
+Respected Sir/Madam,  
+I wish to report a case of human trafficking at [location]. Victims are being exploited/forced into [labor/sexual exploitation]. Kindly take strict action.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+అధికారి,  
+Anti Human Trafficking Unit,  
+[నగరం పేరు]  
+
+విషయం: మానవ అక్రమ రవాణా పై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+నేను [ప్రదేశం]లో మానవ అక్రమ రవాణా కేసు గురించి నివేదించదలిచాను. బాధితులు [బలవంతపు శ్రమ/లైంగిక దోపిడీ]కి గురవుతున్నారు. దయచేసి కఠిన చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+प्रभारी अधिकारी,  
+एंटी ह्यूमन ट्रैफिकिंग यूनिट,  
+[शहर का नाम]  
+
+विषय: मानव तस्करी के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+मैं [स्थान] पर मानव तस्करी का मामला रिपोर्ट करना चाहता/चाहती हूँ। पीड़ितों को [मज़दूरी/यौन शोषण] के लिए मजबूर किया जा रहा है। कृपया सख्त कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// ✅ Drug Abuse / Illegal Drugs
+{
+  id: "drugabuse",
+  title: {
+    en: "Drug Abuse and Illegal Drugs",
+    te: "మాదక ద్రవ్య దుర్వినియోగం మరియు అక్రమ మాదకాలు",
+    hi: "नशीली दवाओं का दुरुपयोग और अवैध ड्रग्स"
+  },
+  keywords: {
+    en: ["drugs", "narcotics", "smuggling", "illegal substances", "addiction"],
+    te: ["మాదక ద్రవ్యాలు", "నార్కోటిక్స్", "అక్రమ రవాణా", "అక్రమ పదార్థాలు", "వ్యసనం"],
+    hi: ["ड्रग्स", "नशीले पदार्थ", "तस्करी", "अवैध पदार्थ", "लत"]
+  },
+  section1: {
+    en: "Use, possession, or sale of illegal drugs is punishable under the NDPS Act (Narcotic Drugs and Psychotropic Substances Act, 1985).",
+    te: "మాదక ద్రవ్యాలను ఉపయోగించడం, కలిగి ఉండడం లేదా అమ్మడం NDPS చట్టం (1985) ప్రకారం శిక్షార్హం.",
+    hi: "नशीली दवाओं का उपयोग, कब्ज़ा या बिक्री NDPS अधिनियम (1985) के तहत दंडनीय है।"
+  },
+  section2: {
+    en: "Report drug peddling or abuse to Narcotics Control Bureau (NCB) or local police.",
+    te: "డ్రగ్స్ విక్రయం లేదా వినియోగం గురించి నార్కోటిక్స్ కంట్రోల్ బ్యూరో (NCB) లేదా స్థానిక పోలీసులకు సమాచారం ఇవ్వండి.",
+    hi: "ड्रग्स की बिक्री या सेवन की सूचना नारकोटिक्स कंट्रोल ब्यूरो (NCB) या स्थानीय पुलिस को दें।"
+  },
+  section3: {
+    en: ["Suspect details", "Location", "Type of drugs", "Photos/videos"],
+    te: ["అనుమానితుల వివరాలు", "ప్రదేశం", "మాదక ద్రవ్య రకం", "ఫోటోలు/వీడియోలు"],
+    hi: ["संदिग्ध का विवरण", "स्थान", "ड्रग्स का प्रकार", "फोटो/वीडियो"]
+  },
+  section4: {
+    en: `To,  
+The Narcotics Control Bureau,  
+[City Name]  
+
+Subject: Complaint regarding illegal drug activity  
+
+Respected Sir/Madam,  
+I wish to report illegal drug activity at [location]. Kindly investigate and take strict action under the NDPS Act.  
+
+Sincerely,  
+[Your Name]  
+[Contact Details]`,
+    te: `కు,  
+నార్కోటిక్స్ కంట్రోల్ బ్యూరో,  
+[నగరం పేరు]  
+
+విషయం: అక్రమ మాదక ద్రవ్య కార్యకలాపాలపై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+నేను [ప్రదేశం] వద్ద అక్రమ మాదక ద్రవ్య కార్యకలాపాలను నివేదించదలిచాను. దయచేసి NDPS చట్టం ప్రకారం కఠిన చర్యలు తీసుకోవాలి.  
+
+భక్తితో,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+    hi: `से,  
+नारकोटिक्स कंट्रोल ब्यूरो,  
+[शहर का नाम]  
+
+विषय: अवैध ड्रग्स गतिविधियों के संबंध में शिकायत  
+
+मान्यवर/माननीया,  
+मैं [स्थान] पर अवैध ड्रग्स गतिविधि की सूचना देना चाहता/चाहती हूँ। कृपया NDPS अधिनियम के तहत कड़ी कार्रवाई करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
 
 ];
+
