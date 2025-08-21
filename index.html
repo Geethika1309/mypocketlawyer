@@ -749,70 +749,280 @@ header {
         });
 
 
-    const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("userInput");
+    
+// ================================
+// Pocket Lawyer – Chatbot Script
+// ================================
+(function () {
+  // ---- Elements ----
+  const toggleBtn       = document.getElementById("chatbot-toggle");
+  const container       = document.getElementById("chatbot-container");
+  const closeBtn        = document.getElementById("chatbot-close");
+  const messagesEl      = document.getElementById("chatbot-messages");
+  const inputEl         = document.getElementById("chatbot-input");
+  const sendBtn         = document.getElementById("chatbot-send");
 
-function addMessage(text, sender = "bot", quickReplies = []) {
-  const messageDiv = document.createElement("div");
-  messageDiv.classList.add("message");
-
-  if (sender === "bot") {
-    messageDiv.classList.add("bot-message");
-    messageDiv.innerHTML = `<div class="bot-icon">🤖</div><div>${text}</div>`;
-  } else {
-    messageDiv.classList.add("user-message");
-    messageDiv.innerText = text;
+  if (!toggleBtn || !container || !closeBtn || !messagesEl || !inputEl || !sendBtn) {
+    console.error("Chatbot: one or more required elements not found.");
+    return;
   }
 
-  chatBox.appendChild(messageDiv);
+  let greetedOnce = false;
 
-  // Add quick replies if available
-  if (quickReplies.length > 0) {
-    const replyDiv = document.createElement("div");
-    replyDiv.classList.add("quick-replies");
-    quickReplies.forEach(reply => {
+  // ---- Helpers ----
+  function scrollToBottom() {
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function sanitize(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function addBubble(html, who = "bot") {
+    const wrap = document.createElement("div");
+    wrap.className = who === "user" ? "user-msg" : "bot-msg";
+    wrap.innerHTML = html;
+    messagesEl.appendChild(wrap);
+    scrollToBottom();
+    return wrap;
+  }
+
+  function addQuickReplies(options = []) {
+    // Remove previous chips
+    document.querySelectorAll(".pl-quick-replies").forEach(el => el.remove());
+    if (!options.length) return;
+
+    const bar = document.createElement("div");
+    bar.className = "pl-quick-replies";
+    bar.style.display = "flex";
+    bar.style.flexWrap = "wrap";
+    bar.style.gap = "8px";
+    bar.style.margin = "8px 0";
+
+    options.forEach(opt => {
       const btn = document.createElement("button");
-      btn.innerText = reply;
-      btn.onclick = () => {
-        userInput.value = reply;
-        sendMessage();
-      };
-      replyDiv.appendChild(btn);
+      btn.type = "button";
+      btn.className = "pl-chip";
+      btn.textContent = opt;
+      btn.style.padding = "6px 10px";
+      btn.style.borderRadius = "20px";
+      btn.style.border = "1px solid #d0d7de";
+      btn.style.background = "#fff";
+      btn.style.cursor = "pointer";
+      btn.style.fontSize = "12px";
+      btn.addEventListener("click", () => {
+        // Simulate user selecting the chip
+        addBubble(sanitize(opt), "user");
+        handleUserMessage(opt);
+      });
+      bar.appendChild(btn);
     });
-    chatBox.appendChild(replyDiv);
+
+    messagesEl.appendChild(bar);
+    scrollToBottom();
   }
 
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function sendMessage() {
-  const text = userInput.value.trim();
-  if (!text) return;
-
-  addMessage(text, "user");
-  userInput.value = "";
-
-  botReply(text.toLowerCase());
-}
-
-// Simple intent handling
-function botReply(message) {
-  if (message.includes("hello") || message.includes("hi")) {
-    addMessage("👋 Hello! Welcome to Pocket Lawyer. How can I help you?", "bot", 
-      ["Home", "Categories", "Documents", "Ask a Lawyer"]);
-  } else if (message.includes("home")) {
-    addMessage("🏠 You can visit Home here 👉 <a href='index.html'>Home</a>", "bot");
-  } else if (message.includes("categories")) {
-    addMessage("📚 Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>", "bot",
-      ["Consumer Complaints", "File a Complaint"]);
-  } else {
-    addMessage("🤔 Sorry, I didn’t understand. Try: Home, Categories, Documents, Lawyer, or Contact.", "bot");
+  function greetIfNeeded() {
+    if (greetedOnce) return;
+    greetedOnce = true;
+    addBubble("👋 Hi! I’m <b>Pocket Lawyer</b>. How can I help you today?");
+    addQuickReplies([
+      "Law Categories",
+      "Generate Documents",
+      "Ask a Lawyer",
+      "Contact",
+      "How to file a complaint"
+    ]);
   }
-}
 
-// Initial bot greeting
-addMessage("👋 Hi, I’m your Pocket Lawyer assistant! How can I help you today?", "bot",
-  ["Home", "Categories", "Ask a Lawyer"]);
+  // ---- Knowledge / Intents ----
+  const intents = [
+    {
+      keys: ["hello","hi","hey","good morning","good evening"],
+      reply: "👋 Hello! How can I assist you today?",
+      chips: ["Law Categories","Generate Documents","Ask a Lawyer","Contact"]
+    },
+    {
+      keys: ["home","main page","start","homepage"],
+      reply: "🏠 Go to Home here 👉 <a href='index.html'>Home</a>"
+    },
+    {
+      keys: ["law categories","categories","laws","browse laws"],
+      reply: "⚖️ Explore laws by topic 👉 <a href='lawcategories.html'>Law Categories</a>",
+      chips: ["Traffic Violations","Consumer Complaints","Cyberbullying","Rent/Tenant Issues","Women's Safety"]
+    },
+    {
+      keys: ["generate","documents","create document","complaint letter","draft"],
+      reply: "📄 Create letters & documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>",
+      chips: ["Generate Complaint Letter","How to file a complaint","Ask a Lawyer"]
+    },
+    {
+      keys: ["ask a lawyer","lawyer","advise","advice","legal help"],
+      reply: "👩‍⚖️ Talk to a lawyer or submit a question 👉 <a href='askalawyer.html'>Ask a Lawyer</a>",
+      chips: ["Contact","Generate Documents","Consumer Complaints"]
+    },
+    {
+      keys: ["contact","support","email","phone","address"],
+      reply: "☎️ Reach us here 👉 <a href='contact.html'>Contact</a><br>📧 pocketlawyerindia1950@gmail.com<br>📞 +91-8985579260"
+    },
+    {
+      keys: ["file complaint","complaint","raise issue","how to file"],
+      reply: "📝 Step-by-step guide 👉 <a href='howtofileacomplaint.html'>How to file a complaint</a>",
+      chips: ["Generate Complaint Letter","Ask a Lawyer","Consumer Complaints"]
+    },
+    {
+      keys: ["consumer","refund","return","fraud","defective","complaints"],
+      reply: "🛒 Know your consumer rights & remedies 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>",
+      chips: ["Generate Complaint Letter","Ask a Lawyer","Contact"]
+    },
+    {
+      keys: ["traffic","challan","signal","driving","fine"],
+      reply: "🚗 Traffic rules & common penalties 👉 <a href='trafficviolations.html'>Traffic Violations</a>"
+    },
+    {
+      keys: ["rent","tenant","lease","landlord","evict","deposit"],
+      reply: "🏠 Tenant & landlord rights 👉 <a href='rentortenantissues.html'>Rent/Tenant Issues</a>"
+    },
+    {
+      keys: ["cyber","bully","online abuse","harassment","scam","phishing"],
+      reply: "🛡️ Stay safe online & report abuse 👉 <a href='cyberbullying.html'>Cyber Bullying & Digital Safety</a>"
+    },
+    {
+      keys: ["women","safety","posh","harassment at work"],
+      reply: "👩 Women’s safety laws & protections 👉 <a href='womenssafetylaws.html'>Women's Safety Laws</a>"
+    },
+    {
+      keys: ["search","find law","look up"],
+      reply: "🔎 Use the search bar on Home to find laws by keywords.",
+      chips: ["Law Categories","Generate Documents","Ask a Lawyer"]
+    },
+    {
+      keys: ["problem","issue","error","not working","bug","help"],
+      reply: "⚠️ Sorry you're facing issues. Tell me what went wrong and I’ll guide you. You can also reach us at 👉 <a href='contact.html'>Contact</a>",
+      chips: ["Contact","Ask a Lawyer","Home"]
+    },
+    {
+      keys: ["thank you","thanks","thx","ty"],
+      reply: "✅ You’re welcome! If you need anything else, I’m here. 🙂",
+      chips: ["Home","Law Categories","Generate Documents"]
+    },
+    {
+      keys: ["bye","goodbye","see you","exit"],
+      reply: "👋 Goodbye! Have a great day. If you need help again, just click the 💬 button."
+    },
+    // Smart link intent (specific phrasing like "where is lawyer page")
+    {
+      keys: ["where is lawyer page","lawyer page","find lawyer page"],
+      reply: "👩‍⚖️ Here it is 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+    }
+  ];
+
+  const defaultReply =
+    "🤔 I didn’t catch that. Try asking about <b>Home</b>, <b>Law Categories</b>, <b>Generate Documents</b>, <b>Ask a Lawyer</b>, <b>Contact</b>, or <b>How to file a complaint</b>.";
+
+  function matchIntent(text) {
+    const msg = text.toLowerCase();
+    for (const intent of intents) {
+      if (intent.keys.some(k => msg.includes(k))) return intent;
+    }
+    return null;
+  }
+
+  function handleUserMessage(raw) {
+    // Remove chips when user sends a new message
+    document.querySelectorAll(".pl-quick-replies").forEach(el => el.remove());
+
+    const msg = String(raw || "").trim();
+    if (!msg) return;
+
+    // Bot thinking delay
+    sendBtn.disabled = true;
+    setTimeout(() => {
+      const intent = matchIntent(msg);
+      if (intent) {
+        addBubble(intent.reply, "bot");
+        if (intent.chips) addQuickReplies(intent.chips);
+      } else {
+        addBubble(defaultReply, "bot");
+        addQuickReplies(["Home","Law Categories","Generate Documents","Ask a Lawyer","Contact"]);
+      }
+      sendBtn.disabled = false;
+      inputEl.focus();
+    }, 250);
+  }
+
+  // ---- Send flow ----
+  function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addBubble(sanitize(text), "user");
+    inputEl.value = "";
+    handleUserMessage(text);
+  }
+
+  // ---- Event Listeners ----
+  toggleBtn.addEventListener("click", () => {
+    const showing = container.style.display === "flex";
+    container.style.display = showing ? "none" : "flex";
+    if (!showing) {
+      greetIfNeeded();
+      inputEl.focus();
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    container.style.display = "none";
+    toggleBtn.focus();
+  });
+
+  sendBtn.addEventListener("click", sendMessage);
+
+  inputEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    } else if (e.key === "Escape") {
+      container.style.display = "none";
+      toggleBtn.focus();
+    }
+  });
+
+  // Close when clicking outside the chat (but not when clicking the toggle)
+  document.addEventListener("click", (e) => {
+    const clickedInside = container.contains(e.target);
+    const clickedToggle = toggleBtn.contains(e.target);
+    const isOpen = container.style.display === "flex";
+    if (isOpen && !clickedInside && !clickedToggle) {
+      container.style.display = "none";
+    }
+  });
+
+  // Accessibility: open with Ctrl+/ and close with Esc anywhere
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "/") {
+      container.style.display = "flex";
+      greetIfNeeded();
+      inputEl.focus();
+    }
+    if (e.key === "Escape" && container.style.display === "flex") {
+      container.style.display = "none";
+    }
+  });
+
+  // Optional: greet if the user keeps the page open for a bit
+  setTimeout(() => {
+    if (container.style.display !== "flex") {
+      // show a gentle nudge by flashing the button
+      toggleBtn.animate([{ transform: "scale(1)" }, { transform: "scale(1.08)" }, { transform: "scale(1)" }], {
+        duration: 600,
+        iterations: 1
+      });
+    }
+  }, 2000);
+})();
+
 
     </script>
 
@@ -822,6 +1032,7 @@ addMessage("👋 Hi, I’m your Pocket Lawyer assistant! How can I help you toda
 
 
 </html>
+
 
 
 
