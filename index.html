@@ -835,7 +835,46 @@ const intents = [
   {
     keywords: ["time", "date", "today"],
     response: "I can’t track real-time clock ⏰, but you can check your device for the latest date and time."
-  }
+  },
+    // --- Extra Questions ---
+{
+  keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer"],
+  response: "⚖️ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
+},
+{
+  keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
+  response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
+},
+{
+  keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
+  response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
+},
+{
+    keywords: ["rights", "fundamental rights"],
+    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
+  },
+  {
+    keywords: ["police complaint", "FIR"],
+    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
+  },
+  {
+    keywords: ["court", "legal process", "judge"],
+    response: "⚖️ The court process can be complex, but we provide simplified guides in the Law Categories section."
+  },
+
+  // --- Extra Questions ---
+  {
+    keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer"],
+    response: "⚖️ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
+  },
+  {
+    keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
+    response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
+  },
+  {
+    keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
+    response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
+  },
 ];
 
   const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
@@ -901,6 +940,7 @@ const intents = [
 
 
 </html>
+
 
 
 
