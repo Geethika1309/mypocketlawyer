@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
     try {
       const data = await resend.emails.send({
-        from: 'noreply@mypocketlawyer.vercel.app', // must be verified domain/sender
+        from: 'onboarding@resend.dev', // must be verified domain/sender
         to: 'pocketlawyerindia1950@gmail.com',             // replace with your mail
         subject: `New Chat from ${name}`,
         html: `<p><b>Email:</b> ${email}</p>
