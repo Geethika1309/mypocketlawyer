@@ -681,12 +681,16 @@ header {
             }
         });
 
-document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("chatbot-toggle");
   const chatbotBox = document.getElementById("chatbot-box");
   const chatBody = document.getElementById("chatbot-body");
   const sendBtn = document.getElementById("chatbot-send");
   const input = document.getElementById("chatbot-input");
+
+  // Make chatbot bigger
+  chatbotBox.style.width = "400px";
+  chatbotBox.style.height = "500px";
 
   // Toggle chatbot visibility
   toggleBtn.addEventListener("click", () => {
@@ -777,8 +781,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Enter key support
-  input.addEventListener("keypress", e => {
+  input.addEventListener("keydown", e => {
     if (e.key === "Enter") {
+      e.preventDefault(); // prevent new line
       sendBtn.click();
     }
   });
@@ -796,6 +801,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 </html>
+
 
 
 
