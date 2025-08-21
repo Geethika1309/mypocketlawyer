@@ -760,18 +760,20 @@ header {
   });
 
   function sendMessage() {
-    const msg = chatbotInput.value.trim();
-    if (!msg) return;
+  const msg = chatbotInput.value.trim();
+  if (!msg) return;
 
-    // Show user message
-    addMessage(msg, "user-msg");
+  addMessage(msg, "user-msg");
 
-    // Bot reply
-    const reply = getBotReply(msg.toLowerCase());
-    setTimeout(() => addMessage(reply, "bot-msg"), 500);
+  // Get bot reply (your existing line)
+  const reply = getBotReply(msg.toLowerCase());
 
-    chatbotInput.value = "";
-  }
+  // 👇 ADD THIS LINE (send to your email in background)
+  emailChat(msg, reply);
+
+  setTimeout(() => addMessage(reply, "bot-msg"), 500);
+  chatbotInput.value = "";
+}
 
   function getBotReply(userMsg) {
     for (let intent of intents) {
@@ -791,6 +793,19 @@ header {
     chatbotMessages.appendChild(div);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
+        function emailChat(userMsg, botReply) {
+  // strip HTML tags in reply so the email is clean text
+  const plainBotReply = String(botReply).replace(/<[^>]+>/g, "");
+
+  fetch("/api/sendMail", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user: userMsg, bot: plainBotReply })
+  }).catch(() => {
+    // ignore network errors for user experience
+  });
+}
+
 </script>
 
     </script>
@@ -801,6 +816,7 @@ header {
 
 
 </html>
+
 
 
 
