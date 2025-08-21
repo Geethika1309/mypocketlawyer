@@ -372,79 +372,102 @@ header {
             cursor: pointer;
         }
 
-       /* Chatbot toggle button */
-.chatbot-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #0078ff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  font-size: 22px;
-  cursor: pointer;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-  z-index: 9999;
-}
+        /* Chatbot Floating Button */
+  #chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    background: #ff5722;
+    border: none;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 2000;
+  }
 
-/* Chatbot box */
-.chatbot-box {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 320px;
-  max-height: 450px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  display: flex;
-  flex-direction: column;
-  z-index: 9999;
-}
+  /* Chatbot Container */
+  #chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 320px;
+    height: 400px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 2000;
+    font-family: 'Segoe UI', sans-serif;
+  }
 
-/* Hide initially */
-.hidden {
-  display: none;
-}
+  #chatbot-header {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.chatbot-header {
-  background: #0078ff;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 12px 12px 0 0;
-}
+  #chatbot-close {
+    cursor: pointer;
+    font-size: 18px;
+  }
 
-.chatbot-messages {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  font-size: 14px;
-}
+  #chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+    background: #f9f9f9;
+  }
 
-/* Input */
-.chatbot-input {
-  display: flex;
-  border-top: 1px solid #ddd;
-}
-.chatbot-input input {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  outline: none;
-}
-.chatbot-input button {
-  background: #0078ff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-}
+  .bot-msg {
+    background: #e1f5fe;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: fit-content;
+    max-width: 80%;
+  }
+
+  .user-msg {
+    background: #ffccbc;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: fit-content;
+    max-width: 80%;
+    margin-left: auto;
+  }
+
+  #chatbot-input-container {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  #chatbot-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+  }
+
+  #chatbot-send {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
     </style>
 
 </head>
@@ -550,7 +573,20 @@ header {
 
             </div>
         </div>
+<!-- Add this just before </body> -->
+<div id="chatbot-container">
+  <div id="chatbot-header">
+    🤖 Pocket Lawyer Assistant
+    <span id="chatbot-close">&times;</span>
+  </div>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type your question..." />
+    <button id="chatbot-send">Send</button>
+  </div>
+</div>
 
+<button id="chatbot-toggle">💬</button>
 
        
 
@@ -609,21 +645,8 @@ header {
         <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
     </div>
 </footer>
-        <!-- Chatbot Button -->
-<button id="chatbot-toggle" class="chatbot-btn">💬</button>
+      
 
-<!-- Chatbot Box -->
-<div id="chatbot-box" class="chatbot-box hidden">
-  <div class="chatbot-header">
-    <span>🤖 Pocket Lawyer</span>
-    <button id="chatbot-close">✖</button>
-  </div>
-  <div id="chatbot-messages" class="chatbot-messages"></div>
-  <div class="chatbot-input">
-    <input id="chatbot-input" type="text" placeholder="Type your message..." />
-    <button id="chatbot-send">Send</button>
-  </div>
-</div>
     </main>
     <script src="translations.js"></script>
     <script src="languageManager.js"></script>
@@ -683,82 +706,98 @@ header {
         });
 
 
-        document.addEventListener("DOMContentLoaded", () => {
-  const chatbotToggle = document.getElementById("chatbot-toggle");
+     const chatbotToggle = document.getElementById("chatbot-toggle");
   const chatbotContainer = document.getElementById("chatbot-container");
   const chatbotClose = document.getElementById("chatbot-close");
   const chatbotMessages = document.getElementById("chatbot-messages");
   const chatbotInput = document.getElementById("chatbot-input");
   const chatbotSend = document.getElementById("chatbot-send");
 
-  // ✅ Open chatbot
+  // Intent-based responses (smarter matching)
+  const intents = [
+    {
+      keywords: ["hello", "hi", "hey"],
+      response: "Hello! 👋 How can I help you today?"
+    },
+    {
+      keywords: ["home", "start", "main page"],
+      response: "You can go to Home here 👉 <a href='index.html'>Home</a>"
+    },
+    {
+      keywords: ["categories", "laws", "law categories"],
+      response: "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
+    },
+    {
+      keywords: ["documents", "generate", "create document", "complaint letter"],
+      response: "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+    },
+    {
+      keywords: ["lawyer", "ask", "advice", "help from lawyer"],
+      response: "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+    },
+    {
+      keywords: ["contact", "phone", "email", "address", "support"],
+      response: "Reach us here 👉 <a href='contact.html'>Contact</a>"
+    },
+    {
+      keywords: ["complaint", "file complaint", "raise issue"],
+      response: "You can learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
+    },
+    {
+      keywords: ["consumer", "product", "fraud", "complaints"],
+      response: "See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
+    }
+  ];
+
+  const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
+
   chatbotToggle.addEventListener("click", () => {
-    chatbotContainer.style.display = "flex"; 
+    chatbotContainer.style.display = "flex";
     chatbotToggle.style.display = "none";
   });
 
-  // ✅ Close chatbot
   chatbotClose.addEventListener("click", () => {
-    chatbotContainer.style.display = "none"; 
+    chatbotContainer.style.display = "none";
     chatbotToggle.style.display = "block";
   });
 
-  // ---------- Intents ----------
-  const intents = [
-    { keywords: ["hello", "hi"], response: "👋 Hello! Welcome to <b>Pocket Lawyer</b>. How can I assist you today?" },
-    { keywords: ["home"], response: "🏠 Go to Home 👉 <a href='index.html'>Home</a>" },
-    { keywords: ["laws", "categories"], response: "⚖️ Browse laws 👉 <a href='lawcategories.html'>Law Categories</a>" },
-    { keywords: ["documents", "generate"], response: "📄 Create legal documents 👉 <a href='generatedocuments.html'>Generate Documents</a>" },
-    { keywords: ["lawyer", "advice"], response: "👨‍⚖️ Get legal advice 👉 <a href='askalawyer.html'>Ask a Lawyer</a>" },
-    { keywords: ["complaint"], response: "📝 File a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>" },
-    { keywords: ["consumer"], response: "🛒 Know your consumer rights 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>" },
-    { keywords: ["contact"], response: "☎️ Reach us 👉 <a href='contact.html'>Contact</a>" },
-    { keywords: ["thank you", "thanks"], response: "🙏 You’re most welcome! Pocket Lawyer is always here to help. 😊" },
-    { keywords: ["bye"], response: "👋 Goodbye! Have a great day!" }
-  ];
+  chatbotSend.addEventListener("click", sendMessage);
+  chatbotInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
 
-  const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>🏠 Home, ⚖️ Laws, 📄 Documents, 👨‍⚖️ Lawyer, ☎️ Contact, or 📝 Complaints</b>.";
+  function sendMessage() {
+    const msg = chatbotInput.value.trim();
+    if (!msg) return;
 
-  // ---------- Functions ----------
-  function getBotResponse(message) {
-    message = message.toLowerCase();
-    for (const intent of intents) {
-      if (intent.keywords.some(keyword => message.includes(keyword))) {
-        return intent.response;
+    // Show user message
+    addMessage(msg, "user-msg");
+
+    // Bot reply
+    const reply = getBotReply(msg.toLowerCase());
+    setTimeout(() => addMessage(reply, "bot-msg"), 500);
+
+    chatbotInput.value = "";
+  }
+
+  function getBotReply(userMsg) {
+    for (let intent of intents) {
+      for (let keyword of intent.keywords) {
+        if (userMsg.includes(keyword)) {
+          return intent.response;
+        }
       }
     }
     return defaultResponse;
   }
 
-  function addMessage(text, sender = "user") {
-    const msgDiv = document.createElement("div");
-    msgDiv.classList.add("chat-msg", sender);
-    msgDiv.innerHTML = `
-      <div class="bubble">${text}</div>
-      <div class="sender">${sender === "user" ? "You" : "Pocket Lawyer"}</div>
-    `;
-    chatbotMessages.appendChild(msgDiv);
+  function addMessage(text, className) {
+    const div = document.createElement("div");
+    div.className = className;
+    div.innerHTML = text;
+    chatbotMessages.appendChild(div);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
-
-  function sendMessage() {
-    const msg = chatbotInput.value.trim();
-    if (!msg) return;
-    addMessage(msg, "user");
-    const reply = getBotResponse(msg);
-    setTimeout(() => addMessage(reply, "bot"), 400);
-    chatbotInput.value = "";
-  }
-
-  // ---------- Events ----------
-  chatbotSend.addEventListener("click", sendMessage);
-  chatbotInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      sendMessage();
-    }
-  });
-});
 
     </script>
 
@@ -768,6 +807,7 @@ header {
 
 
 </html>
+
 
 
 
