@@ -372,121 +372,102 @@ header {
             cursor: pointer;
         }
 
+        /* Chatbot Floating Button */
+  #chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    background: #ff5722;
+    border: none;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 2000;
+  }
 
-         /* === SIGN-IN STYLES === */
-    #signin-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: #f9f9f9;
-    }
-    #signin-container h2 {
-      margin-bottom: 20px;
-    }
-    #signin-container input {
-      margin: 8px 0;
-      padding: 10px;
-      width: 250px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    #signin-btn {
-      padding: 10px 20px;
-      border: none;
-      background: #007bff;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+  /* Chatbot Container */
+  #chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 320px;
+    height: 400px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 2000;
+    font-family: 'Segoe UI', sans-serif;
+  }
 
-    /* === CHATBOT TOGGLE === */
-    #chatbot-toggle {
-  display: none; /* stays hidden until sign in */
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #007bff;
-  color: white;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 24px;
-  z-index: 1000;
-}
+  #chatbot-header {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    /* === CHATBOT WINDOW === */
-    #chatbot-container {
-      display: none;
-      flex-direction: column;
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 320px;
-      height: 450px;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
+  #chatbot-close {
+    cursor: pointer;
+    font-size: 18px;
+  }
 
-    #chatbot-header {
-      background: #007bff;
-      color: white;
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-    #chatbot-close {
-      cursor: pointer;
-    }
-    #chatbot-messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      font-size: 14px;
-    }
-    .bot-msg {
-      background: #f1f1f1;
-      padding: 8px;
-      border-radius: 8px;
-      margin: 5px 0;
-    }
-    .user-msg {
-      background: #007bff;
-      color: white;
-      padding: 8px;
-      border-radius: 8px;
-      margin: 5px 0;
-      text-align: right;
-    }
-    #chatbot-input-area {
-      display: flex;
-      border-top: 1px solid #ccc;
-    }
-    #chatbot-input {
-      flex: 1;
-      border: none;
-      padding: 10px;
-      border-bottom-left-radius: 10px;
-    }
-    #chatbot-send {
-      border: none;
-      background: #007bff;
-      color: white;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-bottom-right-radius: 10px;
-    }
+  #chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+    background: #f9f9f9;
+  }
+
+  .bot-msg {
+    background: #e1f5fe;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: fit-content;
+    max-width: 80%;
+  }
+
+  .user-msg {
+    background: #ffccbc;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: fit-content;
+    max-width: 80%;
+    margin-left: auto;
+  }
+
+  #chatbot-input-container {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  #chatbot-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+  }
+
+  #chatbot-send {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
     </style>
 
 </head>
@@ -592,34 +573,20 @@ header {
 
             </div>
         </div>
-
-
-        <!-- === SIGN-IN FORM === -->
-  <div id="signin-container">
-    <h2>Sign In to Use Chatbot</h2>
-    <input type="text" id="userName" placeholder="Enter your name">
-    <input type="email" id="userEmail" placeholder="Enter your email">
-    <button id="signin-btn">Sign In</button>
+<!-- Add this just before </body> -->
+<div id="chatbot-container">
+  <div id="chatbot-header">
+    🤖 Pocket Lawyer Assistant
+    <span id="chatbot-close">&times;</span>
   </div>
-
-  <!-- === CHATBOT TOGGLE BUTTON === -->
-  <div id="chatbot-toggle">
-    <i class="fas fa-comments"></i>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type your question..." />
+    <button id="chatbot-send">Send</button>
   </div>
+</div>
 
-  <!-- === CHATBOT WINDOW === -->
-  <div id="chatbot-container">
-    <div id="chatbot-header">
-      <span>Legal Help Chatbot</span>
-      <span id="chatbot-close">&times;</span>
-    </div>
-    <div id="chatbot-messages"></div>
-    <div id="chatbot-input-area">
-      <input type="text" id="chatbot-input" placeholder="Type your message...">
-      <button id="chatbot-send">Send</button>
-    </div>
-  </div>
-
+<button id="chatbot-toggle">💬</button>
 
        
 
@@ -738,95 +705,232 @@ header {
             }
         });
 
-const signinContainer = document.getElementById("signin-container");
-    const signinBtn = document.getElementById("signin-btn");
-    const chatbotToggle = document.getElementById("chatbot-toggle");
-    const chatbotContainer = document.getElementById("chatbot-container");
-    const chatbotClose = document.getElementById("chatbot-close");
-    const chatbotMessages = document.getElementById("chatbot-messages");
-    const chatbotInput = document.getElementById("chatbot-input");
-    const chatbotSend = document.getElementById("chatbot-send");
 
-    let currentUser = { name: "", email: "" };
+     const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotContainer = document.getElementById("chatbot-container");
+  const chatbotClose = document.getElementById("chatbot-close");
+  const chatbotMessages = document.getElementById("chatbot-messages");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotSend = document.getElementById("chatbot-send");
 
-    // === SIGN IN LOGIC ===
-    signinBtn.addEventListener("click", () => {
-      const name  = document.getElementById("userName").value.trim();
-      const email = document.getElementById("userEmail").value.trim();
+  // Intent-based responses (smarter matching)
+const intents = [
+  // --- Small Talk ---
+  {
+    keywords: ["hello", "hi", "hey"],
+    response: "Hello! 👋 How can I help you today?"
+  },
+  {
+    keywords: ["how are you", "how r u", "how are u"],
+    response: "I'm doing great, thanks for asking! 😊 How are you doing?"
+  },
+  {
+    keywords: ["thank you", "thanks", "thx"],
+    response: "You're most welcome! 🙏 Happy to help."
+  },
+  {
+    keywords: ["bye", "goodbye", "see you"],
+    response: "Goodbye! 👋 Have a wonderful day!"
+  },
+  {
+    keywords: ["good morning", "good afternoon", "good evening"],
+    response: "Good day! 🌞 Hope you're doing well."
+  },
+  {
+    keywords: ["joke", "funny", "make me laugh"],
+    response: "😂 Why don’t skeletons fight each other? Because they don’t have the guts!"
+  },
+  {
+    keywords: ["who are you", "what are you", "about you"],
+    response: "I'm your friendly legal chatbot 🤖 here to guide you with information about laws, complaints, and more!"
+  },
 
-      if (!name || !email) {
-        alert("Please enter both name and email");
-        return;
-      }
+  // --- Website Related ---
+  {
+    keywords: ["problem", "issue", "not working", "website error"],
+    response: "Oh no! 😟 Sorry about the issue. Please describe the problem, and we’ll work on fixing it right away."
+  },
+  {
+    keywords: ["importance of website", "why this site", "purpose", "use of this website"],
+    response: "🌐 This website is created to spread awareness about laws, guide people in filing complaints, and help citizens understand their rights in a simple way."
+  },
+  {
+    keywords: ["who built this website", "creator", "developer", "owner","Who created this website"],
+    response: "👩‍🎓 This website was proudly developed by Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla. 🎓✨"
+  },
+  {
+    keywords: ["feedback", "suggestion"],
+    response: "💡 We’d love to hear your feedback! Please share your suggestions with us."
+  },
+  {
+    keywords: ["update", "latest", "new laws"],
+    response: "📢 Our website is regularly updated with the latest laws and information. Check the law categories for updates."
+  },
+  {
+    keywords: ["about us", "who are we"],
+    response: "👩‍💻 We are Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla — working to make legal knowledge simple for everyone."
+  },
 
-      currentUser = { name, email };
+  // --- Legal Guidance ---
+  {
+    keywords: ["ipc", "section", "law", "indian penal code"],
+    response: "📖 If you’re looking for details about IPC sections or specific laws, you can explore our law categories 👉 <a href='lawcategories.html'>Law Categories</a>."
+  },
+  {
+    keywords: ["rights", "fundamental rights"],
+    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
+  },
+  {
+    keywords: ["police complaint", "FIR"],
+    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
+  },
+  {
+    keywords: ["court", "legal process", "judge"],
+    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
+  },
 
-      signinContainer.style.display = "none";
-      chatbotToggle.style.display = "flex";
+  // --- Emergency / Help ---
+  {
+    keywords: ["emergency", "urgent", "help me now"],
+    response: "🚨 If this is an emergency, please contact your nearest police station or dial 100 immediately."
+  },
+  {
+    keywords: ["harassment", "abuse", "violence"],
+    response: "💔 If you are facing harassment or violence, please reach out to the authorities immediately. You can also explore your rights here 👉 <a href='lawcategories.html'>Law Categories</a>."
+  },
 
-      alert(`Welcome ${name}! ✅ You can now use the chatbot.`);
-    });
+  // --- Navigation ---
+  {
+    keywords: ["home", "start", "main page"],
+    response: "You can go to Home here 👉 <a href='index.html'>Home</a>"
+  },
+  {
+    keywords: ["categories", "laws", "law categories"],
+    response: "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
+  },
+  {
+    keywords: ["documents", "generate", "create document", "complaint letter"],
+    response: "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+  },
+  {
+    keywords: ["lawyer", "ask", "advice", "help from lawyer"],
+    response: "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+  },
+  {
+    keywords: ["contact", "phone", "email", "address", "support"],
+    response: "Reach us here 👉 <a href='contact.html'>Contact</a>"
+  },
+  {
+    keywords: ["complaint", "file complaint", "raise issue"],
+    response: "You can learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
+  },
+  {
+    keywords: ["consumer", "product", "fraud", "complaints"],
+    response: "See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
+  },
+  {
+    keywords: ["help", "assist", "guidance"],
+    response: "I'm here to help! 🤝 What do you need assistance with?"
+  },
+  {
+    keywords: ["time", "date", "today"],
+    response: "I can’t track real-time clock ⏰, but you can check your device for the latest date and time."
+  },
+    // --- Extra Questions ---
+{
+  keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer","lawyer"],
+  response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
+},
+{
+  keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
+  response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
+},
+{
+  keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
+  response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
+},
+{
+    keywords: ["rights", "fundamental rights"],
+    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
+  },
+  {
+    keywords: ["police complaint", "FIR"],
+    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
+  },
+  {
+    keywords: ["court", "legal process", "judge"],
+    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
+  },
 
-    // === CHATBOT OPEN/CLOSE ===
+  // --- Extra Questions ---
+  {
+    keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer"],
+    response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
+  },
+  {
+    keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
+    response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
+  },
+  {
+    keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
+    response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
+  },
+];
+
+  const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
     chatbotToggle.addEventListener("click", () => {
-  chatbotContainer.style.display = "flex";  // opens chatbot
-  chatbotToggle.style.display = "none";     // hides chat button
+  chatbotContainer.style.display = "flex";
+  chatbotToggle.style.display = "none";
+
+  // Show default welcome message only when opening
   addMessage("👋 Hello! Welcome to our Legal Help Chatbot.<br>💡 You can ask me about laws, IPC sections, complaints, documents, or get guidance.", "bot-msg");
 });
 
 
-    chatbotClose.addEventListener("click", () => {
-      chatbotContainer.style.display = "none";
-      chatbotToggle.style.display = "flex";
-    });
+ 
 
-    chatbotSend.addEventListener("click", sendMessage);
-    chatbotInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendMessage();
-    });
+  chatbotClose.addEventListener("click", () => {
+    chatbotContainer.style.display = "none";
+    chatbotToggle.style.display = "block";
+  });
 
-    // === CHATBOT INTENTS ===
-    const intents = [
-      { keywords: ["hello","hi"], response: "Hello! 👋 How can I help you today?" },
-      { keywords: ["bye"], response: "Goodbye! 👋 Have a great day." },
-      { keywords: ["law","ipc"], response: "📖 You can explore laws here 👉 <a href='lawcategories.html'>Law Categories</a>" },
-      { keywords: ["complaint","FIR"], response: "🚔 File a complaint here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>" },
-      { keywords: ["lawyer"], response: "⚖️ Contact a lawyer here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>" },
-      { keywords: ["contact"], response: "📞 Reach us here 👉 <a href='contact.html'>Contact</a>" }
-    ];
+  chatbotSend.addEventListener("click", sendMessage);
+  chatbotInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
 
-    const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Laws, Complaints, Lawyer, Contact</b>.";
+  function sendMessage() {
+    const msg = chatbotInput.value.trim();
+    if (!msg) return;
 
-    function sendMessage() {
-      const msg = chatbotInput.value.trim();
-      if (!msg) return;
+    // Show user message
+    addMessage(msg, "user-msg");
 
-      addMessage(`<b>${currentUser.name}:</b> ${msg}`, "user-msg");
+    // Bot reply
+    const reply = getBotReply(msg.toLowerCase());
+    setTimeout(() => addMessage(reply, "bot-msg"), 500);
 
-      const reply = getBotReply(msg.toLowerCase());
-      setTimeout(() => addMessage(reply, "bot-msg"), 500);
+    chatbotInput.value = "";
+  }
 
-      chatbotInput.value = "";
-    }
-
-    function getBotReply(userMsg) {
-      for (let intent of intents) {
-        for (let keyword of intent.keywords) {
-          if (userMsg.includes(keyword)) {
-            return intent.response;
-          }
+  function getBotReply(userMsg) {
+    for (let intent of intents) {
+      for (let keyword of intent.keywords) {
+        if (userMsg.includes(keyword)) {
+          return intent.response;
         }
       }
-      return defaultResponse;
     }
+    return defaultResponse;
+  }
 
-    function addMessage(text, className) {
-      const div = document.createElement("div");
-      div.className = className;
-      div.innerHTML = text;
-      chatbotMessages.appendChild(div);
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
+  function addMessage(text, className) {
+    const div = document.createElement("div");
+    div.className = className;
+    div.innerHTML = text;
+    chatbotMessages.appendChild(div);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
 
     </script>
 
@@ -836,5 +940,3 @@ const signinContainer = document.getElementById("signin-container");
 
 
 </html>
-
-
