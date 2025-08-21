@@ -706,21 +706,15 @@ header {
         });
 
 
-     // Chatbot functionality
-const chatbotToggle = document.getElementById("chatbot-toggle");
-const chatbotContainer = document.getElementById("chatbot-container");
-const chatbotClose = document.getElementById("chatbot-close");
-const chatbotMessages = document.getElementById("chatbot-messages");
-const chatbotInput = document.getElementById("chatbot-input");
-const chatbotSend = document.getElementById("chatbot-send");
+     const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotContainer = document.getElementById("chatbot-container");
+  const chatbotClose = document.getElementById("chatbot-close");
+  const chatbotMessages = document.getElementById("chatbot-messages");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotSend = document.getElementById("chatbot-send");
 
-// Toggle chatbot visibility
-chatbotToggle.addEventListener("click", () => {
-    chatbotContainer.style.display = "flex";
-    chatbotToggle.style.display = "none";
-    addMessage("👋 Hello! Welcome to our Legal Help Chatbot.<br>💡 You can ask me about laws, IPC sections, complaints, documents, or get guidance.", "bot-msg");
-});
-        const intents = [
+  // Intent-based responses (smarter matching)
+const intents = [
   // --- Small Talk ---
   {
     keywords: ["hello", "hi", "hey"],
@@ -883,19 +877,29 @@ chatbotToggle.addEventListener("click", () => {
   },
 ];
 
-// Close chatbot
-chatbotClose.addEventListener("click", () => {
+  const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
+    chatbotToggle.addEventListener("click", () => {
+  chatbotContainer.style.display = "flex";
+  chatbotToggle.style.display = "none";
+
+  // Show default welcome message only when opening
+  addMessage("👋 Hello! Welcome to our Legal Help Chatbot.<br>💡 You can ask me about laws, IPC sections, complaints, documents, or get guidance.", "bot-msg");
+});
+
+
+ 
+
+  chatbotClose.addEventListener("click", () => {
     chatbotContainer.style.display = "none";
     chatbotToggle.style.display = "block";
-});
+  });
 
-// Send message functionality
-chatbotSend.addEventListener("click", sendMessage);
-chatbotInput.addEventListener("keypress", (e) => {
+  chatbotSend.addEventListener("click", sendMessage);
+  chatbotInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") sendMessage();
-});
+  });
 
-function sendMessage() {
+  function sendMessage() {
     const msg = chatbotInput.value.trim();
     if (!msg) return;
 
@@ -907,26 +911,27 @@ function sendMessage() {
     setTimeout(() => addMessage(reply, "bot-msg"), 500);
 
     chatbotInput.value = "";
-}
+  }
 
-function getBotReply(userMsg) {
+  function getBotReply(userMsg) {
     for (let intent of intents) {
-        for (let keyword of intent.keywords) {
-            if (userMsg.includes(keyword)) {
-                return intent.response;
-            }
+      for (let keyword of intent.keywords) {
+        if (userMsg.includes(keyword)) {
+          return intent.response;
         }
+      }
     }
     return defaultResponse;
-}
+  }
 
-function addMessage(text, className) {
+  function addMessage(text, className) {
     const div = document.createElement("div");
     div.className = className;
     div.innerHTML = text;
     chatbotMessages.appendChild(div);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-}
+  }
+
     </script>
 
     <script src="lawdata.js"></script>
@@ -935,4 +940,3 @@ function addMessage(text, className) {
 
 
 </html>
-
