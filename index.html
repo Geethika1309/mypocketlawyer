@@ -29,12 +29,12 @@
 
         /* Header Section */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #ffffff;   /* dark header background */
-  color: white;
+  background: #ffffff; /* White background for clean official look */
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 /* Heading area */
@@ -120,40 +120,6 @@ header {
  width: 100%;
   left: 0;
 }
- .header-container {
-  display: flex;
-  flex-direction: column;  /* makes menu go below logo */
-  align-items: center;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.topnav ul {
-  display: flex;
-  flex-wrap: wrap; /* lets menu adjust on small screens */
-  justify-content: center;
-  padding: 0;
-  margin: 10px 0 0;
-  list-style: none;
-}
-
-.topnav ul li {
-  margin: 5px 15px;
-}
-
-.topnav ul li a {
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-}
-
-        .topnav {
-            position:relative;
-        }
 
         .quote {
             text-align: center;
@@ -412,25 +378,22 @@ header {
 <body>
     <main>
         
-
 <header>
-  <div class="header-container">
-    <div class="logo-container">
-      <img src="logo_transparent_resized(1).png" alt="Pocket Lawyer Logo" class="logo">
-      <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+    <div class="headers">
+        <img class="logo" src="logo_transparent_resized(1).png">
+        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
     </div>
 
-    <!-- Menu should be a separate row -->
+    <!-- Top Navbar -->
     <nav class="topnav">
-      <ul>
-        <li><a href="index.html" id="home">🏠 Home</a></li>
-            <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
-            <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
+        <ul>
+            <li><a href="index.html" id="home">🏠 Home</a></li>
+            <li><a href="lawcategories.html" id="lawc">⚖ Law Categories</a></li>
+            <li><a href="generatedocuments.html" id="gene">✍ Generate Documents</a></li>
             <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
             <li><a href="contact.html" id="contact">📞 Contact</a></li>
-      </ul>
+        </ul>
     </nav>
-  </div>
 </header>
 
         
@@ -470,7 +433,7 @@ header {
                 <div class="column">
                     <a href="consumercomplaints.html" class="category-box" id="consumer">📦📦
                         <span>Consumer Complaints</span></a>
-                    <a href="cyberbullying.html" class="category-box" id="cyber">🛡️
+                    <a href="cyberbullying.html" class="category-box" id="cyber">🛡
                         <span>Cyber
                             bullying and Digital Safety</span></a>
                     <a href="howtofileacomplaint.html" class="category-box" id="file">📄
@@ -552,7 +515,7 @@ header {
     <!-- Credits Section -->
     <div class="footer-credits">
         <p id="ljustice">🌟 Made for Justice, by Students of India</p>
-        <p id="lheart">❤️From the hearts of Indian students, for the voice of every citizen</p>
+        <p id="lheart">❤From the hearts of Indian students, for the voice of every citizen</p>
         <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
         <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
         <ul>
@@ -585,7 +548,7 @@ header {
                 return;
             }
 
-            window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
+            window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
         });
 
         // index.html
@@ -619,16 +582,11 @@ header {
             const lang = document.getElementById("languageSelector").value || 'en';
 
             if (query) {
-                window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
+                window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
             } else {
                 alert("Please enter a search term");
             }
         });
-  function toggleMenu() {
-    const nav = document.getElementById("navLinks");
-    nav.classList.toggle("active");
-  }
-
     </script>
 
     <script src="lawdata.js"></script>
@@ -637,8 +595,3 @@ header {
 
 
 </html>
-
-
-
-
-
