@@ -681,113 +681,84 @@ header {
             }
         });
 
-    // ----------------- DOM Elements -----------------
-const chatbotToggle = document.getElementById("chatbot-toggle");
-const chatbotContainer = document.getElementById("chatbot-container");
-const chatbotClose = document.getElementById("chatbot-close");
-const chatbotMessages = document.getElementById("chatbot-messages");
-const chatbotInput = document.getElementById("chatbot-input");
-const chatbotSend = document.getElementById("chatbot-send");
+   document.addEventListener("DOMContentLoaded", () => {
+  const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotContainer = document.getElementById("chatbot-container");
+  const chatbotClose = document.getElementById("chatbot-close");
+  const chatbotMessages = document.getElementById("chatbot-messages");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotSend = document.getElementById("chatbot-send");
 
-// ----------------- Intents -----------------
-const intents = [
-  {
-    keywords: ["hello", "hi", "hey"],
-    response: "👋 Hello! Welcome to Pocket Lawyer. How can I help you today?"
-  },
-  {
-    keywords: ["home", "main", "start"],
-    response: "🏠 You can go to Home here 👉 <a href='index.html'>Home</a>"
-  },
-  {
-    keywords: ["law categories", "categories", "laws"],
-    response: "⚖️ Browse different laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
-  },
-  {
-    keywords: ["generate", "documents", "create", "letter"],
-    response: "📄 Generate your documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
-  },
-  {
-    keywords: ["lawyer", "ask", "advice", "help"],
-    response: "👨‍⚖️ Need expert advice? Ask a lawyer here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
-  },
-  {
-    keywords: ["complaint", "file complaint", "raise issue"],
-    response: "📝 Learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
-  },
-  {
-    keywords: ["consumer", "fraud", "product"],
-    response: "🛒 See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
-  },
-  {
-    keywords: ["contact", "phone", "email", "support"],
-    response: "☎️ Reach us here 👉 <a href='contact.html'>Contact</a>"
-  },
-  {
-    keywords: ["thank you", "thanks", "thx"],
-    response: "🙏 You’re most welcome! Pocket Lawyer is always here to help. 😊"
-  },
-  {
-    keywords: ["bye", "goodbye", "see you"],
-    response: "👋 Goodbye! Have a great day!"
+  if (!chatbotToggle || !chatbotContainer) {
+    console.error("❌ Chatbot elements not found. Check your HTML IDs!");
+    return;
   }
-];
 
-const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>🏠 Home, ⚖️ Laws, 📄 Documents, 👨‍⚖️ Lawyer, ☎️ Contact, or 📝 Complaints</b>.";
+  // Show chatbot
+  chatbotToggle.addEventListener("click", () => {
+    chatbotContainer.style.display = "flex";   // show
+    chatbotToggle.style.display = "none";      // hide button
+  });
 
-// ----------------- Functions -----------------
-function getBotResponse(message) {
-  message = message.toLowerCase();
+  // Close chatbot
+  chatbotClose.addEventListener("click", () => {
+    chatbotContainer.style.display = "none";
+    chatbotToggle.style.display = "block";
+  });
 
-  for (const intent of intents) {
-    if (intent.keywords.some(keyword => message.includes(keyword))) {
-      return intent.response;
+  // ----------------- Intents -----------------
+  const intents = [
+    { keywords: ["hello", "hi"], response: "👋 Hello! Welcome to Pocket Lawyer. How can I help?" },
+    { keywords: ["home"], response: "🏠 Go to Home 👉 <a href='index.html'>Home</a>" },
+    { keywords: ["laws", "categories"], response: "⚖️ Browse laws 👉 <a href='lawcategories.html'>Law Categories</a>" },
+    { keywords: ["documents", "generate"], response: "📄 Create documents 👉 <a href='generatedocuments.html'>Generate Documents</a>" },
+    { keywords: ["lawyer", "advice"], response: "👨‍⚖️ Ask a lawyer 👉 <a href='askalawyer.html'>Ask a Lawyer</a>" },
+    { keywords: ["complaint"], response: "📝 File a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>" },
+    { keywords: ["consumer"], response: "🛒 Consumer rights 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>" },
+    { keywords: ["contact"], response: "☎️ Contact us 👉 <a href='contact.html'>Contact</a>" },
+    { keywords: ["thank you", "thanks"], response: "🙏 You’re most welcome! Pocket Lawyer is always here to help. 😊" },
+    { keywords: ["bye"], response: "👋 Goodbye! Have a great day!" }
+  ];
+
+  const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>🏠 Home, ⚖️ Laws, 📄 Documents, 👨‍⚖️ Lawyer, ☎️ Contact, or 📝 Complaints</b>.";
+
+  // ----------------- Functions -----------------
+  function getBotResponse(message) {
+    message = message.toLowerCase();
+    for (const intent of intents) {
+      if (intent.keywords.some(keyword => message.includes(keyword))) {
+        return intent.response;
+      }
     }
+    return defaultResponse;
   }
-  return defaultResponse;
-}
 
-function addMessage(text, sender = "user") {
-  const msgDiv = document.createElement("div");
-  msgDiv.classList.add("chat-msg", sender);
-
-  msgDiv.innerHTML = `<div class="bubble">${text}</div>
-    <div class="sender">${sender === "user" ? "You" : "Pocket Lawyer"}</div>`;
-
-  chatbotMessages.appendChild(msgDiv);
-  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-}
-
-function sendMessage() {
-  const msg = chatbotInput.value.trim();
-  if (!msg) return;
-
-  addMessage(msg, "user");
-
-  const reply = getBotResponse(msg);
-  setTimeout(() => addMessage(reply, "bot"), 400);
-
-  chatbotInput.value = "";
-}
-
-// ----------------- Event Listeners -----------------
-chatbotToggle.addEventListener("click", () => {
-  chatbotContainer.style.display = "flex";
-  chatbotToggle.style.display = "none";
-});
-
-chatbotClose.addEventListener("click", () => {
-  chatbotContainer.style.display = "none";
-  chatbotToggle.style.display = "block";
-});
-
-chatbotSend.addEventListener("click", sendMessage);
-
-chatbotInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    sendMessage();
+  function addMessage(text, sender = "user") {
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add("chat-msg", sender);
+    msgDiv.innerHTML = `<div class="bubble">${text}</div>
+      <div class="sender">${sender === "user" ? "You" : "Pocket Lawyer"}</div>`;
+    chatbotMessages.appendChild(msgDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
+
+  function sendMessage() {
+    const msg = chatbotInput.value.trim();
+    if (!msg) return;
+    addMessage(msg, "user");
+    const reply = getBotResponse(msg);
+    setTimeout(() => addMessage(reply, "bot"), 400);
+    chatbotInput.value = "";
+  }
+
+  // ----------------- Event Listeners -----------------
+  chatbotSend.addEventListener("click", sendMessage);
+  chatbotInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
 });
 
     </script>
@@ -798,6 +769,7 @@ chatbotInput.addEventListener("keypress", (e) => {
 
 
 </html>
+
 
 
 
