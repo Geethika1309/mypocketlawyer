@@ -681,317 +681,114 @@ header {
             }
         });
 
-    // === Pocket Lawyer Chatbot (pure JS) ===
-// Works with your existing HTML IDs:
-// #chatbot-toggle, #chatbot-container, #chatbot-close,
-// #chatbot-messages, #chatbot-input, #chatbot-send
+    // ----------------- DOM Elements -----------------
+const chatbotToggle = document.getElementById("chatbot-toggle");
+const chatbotContainer = document.getElementById("chatbot-container");
+const chatbotClose = document.getElementById("chatbot-close");
+const chatbotMessages = document.getElementById("chatbot-messages");
+const chatbotInput = document.getElementById("chatbot-input");
+const chatbotSend = document.getElementById("chatbot-send");
 
-(function () {
-  // Wait for DOM
-  document.addEventListener("DOMContentLoaded", init);
+// ----------------- Intents -----------------
+const intents = [
+  {
+    keywords: ["hello", "hi", "hey"],
+    response: "👋 Hello! Welcome to Pocket Lawyer. How can I help you today?"
+  },
+  {
+    keywords: ["home", "main", "start"],
+    response: "🏠 You can go to Home here 👉 <a href='index.html'>Home</a>"
+  },
+  {
+    keywords: ["law categories", "categories", "laws"],
+    response: "⚖️ Browse different laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
+  },
+  {
+    keywords: ["generate", "documents", "create", "letter"],
+    response: "📄 Generate your documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+  },
+  {
+    keywords: ["lawyer", "ask", "advice", "help"],
+    response: "👨‍⚖️ Need expert advice? Ask a lawyer here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+  },
+  {
+    keywords: ["complaint", "file complaint", "raise issue"],
+    response: "📝 Learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
+  },
+  {
+    keywords: ["consumer", "fraud", "product"],
+    response: "🛒 See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
+  },
+  {
+    keywords: ["contact", "phone", "email", "support"],
+    response: "☎️ Reach us here 👉 <a href='contact.html'>Contact</a>"
+  },
+  {
+    keywords: ["thank you", "thanks", "thx"],
+    response: "🙏 You’re most welcome! Pocket Lawyer is always here to help. 😊"
+  },
+  {
+    keywords: ["bye", "goodbye", "see you"],
+    response: "👋 Goodbye! Have a great day!"
+  }
+];
 
-  function init() {
-    const toggleBtn = document.getElementById("chatbot-toggle");
-    const container = document.getElementById("chatbot-container");
-    const closeBtn = document.getElementById("chatbot-close");
-    const messages = document.getElementById("chatbot-messages");
-    const input = document.getElementById("chatbot-input");
-    const sendBtn = document.getElementById("chatbot-send");
+const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>🏠 Home, ⚖️ Laws, 📄 Documents, 👨‍⚖️ Lawyer, ☎️ Contact, or 📝 Complaints</b>.";
 
-    // Guard if any element is missing
-    if (!toggleBtn || !container || !closeBtn || !messages || !input || !sendBtn) {
-      console.error("Chatbot: One or more required elements not found. Check element IDs.");
-      return;
-    }
+// ----------------- Functions -----------------
+function getBotResponse(message) {
+  message = message.toLowerCase();
 
-    // Make the chat box bigger (override CSS via JS)
-    container.style.width = "420px";
-    container.style.height = "560px";
-
-    let hasWelcomed = false;
-
-    // Toggle open/close
-    toggleBtn.addEventListener("click", () => {
-      const isHidden = container.style.display === "none" || container.style.display === "";
-      container.style.display = isHidden ? "flex" : "none";
-      toggleBtn.style.display = isHidden ? "none" : "block";
-
-      // First-time welcome
-      if (isHidden && !hasWelcomed) {
-        botSay(
-          "👋 Welcome to <b>Pocket Lawyer</b>! I can help with <b>Law Categories</b>, <b>Document Generation</b>, <b>Filing Complaints</b>, and <b>Contacting a Lawyer</b>. What do you want to explore?"
-        );
-        showQuickReplies(["Home", "Law Categories", "Generate Documents", "Ask a Lawyer", "File a Complaint"]);
-        hasWelcomed = true;
-      }
-      // Keep scroll at bottom when opened
-      setTimeout(scrollToBottom, 0);
-    });
-
-    closeBtn.addEventListener("click", () => {
-      container.style.display = "none";
-      toggleBtn.style.display = "block";
-    });
-
-    // Send button
-    sendBtn.addEventListener("click", onSend);
-
-    // Enter key sends (no newline)
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault();
-        onSend();
-      }
-    });
-
-    // Helpers
-    function onSend() {
-      const text = input.value.trim();
-      if (!text) return;
-
-      userSay(text);
-      input.value = "";
-      setTimeout(() => {
-        const reply = getReply(text);
-        botSay(reply.text);
-        if (reply.quickReplies && reply.quickReplies.length) {
-          showQuickReplies(reply.quickReplies);
-        }
-      }, 300);
-    }
-
-    function userSay(text) {
-      const wrap = document.createElement("div");
-      wrap.className = "user-msg";
-      wrap.textContent = text; // user text as plain text
-      messages.appendChild(wrap);
-
-      const who = document.createElement("div");
-      who.style.fontSize = "11px";
-      who.style.opacity = "0.7";
-      who.style.margin = "2px 0 8px";
-      who.style.textAlign = "right";
-      who.textContent = "You";
-      messages.appendChild(who);
-
-      scrollToBottom();
-    }
-
-    function botSay(html) {
-      const wrap = document.createElement("div");
-      wrap.className = "bot-msg";
-      wrap.innerHTML = html; // bot can include links/emojis
-      messages.appendChild(wrap);
-
-      const who = document.createElement("div");
-      who.style.fontSize = "11px";
-      who.style.opacity = "0.7";
-      who.style.margin = "2px 0 8px";
-      who.style.textAlign = "left";
-      who.textContent = "Pocket Lawyer";
-      messages.appendChild(who);
-
-      scrollToBottom();
-    }
-
-    function showQuickReplies(options) {
-      // remove any previous quick replies block
-      const old = messages.querySelector(".quick-replies");
-      if (old) old.remove();
-
-      const box = document.createElement("div");
-      box.className = "quick-replies";
-      box.style.display = "flex";
-      box.style.flexWrap = "wrap";
-      box.style.gap = "6px";
-      box.style.margin = "6px 0 10px";
-
-      options.forEach((label) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.textContent = label;
-        btn.style.padding = "6px 10px";
-        btn.style.border = "1px solid #ddd";
-        btn.style.borderRadius = "16px";
-        btn.style.cursor = "pointer";
-        btn.style.background = "#fff";
-        btn.addEventListener("click", () => {
-          box.remove();
-          // Treat as if the user typed this option
-          input.value = label;
-          onSend();
-        });
-        box.appendChild(btn);
-      });
-
-      messages.appendChild(box);
-      scrollToBottom();
-    }
-
-    function scrollToBottom() {
-      messages.scrollTop = messages.scrollHeight;
-    }
-
-    // --- Bot brain (rule-based, tailored to Pocket Lawyer site) ---
-    function getReply(userText) {
-      const t = userText.toLowerCase();
-      const has = (arr) => arr.some((w) => t.includes(w));
-
-      // Greetings
-      if (has(["hello", "hi", "hey", "good morning", "good evening"])) {
-        return {
-          text:
-            "Hello! 👋 How can I help you today? You can ask about <b>Home</b>, <b>Law Categories</b>, <b>Generate Documents</b>, <b>Ask a Lawyer</b>, or <b>File a Complaint</b>.",
-          quickReplies: ["Home", "Law Categories", "Generate Documents", "Ask a Lawyer", "File a Complaint"],
-        };
-      }
-
-      // Home
-      if (has(["home", "main page", "start"])) {
-        return {
-          text: "🏠 Go to the Home page here 👉 <a href='index.html'>Home</a>",
-          quickReplies: ["Law Categories", "Generate Documents", "Ask a Lawyer", "Contact"],
-        };
-      }
-
-      // Language
-      if (has(["language", "hindi", "telugu"])) {
-        return {
-          text:
-            "🌐 To change language, use the <b>language selector</b> on top of the page (English / हिंदी / తెలుగు). The site will translate content instantly.",
-          quickReplies: ["Home", "Law Categories"],
-        };
-      }
-
-      // Law Categories + specific categories
-      if (has(["law categories", "categories", "laws", "legal topics", "browse laws"])) {
-        return {
-          text:
-            "⚖️ Browse different law categories here 👉 <a href='lawcategories.html'>Law Categories</a><br>Popular topics:",
-          quickReplies: ["Traffic Violations", "Consumer Complaints", "Rent/Tenant Issues", "Women's Safety Laws", "Cyberbullying"],
-        };
-      }
-
-      if (has(["traffic", "fine", "speeding"])) {
-        return {
-          text:
-            "🚗 Traffic violations info is here 👉 <a href='trafficviolations.html'>Traffic Violations</a><br>Find common fines, documents to carry, and steps if you receive a challan.",
-          quickReplies: ["How to file a complaint", "Ask a Lawyer"],
-        };
-      }
-
-      if (has(["consumer", "product", "refund", "fraud", "warranty"])) {
-        return {
-          text:
-            "🛒 Consumer rights help is here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a><br>Learn how to raise a complaint against defective products or unfair service.",
-          quickReplies: ["Generate Documents", "File a Complaint"],
-        };
-      }
-
-      if (has(["rent", "tenant", "landlord", "evict"])) {
-        return {
-          text:
-            "🏠 Tenant & rent issues guide 👉 <a href='rentortenantissues.html'>Rent/Tenant Issues</a><br>Security deposit, eviction rights, and notice periods covered.",
-          quickReplies: ["Generate Documents", "Ask a Lawyer"],
-        };
-      }
-
-      if (has(["women", "women's safety", "harassment", "dowry"])) {
-        return {
-          text:
-            "👩‍🦰 Women's safety laws overview 👉 <a href='womenssafetylaws.html'>Women's Safety Laws</a><br>Know your rights and immediate steps to take.",
-          quickReplies: ["Ask a Lawyer", "How to file a complaint"],
-        };
-      }
-
-      if (has(["cyber", "bully", "online abuse", "scam", "phishing"])) {
-        return {
-          text:
-            "🛡️ Cyberbullying & digital safety guide 👉 <a href='cyberbullying.html'>Cyberbullying</a><br>How to report, preserve evidence, and stay safe online.",
-          quickReplies: ["File a Complaint", "Ask a Lawyer"],
-        };
-      }
-
-      // Generate Documents
-      if (has(["document", "generate", "complaint letter", "draft", "template"])) {
-        return {
-          text:
-            "📄 Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a><br>It’s free and quick—fill basic details and download your letter.",
-          quickReplies: ["File a Complaint", "Ask a Lawyer"],
-        };
-      }
-
-      // Ask a Lawyer
-      if (has(["lawyer", "legal advice", "advocate", "consult"])) {
-        return {
-          text:
-            "👨‍⚖️ Need expert guidance? Connect here 👉 <a href='askalawyer.html'>Ask a Lawyer</a><br><i>Note:</i> Pocket Lawyer provides legal information; a licensed advocate can give advice on your exact case.",
-          quickReplies: ["Law Categories", "Generate Documents", "Contact"],
-        };
-      }
-
-      // File a Complaint / How to file
-      if (has(["complaint", "file a complaint", "raise issue", "grievance", "fir"])) {
-        return {
-          text:
-            "📝 Learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>How to File a Complaint</a><br>Steps, documents needed, and where to submit.",
-          quickReplies: ["Generate Documents", "Ask a Lawyer", "Contact"],
-        };
-      }
-
-      // Contact
-      if (has(["contact", "phone", "email", "support", "help desk"])) {
-        return {
-          text:
-            "☎️ Reach us here 👉 <a href='contact.html'>Contact</a><br>Email: pocketlawyerindia1950@gmail.com · Phone: +91-8985579260",
-          quickReplies: ["Home", "Law Categories"],
-        };
-      }
-
-      // Site usage
-      if (has(["how to use", "help", "guide", "what can you do"])) {
-        return {
-          text:
-            "Here’s how to use Pocket Lawyer:\n1) 🔍 Search your issue on Home\n2) 📚 Read the relevant law page\n3) 📝 Generate a document (if needed)\n4) 🧑‍⚖️ Ask a Lawyer for specific advice\n5) 📨 File a complaint using our step-by-step guide",
-          quickReplies: ["Home", "Law Categories", "Generate Documents"],
-        };
-      }
-
-      // Pricing / Free
-      if (has(["price", "cost", "free", "fees"])) {
-        return {
-          text:
-            "💡 Most features like browsing laws and generating basic letters are free. If you consult a lawyer, their professional fees may apply.",
-          quickReplies: ["Generate Documents", "Ask a Lawyer"],
-        };
-      }
-
-      // Problems / errors
-      if (has(["problem", "issue", "not working", "error", "bug"])) {
-        return {
-          text:
-            "⚠️ Sorry you’re facing trouble. Please tell me what went wrong (page name + what you tried). I’ll guide you step-by-step.",
-          quickReplies: ["Home", "Contact"],
-        };
-      }
-
-      // Thanks / Bye
-      if (has(["thank", "thanks", "thank you"])) {
-        return { text: "You're welcome! 😊 If you need anything else, I’m here." };
-      }
-      if (has(["bye", "goodbye", "see you"])) {
-        return { text: "Goodbye! 👋 Stay informed with Pocket Lawyer." };
-      }
-
-      // Default
-      return {
-        text:
-          "🤔 I didn’t catch that. Try asking about <b>Home</b>, <b>Law Categories</b>, <b>Generate Documents</b>, <b>Ask a Lawyer</b>, or <b>How to File a Complaint</b>.",
-        quickReplies: ["Home", "Law Categories", "Generate Documents", "Ask a Lawyer", "File a Complaint"],
-      };
+  for (const intent of intents) {
+    if (intent.keywords.some(keyword => message.includes(keyword))) {
+      return intent.response;
     }
   }
-})();
+  return defaultResponse;
+}
+
+function addMessage(text, sender = "user") {
+  const msgDiv = document.createElement("div");
+  msgDiv.classList.add("chat-msg", sender);
+
+  msgDiv.innerHTML = `<div class="bubble">${text}</div>
+    <div class="sender">${sender === "user" ? "You" : "Pocket Lawyer"}</div>`;
+
+  chatbotMessages.appendChild(msgDiv);
+  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+function sendMessage() {
+  const msg = chatbotInput.value.trim();
+  if (!msg) return;
+
+  addMessage(msg, "user");
+
+  const reply = getBotResponse(msg);
+  setTimeout(() => addMessage(reply, "bot"), 400);
+
+  chatbotInput.value = "";
+}
+
+// ----------------- Event Listeners -----------------
+chatbotToggle.addEventListener("click", () => {
+  chatbotContainer.style.display = "flex";
+  chatbotToggle.style.display = "none";
+});
+
+chatbotClose.addEventListener("click", () => {
+  chatbotContainer.style.display = "none";
+  chatbotToggle.style.display = "block";
+});
+
+chatbotSend.addEventListener("click", sendMessage);
+
+chatbotInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    sendMessage();
+  }
+});
 
     </script>
 
@@ -1001,6 +798,7 @@ header {
 
 
 </html>
+
 
 
 
