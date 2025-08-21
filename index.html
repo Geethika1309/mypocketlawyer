@@ -766,21 +766,49 @@ function addMessage(text, className) {
 function getBotReply(userMsg) {
   userMsg = userMsg.toLowerCase();
 
+  // Lawyer & Services
   if (userMsg.includes("lawyer page") || userMsg.includes("lawyer")) {
     return "You can explore our Lawyer Page by clicking on 'Ask a Lawyer' in the menu above.";
   }
-  if (userMsg.includes("contact")) {
-    return "You can reach us via the Contact page or email us at pocketlawyerindia1950@gmail.com.";
+  if (userMsg.includes("generate complaint") || userMsg.includes("complaint")) {
+    return "Click on 'Generate Complaint Letter' on the homepage to draft your legal complaint instantly.";
   }
-  if (userMsg.includes("generate complaint")) {
-    return "Click on 'Generate Complaint Letter' on the homepage to draft your legal document instantly.";
+  if (userMsg.includes("categories") || userMsg.includes("laws")) {
+    return "You can explore different Law Categories such as Traffic Violations, Consumer Complaints, Rent Issues, and Cyber Safety.";
   }
+
+  // Specific Laws
   if (userMsg.includes("traffic")) {
-    return "Traffic Violations section has details on fines, rules, and your rights.";
+    return "Traffic Violations: Learn about fines, challans, and your legal rights under traffic laws.";
+  }
+  if (userMsg.includes("consumer")) {
+    return "Consumer Complaints: Get help with product/service complaints, refunds, and consumer rights.";
+  }
+  if (userMsg.includes("rent") || userMsg.includes("tenant")) {
+    return "Rent/Tenant Issues: Understand rental agreements, tenant rights, and landlord obligations.";
+  }
+  if (userMsg.includes("cyber") || userMsg.includes("digital safety")) {
+    return "Cyber Safety: Protect yourself from cyberbullying, fraud, and online scams.";
+  }
+
+  // Contact & Help
+  if (userMsg.includes("contact") || userMsg.includes("email")) {
+    return "You can contact us from the 'Contact' menu or email: pocketlawyerindia1950@gmail.com.";
+  }
+  if (userMsg.includes("problem") || userMsg.includes("issue") || userMsg.includes("not working")) {
+    return "Sorry to hear that 😔. Please describe your problem here, and our team will look into it. Or you can contact us directly from the Contact page.";
+  }
+
+  // Greetings
+  if (userMsg.includes("hi") || userMsg.includes("hello") || userMsg.includes("hey")) {
+    return "Hello 👋 I’m Pocket Lawyer Assistant. How can I help you today?";
+  }
+  if (userMsg.includes("thanks") || userMsg.includes("thank you")) {
+    return "You’re welcome! 😊 Always here to help.";
   }
 
   // Default fallback
-  return "I’ll make a note of your query for the PocketLawyer team.";
+  return "I didn’t fully understand that. Can you please rephrase or check our Law Categories?";
 }
 
 
@@ -827,6 +855,7 @@ chatbotInput.addEventListener("keypress", (e) => {
 
 
 </html>
+
 
 
 
