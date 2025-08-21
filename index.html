@@ -371,6 +371,102 @@ header {
         #searchLawBtn {
             cursor: pointer;
         }
+        /* Chatbot Floating Button */
+  #chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    background: #ff5722;
+    border: none;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 2000;
+  }
+
+  /* Chatbot Container */
+  #chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 320px;
+    height: 400px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 2000;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  #chatbot-header {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #chatbot-close {
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  #chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+    background: #f9f9f9;
+  }
+
+  .bot-msg {
+    background: #e1f5fe;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: fit-content;
+    max-width: 80%;
+  }
+
+  .user-msg {
+    background: #ffccbc;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: fit-content;
+    max-width: 80%;
+    margin-left: auto;
+  }
+
+  #chatbot-input-container {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  #chatbot-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+  }
+
+  #chatbot-send {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
     </style>
 
 </head>
@@ -476,6 +572,19 @@ header {
 
             </div>
         </div>
+        <div id="chatbot-container">
+  <div id="chatbot-header">
+    🤖 Pocket Lawyer Assistant
+    <span id="chatbot-close">&times;</span>
+  </div>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type your question..." />
+    <button id="chatbot-send">Send</button>
+  </div>
+</div>
+
+<button id="chatbot-toggle">💬</button>
         
 <footer class="site-footer">
     <div class="footer-container">
@@ -588,6 +697,67 @@ header {
                 alert("Please enter a search term");
             }
         });
+
+        const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotContainer = document.getElementById("chatbot-container");
+  const chatbotClose = document.getElementById("chatbot-close");
+  const chatbotMessages = document.getElementById("chatbot-messages");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotSend = document.getElementById("chatbot-send");
+
+  // Predefined responses to guide user
+  const responses = {
+    "hello": "Hello! 👋 How can I help you today?",
+    "home": "You can go to Home here 👉 <a href='index.html'>Home</a>",
+    "categories": "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>",
+    "documents": "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>",
+    "lawyer": "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>",
+    "contact": "Reach us here 👉 <a href='contact.html'>Contact</a>",
+    "default": "Sorry, I didn’t understand 🤔. Try asking about Home, Categories, Documents, Lawyer, or Contact."
+  };
+
+  chatbotToggle.addEventListener("click", () => {
+    chatbotContainer.style.display = "flex";
+    chatbotToggle.style.display = "none";
+  });
+
+  chatbotClose.addEventListener("click", () => {
+    chatbotContainer.style.display = "none";
+    chatbotToggle.style.display = "block";
+  });
+
+  chatbotSend.addEventListener("click", sendMessage);
+  chatbotInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  function sendMessage() {
+    const msg = chatbotInput.value.trim().toLowerCase();
+    if (!msg) return;
+
+    // User message
+    addMessage(msg, "user-msg");
+
+    // Bot reply
+    let reply = responses.default;
+    for (let key in responses) {
+      if (msg.includes(key)) {
+        reply = responses[key];
+        break;
+      }
+    }
+    setTimeout(() => addMessage(reply, "bot-msg"), 500);
+
+    chatbotInput.value = "";
+  }
+
+  function addMessage(text, className) {
+    const div = document.createElement("div");
+    div.className = className;
+    div.innerHTML = text;
+    chatbotMessages.appendChild(div);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
     </script>
 
     <script src="lawdata.js"></script>
@@ -596,4 +766,5 @@ header {
 
 
 </html>
+
 
