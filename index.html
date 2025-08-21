@@ -708,15 +708,15 @@ header {
         });
 
 
-     const chatbotToggle = document.getElementById("chatbot-toggle");
+     document.addEventListener("DOMContentLoaded", () => {
+  const chatbotToggle = document.getElementById("chatbot-toggle");
   const chatbotContainer = document.getElementById("chatbot-container");
   const chatbotClose = document.getElementById("chatbot-close");
   const chatbotMessages = document.getElementById("chatbot-messages");
   const chatbotInput = document.getElementById("chatbot-input");
   const chatbotSend = document.getElementById("chatbot-send");
 
-  // Intent-based responses (smarter matching)
-const intents = [
+  const intents = [
   // --- Small Talk ---
   {
     keywords: ["hello", "hi", "hey"],
@@ -878,18 +878,13 @@ const intents = [
     response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
   },
 ];
+  const defaultResponse = "🤔 Sorry, I didn’t understand...";
 
-  const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
-    chatbotToggle.addEventListener("click", () => {
-  chatbotContainer.style.display = "flex";
-  chatbotToggle.style.display = "none";
-
-  // Show default welcome message only when opening
-  addMessage("👋 Hello! Welcome to our Legal Help Chatbot.<br>💡 You can ask me about laws, IPC sections, complaints, documents, or get guidance.", "bot-msg");
-});
-
-
- 
+  chatbotToggle.addEventListener("click", () => {
+    chatbotContainer.style.display = "flex";
+    chatbotToggle.style.display = "none";
+    addMessage("👋 Hello! Welcome...", "bot-msg");
+  });
 
   chatbotClose.addEventListener("click", () => {
     chatbotContainer.style.display = "none";
@@ -904,14 +899,10 @@ const intents = [
   function sendMessage() {
     const msg = chatbotInput.value.trim();
     if (!msg) return;
-
-    // Show user message
     addMessage(msg, "user-msg");
 
-    // Bot reply
     const reply = getBotReply(msg.toLowerCase());
     setTimeout(() => addMessage(reply, "bot-msg"), 500);
-
     chatbotInput.value = "";
   }
 
@@ -933,7 +924,7 @@ const intents = [
     chatbotMessages.appendChild(div);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
-
+});
     </script>
 
     <script src="lawdata.js"></script>
@@ -942,4 +933,5 @@ const intents = [
 
 
 </html>
+
 
