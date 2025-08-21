@@ -468,54 +468,6 @@ header {
     cursor: pointer;
   }
 
-        .signin-container {
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
-  width: 350px;
-  text-align: center;
-}
-
-.signin-container h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
-label {
-  display: block;
-  text-align: left;
-  margin: 10px 0 5px;
-  font-weight: bold;
-  color: #444;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  font-size: 14px;
-  margin-bottom: 15px;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  background: #4facfe;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-button:hover {
-  background: #00c6fb;
-}
     </style>
 
 </head>
@@ -621,38 +573,20 @@ button:hover {
 
             </div>
         </div>
-
-        <div id="signin-container" class="signin-container">
-    <h2>Sign In</h2>
-    <label>Name</label>
-    <input type="text" id="userName" placeholder="Enter your name">
-    
-    <label>Email</label>
-    <input type="email" id="userEmail" placeholder="Enter your email">
-    
-    <button id="signin-btn">Sign In</button>
+<!-- Add this just before </body> -->
+<div id="chatbot-container">
+  <div id="chatbot-header">
+    🤖 Pocket Lawyer Assistant
+    <span id="chatbot-close">&times;</span>
   </div>
-
-  <!-- CHATBOT TOGGLE BUTTON -->
-  <button id="chatbot-toggle" style="display:none; position:fixed; bottom:20px; right:20px;">
-    💬 Chat with us
-  </button>
-
-  <!-- CHATBOT WINDOW -->
-  <div id="chatbot-container" class="chatbot-container" style="display:none; position:fixed; bottom:80px; right:20px; width:300px; background:#fff; border-radius:10px; box-shadow:0px 4px 10px rgba(0,0,0,0.3); flex-direction:column;">
-    
-    <div style="background:#4facfe; color:white; padding:10px; border-radius:10px 10px 0 0; display:flex; justify-content:space-between; align-items:center;">
-      <span>Legal Chatbot</span>
-      <button id="chatbot-close" style="background:none; border:none; color:white; font-size:16px; cursor:pointer;">✖</button>
-    </div>
-    
-    <div id="chatbot-messages" style="flex:1; padding:10px; overflow-y:auto; max-height:250px;"></div>
-    
-    <div style="display:flex; border-top:1px solid #ddd;">
-      <input type="text" id="chatbot-input" placeholder="Type your message..." style="flex:1; padding:10px; border:none; outline:none;">
-      <button id="chatbot-send" style="padding:10px; background:#4facfe; border:none; color:white; cursor:pointer;">Send</button>
-    </div>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type your question..." />
+    <button id="chatbot-send">Send</button>
   </div>
+</div>
+
+<button id="chatbot-toggle">💬</button>
 
        
 
@@ -716,12 +650,9 @@ button:hover {
     </main>
     <script src="translations.js"></script>
     <script src="languageManager.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <script>
-       (function(){
-      emailjs.init("RqdmFu2p30HPoaqCw"); // replace with your EmailJS public key
-    })();
+       
         // Original functionality
         document.getElementById("searchLawBtn").addEventListener("click", function () {
             const query = document.getElementById("searchQuery").value.trim();
@@ -734,7 +665,7 @@ button:hover {
                 return;
             }
 
-            window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
+            window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
         });
 
         // index.html
@@ -768,156 +699,238 @@ button:hover {
             const lang = document.getElementById("languageSelector").value || 'en';
 
             if (query) {
-                window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
+                window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
             } else {
                 alert("Please enter a search term");
             }
         });
 
-      // ================== SIGN-IN FLOW ==================
-const signinContainer = document.getElementById("signin-container");
-const signinBtn = document.getElementById("signin-btn");
-const chatbotToggle = document.getElementById("chatbot-toggle");
-const chatbotContainer = document.getElementById("chatbot-container");
-const chatbotClose = document.getElementById("chatbot-close");
-const chatbotMessages = document.getElementById("chatbot-messages");
-const chatbotInput = document.getElementById("chatbot-input");
-const chatbotSend = document.getElementById("chatbot-send");
 
-let currentUser = { name: "", email: "" };
+     const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotContainer = document.getElementById("chatbot-container");
+  const chatbotClose = document.getElementById("chatbot-close");
+  const chatbotMessages = document.getElementById("chatbot-messages");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotSend = document.getElementById("chatbot-send");
 
-// Hide chatbot toggle until sign-in
-chatbotToggle.style.display = "none";
-
-// When user clicks Sign-in button
-signinBtn.addEventListener("click", async () => {
-  const name = document.getElementById("userName").value.trim();
-  const email = document.getElementById("userEmail").value.trim();
-
-  if (!name || !email) {
-    alert("Please enter both name and email");
-    return;
-  }
-
-  currentUser = { name, email };
-
-  // Send email using EmailJS
-  try {
-    await sendSignInEmail(name, email);
-    console.log("✅ Sign-in email sent!");
-  } catch (err) {
-    console.error("❌ Email send failed:", err);
-  }
-
-  // Show chatbot after sign-in
-  signinContainer.style.display = "none";
-  chatbotToggle.style.display = "block";
-  chatbotContainer.style.display = "flex"; // auto-open
-  addMessage(`👋 Hello ${currentUser.name}, welcome to the Legal Help Chatbot!`, "bot-msg");
-});
-
-// ================== INTENTS ==================
+  // Intent-based responses (smarter matching)
 const intents = [
   // --- Small Talk ---
-  { keywords: ["hello", "hi", "hey"], response: "Hello! 👋 How can I help you today?" },
-  { keywords: ["how are you"], response: "I'm doing great, thanks for asking! 😊 How are you?" },
-  { keywords: ["thank you", "thanks"], response: "You're most welcome! 🙏 Happy to help." },
-  { keywords: ["bye", "goodbye"], response: "Goodbye! 👋 Have a wonderful day!" },
-  { keywords: ["joke"], response: "😂 Why don’t skeletons fight each other? Because they don’t have the guts!" },
+  {
+    keywords: ["hello", "hi", "hey"],
+    response: "Hello! 👋 How can I help you today?"
+  },
+  {
+    keywords: ["how are you", "how r u", "how are u"],
+    response: "I'm doing great, thanks for asking! 😊 How are you doing?"
+  },
+  {
+    keywords: ["thank you", "thanks", "thx"],
+    response: "You're most welcome! 🙏 Happy to help."
+  },
+  {
+    keywords: ["bye", "goodbye", "see you"],
+    response: "Goodbye! 👋 Have a wonderful day!"
+  },
+  {
+    keywords: ["good morning", "good afternoon", "good evening"],
+    response: "Good day! 🌞 Hope you're doing well."
+  },
+  {
+    keywords: ["joke", "funny", "make me laugh"],
+    response: "😂 Why don’t skeletons fight each other? Because they don’t have the guts!"
+  },
+  {
+    keywords: ["who are you", "what are you", "about you"],
+    response: "I'm your friendly legal chatbot 🤖 here to guide you with information about laws, complaints, and more!"
+  },
 
   // --- Website Related ---
-  { keywords: ["importance of website"], response: "🌐 This website spreads awareness about laws, guides complaints, and helps citizens understand their rights easily." },
-  { keywords: ["who built this website"], response: "👩‍🎓 This website was proudly developed by Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla. 🎓✨" },
-  { keywords: ["about us"], response: "👩‍💻 We are Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla — making legal knowledge simple for everyone." },
+  {
+    keywords: ["problem", "issue", "not working", "website error"],
+    response: "Oh no! 😟 Sorry about the issue. Please describe the problem, and we’ll work on fixing it right away."
+  },
+  {
+    keywords: ["importance of website", "why this site", "purpose", "use of this website"],
+    response: "🌐 This website is created to spread awareness about laws, guide people in filing complaints, and help citizens understand their rights in a simple way."
+  },
+  {
+    keywords: ["who built this website", "creator", "developer", "owner","Who created this website"],
+    response: "👩‍🎓 This website was proudly developed by Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla. 🎓✨"
+  },
+  {
+    keywords: ["feedback", "suggestion"],
+    response: "💡 We’d love to hear your feedback! Please share your suggestions with us."
+  },
+  {
+    keywords: ["update", "latest", "new laws"],
+    response: "📢 Our website is regularly updated with the latest laws and information. Check the law categories for updates."
+  },
+  {
+    keywords: ["about us", "who are we"],
+    response: "👩‍💻 We are Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla — working to make legal knowledge simple for everyone."
+  },
 
   // --- Legal Guidance ---
-  { keywords: ["ipc", "section", "law"], response: "📖 You can explore IPC sections and laws here 👉 <a href='lawcategories.html'>Law Categories</a>" },
-  { keywords: ["rights"], response: "📖 Learn about your fundamental rights here 👉 <a href='lawcategories.html'>Law Categories</a>" },
-  { keywords: ["police complaint", "FIR"], response: "🚔 Learn how to file a police complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>" },
-  { keywords: ["court"], response: "⚖️ Court process explained here 👉 <a href='lawcategories.html'>Law Categories</a>" },
+  {
+    keywords: ["ipc", "section", "law", "indian penal code"],
+    response: "📖 If you’re looking for details about IPC sections or specific laws, you can explore our law categories 👉 <a href='lawcategories.html'>Law Categories</a>."
+  },
+  {
+    keywords: ["rights", "fundamental rights"],
+    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
+  },
+  {
+    keywords: ["police complaint", "FIR"],
+    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
+  },
+  {
+    keywords: ["court", "legal process", "judge"],
+    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
+  },
 
-  // --- Emergency ---
-  { keywords: ["emergency"], response: "🚨 If this is an emergency, dial 100 or visit the nearest police station immediately." },
-  { keywords: ["harassment"], response: "💔 Please reach authorities if you're facing harassment. Also, check 👉 <a href='lawcategories.html'>Law Categories</a>" },
+  // --- Emergency / Help ---
+  {
+    keywords: ["emergency", "urgent", "help me now"],
+    response: "🚨 If this is an emergency, please contact your nearest police station or dial 100 immediately."
+  },
+  {
+    keywords: ["harassment", "abuse", "violence"],
+    response: "💔 If you are facing harassment or violence, please reach out to the authorities immediately. You can also explore your rights here 👉 <a href='lawcategories.html'>Law Categories</a>."
+  },
 
   // --- Navigation ---
-  { keywords: ["home"], response: "Go to Home 👉 <a href='index.html'>Home</a>" },
-  { keywords: ["categories"], response: "Browse laws 👉 <a href='lawcategories.html'>Law Categories</a>" },
-  { keywords: ["documents"], response: "Generate documents 👉 <a href='generatedocuments.html'>Generate Documents</a>" },
-  { keywords: ["lawyer"], response: "⚖️ Contact a lawyer 👉 <a href='askalawyer.html'>Ask a Lawyer</a>" },
-  { keywords: ["contact"], response: "Reach us 👉 <a href='contact.html'>Contact</a>" },
-  { keywords: ["complaint"], response: "File a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>" },
-  { keywords: ["consumer"], response: "See consumer rights 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>" },
+  {
+    keywords: ["home", "start", "main page"],
+    response: "You can go to Home here 👉 <a href='index.html'>Home</a>"
+  },
+  {
+    keywords: ["categories", "laws", "law categories"],
+    response: "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
+  },
+  {
+    keywords: ["documents", "generate", "create document", "complaint letter"],
+    response: "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+  },
+  {
+    keywords: ["lawyer", "ask", "advice", "help from lawyer"],
+    response: "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+  },
+  {
+    keywords: ["contact", "phone", "email", "address", "support"],
+    response: "Reach us here 👉 <a href='contact.html'>Contact</a>"
+  },
+  {
+    keywords: ["complaint", "file complaint", "raise issue"],
+    response: "You can learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
+  },
+  {
+    keywords: ["consumer", "product", "fraud", "complaints"],
+    response: "See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
+  },
+  {
+    keywords: ["help", "assist", "guidance"],
+    response: "I'm here to help! 🤝 What do you need assistance with?"
+  },
+  {
+    keywords: ["time", "date", "today"],
+    response: "I can’t track real-time clock ⏰, but you can check your device for the latest date and time."
+  },
+    // --- Extra Questions ---
+{
+  keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer","lawyer"],
+  response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
+},
+{
+  keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
+  response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
+},
+{
+  keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
+  response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
+},
+{
+    keywords: ["rights", "fundamental rights"],
+    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
+  },
+  {
+    keywords: ["police complaint", "FIR"],
+    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
+  },
+  {
+    keywords: ["court", "legal process", "judge"],
+    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
+  },
 
   // --- Extra Questions ---
-  { keywords: ["search", "popular law"], response: "🔎 Find laws quickly on our Home Page 👉 <a href='index.html'>Home Page</a>" },
-  { keywords: ["importance of knowing law"], response: "📖 Knowing the law protects your rights, prevents exploitation, and empowers citizens. 💡" }
+  {
+    keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer"],
+    response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
+  },
+  {
+    keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
+    response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
+  },
+  {
+    keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
+    response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
+  },
 ];
 
-const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
-
-// ================== CHATBOT TOGGLE ==================
-chatbotToggle.addEventListener("click", () => {
+  const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
+    chatbotToggle.addEventListener("click", () => {
   chatbotContainer.style.display = "flex";
   chatbotToggle.style.display = "none";
 
-  // Default welcome message
-  addMessage("👋 Hello! Welcome to our Legal Help Chatbot.<br>💡 You can ask me about laws, IPC sections, complaints, documents, or lawyers.", "bot-msg");
+  // Show default welcome message only when opening
+  addMessage("👋 Hello! Welcome to our Legal Help Chatbot.<br>💡 You can ask me about laws, IPC sections, complaints, documents, or get guidance.", "bot-msg");
 });
 
-chatbotClose.addEventListener("click", () => {
-  chatbotContainer.style.display = "none";
-  chatbotToggle.style.display = "block";
-});
 
-// ================== SEND MESSAGE ==================
-chatbotSend.addEventListener("click", sendMessage);
-chatbotInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendMessage();
-});
+ 
 
-function sendMessage() {
-  const msg = chatbotInput.value.trim();
-  if (!msg) return;
+  chatbotClose.addEventListener("click", () => {
+    chatbotContainer.style.display = "none";
+    chatbotToggle.style.display = "block";
+  });
 
-  // Show user message
-  addMessage(`<b>${currentUser.name}:</b> ${msg}`, "user-msg");
+  chatbotSend.addEventListener("click", sendMessage);
+  chatbotInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
 
-  // Bot reply
-  const reply = getBotReply(msg.toLowerCase());
-  setTimeout(() => addMessage(reply, "bot-msg"), 500);
+  function sendMessage() {
+    const msg = chatbotInput.value.trim();
+    if (!msg) return;
 
-  chatbotInput.value = "";
-}
+    // Show user message
+    addMessage(msg, "user-msg");
 
-// ================== BOT REPLY ==================
-function getBotReply(userMsg) {
-  for (let intent of intents) {
-    for (let keyword of intent.keywords) {
-      if (userMsg.includes(keyword)) {
-        return intent.response;
+    // Bot reply
+    const reply = getBotReply(msg.toLowerCase());
+    setTimeout(() => addMessage(reply, "bot-msg"), 500);
+
+    chatbotInput.value = "";
+  }
+
+  function getBotReply(userMsg) {
+    for (let intent of intents) {
+      for (let keyword of intent.keywords) {
+        if (userMsg.includes(keyword)) {
+          return intent.response;
+        }
       }
     }
+    return defaultResponse;
   }
-  return defaultResponse;
-}
 
-// ================== ADD MESSAGE ==================
-function addMessage(text, className) {
-  const div = document.createElement("div");
-  div.className = className;
-  div.innerHTML = text;
-  chatbotMessages.appendChild(div);
-  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-}
-
-// ================== EMAILJS FUNCTION ==================
-function sendSignInEmail(name, email) {
-  return emailjs.send("service_5gx2n3s", "template_91aw6md", {
-    user_name: name,
-    user_email: email,
-  }, "RqdmFu2p30HPoaqCw");
-}
+  function addMessage(text, className) {
+    const div = document.createElement("div");
+    div.className = className;
+    div.innerHTML = text;
+    chatbotMessages.appendChild(div);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
 
     </script>
 
@@ -927,40 +940,3 @@ function sendSignInEmail(name, email) {
 
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
