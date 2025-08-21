@@ -653,6 +653,7 @@ header {
 
     <script>
        
+        
         // Original functionality
         document.getElementById("searchLawBtn").addEventListener("click", function () {
             const query = document.getElementById("searchQuery").value.trim();
@@ -665,7 +666,7 @@ header {
                 return;
             }
 
-            window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
+            window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
         });
 
         // index.html
@@ -699,13 +700,11 @@ header {
             const lang = document.getElementById("languageSelector").value || 'en';
 
             if (query) {
-                window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
+                window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
             } else {
                 alert("Please enter a search term");
             }
         });
-
-
      const chatbotToggle = document.getElementById("chatbot-toggle");
   const chatbotContainer = document.getElementById("chatbot-container");
   const chatbotClose = document.getElementById("chatbot-close");
@@ -940,4 +939,5 @@ const intents = [
 
 
 </html>
+
 
