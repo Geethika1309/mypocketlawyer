@@ -698,7 +698,7 @@ header {
             }
         });
 
-  const chatbotToggle = document.getElementById("chatbot-toggle");
+    const chatbotToggle = document.getElementById("chatbot-toggle");
 const chatbotContainer = document.getElementById("chatbot-container");
 const chatbotClose = document.getElementById("chatbot-close");
 const chatbotMessages = document.getElementById("chatbot-messages");
@@ -779,11 +779,16 @@ function addMessage(text, sender) {
   const msgDiv = document.createElement("div");
   msgDiv.classList.add("chat-msg");
 
-  if (sender === "user") {
-    msgDiv.innerHTML = `<b>You:</b> ${text}`;
-  } else {
-    msgDiv.innerHTML = `<b>Pocket Lawyer:</b> ${text}`;
-  }
+  const msgText = document.createElement("div");
+  msgText.classList.add("msg-text");
+  msgText.innerHTML = text;
+
+  const msgSender = document.createElement("div");
+  msgSender.classList.add("msg-sender");
+  msgSender.innerText = sender === "user" ? "You" : "Pocket Lawyer";
+
+  msgDiv.appendChild(msgText);
+  msgDiv.appendChild(msgSender);
 
   chatbotMessages.appendChild(msgDiv);
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
@@ -832,6 +837,7 @@ chatbotInput.addEventListener("keypress", (e) => {
 
 
 </html>
+
 
 
 
