@@ -714,32 +714,73 @@ const chatbotSend = document.getElementById("chatbot-send");
 // Intent-based responses
 // -----------------
 const intents = [
-  { keywords: ["hello", "hi", "hey"], response: "👋 Hello there! How can I assist you today?" },
-  { keywords: ["home", "start", "main page"], response: "🏠 You can go to Home here 👉 <a href='index.html'>Home</a>" },
-  { keywords: ["categories", "laws", "law categories"], response: "⚖️ Browse different laws here 👉 <a href='lawcategories.html'>Law Categories</a>" },
-  { keywords: ["documents", "generate", "create document", "complaint letter"], response: "📄 Generate your documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>" },
-  { keywords: ["lawyer", "ask", "advice", "help from lawyer"], response: "👨‍⚖️ Need expert advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>" },
-  { keywords: ["contact", "phone", "email", "address", "support"], response: "☎️ Reach us here 👉 <a href='contact.html'>Contact</a>" },
-  { keywords: ["complaint", "file complaint", "raise issue"], response: "📝 Learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>" },
-  { keywords: ["consumer", "product", "fraud", "complaints"], response: "🛒 See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>" },
-  { keywords: ["problem", "issue", "not working", "error"], response: "⚠️ Sorry to hear you’re facing issues. Please explain your problem and we’ll help fix it. 🙏" },
-  { keywords: ["bye", "goodbye", "see you"], response: "👋 Goodbye! Have a wonderful day! 😊" }
+  {
+    keywords: ["hello", "hi", "hey"],
+    response: "👋 Hello! Welcome to <b>Pocket Lawyer</b>. How can I assist you today?",
+    quickReplies: ["Home", "Categories", "Documents", "Ask a Lawyer"]
+  },
+  {
+    keywords: ["home", "start", "main page"],
+    response: "🏠 You can go to Home here 👉 <a href='index.html'>Home</a>"
+  },
+  {
+    keywords: ["categories", "laws", "law categories"],
+    response: "📚 Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>",
+    quickReplies: ["Consumer Complaints", "File a Complaint"]
+  },
+  {
+    keywords: ["documents", "generate", "create document", "complaint letter"],
+    response: "📝 Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+  },
+  {
+    keywords: ["lawyer", "ask", "advice", "help from lawyer"],
+    response: "⚖️ Need legal advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+  },
+  {
+    keywords: ["contact", "phone", "email", "address", "support"],
+    response: "📞 Reach us here 👉 <a href='contact.html'>Contact</a>"
+  },
+  {
+    keywords: ["complaint", "file complaint", "raise issue"],
+    response: "📄 Learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
+  },
+  {
+    keywords: ["consumer", "product", "fraud", "complaints"],
+    response: "🛍️ See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
+  },
+  {
+    keywords: ["thank you", "thanks"],
+    response: "😊 You're welcome! Happy to help. Anything else you’d like to know?",
+    quickReplies: ["Home", "Ask a Lawyer"]
+  },
+  {
+    keywords: ["bye", "goodbye", "see you"],
+    response: "👋 Goodbye! Have a great day! 😊"
+  }
 ];
 
-const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>🏠 Home, ⚖️ Categories, 📄 Documents, 👨‍⚖️ Lawyer, ☎️ Contact, or 📝 Complaints</b>.";
-
+const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
 // -----------------
 // Bot Logic
 // -----------------
-function getBotResponse(message) {
-  message = message.toLowerCase();
-  for (const intent of intents) {
-    if (intent.keywords.some(keyword => message.includes(keyword))) {
-      return intent.response;
+function botReply(message) {
+  let found = false;
+
+  for (let intent of intents) {
+    if (intent.keywords.some(keyword => message.toLowerCase().includes(keyword))) {
+      addMessage(intent.response, "bot");
+      if (intent.quickReplies) addQuickReplies(intent.quickReplies);
+      found = true;
+      break;
     }
   }
-  return defaultResponse;
+
+  if (!found) {
+    addMessage(defaultResponse, "bot");
+    addQuickReplies(["Home", "Categories", "Ask a Lawyer"]);
+  }
 }
+
 
 // Add message to chat window
 function addMessage(text, className) {
@@ -794,6 +835,7 @@ chatbotInput.addEventListener("keypress", (e) => {
 
 
 </html>
+
 
 
 
