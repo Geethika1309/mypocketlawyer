@@ -468,6 +468,36 @@ header {
     cursor: pointer;
   }
 
+        .signin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.signin-container input, 
+.signin-container button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.signin-container button {
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+.signin-container button:hover {
+  background: #0056b3;
+}
+
+
     </style>
 
 </head>
@@ -573,6 +603,15 @@ header {
 
             </div>
         </div>
+
+        <!-- Sign In Page -->
+<div id="signin-container" class="signin-container">
+  <h2>🔐 Sign In to Chat</h2>
+  <input type="text" id="userName" placeholder="Enter your name" required>
+  <input type="email" id="userEmail" placeholder="Enter your email" required>
+  <button id="signin-btn">Start Chat</button>
+</div>
+
 <!-- Add this just before </body> -->
 <div id="chatbot-container">
   <div id="chatbot-header">
@@ -704,6 +743,31 @@ header {
                 alert("Please enter a search term");
             }
         });
+
+        const signinContainer = document.getElementById("signin-container");
+const signinBtn = document.getElementById("signin-btn");
+let currentUser = { name: "", email: "" };
+
+signinBtn.addEventListener("click", () => {
+  const name = document.getElementById("userName").value.trim();
+  const email = document.getElementById("userEmail").value.trim();
+
+  if (!name || !email) {
+    alert("⚠️ Please enter both name and email to continue.");
+    return;
+  }
+
+  // Save user info
+  currentUser = { name, email };
+
+  // Hide sign-in & show chatbot toggle
+  signinContainer.style.display = "none";
+  chatbotToggle.style.display = "block";
+
+  // Optional: greet user personally
+  addMessage(`👋 Hello ${currentUser.name}, welcome to the Legal Help Chatbot!`, "bot-msg");
+});
+
 
 
      const chatbotToggle = document.getElementById("chatbot-toggle");
@@ -900,18 +964,19 @@ const intents = [
   });
 
   function sendMessage() {
-    const msg = chatbotInput.value.trim();
-    if (!msg) return;
+  const msg = chatbotInput.value.trim();
+  if (!msg) return;
 
-    // Show user message
-    addMessage(msg, "user-msg");
+  // Show user message with name
+  addMessage(`<b>${currentUser.name}:</b> ${msg}`, "user-msg");
 
-    // Bot reply
-    const reply = getBotReply(msg.toLowerCase());
-    setTimeout(() => addMessage(reply, "bot-msg"), 500);
+  // Bot reply
+  const reply = getBotReply(msg.toLowerCase());
+  setTimeout(() => addMessage(reply, "bot-msg"), 500);
 
-    chatbotInput.value = "";
-  }
+  chatbotInput.value = "";
+}
+
 
   function getBotReply(userMsg) {
     for (let intent of intents) {
@@ -940,6 +1005,7 @@ const intents = [
 
 
 </html>
+
 
 
 
