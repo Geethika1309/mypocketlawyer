@@ -622,34 +622,37 @@ button:hover {
             </div>
         </div>
 
-        <!-- Sign In Page -->
-<div id="signin-container" class="signin-container">
-  <h2>🔐 Sign In to Chat</h2>
-  <form id="signin-form">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="user_name" required>
-
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="user_email" required>
-
-  <button type="submit">Start Chat</button>
-</form>
-</div>
-
-<!-- Add this just before </body> -->
-<div id="chatbot-container">
-  <div id="chatbot-header">
-    🤖 Pocket Lawyer Assistant
-    <span id="chatbot-close">&times;</span>
+        <div id="signin-container" class="signin-container">
+    <h2>Sign In</h2>
+    <label>Name</label>
+    <input type="text" id="userName" placeholder="Enter your name">
+    
+    <label>Email</label>
+    <input type="email" id="userEmail" placeholder="Enter your email">
+    
+    <button id="signin-btn">Sign In</button>
   </div>
-  <div id="chatbot-messages"></div>
-  <div id="chatbot-input-container">
-    <input type="text" id="chatbot-input" placeholder="Type your question..." />
-    <button id="chatbot-send">Send</button>
-  </div>
-</div>
 
-<button id="chatbot-toggle">💬</button>
+  <!-- CHATBOT TOGGLE BUTTON -->
+  <button id="chatbot-toggle" style="display:none; position:fixed; bottom:20px; right:20px;">
+    💬 Chat with us
+  </button>
+
+  <!-- CHATBOT WINDOW -->
+  <div id="chatbot-container" class="chatbot-container" style="display:none; position:fixed; bottom:80px; right:20px; width:300px; background:#fff; border-radius:10px; box-shadow:0px 4px 10px rgba(0,0,0,0.3); flex-direction:column;">
+    
+    <div style="background:#4facfe; color:white; padding:10px; border-radius:10px 10px 0 0; display:flex; justify-content:space-between; align-items:center;">
+      <span>Legal Chatbot</span>
+      <button id="chatbot-close" style="background:none; border:none; color:white; font-size:16px; cursor:pointer;">✖</button>
+    </div>
+    
+    <div id="chatbot-messages" style="flex:1; padding:10px; overflow-y:auto; max-height:250px;"></div>
+    
+    <div style="display:flex; border-top:1px solid #ddd;">
+      <input type="text" id="chatbot-input" placeholder="Type your message..." style="flex:1; padding:10px; border:none; outline:none;">
+      <button id="chatbot-send" style="padding:10px; background:#4facfe; border:none; color:white; cursor:pointer;">Send</button>
+    </div>
+  </div>
 
        
 
@@ -924,6 +927,7 @@ function sendSignInEmail(name, email) {
 
 
 </html>
+
 
 
 
