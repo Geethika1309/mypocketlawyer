@@ -28,98 +28,173 @@
         }
 
         /* Header Section */
-header {
-  background: #ffffff; /* White background for clean official look */
-  padding: 20px 40px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+        header {
+            background: #ffffff; /* White background for clean official look */
+            padding: 20px 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-/* Heading area */
-.headers {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+        /* Heading area */
+        .headers {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-.logo {
-  height: 90px;
-}
+        .logo {
+            height: 90px;
+        }
 
-.mainheading {
-  font-size: 45px;
-  font-weight: bold;
-  color: #2c3e50;  /* Dark official text */
-  background: #ffffff;
-  padding: 5px 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+        .mainheading {
+            font-size: 45px;
+            font-weight: bold;
+            color: #2c3e50;  /* Dark official text */
+            background: #ffffff;
+            padding: 5px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
 
-/* Navigation Menu */
-.topnav {
-  margin-top: 20px;
-  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
-  padding: 15px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.topnav ul li {
-  display: inline-block;
-}
-.topnav ul {
-  list-style: none;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 70px;
-}
+        /* Navigation Menu */
+        .topnav {
+            margin-top: 20px;
+            /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .topnav ul li {
+            display: inline-block;
+        }
+        .topnav ul {
+            list-style: none;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 70px;
+        }
 
-.topnav ul li a {
-   display: inline-block;
-  color: #2c3e50; /* normal text color */
-  padding: 10px 5px;
-  border-radius: 8px;
-  text-decoration: none; /* remove underline */
-  transition: all 0.3s ease; /* smooth effect */
-  font-size: 22px;   /* 👈 change this value */
-  font-weight: 600;
-}
+        .topnav ul li a {
+            display: inline-block;
+            color: #2c3e50; /* normal text color */
+            padding: 10px 5px;
+            border-radius: 8px;
+            text-decoration: none; /* remove underline */
+            transition: all 0.3s ease; /* smooth effect */
+            font-size: 22px;   /* 👈 change this value */
+            font-weight: 600;
+        }
 
+        .topnav ul li a:hover {
+            background: #696969; /* #2F4F4F    #6495ED*/
+            color: #000; /* keep text visible */
+            padding: 12px 24px; /* increase size on hover */
+            border-radius: 12px; /* smoother corners */
+        }
 
-.topnav ul li a:hover {
-    background: #696969; /* #2F4F4F    #6495ED*/
-  color: #000; /* keep text visible */
-  padding: 12px 24px; /* increase size on hover */
-  border-radius: 12px; /* smoother corners */
-}
+        /* Hover underline animation */
+        .topnav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            left: 50%;
+            bottom: -6px;
+            
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
 
+        .topnav ul li a:hover {
+            color: whitesmoke; 
+        }
 
+        .topnav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
 
-/* Hover underline animation */
-.topnav ul li a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 3px;
-  left: 50%;
-  bottom: -6px;
-  
-  transition: all 0.3s ease;
-  border-radius: 5px;
-}
+        /* Image Slider Styles */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
 
-.topnav ul li a:hover {
-  color: whitesmoke; 
-}
+        .slider {
+            display: flex;
+            width: 600%; /* 6 images = 600% */
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
 
-.topnav ul li a:hover::after {
- width: 100%;
-  left: 0;
-}
+        .slide {
+            width: 16.666%; /* 100% / 6 = 16.666% */
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: #fff;
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 24px;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .slider-arrow.prev {
+            left: 20px;
+        }
+
+        .slider-arrow.next {
+            right: 20px;
+        }
 
         .quote {
             text-align: center;
@@ -181,7 +256,6 @@ header {
             background-color: #E64A19;
             transform: translateY(-2px);
         }
-
 
         .calltoaction i {
             margin-right: 8px;
@@ -373,100 +447,100 @@ header {
         }
 
         /* Chatbot Floating Button */
-  #chatbot-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 25px;
-    background: #ff5722;
-    border: none;
-    color: white;
-    font-size: 24px;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    z-index: 2000;
-  }
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            background: #ff5722;
+            border: none;
+            color: white;
+            font-size: 24px;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 2000;
+        }
 
-  /* Chatbot Container */
-  #chatbot-container {
-    position: fixed;
-    bottom: 90px;
-    right: 25px;
-    width: 320px;
-    height: 400px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 2000;
-    font-family: 'Segoe UI', sans-serif;
-  }
+        /* Chatbot Container */
+        #chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 25px;
+            width: 320px;
+            height: 400px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 2000;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-  #chatbot-header {
-    background: #2c3e50;
-    color: white;
-    padding: 12px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+        #chatbot-header {
+            background: #2c3e50;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  #chatbot-close {
-    cursor: pointer;
-    font-size: 18px;
-  }
+        #chatbot-close {
+            cursor: pointer;
+            font-size: 18px;
+        }
 
-  #chatbot-messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    font-size: 14px;
-    background: #f9f9f9;
-  }
+        #chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 14px;
+            background: #f9f9f9;
+        }
 
-  .bot-msg {
-    background: #e1f5fe;
-    padding: 8px 12px;
-    border-radius: 10px;
-    margin: 5px 0;
-    width: fit-content;
-    max-width: 80%;
-  }
+        .bot-msg {
+            background: #e1f5fe;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin: 5px 0;
+            width: fit-content;
+            max-width: 80%;
+        }
 
-  .user-msg {
-    background: #ffccbc;
-    padding: 8px 12px;
-    border-radius: 10px;
-    margin: 5px 0;
-    width: fit-content;
-    max-width: 80%;
-    margin-left: auto;
-  }
+        .user-msg {
+            background: #ffccbc;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin: 5px 0;
+            width: fit-content;
+            max-width: 80%;
+            margin-left: auto;
+        }
 
-  #chatbot-input-container {
-    display: flex;
-    border-top: 1px solid #ccc;
-  }
+        #chatbot-input-container {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
 
-  #chatbot-input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    outline: none;
-  }
+        #chatbot-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
 
-  #chatbot-send {
-    background: #ff5722;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-  }
+        #chatbot-send {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
 
     </style>
 
@@ -475,24 +549,57 @@ header {
 <body>
     <main>
         
-<header>
-    <div class="headers">
-        <img class="logo" src="logo_transparent_resized(1).png">
-        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
-    </div>
+        <header>
+            <div class="headers">
+                <img class="logo" src="logo_transparent_resized(1).png">
+                <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+            </div>
 
-    <!-- Top Navbar -->
-    <nav class="topnav">
-        <ul>
-            <li><a href="index.html" id="home">🏠 Home</a></li>
-            <li><a href="lawcategories.html" id="lawc">⚖ Law Categories</a></li>
-            <li><a href="generatedocuments.html" id="gene">✍ Generate Documents</a></li>
-            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
-            <li><a href="contact.html" id="contact">📞 Contact</a></li>
-        </ul>
-    </nav>
-</header>
+            <!-- Top Navbar -->
+            <nav class="topnav">
+                <ul>
+                    <li><a href="index.html" id="home">🏠 Home</a></li>
+                    <li><a href="lawcategories.html" id="lawc">⚖ Law Categories</a></li>
+                    <li><a href="generatedocuments.html" id="gene">✍ Generate Documents</a></li>
+                    <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+                    <li><a href="contact.html" id="contact">📞 Contact</a></li>
+                </ul>
+            </nav>
+        </header>
 
+        <!-- Image Slider Section - ADDED HERE -->
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide">
+                    <img src="https://placehold.co/1200x400/2c3e50/ffffff?text=Legal+Assistance+Made+Easy" alt="Legal Assistance">
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1200x400/FF8C00/ffffff?text=Know+Your+Rights" alt="Know Your Rights">
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1200x400/4B0082/ffffff?text=Document+Generation" alt="Document Generation">
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1200x400/2E7D32/ffffff?text=Expert+Legal+Advice" alt="Expert Legal Advice">
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1200x400/1A237E/ffffff?text=24/7+Support" alt="24/7 Support">
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1200x400/FF5722/ffffff?text=Protect+Your+Rights+Today" alt="Protect Your Rights">
+                </div>
+            </div>
+            <div class="slider-arrow prev">&#10094;</div>
+            <div class="slider-arrow next">&#10095;</div>
+            <div class="slider-nav">
+                <div class="slider-dot active"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+            </div>
+        </div>
         
         <div style="margin-right: 250px; padding: 20px;" class="content">
             <h1 class="quote" id="quote">Know Your Rights. Get Help Instantly.</h1>
@@ -573,78 +680,78 @@ header {
 
             </div>
         </div>
-<!-- Add this just before </body> -->
-<div id="chatbot-container">
-  <div id="chatbot-header">
-    🤖 Pocket Lawyer Assistant
-    <span id="chatbot-close">&times;</span>
-  </div>
-  <div id="chatbot-messages"></div>
-  <div id="chatbot-input-container">
-    <input type="text" id="chatbot-input" placeholder="Type your question..." />
-    <button id="chatbot-send">Send</button>
-  </div>
-</div>
+        <!-- Add this just before </body> -->
+        <div id="chatbot-container">
+            <div id="chatbot-header">
+            🤖 Pocket Lawyer Assistant
+            <span id="chatbot-close">&times;</span>
+            </div>
+            <div id="chatbot-messages"></div>
+            <div id="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Type your question..." />
+            <button id="chatbot-send">Send</button>
+            </div>
+        </div>
 
-<button id="chatbot-toggle">💬</button>
+        <button id="chatbot-toggle">💬</button>
 
        
 
         
-<footer class="site-footer">
-    <div class="footer-container">
-        <!-- Quick Links -->
-        <div class="footer-section">
-            <h3 id="llink">Quick Links</h3>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="lawcategories.html">Law Categories</a></li>
-                <li><a href="generatedocuments.html">Generate Documents</a></li>
-                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
+        <footer class="site-footer">
+            <div class="footer-container">
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 id="llink">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="lawcategories.html">Law Categories</a></li>
+                        <li><a href="generatedocuments.html">Generate Documents</a></li>
+                        <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
 
-        <!-- Legal Links -->
-        <div class="footer-section">
-            <h3 id="llegal">Legal</h3>
-            <ul>
-                <li><a href="#" id="lpp">Privacy Policy</a></li>
-                <li><a href="#" id="ltc">Terms & Conditions</a></li>
-                <li><a href="#" id="ld">Disclaimer</a></li>
-            </ul>
-        </div>
+                <!-- Legal Links -->
+                <div class="footer-section">
+                    <h3 id="llegal">Legal</h3>
+                    <ul>
+                        <li><a href="#" id="lpp">Privacy Policy</a></li>
+                        <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                        <li><a href="#" id="ld">Disclaimer</a></li>
+                    </ul>
+                </div>
 
-        <!-- Contact Info -->
-        <div class="footer-section">
-            <h3 id="lch">Contact</h3>
-            <ul>
-                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
-                <li id="lphone">Phone: +91-8985579260</li>
-                <li id="laddress">Address: Pulivendula, India</li>
-            </ul>
-        </div>
-    </div>
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 id="lch">Contact</h3>
+                    <ul>
+                        <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                        <li id="lphone">Phone: +91-8985579260</li>
+                        <li id="laddress">Address: Pulivendula, India</li>
+                    </ul>
+                </div>
+            </div>
 
-    <!-- Credits Section -->
-    <div class="footer-credits">
-        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
-        <p id="lheart">❤From the hearts of Indian students, for the voice of every citizen</p>
-        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
-        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
-        <ul>
-            <li id="geethika">Geethika Reddy Marujolla</li>
-            <li id="reshma">Reshma Shaik</li>
-            <li id="snehitha">Snehitha Reddy Moilla</li>
-        </ul>
-        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
-    </div>
+            <!-- Credits Section -->
+            <div class="footer-credits">
+                <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+                <p id="lheart">❤From the hearts of Indian students, for the voice of every citizen</p>
+                <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+                <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+                <ul>
+                    <li id="geethika">Geethika Reddy Marujolla</li>
+                    <li id="reshma">Reshma Shaik</li>
+                    <li id="snehitha">Snehitha Reddy Moilla</li>
+                </ul>
+                <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+            </div>
 
-    <!-- Copyright -->
-    <div class="footer-bottom">
-        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
-    </div>
-</footer>
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+            </div>
+        </footer>
       
 
     </main>
@@ -652,8 +759,80 @@ header {
     <script src="languageManager.js"></script>
 
     <script>
+        // Image Slider Functionality - ADDED
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.querySelector('.slider-arrow.prev');
+            const nextBtn = document.querySelector('.slider-arrow.next');
+            let currentIndex = 0;
+            let autoSlideInterval;
+
+            // Function to update slider position
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentIndex * 16.666}%)`;
+                
+                // Update active dot
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            // Next slide function
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlider();
+            }
+
+            // Previous slide function
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlider();
+            }
+
+            // Set up auto sliding
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+            }
+
+            // Stop auto sliding
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            // Event listeners for arrows
+            nextBtn.addEventListener('click', () => {
+                stopAutoSlide();
+                nextSlide();
+                startAutoSlide();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                stopAutoSlide();
+                prevSlide();
+                startAutoSlide();
+            });
+
+            // Event listeners for dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    stopAutoSlide();
+                    currentIndex = index;
+                    updateSlider();
+                    startAutoSlide();
+                });
+            });
+
+            // Pause auto sliding when hovering over slider
+            const sliderContainer = document.querySelector('.slider-container');
+            sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+            sliderContainer.addEventListener('mouseleave', startAutoSlide);
+
+            // Start auto sliding initially
+            startAutoSlide();
+        });
        
-        
         // Original functionality
         document.getElementById("searchLawBtn").addEventListener("click", function () {
             const query = document.getElementById("searchQuery").value.trim();
@@ -705,125 +884,125 @@ header {
                 alert("Please enter a search term");
             }
         });
-     const chatbotToggle = document.getElementById("chatbot-toggle");
-  const chatbotContainer = document.getElementById("chatbot-container");
-  const chatbotClose = document.getElementById("chatbot-close");
-  const chatbotMessages = document.getElementById("chatbot-messages");
-  const chatbotInput = document.getElementById("chatbot-input");
-  const chatbotSend = document.getElementById("chatbot-send");
+        const chatbotToggle = document.getElementById("chatbot-toggle");
+        const chatbotContainer = document.getElementById("chatbot-container");
+        const chatbotClose = document.getElementById("chatbot-close");
+        const chatbotMessages = document.getElementById("chatbot-messages");
+        const chatbotInput = document.getElementById("chatbot-input");
+        const chatbotSend = document.getElementById("chatbot-send");
 
-  // Intent-based responses (smarter matching)
-const intents = [
-  // --- Small Talk ---
-  {
-    keywords: ["hello", "hi", "hey"],
-    response: "Hello! 👋 How can I help you today?"
-  },
-  {
-    keywords: ["how are you", "how r u", "how are u"],
-    response: "I'm doing great, thanks for asking! 😊 How are you doing?"
-  },
-  {
-    keywords: ["thank you", "thanks", "thx"],
-    response: "You're most welcome! 🙏 Happy to help."
-  },
-  {
-    keywords: ["bye", "goodbye", "see you"],
-    response: "Goodbye! 👋 Have a wonderful day!"
-  },
-  {
-    keywords: ["good morning", "good afternoon", "good evening"],
-    response: "Good day! 🌞 Hope you're doing well."
-  },
-  {
-    keywords: ["joke", "funny", "make me laugh"],
-    response: "😂 Why don’t skeletons fight each other? Because they don’t have the guts!"
-  },
-  {
-    keywords: ["who are you", "what are you", "about you"],
-    response: "I'm your friendly legal chatbot 🤖 here to guide you with information about laws, complaints, and more!"
-  },
+        // Intent-based responses (smarter matching)
+        const intents = [
+        // --- Small Talk ---
+        {
+            keywords: ["hello", "hi", "hey"],
+            response: "Hello! 👋 How can I help you today?"
+        },
+        {
+            keywords: ["how are you", "how r u", "how are u"],
+            response: "I'm doing great, thanks for asking! 😊 How are you doing?"
+        },
+        {
+            keywords: ["thank you", "thanks", "thx"],
+            response: "You're most welcome! 🙏 Happy to help."
+        },
+        {
+            keywords: ["bye", "goodbye", "see you"],
+            response: "Goodbye! 👋 Have a wonderful day!"
+        },
+        {
+            keywords: ["good morning", "good afternoon", "good evening"],
+            response: "Good day! 🌞 Hope you're doing well."
+        },
+        {
+            keywords: ["joke", "funny", "make me laugh"],
+            response: "😂 Why don’t skeletons fight each other? Because they don’t have the guts!"
+        },
+        {
+            keywords: ["who are you", "what are you", "about you"],
+            response: "I'm your friendly legal chatbot 🤖 here to guide you with information about laws, complaints, and more!"
+        },
 
-  // --- Website Related ---
-  {
-    keywords: ["problem", "issue", "not working", "website error"],
-    response: "Oh no! 😟 Sorry about the issue. Please describe the problem, and we’ll work on fixing it right away."
-  },
-  {
-    keywords: ["importance of website", "why this site", "purpose", "use of this website"],
-    response: "🌐 This website is created to spread awareness about laws, guide people in filing complaints, and help citizens understand their rights in a simple way."
-  },
-  {
-    keywords: ["who built this website", "creator", "developer", "owner","Who created this website"],
-    response: "👩‍🎓 This website was proudly developed by Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla. 🎓✨"
-  },
-  {
-    keywords: ["feedback", "suggestion"],
-    response: "💡 We’d love to hear your feedback! Please share your suggestions with us."
-  },
-  {
-    keywords: ["update", "latest", "new laws"],
-    response: "📢 Our website is regularly updated with the latest laws and information. Check the law categories for updates."
-  },
-  {
-    keywords: ["about us", "who are we"],
-    response: "👩‍💻 We are Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla — working to make legal knowledge simple for everyone."
-  },
+        // --- Website Related ---
+        {
+            keywords: ["problem", "issue", "not working", "website error"],
+            response: "Oh no! 😟 Sorry about the issue. Please describe the problem, and we’ll work on fixing it right away."
+        },
+        {
+            keywords: ["importance of website", "why this site", "purpose", "use of this website"],
+            response: "🌐 This website is created to spread awareness about laws, guide people in filing complaints, and help citizens understand their rights in a simple way."
+        },
+        {
+            keywords: ["who built this website", "creator", "developer", "owner","Who created this website"],
+            response: "👩‍🎓 This website was proudly developed by Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla. 🎓✨"
+        },
+        {
+            keywords: ["feedback", "suggestion"],
+            response: "💡 We’d love to hear your feedback! Please share your suggestions with us."
+        },
+        {
+            keywords: ["update", "latest", "new laws"],
+            response: "📢 Our website is regularly updated with the latest laws and information. Check the law categories for updates."
+        },
+        {
+            keywords: ["about us", "who are we"],
+            response: "👩‍💻 We are Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla — working to make legal knowledge simple for everyone."
+        },
 
-  // --- Legal Guidance ---
-  {
-    keywords: ["ipc", "section", "law", "indian penal code"],
-    response: "📖 If you’re looking for details about IPC sections or specific laws, you can explore our law categories 👉 <a href='lawcategories.html'>Law Categories</a>."
-  },
-  {
-    keywords: ["rights", "fundamental rights"],
-    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
-  },
-  {
-    keywords: ["police complaint", "FIR"],
-    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
-  },
-  {
-    keywords: ["court", "legal process", "judge"],
-    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
-  },
+        // --- Legal Guidance ---
+        {
+            keywords: ["ipc", "section", "law", "indian penal code"],
+            response: "📖 If you’re looking for details about IPC sections or specific laws, you can explore our law categories 👉 <a href='lawcategories.html'>Law Categories</a>."
+        },
+        {
+            keywords: ["rights", "fundamental rights"],
+            response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
+        },
+        {
+            keywords: ["police complaint", "FIR"],
+            response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
+        },
+        {
+            keywords: ["court", "legal process", "judge"],
+            response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
+        },
 
-  // --- Emergency / Help ---
-  {
-    keywords: ["emergency", "urgent", "help me now"],
-    response: "🚨 If this is an emergency, please contact your nearest police station or dial 100 immediately."
-  },
-  {
-    keywords: ["harassment", "abuse", "violence"],
-    response: "💔 If you are facing harassment or violence, please reach out to the authorities immediately. You can also explore your rights here 👉 <a href='lawcategories.html'>Law Categories</a>."
-  },
+        // --- Emergency / Help ---
+        {
+            keywords: ["emergency", "urgent", "help me now"],
+            response: "🚨 If this is an emergency, please contact your nearest police station or dial 100 immediately."
+        },
+        {
+            keywords: ["harassment", "abuse", "violence"],
+            response: "💔 If you are facing harassment or violence, please reach out to the authorities immediately. You can also explore your rights here 👉 <a href='lawcategories.html'>Law Categories</a>."
+        },
 
-  // --- Navigation ---
-  {
-    keywords: ["home", "start", "main page"],
-    response: "You can go to Home here 👉 <a href='index.html'>Home</a>"
-  },
-  {
-    keywords: ["categories", "laws", "law categories"],
-    response: "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
-  },
-  {
-    keywords: ["documents", "generate", "create document", "complaint letter"],
-    response: "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
-  },
-  {
-    keywords: ["lawyer", "ask", "advice", "help from lawyer"],
-    response: "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
-  },
-  {
-    keywords: ["contact", "phone", "email", "address", "support"],
-    response: "Reach us here 👉 <a href='contact.html'>Contact</a>"
-  },
-  {
-    keywords: ["complaint", "file complaint", "raise issue"],
-    response: "You can learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
-  },
-  {
+        // --- Navigation ---
+        {
+            keywords: ["home", "start", "main page"],
+            response: "You can go to Home here 👉 <a href='index.html'>Home</a>"
+        },
+        {
+            keywords: ["categories", "laws", "law categories"],
+            response: "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
+        },
+        {
+            keywords: ["documents", "generate", "create document", "complaint letter"],
+            response: "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+        },
+        {
+            keywords: ["lawyer", "ask", "advice", "help from lawyer"],
+            response: "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+        },
+        {
+            keywords: ["contact", "phone", "email", "address", "support"],
+            response: "Reach us here 👉 <a href='contact.html'>Contact</a>"
+        },
+        {
+            keywords: ["complaint", "file complaint", "raise issue"],
+            response: "You can learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
+        },
+        {
     keywords: ["consumer", "product", "fraud", "complaints"],
     response: "See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
   },
@@ -939,5 +1118,6 @@ const intents = [
 
 
 </html>
+
 
 
