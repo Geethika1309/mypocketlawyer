@@ -698,10 +698,7 @@ header {
             }
         });
 
-  // -----------------
-// Elements
-// -----------------
-const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotToggle = document.getElementById("chatbot-toggle");
 const chatbotContainer = document.getElementById("chatbot-container");
 const chatbotClose = document.getElementById("chatbot-close");
 const chatbotMessages = document.getElementById("chatbot-messages");
@@ -712,55 +709,99 @@ const chatbotSend = document.getElementById("chatbot-send");
 // Intent-based responses
 // -----------------
 const intents = [
-  { keywords: ["hello", "hi", "hey"], response: "👋 Hello there! How can I assist you today?" },
-  { keywords: ["home", "start", "main page"], response: "🏠 You can go to Home here 👉 <a href='index.html'>Home</a>" },
-  { keywords: ["categories", "laws", "law categories"], response: "⚖️ Browse different laws here 👉 <a href='lawcategories.html'>Law Categories</a>" },
-  { keywords: ["documents", "generate", "create document", "complaint letter"], response: "📄 Generate your documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>" },
-  { keywords: ["lawyer", "ask", "advice", "help from lawyer"], response: "👨‍⚖️ Need expert advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>" },
-  { keywords: ["contact", "phone", "email", "address", "support"], response: "☎️ Reach us here 👉 <a href='contact.html'>Contact</a>" },
-  { keywords: ["complaint", "file complaint", "raise issue"], response: "📝 Learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>" },
-  { keywords: ["consumer", "product", "fraud", "complaints"], response: "🛒 See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>" },
-  { keywords: ["problem", "issue", "not working", "error"], response: "⚠️ Sorry to hear you’re facing issues. Please explain your problem and we’ll help fix it. 🙏" },
-  { keywords: ["bye", "goodbye", "see you"], response: "👋 Goodbye! Have a wonderful day! 😊" }
+  {
+    keywords: ["hello", "hi", "hey"],
+    response: "👋 Hello there! How can I assist you today?"
+  },
+  {
+    keywords: ["home", "start", "main page"],
+    response: "🏠 You can go to Home here 👉 <a href='index.html'>Home</a>"
+  },
+  {
+    keywords: ["categories", "laws", "law categories"],
+    response: "⚖️ Browse different laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
+  },
+  {
+    keywords: ["documents", "generate", "create document", "complaint letter"],
+    response: "📄 Generate your documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+  },
+  {
+    keywords: ["lawyer", "ask", "advice", "help from lawyer"],
+    response: "👨‍⚖️ Need expert advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+  },
+  {
+    keywords: ["contact", "phone", "email", "address", "support"],
+    response: "☎️ Reach us here 👉 <a href='contact.html'>Contact</a>"
+  },
+  {
+    keywords: ["complaint", "file complaint", "raise issue"],
+    response: "📝 Learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
+  },
+  {
+    keywords: ["consumer", "product", "fraud", "complaints"],
+    response: "🛒 See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
+  },
+  {
+    keywords: ["problem", "issue", "not working", "error"],
+    response: "⚠️ Sorry to hear you’re facing issues. Please explain your problem and we’ll help fix it. 🙏"
+  },
+  {
+    keywords: ["thank you", "thanks", "thx"],
+    response: "🙏 You're most welcome! Always happy to assist. 😊"
+  },
+  {
+    keywords: ["bye", "goodbye", "see you"],
+    response: "👋 Goodbye! Have a wonderful day! 😊"
+  }
 ];
 
 const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>🏠 Home, ⚖️ Categories, 📄 Documents, 👨‍⚖️ Lawyer, ☎️ Contact, or 📝 Complaints</b>.";
 
 // -----------------
-// Bot Logic
+// Function to process user input
 // -----------------
-function getBotResponse(message) {
+function getBotReply(message) {
   message = message.toLowerCase();
+
   for (const intent of intents) {
     if (intent.keywords.some(keyword => message.includes(keyword))) {
       return intent.response;
     }
   }
+
   return defaultResponse;
 }
 
-// Add message to chat window
-function addMessage(text, className) {
+// -----------------
+// Add message to chat
+// -----------------
+function addMessage(text, sender) {
   const msgDiv = document.createElement("div");
-  msgDiv.className = className;
-  msgDiv.innerHTML = text;
+  msgDiv.classList.add("chat-msg");
+
+  if (sender === "user") {
+    msgDiv.innerHTML = `<b>You:</b> ${text}`;
+  } else {
+    msgDiv.innerHTML = `<b>Pocket Lawyer:</b> ${text}`;
+  }
+
   chatbotMessages.appendChild(msgDiv);
-  chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Auto scroll
+  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
 // -----------------
-// Send Function
+// Main Send Function
 // -----------------
 function sendMessage() {
   const msg = chatbotInput.value.trim();
   if (!msg) return;
 
   // User message
-  addMessage(`<b>You:</b> ${msg}`, "user-msg");
+  addMessage(msg, "user");
 
-  // Bot reply with delay
-  const reply = getBotResponse(msg);
-  setTimeout(() => addMessage(`<b>Assistant:</b> ${reply}`, "bot-msg"), 500);
+  // Bot reply with small delay
+  const reply = getBotReply(msg);
+  setTimeout(() => addMessage(reply, "bot"), 500);
 
   chatbotInput.value = "";
 }
@@ -791,6 +832,7 @@ chatbotInput.addEventListener("keypress", (e) => {
 
 
 </html>
+
 
 
 
