@@ -574,20 +574,21 @@ header {
             </div>
         </div>
 <!-- Add this just before </body> -->
-<button id="chatbot-toggle" class="chat-btn">💬 Chat</button>
-
-<div id="chatbot-container" class="chat-container" style="display:none;">
+<div id="chatbot-container">
   <div id="chatbot-header">
-    <span>Legal Help Chatbot</span>
-    <button id="chatbot-close">❌</button>
+    🤖 Pocket Lawyer Assistant
+    <span id="chatbot-close">&times;</span>
   </div>
   <div id="chatbot-messages"></div>
-  <div id="chatbot-input-area">
-    <input type="text" id="chatbot-input" placeholder="Type your message...">
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type your question..." />
     <button id="chatbot-send">Send</button>
   </div>
 </div>
 
+<button id="chatbot-toggle">💬</button>
+
+       
 
         
 <footer class="site-footer">
@@ -664,7 +665,8 @@ header {
                 return;
             }
 
-            window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
+            window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
+
         });
 
         // index.html
@@ -698,7 +700,8 @@ header {
             const lang = document.getElementById("languageSelector").value || 'en';
 
             if (query) {
-                window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
+                window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
+
             } else {
                 alert("Please enter a search term");
             }
@@ -939,5 +942,3 @@ const intents = [
 
 
 </html>
-
-
