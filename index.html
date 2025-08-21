@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Home Page - Pocket Lawyer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -28,98 +28,93 @@
         }
 
         /* Header Section */
-header {
-  background: #ffffff; /* White background for clean official look */
-  padding: 20px 40px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+        header {
+            background: #ffffff;
+            padding: 20px 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-/* Heading area */
-.headers {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+        /* Heading area */
+        .headers {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-.logo {
-  height: 90px;
-}
+        .logo {
+            height: 90px;
+        }
 
-.mainheading {
-  font-size: 45px;
-  font-weight: bold;
-  color: #2c3e50;  /* Dark official text */
-  background: #ffffff;
-  padding: 5px 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+        .mainheading {
+            font-size: 45px;
+            font-weight: bold;
+            color: #2c3e50;
+            background: #ffffff;
+            padding: 5px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
 
-/* Navigation Menu */
-.topnav {
-  margin-top: 20px;
-  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
-  padding: 15px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.topnav ul li {
-  display: inline-block;
-}
-.topnav ul {
-  list-style: none;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 70px;
-}
+        /* Navigation Menu */
+        .topnav {
+            margin-top: 20px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .topnav ul li {
+            display: inline-block;
+        }
+        .topnav ul {
+            list-style: none;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 70px;
+        }
 
-.topnav ul li a {
-   display: inline-block;
-  color: #2c3e50; /* normal text color */
-  padding: 10px 5px;
-  border-radius: 8px;
-  text-decoration: none; /* remove underline */
-  transition: all 0.3s ease; /* smooth effect */
-  font-size: 22px;   /* 👈 change this value */
-  font-weight: 600;
-}
+        .topnav ul li a {
+            display: inline-block;
+            color: #2c3e50;
+            padding: 10px 5px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 22px;
+            font-weight: 600;
+        }
 
+        .topnav ul li a:hover {
+            background: #696969;
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 12px;
+        }
 
-.topnav ul li a:hover {
-    background: #696969; /* #2F4F4F    #6495ED*/
-  color: #000; /* keep text visible */
-  padding: 12px 24px; /* increase size on hover */
-  border-radius: 12px; /* smoother corners */
-}
+        /* Hover underline animation */
+        .topnav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            left: 50%;
+            bottom: -6px;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
 
+        .topnav ul li a:hover {
+            color: whitesmoke; 
+        }
 
-
-/* Hover underline animation */
-.topnav ul li a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 3px;
-  left: 50%;
-  bottom: -6px;
-  
-  transition: all 0.3s ease;
-  border-radius: 5px;
-}
-
-.topnav ul li a:hover {
-  color: whitesmoke; 
-}
-
-.topnav ul li a:hover::after {
- width: 100%;
-  left: 0;
-}
+        .topnav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
 
         .quote {
             text-align: center;
@@ -181,7 +176,6 @@ header {
             background-color: #E64A19;
             transform: translateY(-2px);
         }
-
 
         .calltoaction i {
             margin-right: 8px;
@@ -373,170 +367,196 @@ header {
         }
 
         /* Chatbot Floating Button */
-  #chatbot-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 25px;
-    background: #ff5722;
-    border: none;
-    color: white;
-    font-size: 24px;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    z-index: 999;
-  }
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            background: #ff5722;
+            border: none;
+            color: white;
+            font-size: 24px;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-  /* Chatbot Container */
-  #chatbot-container {
-    position: fixed;
-    bottom: 90px;
-    right: 25px;
-    width: 320px;
-    height: 400px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 2000;
-    font-family: 'Segoe UI', sans-serif;
-  }
+        /* Chatbot Container */
+        #chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 25px;
+            width: 320px;
+            height: 400px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 2000;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-  #chatbot-header {
-    background: #2c3e50;
-    color: white;
-    padding: 12px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+        #chatbot-header {
+            background: #2c3e50;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  #chatbot-close {
-    cursor: pointer;
-    font-size: 18px;
-  }
+        #chatbot-close {
+            cursor: pointer;
+            font-size: 18px;
+        }
 
-  #chatbot-messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    font-size: 14px;
-    background: #f9f9f9;
-  }
+        #chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 14px;
+            background: #f9f9f9;
+        }
 
-  .bot-msg {
-    background: #e1f5fe;
-    padding: 8px 12px;
-    border-radius: 10px;
-    margin: 5px 0;
-    width: fit-content;
-    max-width: 80%;
-  }
+        .bot-msg {
+            background: #e1f5fe;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin: 5px 0;
+            width: fit-content;
+            max-width: 80%;
+        }
 
-  .user-msg {
-    background: #ffccbc;
-    padding: 8px 12px;
-    border-radius: 10px;
-    margin: 5px 0;
-    width: fit-content;
-    max-width: 80%;
-    margin-left: auto;
-  }
+        .user-msg {
+            background: #ffccbc;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin: 5px 0;
+            width: fit-content;
+            max-width: 80%;
+            margin-left: auto;
+        }
 
-  #chatbot-input-container {
-    display: flex;
-    border-top: 1px solid #ccc;
-  }
+        #chatbot-input-container {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
 
-  #chatbot-input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    outline: none;
-  }
+        #chatbot-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
 
-  #chatbot-send {
-    background: #ff5722;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-  }
+        #chatbot-send {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
 
+        /* Animation for chat messages */
+        .bot-msg, .user-msg {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            padding: 8px 12px;
+            background: #e1f5fe;
+            border-radius: 10px;
+            width: fit-content;
+            margin: 5px 0;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #888;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
     </style>
-
 </head>
 
 <body>
     <main>
-        
-<header>
-    <div class="headers">
-        <img class="logo" src="logo_transparent_resized(1).png">
-        <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
-    </div>
+        <header>
+            <div class="headers">
+                <img class="logo" src="https://placehold.co/90x90/2c3e50/FFFFFF?text=PL" alt="Pocket Lawyer Logo">
+                <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+            </div>
 
-    <!-- Top Navbar -->
-    <nav class="topnav">
-        <ul>
-            <li><a href="index.html" id="home">🏠 Home</a></li>
-            <li><a href="lawcategories.html" id="lawc">⚖ Law Categories</a></li>
-            <li><a href="generatedocuments.html" id="gene">✍ Generate Documents</a></li>
-            <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
-            <li><a href="contact.html" id="contact">📞 Contact</a></li>
-        </ul>
-    </nav>
-</header>
-
+            <!-- Top Navbar -->
+            <nav class="topnav">
+                <ul>
+                    <li><a href="index.html" id="home">🏠 Home</a></li>
+                    <li><a href="lawcategories.html" id="lawc">⚖ Law Categories</a></li>
+                    <li><a href="generatedocuments.html" id="gene">✍ Generate Documents</a></li>
+                    <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+                    <li><a href="contact.html" id="contact">📞 Contact</a></li>
+                </ul>
+            </nav>
+        </header>
         
         <div style="margin-right: 250px; padding: 20px;" class="content">
             <h1 class="quote" id="quote">Know Your Rights. Get Help Instantly.</h1>
             <div class="search-language">
-                <input type="text" id="searchQuery" class="searchbar" placeholder="Search your legal problem..."
-                    id="lsearch">
+                <input type="text" id="searchQuery" class="searchbar" placeholder="Search your legal problem...">
                 <select class="language" id="languageSelector">
                     <option>Select Language</option>
                     <option value="en">English</option>
                     <option value="hi">हिंदी</option>
                     <option value="te">తెలుగు</option>
                 </select>
-
             </div>
 
             <div class="ctasection">
-                <a href="#" class="calltoaction" id="searchLawBtn">🔍 Search
-                    Law</a>
-                <a href="generatecomplaintletter.html" class="calltoaction" id="ctaGenerate">📄 Generate Complaint
-                    Letter</a>
-                <a href="askaquestion.html" class="calltoaction" id="ctaQuestion">💬 Ask a
-                    Question</a>
-
+                <a href="#" class="calltoaction" id="searchLawBtn">🔍 Search Law</a>
+                <a href="generatecomplaintletter.html" class="calltoaction" id="ctaGenerate">📄 Generate Complaint Letter</a>
+                <a href="askaquestion.html" class="calltoaction" id="ctaQuestion">💬 Ask a Question</a>
             </div>
+            
             <h1 class="category-section" id="popular">Popular Law Categories:</h1>
             <div class="grid">
                 <div class="column">
-                    <a href="trafficviolations.html" class="category-box" id="traffic">🚗💥<br>
-                        <span>Traffic Violations</span></a>
-                    <a href="rentortenantissues.html" class="category-box" id="renthome">🏠
-                        <span>Rent/Tenant Issues</span></a>
-                    <a href="womenssafetylaws.html" class="category-box" id="women">👧
-                        <span>Women's Safety Laws</span></a>
+                    <a href="trafficviolations.html" class="category-box" id="traffic">🚗💥<br><span>Traffic Violations</span></a>
+                    <a href="rentortenantissues.html" class="category-box" id="renthome">🏠<span>Rent/Tenant Issues</span></a>
+                    <a href="womenssafetylaws.html" class="category-box" id="women">👧<span>Women's Safety Laws</span></a>
                 </div>
                 <div class="column">
-                    <a href="consumercomplaints.html" class="category-box" id="consumer">📦📦
-                        <span>Consumer Complaints</span></a>
-                    <a href="cyberbullying.html" class="category-box" id="cyber">🛡
-                        <span>Cyber
-                            bullying and Digital Safety</span></a>
-                    <a href="howtofileacomplaint.html" class="category-box" id="file">📄
-                        <span>How to file a complaint</span></a>
+                    <a href="consumercomplaints.html" class="category-box" id="consumer">📦📦<span>Consumer Complaints</span></a>
+                    <a href="cyberbullying.html" class="category-box" id="cyber">🛡<span>Cyber bullying and Digital Safety</span></a>
+                    <a href="howtofileacomplaint.html" class="category-box" id="file">📄<span>How to file a complaint</span></a>
                 </div>
             </div>
+            
             <div class="work-section">
                 <h1 class="work" id="howitworks">How it works?</h1>
                 <h2 id="step1"><span class="one">Step1 : </span><span class="two">Search your problem</span></h2>
@@ -544,18 +564,18 @@ header {
                 <h2 id="step3"><span class="one">Step3 : </span><span class="two">Generate a document</span></h2>
                 <h2 id="step4"><span class="one">Step4 : </span><span class="two">Take action</span></h2>
             </div>
+            
             <div class="benifit-section">
                 <h1 class="benifits" id="benefits">Benefits</h1>
-                <h2 class="benifit" id="b1">👤 No lawyer needed for small issues
-                </h2>
+                <h2 class="benifit" id="b1">👤 No lawyer needed for small issues</h2>
                 <h2 class="benifit" id="b2">🌐 Get help in your language</h2>
                 <h2 class="benifit" id="b3">📄 Free document generation</h2>
                 <h2 class="benifit" id="b4">📖 Legal info in simple words</h2>
             </div>
+            
             <div class="testimonials">
                 <h1 class="report" id="testimonialTitle">Testimonials</h1>
-                <h2 class="users" id="testimonialSubtitle" style="text-align: center; color:#0D47A1;">What Users Say
-                </h2>
+                <h2 class="users" id="testimonialSubtitle" style="text-align: center; color:#0D47A1;">What Users Say</h2>
                 <div class="cards">
                     <div class="card">
                         <p id="ldata1">"I created a complaint within 2 minutes. Very helpful!"</p>
@@ -570,89 +590,343 @@ header {
                         <h4 id="lvalue3">- Lakshmi, Hyderabad</h4>
                     </div>
                 </div>
-
             </div>
         </div>
-<!-- Add this just before </body> -->
-<div id="chatbot-container">
-  <div id="chatbot-header">
-    🤖 Pocket Lawyer Assistant
-    <span id="chatbot-close">&times;</span>
-  </div>
-  <div id="chatbot-messages"></div>
-  <div id="chatbot-input-container">
-    <input type="text" id="chatbot-input" placeholder="Type your question..." />
-    <button id="chatbot-send">Send</button>
-  </div>
-</div>
 
-<button id="chatbot-toggle">💬</button>
-
-       
-
-        
-<footer class="site-footer">
-    <div class="footer-container">
-        <!-- Quick Links -->
-        <div class="footer-section">
-            <h3 id="llink">Quick Links</h3>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="lawcategories.html">Law Categories</a></li>
-                <li><a href="generatedocuments.html">Generate Documents</a></li>
-                <li><a href="askalawyer.html">Ask a Lawyer</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+        <!-- Chatbot Container -->
+        <div id="chatbot-container">
+            <div id="chatbot-header">
+                🤖 Pocket Lawyer Assistant
+                <span id="chatbot-close">&times;</span>
+            </div>
+            <div id="chatbot-messages"></div>
+            <div id="chatbot-input-container">
+                <input type="text" id="chatbot-input" placeholder="Type your question..." />
+                <button id="chatbot-send">Send</button>
+            </div>
         </div>
 
-        <!-- Legal Links -->
-        <div class="footer-section">
-            <h3 id="llegal">Legal</h3>
-            <ul>
-                <li><a href="#" id="lpp">Privacy Policy</a></li>
-                <li><a href="#" id="ltc">Terms & Conditions</a></li>
-                <li><a href="#" id="ld">Disclaimer</a></li>
-            </ul>
-        </div>
+        <button id="chatbot-toggle">💬</button>
 
-        <!-- Contact Info -->
-        <div class="footer-section">
-            <h3 id="lch">Contact</h3>
-            <ul>
-                <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
-                <li id="lphone">Phone: +91-8985579260</li>
-                <li id="laddress">Address: Pulivendula, India</li>
-            </ul>
-        </div>
-    </div>
+        <footer class="site-footer">
+            <div class="footer-container">
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 id="llink">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="lawcategories.html">Law Categories</a></li>
+                        <li><a href="generatedocuments.html">Generate Documents</a></li>
+                        <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
 
-    <!-- Credits Section -->
-    <div class="footer-credits">
-        <p id="ljustice">🌟 Made for Justice, by Students of India</p>
-        <p id="lheart">❤From the hearts of Indian students, for the voice of every citizen</p>
-        <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
-        <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
-        <ul>
-            <li id="geethika">Geethika Reddy Marujolla</li>
-            <li id="reshma">Reshma Shaik</li>
-            <li id="snehitha">Snehitha Reddy Moilla</li>
-        </ul>
-        <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
-    </div>
+                <!-- Legal Links -->
+                <div class="footer-section">
+                    <h3 id="llegal">Legal</h3>
+                    <ul>
+                        <li><a href="#" id="lpp">Privacy Policy</a></li>
+                        <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                        <li><a href="#" id="ld">Disclaimer</a></li>
+                    </ul>
+                </div>
 
-    <!-- Copyright -->
-    <div class="footer-bottom">
-        <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
-    </div>
-</footer>
-      
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 id="lch">Contact</h3>
+                    <ul>
+                        <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                        <li id="lphone">Phone: +91-8985579260</li>
+                        <li id="laddress">Address: Pulivendula, India</li>
+                    </ul>
+                </div>
+            </div>
 
+            <!-- Credits Section -->
+            <div class="footer-credits">
+                <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+                <p id="lheart">❤From the hearts of Indian students, for the voice of every citizen</p>
+                <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+                <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+                <ul>
+                    <li id="geethika">Geethika Reddy Marujolla</li>
+                    <li id="reshma">Reshma Shaik</li>
+                    <li id="snehitha">Snehitha Reddy Moilla</li>
+                </ul>
+                <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+            </div>
+        </footer>
     </main>
-    <script src="translations.js"></script>
-    <script src="languageManager.js"></script>
 
     <script>
-       
+        // Chatbot functionality
+        document.addEventListener("DOMContentLoaded", () => {
+            const chatbotToggle = document.getElementById("chatbot-toggle");
+            const chatbotContainer = document.getElementById("chatbot-container");
+            const chatbotClose = document.getElementById("chatbot-close");
+            const chatbotMessages = document.getElementById("chatbot-messages");
+            const chatbotInput = document.getElementById("chatbot-input");
+            const chatbotSend = document.getElementById("chatbot-send");
+
+            // Define intents
+            const intents = [
+                // --- Small Talk ---
+                {
+                    keywords: ["hello", "hi", "hey"],
+                    response: "Hello! 👋 How can I help you today?"
+                },
+                {
+                    keywords: ["how are you", "how r u", "how are u"],
+                    response: "I'm doing great, thanks for asking! 😊 How are you doing?"
+                },
+                {
+                    keywords: ["thank you", "thanks", "thx"],
+                    response: "You're most welcome! 🙏 Happy to help."
+                },
+                {
+                    keywords: ["bye", "goodbye", "see you"],
+                    response: "Goodbye! 👋 Have a wonderful day!"
+                },
+                {
+                    keywords: ["good morning", "good afternoon", "good evening"],
+                    response: "Good day! 🌞 Hope you're doing well."
+                },
+                {
+                    keywords: ["joke", "funny", "make me laugh"],
+                    response: "😂 Why don’t skeletons fight each other? Because they don’t have the guts!"
+                },
+                {
+                    keywords: ["who are you", "what are you", "about you"],
+                    response: "I'm your friendly legal chatbot 🤖 here to guide you with information about laws, complaints, and more!"
+                },
+
+                // --- Website Related ---
+                {
+                    keywords: ["problem", "issue", "not working", "website error"],
+                    response: "Oh no! 😟 Sorry about the issue. Please describe the problem, and we’ll work on fixing it right away."
+                },
+                {
+                    keywords: ["importance of website", "why this site", "purpose", "use of this website"],
+                    response: "🌐 This website is created to spread awareness about laws, guide people in filing complaints, and help citizens understand their rights in a simple way."
+                },
+                {
+                    keywords: ["who built this website", "creator", "developer", "owner","Who created this website"],
+                    response: "👩‍🎓 This website was proudly developed by Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla. 🎓✨"
+                },
+                {
+                    keywords: ["feedback", "suggestion"],
+                    response: "💡 We’d love to hear your feedback! Please share your suggestions with us."
+                },
+                {
+                    keywords: ["update", "latest", "new laws"],
+                    response: "📢 Our website is regularly updated with the latest laws and information. Check the law categories for updates."
+                },
+                {
+                    keywords: ["about us", "who are we"],
+                    response: "👩‍💻 We are Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla — working to make legal knowledge simple for everyone."
+                },
+
+                // --- Legal Guidance ---
+                {
+                    keywords: ["ipc", "section", "law", "indian penal code"],
+                    response: "📖 If you’re looking for details about IPC sections or specific laws, you can explore our law categories 👉 <a href='lawcategories.html'>Law Categories</a>."
+                },
+                {
+                    keywords: ["rights", "fundamental rights"],
+                    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
+                },
+                {
+                    keywords: ["police complaint", "FIR"],
+                    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
+                },
+                {
+                    keywords: ["court", "legal process", "judge"],
+                    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
+                },
+
+                // --- Emergency / Help ---
+                {
+                    keywords: ["emergency", "urgent", "help me now"],
+                    response: "🚨 If this is an emergency, please contact your nearest police station or dial 100 immediately."
+                },
+                {
+                    keywords: ["harassment", "abuse", "violence"],
+                    response: "💔 If you are facing harassment or violence, please reach out to the authorities immediately. You can also explore your rights here 👉 <a href='lawcategories.html'>Law Categories</a>."
+                },
+
+                // --- Navigation ---
+                {
+                    keywords: ["home", "start", "main page"],
+                    response: "You can go to Home here 👉 <a href='index.html'>Home</a>"
+                },
+                {
+                    keywords: ["categories", "laws", "law categories"],
+                    response: "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
+                },
+                {
+                    keywords: ["documents", "generate", "create document", "complaint letter"],
+                    response: "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+                },
+                {
+                    keywords: ["lawyer", "ask", "advice", "help from lawyer"],
+                    response: "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+                },
+                {
+                    keywords: ["contact", "phone", "email", "address", "support"],
+                    response: "Reach us here 👉 <a href='contact.html'>Contact</a>"
+                },
+                {
+                    keywords: ["complaint", "file complaint", "raise issue"],
+                    response: "You can learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
+                },
+                {
+                    keywords: ["consumer", "product", "fraud", "complaints"],
+                    response: "See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
+                },
+                {
+                    keywords: ["help", "assist", "guidance"],
+                    response: "I'm here to help! 🤝 What do you need assistance with?"
+                },
+                {
+                    keywords: ["time", "date", "today"],
+                    response: "I can’t track real-time clock ⏰, but you can check your device for the latest date and time."
+                },
+                // --- Extra Questions ---
+                {
+                    keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer","lawyer"],
+                    response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
+                },
+                {
+                    keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
+                    response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
+                },
+                {
+                    keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
+                    response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
+                },
+                {
+                    keywords: ["rights", "fundamental rights"],
+                    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
+                },
+                {
+                    keywords: ["police complaint", "FIR"],
+                    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
+                },
+                {
+                    keywords: ["court", "legal process", "judge"],
+                    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
+                },
+                {
+                    keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer"],
+                    response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
+                },
+                {
+                    keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
+                    response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
+                },
+                {
+                    keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
+                    response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
+                },
+            ];
+
+            const defaultResponse = "🤔 I'm not sure I understand. Could you try asking in a different way?";
+
+            // Toggle chatbot visibility
+            chatbotToggle.addEventListener("click", () => {
+                chatbotContainer.style.display = "flex";
+                chatbotToggle.style.display = "none";
+                addMessage("👋 Hello! I'm your Pocket Lawyer assistant. How can I help you today?", "bot-msg");
+            });
+
+            // Close chatbot
+            chatbotClose.addEventListener("click", () => {
+                chatbotContainer.style.display = "none";
+                chatbotToggle.style.display = "block";
+            });
+
+            // Send message when button is clicked
+            chatbotSend.addEventListener("click", sendMessage);
+            
+            // Send message when Enter key is pressed
+            chatbotInput.addEventListener("keypress", (e) => {
+                if (e.key === "Enter") sendMessage();
+            });
+
+            // Function to send a message
+            function sendMessage() {
+                const msg = chatbotInput.value.trim();
+                if (!msg) return;
+                
+                addMessage(msg, "user-msg");
+                chatbotInput.value = "";
+                
+                // Show typing indicator
+                showTypingIndicator();
+                
+                // Add a small delay to simulate thinking
+                setTimeout(() => {
+                    const reply = getBotReply(msg.toLowerCase());
+                    removeTypingIndicator();
+                    addMessage(reply, "bot-msg");
+                }, 1000);
+            }
+
+            // Function to get bot reply based on user message
+            function getBotReply(userMsg) {
+                for (let intent of intents) {
+                    for (let keyword of intent.keywords) {
+                        if (userMsg.includes(keyword)) {
+                            return intent.response;
+                        }
+                    }
+                }
+                return defaultResponse;
+            }
+
+            // Function to add a message to the chat
+            function addMessage(text, className) {
+                const div = document.createElement("div");
+                div.className = className;
+                div.innerHTML = text;
+                chatbotMessages.appendChild(div);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            // Function to show typing indicator
+            function showTypingIndicator() {
+                const typingDiv = document.createElement("div");
+                typingDiv.className = "typing-indicator";
+                typingDiv.id = "typing-indicator";
+                typingDiv.innerHTML = `
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                `;
+                chatbotMessages.appendChild(typingDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            // Function to remove typing indicator
+            function removeTypingIndicator() {
+                const typingIndicator = document.getElementById("typing-indicator");
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+
+            // Add welcome message when page loads
+            setTimeout(() => {
+                addMessage("👋 Welcome to Pocket Lawyer! Type 'help' to see what I can assist you with.", "bot-msg");
+            }, 1000);
+        });
+
         // Original functionality
         document.getElementById("searchLawBtn").addEventListener("click", function () {
             const query = document.getElementById("searchQuery").value.trim();
@@ -665,274 +939,10 @@ header {
                 return;
             }
 
-            window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
-
+            // This would normally redirect to a search results page
+            console.log(`Searching for: ${query} in language: ${lang}`);
+            alert(`Searching for: ${query} in language: ${lang}`);
         });
-
-        // index.html
-        document.getElementById('languageSelector').addEventListener('change', (e) => {
-            languageManager.setLanguage(e.target.value);
-        });
-
-        function setLanguage(lang) {
-            localStorage.setItem("language", lang);
-            translatePage(lang); // Translate current page too
-        }
-        
-        // Initialize on DOM load
-        document.addEventListener("DOMContentLoaded", () => {
-            // Set language from localStorage or default to 'en'
-            languageManager.applyTranslations();
-
-            // Update language selector (if present)
-            const langSelector = document.getElementById("languageSelector");
-            if (langSelector) {
-                langSelector.value = languageManager.currentLanguage;
-                langSelector.addEventListener("change", (e) => {
-                    languageManager.setLanguage(e.target.value);
-                });
-            }
-        });
-        
-        // In index.html
-        document.getElementById("searchLawBtn").addEventListener("click", function () {
-            const query = document.getElementById("searchQuery").value.trim();
-            const lang = document.getElementById("languageSelector").value || 'en';
-
-            if (query) {
-                window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
-
-            } else {
-                alert("Please enter a search term");
-            }
-        });
-
-
-     document.addEventListener("DOMContentLoaded", () => {
-  const chatbotToggle = document.getElementById("chatbot-toggle");
-  const chatbotContainer = document.getElementById("chatbot-container");
-  const chatbotClose = document.getElementById("chatbot-close");
-  const chatbotMessages = document.getElementById("chatbot-messages");
-  const chatbotInput = document.getElementById("chatbot-input");
-  const chatbotSend = document.getElementById("chatbot-send");
-
-  const intents = [
-  // --- Small Talk ---
-  {
-    keywords: ["hello", "hi", "hey"],
-    response: "Hello! 👋 How can I help you today?"
-  },
-  {
-    keywords: ["how are you", "how r u", "how are u"],
-    response: "I'm doing great, thanks for asking! 😊 How are you doing?"
-  },
-  {
-    keywords: ["thank you", "thanks", "thx"],
-    response: "You're most welcome! 🙏 Happy to help."
-  },
-  {
-    keywords: ["bye", "goodbye", "see you"],
-    response: "Goodbye! 👋 Have a wonderful day!"
-  },
-  {
-    keywords: ["good morning", "good afternoon", "good evening"],
-    response: "Good day! 🌞 Hope you're doing well."
-  },
-  {
-    keywords: ["joke", "funny", "make me laugh"],
-    response: "😂 Why don’t skeletons fight each other? Because they don’t have the guts!"
-  },
-  {
-    keywords: ["who are you", "what are you", "about you"],
-    response: "I'm your friendly legal chatbot 🤖 here to guide you with information about laws, complaints, and more!"
-  },
-
-  // --- Website Related ---
-  {
-    keywords: ["problem", "issue", "not working", "website error"],
-    response: "Oh no! 😟 Sorry about the issue. Please describe the problem, and we’ll work on fixing it right away."
-  },
-  {
-    keywords: ["importance of website", "why this site", "purpose", "use of this website"],
-    response: "🌐 This website is created to spread awareness about laws, guide people in filing complaints, and help citizens understand their rights in a simple way."
-  },
-  {
-    keywords: ["who built this website", "creator", "developer", "owner","Who created this website"],
-    response: "👩‍🎓 This website was proudly developed by Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla. 🎓✨"
-  },
-  {
-    keywords: ["feedback", "suggestion"],
-    response: "💡 We’d love to hear your feedback! Please share your suggestions with us."
-  },
-  {
-    keywords: ["update", "latest", "new laws"],
-    response: "📢 Our website is regularly updated with the latest laws and information. Check the law categories for updates."
-  },
-  {
-    keywords: ["about us", "who are we"],
-    response: "👩‍💻 We are Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla — working to make legal knowledge simple for everyone."
-  },
-
-  // --- Legal Guidance ---
-  {
-    keywords: ["ipc", "section", "law", "indian penal code"],
-    response: "📖 If you’re looking for details about IPC sections or specific laws, you can explore our law categories 👉 <a href='lawcategories.html'>Law Categories</a>."
-  },
-  {
-    keywords: ["rights", "fundamental rights"],
-    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
-  },
-  {
-    keywords: ["police complaint", "FIR"],
-    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
-  },
-  {
-    keywords: ["court", "legal process", "judge"],
-    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
-  },
-
-  // --- Emergency / Help ---
-  {
-    keywords: ["emergency", "urgent", "help me now"],
-    response: "🚨 If this is an emergency, please contact your nearest police station or dial 100 immediately."
-  },
-  {
-    keywords: ["harassment", "abuse", "violence"],
-    response: "💔 If you are facing harassment or violence, please reach out to the authorities immediately. You can also explore your rights here 👉 <a href='lawcategories.html'>Law Categories</a>."
-  },
-
-  // --- Navigation ---
-  {
-    keywords: ["home", "start", "main page"],
-    response: "You can go to Home here 👉 <a href='index.html'>Home</a>"
-  },
-  {
-    keywords: ["categories", "laws", "law categories"],
-    response: "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
-  },
-  {
-    keywords: ["documents", "generate", "create document", "complaint letter"],
-    response: "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
-  },
-  {
-    keywords: ["lawyer", "ask", "advice", "help from lawyer"],
-    response: "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
-  },
-  {
-    keywords: ["contact", "phone", "email", "address", "support"],
-    response: "Reach us here 👉 <a href='contact.html'>Contact</a>"
-  },
-  {
-    keywords: ["complaint", "file complaint", "raise issue"],
-    response: "You can learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
-  },
-  {
-    keywords: ["consumer", "product", "fraud", "complaints"],
-    response: "See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
-  },
-  {
-    keywords: ["help", "assist", "guidance"],
-    response: "I'm here to help! 🤝 What do you need assistance with?"
-  },
-  {
-    keywords: ["time", "date", "today"],
-    response: "I can’t track real-time clock ⏰, but you can check your device for the latest date and time."
-  },
-    // --- Extra Questions ---
-{
-  keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer","lawyer"],
-  response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
-},
-{
-  keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
-  response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
-},
-{
-  keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
-  response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
-},
-{
-    keywords: ["rights", "fundamental rights"],
-    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
-  },
-  {
-    keywords: ["police complaint", "FIR"],
-    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
-  },
-  {
-    keywords: ["court", "legal process", "judge"],
-    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
-  },
-
-  // --- Extra Questions ---
-  {
-    keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer"],
-    response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
-  },
-  {
-    keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
-    response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
-  },
-  {
-    keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
-    response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
-  },
-];
-  const defaultResponse = "🤔 Sorry, I didn’t understand...";
-
-  chatbotToggle.addEventListener("click", () => {
-    chatbotContainer.style.display = "flex";
-    chatbotToggle.style.display = "none";
-    addMessage("👋 Hello! Welcome...", "bot-msg");
-  });
-
-  chatbotClose.addEventListener("click", () => {
-    chatbotContainer.style.display = "none";
-    chatbotToggle.style.display = "block";
-  });
-
-  chatbotSend.addEventListener("click", sendMessage);
-  chatbotInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendMessage();
-  });
-
-  function sendMessage() {
-    const msg = chatbotInput.value.trim();
-    if (!msg) return;
-    addMessage(msg, "user-msg");
-
-    const reply = getBotReply(msg.toLowerCase());
-    setTimeout(() => addMessage(reply, "bot-msg"), 500);
-    chatbotInput.value = "";
-  }
-
-  function getBotReply(userMsg) {
-    for (let intent of intents) {
-      for (let keyword of intent.keywords) {
-        if (userMsg.includes(keyword)) {
-          return intent.response;
-        }
-      }
-    }
-    return defaultResponse;
-  }
-
-  function addMessage(text, className) {
-    const div = document.createElement("div");
-    div.className = className;
-    div.innerHTML = text;
-    chatbotMessages.appendChild(div);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
-});
     </script>
-
-    <script src="lawdata.js"></script>
-    <script src="main.js"></script>
 </body>
-
-
 </html>
-
-
-
