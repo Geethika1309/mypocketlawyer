@@ -536,6 +536,7 @@ header {
     <script src="languageManager.js"></script>
 
     <script>
+       
         // Original functionality
         document.getElementById("searchLawBtn").addEventListener("click", function () {
             const query = document.getElementById("searchQuery").value.trim();
@@ -548,7 +549,7 @@ header {
                 return;
             }
 
-            window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
+            window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
         });
 
         // index.html
@@ -582,7 +583,7 @@ header {
             const lang = document.getElementById("languageSelector").value || 'en';
 
             if (query) {
-                window.location.href = law.html?query=${encodeURIComponent(query)}&lang=${lang};
+                window.location.href = `law.html?query=${encodeURIComponent(query)}&lang=${lang}`;
             } else {
                 alert("Please enter a search term");
             }
@@ -595,3 +596,4 @@ header {
 
 
 </html>
+
