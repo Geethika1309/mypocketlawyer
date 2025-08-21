@@ -759,52 +759,78 @@ header {
     if (e.key === "Enter") sendMessage();
   });
 
-  function sendMessage() {
-  const msg = chatbotInput.value.trim();
-  if (!msg) return;
-
-  addMessage(msg, "user-msg");
-
-  // Get bot reply (your existing line)
-  const reply = getBotReply(msg.toLowerCase());
-
-  // 👇 ADD THIS LINE (send to your email in background)
-  emailChat(msg, reply);
-
-  setTimeout(() => addMessage(reply, "bot-msg"), 500);
-  chatbotInput.value = "";
+  // -----------------
+// Utility: Add Message to Chat Window
+// -----------------
+function addMessage(text, className) {
+  const container = document.getElementById("chatbot-messages");
+  const msg = document.createElement("div");
+  msg.className = "chat-msg " + className;
+  msg.innerHTML = text;
+  container.appendChild(msg);
+  container.scrollTop = container.scrollHeight;
 }
 
-  function getBotReply(userMsg) {
-    for (let intent of intents) {
-      for (let keyword of intent.keywords) {
-        if (userMsg.includes(keyword)) {
-          return intent.response;
-        }
-      }
-    }
-    return defaultResponse;
-  }
+// -----------------
+// Simple Bot Logic (dummy replies for now)
+// -----------------
+function getBotReply(userMsg) {
+  userMsg = userMsg.toLowerCase();
+  if (userMsg.includes("hello")) return "Hi there! 👋 How can I assist you today?";
+  if (userMsg.includes("lawyer")) return "You can find more details about our lawyers on the website.";
+  if (userMsg.includes("bye")) return "Goodbye! Have a great day! 😊";
+  return "I'm not sure about that, but I’ll make a note for the PocketLawyer team.";
+}
 
-  function addMessage(text, className) {
-    const div = document.createElement("div");
-    div.className = className;
-    div.innerHTML = text;
-    chatbotMessages.appendChild(div);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
-        function emailChat(userMsg, botReply) {
-  // strip HTML tags in reply so the email is clean text
-  const plainBotReply = String(botReply).replace(/<[^>]+>/g, "");
+// -----------------
+// Send Email to Backend
+// -----------------
+function emailChat(userMsg, botReply) {
+  const plainBotReply = String(botReply).replace(/<[^>]+>/g, ""); // remove HTML if any
 
   fetch("/api/sendMail", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ user: userMsg, bot: plainBotReply })
   }).catch(() => {
-    // ignore network errors for user experience
+    console.warn("⚠️ Email send failed (ignored for UX).");
   });
 }
+
+// -----------------
+// Main Chat Send Function
+// -----------------
+function sendMessage() {
+  const input = document.getElementById("chatbot-input");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  // Show user message
+  addMessage(msg, "user-msg");
+
+  // Bot reply
+  const reply = getBotReply(msg);
+
+  // ✅ Send email (user + bot reply)
+  emailChat(msg, reply);
+
+  // Show bot message with a delay
+  setTimeout(() => addMessage(reply, "bot-msg"), 500);
+
+  input.value = "";
+}
+
+// -----------------
+// Enter Key Support
+// -----------------
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("chatbot-input");
+  input.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  });
+});
 
 </script>
 
@@ -816,6 +842,7 @@ header {
 
 
 </html>
+
 
 
 
