@@ -769,11 +769,15 @@ button:hover {
             }
         });
 
-        const signinContainer = document.getElementById("signin-container");
+       // === SIGN-IN FLOW (FIXED) ===
+const signinContainer = document.getElementById("signin-container");
 const signinBtn = document.getElementById("signin-btn");
 let currentUser = { name: "", email: "" };
 
-signinBtn.addEventListener("click", () => {
+// Hide chatbot toggle until sign-in
+chatbotToggle.style.display = "none";
+
+signinBtn.addEventListener("click", async () => {
   const name  = document.getElementById("userName").value.trim();
   const email = document.getElementById("userEmail").value.trim();
 
@@ -782,46 +786,24 @@ signinBtn.addEventListener("click", () => {
     return;
   }
 
-  sendSignInEmail(name, email); // 🚀 sends email to your Gmail
-});
-
-
   // Save user info
   currentUser = { name, email };
 
-  // Hide sign-in & show chatbot toggle
+  // Send email via EmailJS
+  try {
+    await sendSignInEmail(name, email);
+    console.log("✅ Sign-in email sent!");
+  } catch (err) {
+    console.error("❌ Email send failed:", err);
+    // continue anyway
+  }
+
+  // Show chatbot after sign-in
   signinContainer.style.display = "none";
   chatbotToggle.style.display = "block";
-
-  // Optional: greet user personally
+  chatbotContainer.style.display = "flex"; // auto-open
   addMessage(`👋 Hello ${currentUser.name}, welcome to the Legal Help Chatbot!`, "bot-msg");
 });
-
-
-        (function() {
-    emailjs.init("RqdmFu2p30HPoaqCw"); // 🔑 Replace with your EmailJS Public Key
-  })();
-
-  document.getElementById("signin-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    // Add current time
-    const now = new Date();
-    const formattedTime = now.toLocaleString();
-
-    // Send email
-    emailjs.send("service_5gx2n3s", "template_91aw6md", {
-      user_name: document.getElementById("name").value,
-      user_email: document.getElementById("email").value,
-      time: formattedTime
-    })
-    .then(function(response) {
-      alert("✅ Sign-in details sent successfully!");
-    }, function(error) {
-      alert("❌ Failed to send. Please try again.");
-      console.error(error);
-    });
-  });
 
 
      const chatbotToggle = document.getElementById("chatbot-toggle");
@@ -1059,6 +1041,7 @@ const intents = [
 
 
 </html>
+
 
 
 
