@@ -764,16 +764,25 @@ function addMessage(text, className) {
 // Bot Logic
 // -----------------
 function getBotReply(userMsg) {
-  const lowerMsg = userMsg.toLowerCase();
+  userMsg = userMsg.toLowerCase();
 
-  for (const intent of intents) {
-    if (intent.keywords.some(keyword => lowerMsg.includes(keyword))) {
-      return intent.response;
-    }
+  if (userMsg.includes("lawyer page") || userMsg.includes("lawyer")) {
+    return "You can explore our Lawyer Page by clicking on 'Ask a Lawyer' in the menu above.";
+  }
+  if (userMsg.includes("contact")) {
+    return "You can reach us via the Contact page or email us at pocketlawyerindia1950@gmail.com.";
+  }
+  if (userMsg.includes("generate complaint")) {
+    return "Click on 'Generate Complaint Letter' on the homepage to draft your legal document instantly.";
+  }
+  if (userMsg.includes("traffic")) {
+    return "Traffic Violations section has details on fines, rules, and your rights.";
   }
 
-  return defaultResponse;
+  // Default fallback
+  return "I’ll make a note of your query for the PocketLawyer team.";
 }
+
 
 // -----------------
 // Main Send Function
@@ -818,6 +827,7 @@ chatbotInput.addEventListener("keypress", (e) => {
 
 
 </html>
+
 
 
 
