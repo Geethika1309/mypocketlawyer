@@ -29,12 +29,12 @@
 
         /* Header Section */
 header {
-  background: #ffffff; /* White background for clean official look */
-  padding: 20px 40px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #ffffff;   /* dark header background */
+  color: white;
 }
 
 /* Heading area */
@@ -120,6 +120,55 @@ header {
  width: 100%;
   left: 0;
 }
+        .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #f1c40f;   /* hover color */
+}
+
+/* Menu Icon (for mobile) */
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* ====== Responsive (Mobile View) ====== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #2c3e50;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+}
+        .topnav {
+            position:relative;
+        }
 
         .quote {
             text-align: center;
@@ -386,13 +435,14 @@ header {
 
     <!-- Top Navbar -->
     <nav class="topnav">
-        <ul>
+        <ul id="navLinks" class="nav-links">
             <li><a href="index.html" id="home">🏠 Home</a></li>
             <li><a href="lawcategories.html" id="lawc">⚖️ Law Categories</a></li>
             <li><a href="generatedocuments.html" id="gene">✍️ Generate Documents</a></li>
             <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
             <li><a href="contact.html" id="contact">📞 Contact</a></li>
         </ul>
+        <span class="menu-icon" onclick="toggleMenu()">☰</span>
     </nav>
 </header>
 
@@ -587,6 +637,11 @@ header {
                 alert("Please enter a search term");
             }
         });
+  function toggleMenu() {
+    const nav = document.getElementById("navLinks");
+    nav.classList.toggle("active");
+  }
+
     </script>
 
     <script src="lawdata.js"></script>
@@ -595,6 +650,7 @@ header {
 
 
 </html>
+
 
 
 
