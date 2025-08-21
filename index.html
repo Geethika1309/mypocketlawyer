@@ -404,22 +404,21 @@ header {
 
     /* === CHATBOT TOGGLE === */
     #chatbot-toggle {
-      display: none; /* hidden until sign-in */
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #007bff;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 24px;
-      z-index: 1000;
-    }
+  display: none; /* stays hidden until sign in */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #007bff;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 1000;
+}
 
     /* === CHATBOT WINDOW === */
     #chatbot-container {
@@ -770,10 +769,11 @@ const signinContainer = document.getElementById("signin-container");
 
     // === CHATBOT OPEN/CLOSE ===
     chatbotToggle.addEventListener("click", () => {
-      chatbotContainer.style.display = "flex";
-      chatbotToggle.style.display = "none";
-      addMessage("👋 Hello! Welcome to our Legal Help Chatbot.<br>💡 You can ask me about laws, IPC sections, complaints, documents, or get guidance.", "bot-msg");
-    });
+  chatbotContainer.style.display = "flex";  // opens chatbot
+  chatbotToggle.style.display = "none";     // hides chat button
+  addMessage("👋 Hello! Welcome to our Legal Help Chatbot.<br>💡 You can ask me about laws, IPC sections, complaints, documents, or get guidance.", "bot-msg");
+});
+
 
     chatbotClose.addEventListener("click", () => {
       chatbotContainer.style.display = "none";
@@ -836,4 +836,5 @@ const signinContainer = document.getElementById("signin-container");
 
 
 </html>
+
 
