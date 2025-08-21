@@ -574,21 +574,20 @@ header {
             </div>
         </div>
 <!-- Add this just before </body> -->
-<div id="chatbot-container">
+<button id="chatbot-toggle" class="chat-btn">💬 Chat</button>
+
+<div id="chatbot-container" class="chat-container" style="display:none;">
   <div id="chatbot-header">
-    🤖 Pocket Lawyer Assistant
-    <span id="chatbot-close">&times;</span>
+    <span>Legal Help Chatbot</span>
+    <button id="chatbot-close">❌</button>
   </div>
   <div id="chatbot-messages"></div>
-  <div id="chatbot-input-container">
-    <input type="text" id="chatbot-input" placeholder="Type your question..." />
+  <div id="chatbot-input-area">
+    <input type="text" id="chatbot-input" placeholder="Type your message...">
     <button id="chatbot-send">Send</button>
   </div>
 </div>
 
-<button id="chatbot-toggle">💬</button>
-
-       
 
         
 <footer class="site-footer">
@@ -940,3 +939,4 @@ const intents = [
 
 
 </html>
+
