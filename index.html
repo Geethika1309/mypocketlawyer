@@ -469,35 +469,53 @@ header {
   }
 
         .signin-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ccc;
-  padding: 20px;
-  width: 300px;
-  margin: 20px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+  width: 350px;
+  text-align: center;
 }
-.signin-container input, 
-.signin-container button {
+
+.signin-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #444;
+}
+
+input {
   width: 100%;
   padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  margin-bottom: 15px;
 }
-.signin-container button {
-  background: #007bff;
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #4facfe;
+  border: none;
+  border-radius: 8px;
   color: white;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-}
-.signin-container button:hover {
-  background: #0056b3;
+  transition: 0.3s ease;
 }
 
-
+button:hover {
+  background: #00c6fb;
+}
     </style>
 
 </head>
@@ -607,9 +625,15 @@ header {
         <!-- Sign In Page -->
 <div id="signin-container" class="signin-container">
   <h2>🔐 Sign In to Chat</h2>
-  <input type="text" id="userName" placeholder="Enter your name" required>
-  <input type="email" id="userEmail" placeholder="Enter your email" required>
-  <button id="signin-btn">Start Chat</button>
+  <form id="signin-form">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="user_name" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="user_email" required>
+
+  <button type="submit">Start Chat</button>
+</form>
 </div>
 
 <!-- Add this just before </body> -->
@@ -689,6 +713,7 @@ header {
     </main>
     <script src="translations.js"></script>
     <script src="languageManager.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <script>
        
@@ -749,13 +774,17 @@ const signinBtn = document.getElementById("signin-btn");
 let currentUser = { name: "", email: "" };
 
 signinBtn.addEventListener("click", () => {
-  const name = document.getElementById("userName").value.trim();
+  const name  = document.getElementById("userName").value.trim();
   const email = document.getElementById("userEmail").value.trim();
 
   if (!name || !email) {
-    alert("⚠️ Please enter both name and email to continue.");
+    alert("Please enter both name and email");
     return;
   }
+
+  sendSignInEmail(name, email); // 🚀 sends email to your Gmail
+});
+
 
   // Save user info
   currentUser = { name, email };
@@ -768,6 +797,31 @@ signinBtn.addEventListener("click", () => {
   addMessage(`👋 Hello ${currentUser.name}, welcome to the Legal Help Chatbot!`, "bot-msg");
 });
 
+
+        (function() {
+    emailjs.init("RqdmFu2p30HPoaqCw"); // 🔑 Replace with your EmailJS Public Key
+  })();
+
+  document.getElementById("signin-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Add current time
+    const now = new Date();
+    const formattedTime = now.toLocaleString();
+
+    // Send email
+    emailjs.send("service_5gx2n3s", "template_91aw6md", {
+      user_name: document.getElementById("name").value,
+      user_email: document.getElementById("email").value,
+      time: formattedTime
+    })
+    .then(function(response) {
+      alert("✅ Sign-in details sent successfully!");
+    }, function(error) {
+      alert("❌ Failed to send. Please try again.");
+      console.error(error);
+    });
+  });
 
 
      const chatbotToggle = document.getElementById("chatbot-toggle");
@@ -1005,6 +1059,7 @@ const intents = [
 
 
 </html>
+
 
 
 
