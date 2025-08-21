@@ -708,109 +708,78 @@ const chatbotSend = document.getElementById("chatbot-send");
 // -----------------
 // Intent-based responses
 // -----------------
+<script>
 const intents = [
   {
     keywords: ["hello", "hi", "hey"],
-    response: "Hello! 👋 How can I help you today?"
+    response: "👋 Hello there! How can I assist you today?"
   },
   {
     keywords: ["home", "start", "main page"],
-    response: "You can go to Home here 👉 <a href='index.html'>Home</a>"
+    response: "🏠 You can go to Home here 👉 <a href='index.html'>Home</a>"
   },
   {
     keywords: ["categories", "laws", "law categories"],
-    response: "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
+    response: "⚖️ Browse different laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
   },
   {
     keywords: ["documents", "generate", "create document", "complaint letter"],
-    response: "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+    response: "📄 Generate your documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
   },
   {
     keywords: ["lawyer", "ask", "advice", "help from lawyer"],
-    response: "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
+    response: "👨‍⚖️ Need expert advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
   },
   {
     keywords: ["contact", "phone", "email", "address", "support"],
-    response: "Reach us here 👉 <a href='contact.html'>Contact</a>"
+    response: "☎️ Reach us here 👉 <a href='contact.html'>Contact</a>"
   },
   {
     keywords: ["complaint", "file complaint", "raise issue"],
-    response: "You can learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
+    response: "📝 Learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
   },
   {
     keywords: ["consumer", "product", "fraud", "complaints"],
-    response: "See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
+    response: "🛒 See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
+  },
+  {
+    keywords: ["problem", "issue", "not working", "error"],
+    response: "⚠️ Sorry to hear you’re facing issues. Please explain your problem and we’ll help fix it. 🙏"
   },
   {
     keywords: ["bye", "goodbye", "see you"],
-    response: "Goodbye! Have a great day! 😊"
+    response: "👋 Goodbye! Have a wonderful day! 😊"
   }
 ];
 
-const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
+const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>🏠 Home, ⚖️ Categories, 📄 Documents, 👨‍⚖️ Lawyer, ☎️ Contact, or 📝 Complaints</b>.";
 
-// -----------------
-// Utility: Add Message to Chat Window
-// -----------------
-function addMessage(text, className) {
-  const msg = document.createElement("div");
-  msg.className = "chat-msg " + className;
-  msg.innerHTML = text;
-  chatbotMessages.appendChild(msg);
-  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+// Function to process user input
+function getBotResponse(message) {
+  message = message.toLowerCase();
+
+  for (const intent of intents) {
+    if (intent.keywords.some(keyword => message.includes(keyword))) {
+      return intent.response;
+    }
+  }
+
+  return defaultResponse;
 }
 
-// -----------------
-// Bot Logic
-// -----------------
-function getBotReply(userMsg) {
-  userMsg = userMsg.toLowerCase();
+// Example usage with input box & chat window
+document.querySelector("#chat-send-btn").addEventListener("click", () => {
+  const userInput = document.querySelector("#chat-input").value;
+  const botReply = getBotResponse(userInput);
 
-  // Lawyer & Services
-  if (userMsg.includes("lawyer page") || userMsg.includes("lawyer")) {
-    return "You can explore our Lawyer Page by clicking on 'Ask a Lawyer' in the menu above.";
-  }
-  if (userMsg.includes("generate complaint") || userMsg.includes("complaint")) {
-    return "Click on 'Generate Complaint Letter' on the homepage to draft your legal complaint instantly.";
-  }
-  if (userMsg.includes("categories") || userMsg.includes("laws")) {
-    return "You can explore different Law Categories such as Traffic Violations, Consumer Complaints, Rent Issues, and Cyber Safety.";
-  }
+  document.querySelector("#chat-output").innerHTML += 
+    `<div><b>You:</b> ${userInput}</div>`;
+  document.querySelector("#chat-output").innerHTML += 
+    `<div><b>Assistant:</b> ${botReply}</div>`;
 
-  // Specific Laws
-  if (userMsg.includes("traffic")) {
-    return "Traffic Violations: Learn about fines, challans, and your legal rights under traffic laws.";
-  }
-  if (userMsg.includes("consumer")) {
-    return "Consumer Complaints: Get help with product/service complaints, refunds, and consumer rights.";
-  }
-  if (userMsg.includes("rent") || userMsg.includes("tenant")) {
-    return "Rent/Tenant Issues: Understand rental agreements, tenant rights, and landlord obligations.";
-  }
-  if (userMsg.includes("cyber") || userMsg.includes("digital safety")) {
-    return "Cyber Safety: Protect yourself from cyberbullying, fraud, and online scams.";
-  }
-
-  // Contact & Help
-  if (userMsg.includes("contact") || userMsg.includes("email")) {
-    return "You can contact us from the 'Contact' menu or email: pocketlawyerindia1950@gmail.com.";
-  }
-  if (userMsg.includes("problem") || userMsg.includes("issue") || userMsg.includes("not working")) {
-    return "Sorry to hear that 😔. Please describe your problem here, and our team will look into it. Or you can contact us directly from the Contact page.";
-  }
-
-  // Greetings
-  if (userMsg.includes("hi") || userMsg.includes("hello") || userMsg.includes("hey")) {
-    return "Hello 👋 I’m Pocket Lawyer Assistant. How can I help you today?";
-  }
-  if (userMsg.includes("thanks") || userMsg.includes("thank you")) {
-    return "You’re welcome! 😊 Always here to help.";
-  }
-
-  // Default fallback
-  return "I didn’t fully understand that. Can you please rephrase or check our Law Categories?";
-}
-
+  document.querySelector("#chat-input").value = "";
+});
+</script>
 
 // -----------------
 // Main Send Function
@@ -855,6 +824,7 @@ chatbotInput.addEventListener("keypress", (e) => {
 
 
 </html>
+
 
 
 
