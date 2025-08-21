@@ -122,7 +122,7 @@ class LanguageManager {
                    'askemail':'askemail',
                    'askquestion':'askquestion',
                    'asksend':'asksend',
-                   'lcheading':'lcheading','lcdiv1':'lcdiv1','lcdiv2':'lcdiv2','lcdiv3':'lcdiv3','lcdiv4':'lcdiv4','lcdiv5':'lcdiv5','lcdiv6':'lcdiv6','lcdiv7':'lcdiv7','lcdiv8':'lcdiv8','lcdiv9':'lcdiv9','lcdiv10':'lcdiv10','lcdiv11':'lcdiv11','lcdiv12':'lcdiv12','lcdiv13':'lcdiv13','lcdiv14':'lcdiv14','lcdiv15':'lcdiv15','lcdiv16':'lcdiv16',
+                   'lcheading':'lcheading','lcdiv1':'lcdiv1','lcdiv2':'lcdiv2','lcdiv3':'lcdiv3','lcdiv4':'lcdiv4','lcdiv5':'lcdiv5','lcdiv6':'lcdiv6','lcdiv7':'lcdiv7','lcdiv8':'lcdiv8','lcdiv9':'lcdiv9','lcdiv10':'lcdiv10','lcdiv11':'lcdiv11','lcdiv12':'lcdiv12','lcdiv13':'lcdiv13','lcdiv14':'lcdiv14','lcdiv15':'lcdiv15','lcdiv16':'lcdiv16','lcdiv17':'lcdiv17','lcdiv18':'lcdiv18','lcdiv19':'lcdiv19','lcdiv20':'lcdiv20','lcdiv21':'lcdiv21','lcdiv22':'lcdiv22','lcdiv23':'lcdiv23','lcdiv24':'lcdiv24',
                    'generateDocHeading':'generateDocHeading',
                    'contactheading':'contactheading',
                    'contactplace':'contactplace',
@@ -186,4 +186,5 @@ document.addEventListener("DOMContentLoaded", function() {
       languageManager.setLanguage(e.target.value);
     });
   }
+
 });
