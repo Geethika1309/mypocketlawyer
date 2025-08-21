@@ -716,7 +716,9 @@ button:hover {
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <script>
-       
+       (function(){
+      emailjs.init("RqdmFu2p30HPoaqCw"); // replace with your EmailJS public key
+    })();
         // Original functionality
         document.getElementById("searchLawBtn").addEventListener("click", function () {
             const query = document.getElementById("searchQuery").value.trim();
@@ -922,6 +924,7 @@ function sendSignInEmail(name, email) {
 
 
 </html>
+
 
 
 
