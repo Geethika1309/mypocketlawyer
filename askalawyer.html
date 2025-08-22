@@ -310,45 +310,46 @@
       There was an error submitting your request. Please try again or contact us directly.
     </div>
     
-    <form id="consultationForm">
-      <label for="name" data-translate="lawyername">Your Name</label>
-      <input type="text" id="name" name="name" required>
+    <form action="mailto:pocketlawyerindia1950@gmail.com" method="post" enctype="text/plain">
+  <input type="hidden" name="Subject" value="New Lawyer Consultation Request">
+  
+  <label for="name" data-translate="lawyername">Your Name</label>
+  <input type="text" id="name" name="Name" required>
 
-      <label for="email" data-translate="lawyeremail">Email Address</label>
-      <input type="email" id="email" name="email" required>
+  <label for="email" data-translate="lawyeremail">Email Address</label>
+  <input type="email" id="email" name="Email" required>
 
-      <label for="phone" data-translate="lawyerphone">Phone Number</label>
-      <input type="tel" id="phone" name="phone" required>
+  <label for="phone" data-translate="lawyerphone">Phone Number</label>
+  <input type="tel" id="phone" name="Phone" required>
 
-      <label for="issueType" data-translate="lawyerissue">Type of Legal Issue</label>
-      <select id="issueType" name="issueType" required>
-        <option value="" disabled selected data-translate="option1lawyer">Select your issue</option>
-        <option value="Property Dispute" data-translate="option2lawyer">Property Dispute</option>
-        <option value="Divorce or Family Matter" data-translate="option3lawyer">Divorce / Family Law</option>
-        <option value="Criminal Complaint" data-translate="option4lawyer">Criminal Complaint</option>
-        <option value="Cyber Crime" data-translate="option5lawyer">Cyber Crime</option>
-        <option value="Consumer Complaint" data-translate="option6lawyer">Consumer Complaint</option>
-        <option value="Employment Issue" data-translate="option7lawyer">Employment Issue</option>
-        <option value="Other" data-translate="option8lawyer">Other</option>
-      </select>
+  <label for="issueType" data-translate="lawyerissue">Type of Legal Issue</label>
+  <select id="issueType" name="Issue Type" required>
+    <option value="" disabled selected data-translate="option1lawyer">Select your issue</option>
+    <option value="Property Dispute" data-translate="option2lawyer">Property Dispute</option>
+    <option value="Divorce or Family Matter" data-translate="option3lawyer">Divorce / Family Law</option>
+    <option value="Criminal Complaint" data-translate="option4lawyer">Criminal Complaint</option>
+    <option value="Cyber Crime" data-translate="option5lawyer">Cyber Crime</option>
+    <option value="Consumer Complaint" data-translate="option6lawyer">Consumer Complaint</option>
+    <option value="Employment Issue" data-translate="option7lawyer">Employment Issue</option>
+    <option value="Other" data-translate="option8lawyer">Other</option>
+  </select>
 
-      <label for="contactMethod" data-translate="lawyercontact">Preferred Contact Method</label>
-      <select id="contactMethod" name="contactMethod" required>
-        <option value="" disabled selected data-translate="option9lawyer">Select contact method</option>
-        <option value="Phone Call" data-translate="option10lawyer">Phone Call</option>
-        <option value="Email" data-translate="option11lawyer">Email</option>
-        <option value="WhatsApp" data-translate="option12lawyer">WhatsApp</option>
-      </select>
+  <label for="contactMethod" data-translate="lawyercontact">Preferred Contact Method</label>
+  <select id="contactMethod" name="Contact Method" required>
+    <option value="" disabled selected data-translate="option9lawyer">Select contact method</option>
+    <option value="Phone Call" data-translate="option10lawyer">Phone Call</option>
+    <option value="Email" data-translate="option11lawyer">Email</option>
+    <option value="WhatsApp" data-translate="option12lawyer">WhatsApp</option>
+  </select>
 
-      <label for="message" data-translate="lawyerproblem">Brief Description of Your Legal Problem</label>
-      <textarea id="message" name="message" rows="6" placeholder="Describe your issue in detail..." required
-        data-placeholder="lawyerdetail"></textarea>
+  <label for="message" data-translate="lawyerproblem">Brief Description of Your Legal Problem</label>
+  <textarea id="message" name="Message" rows="6" required></textarea>
 
-      <button type="submit" id="submitButton" data-translate="lawyersubmit">Submit Request</button>
+  <button type="submit" data-translate="lawyersubmit">Submit Request</button>
 
-      <p class="note" data-translate="lawyernote">We will connect you with a legal expert shortly through your preferred
-        method.</p>
-    </form>
+  <p class="note" data-translate="lawyernote">We will connect you with a legal expert shortly through your preferred
+    method.</p>
+</form>
   </div><br><br>
 
   <footer class="site-footer">
@@ -358,81 +359,13 @@
   <script src="translations.js"></script>
   <script src="languageManager.js"></script>
   <script>
-    // Initialize on DOM load
-    document.addEventListener("DOMContentLoaded", () => {
-      // Set language from localStorage or default to 'en'
-      languageManager.applyTranslations();
-
-      // Form submission handling
-      document.getElementById('consultationForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitButton = document.getElementById('submitButton');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        
-        // Show loading state
-        submitButton.disabled = true;
-        submitButton.textContent = 'Submitting...';
-        
-        // Hide previous messages
-        successMessage.style.display = 'none';
-        errorMessage.style.display = 'none';
-        
-        // Prepare email parameters
-        const templateParams = {
-          name: document.getElementById('name').value,
-          email: document.getElementById('email').value,
-          phone: document.getElementById('phone').value,
-          issueType: document.getElementById('issueType').value,
-          contactMethod: document.getElementById('contactMethod').value,
-          message: document.getElementById('message').value
-        };
-        
-        // Send email using EmailJS
-        emailjs.send('service_5gx2n3s', 'template_91aw6md', templateParams)
-          .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-            successMessage.style.display = 'block';
-            document.getElementById('consultationForm').reset();
-          }, function(error) {
-            console.log('FAILED...', error);
-            errorMessage.style.display = 'block';
-            
-            // Fallback to FormSubmit if EmailJS fails
-            const form = document.getElementById('consultationForm');
-            form.action = 'https://formsubmit.co/pocketlawyerindia1950@gmail.com';
-            form.method = 'POST';
-            
-            // Add hidden fields for FormSubmit
-            const subjectInput = document.createElement('input');
-            subjectInput.type = 'hidden';
-            subjectInput.name = '_subject';
-            subjectInput.value = 'New Lawyer Consultation Request';
-            form.appendChild(subjectInput);
-            
-            const captchaInput = document.createElement('input');
-            captchaInput.type = 'hidden';
-            captchaInput.name = '_captcha';
-            captchaInput.value = 'false';
-            form.appendChild(captchaInput);
-            
-            const templateInput = document.createElement('input');
-            templateInput.type = 'hidden';
-            templateInput.name = '_template';
-            templateInput.value = 'table';
-            form.appendChild(templateInput);
-            
-            // Try submitting with FormSubmit as fallback
-            form.submit();
-          })
-          .finally(() => {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Submit Request';
-          });
-      });
-    });
+   // Initialize on DOM load
+document.addEventListener("DOMContentLoaded", () => {
+  // Set language from localStorage or default to 'en'
+  languageManager.applyTranslations();
+});
   </script>
 </body>
 </html>
+
 
