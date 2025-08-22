@@ -120,87 +120,60 @@
 
         /* Image Slider Styles */
         .slider-container {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        height: 400px;
+        margin: 20px auto;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
 
-        .slider {
-            display: flex;
-            width: 600%; /* 6 images = 600% */
-            height: 100%;
-            transition: transform 0.8s ease-in-out;
-        }
+    .slider {
+        display: flex;
+        width: 600%; /* 6 images = 600% */
+        height: 100%;
+        transition: transform 0.8s ease-in-out;
+    }
 
-        .slide {
-            width: 16.666%; /* 100% / 6 = 16.666% */
-            height: 100%;
-        }
+    .slide {
+        width: 16.666%; /* 100% / 6 = 16.666% */
+        height: 100%;
+        position: relative;
+    }
 
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slider-nav {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            background: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .slider-dot.active {
-            background: #fff;
-        }
-
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            font-size: 24px;
-            padding: 15px;
-            cursor: pointer;
-            border-radius: 50%;
-            z-index: 10;
-            transition: background 0.3s ease;
-        }
-
-        .slider-arrow:hover {
-            background: rgba(0,0,0,0.8);
-        }
-
-        .slider-arrow.prev {
-            left: 20px;
-        }
-
-        .slider-arrow.next {
-            right: 20px;
-        }
-        .slide-content {
+    /* UPDATED IMAGE STYLING */
+    .slide img {
         width: 100%;
         height: 100%;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover; /* This ensures images cover the area while maintaining aspect ratio */
+        object-position: center; /* Centers the image within the container */
+    }
+
+    /* If you're using background images instead of img tags */
+    .slide-content {
+        width: 100%;
+        height: 100%;
+        background-size: cover; /* Ensures background covers entire area */
+        background-position: center; /* Centers the background image */
+        background-repeat: no-repeat; /* Prevents tiling */
         position: relative;
+    }
+    
+    /* Rest of your existing styles */
+    .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0,0,0,0.5);
+        color: white;
+        font-size: 24px;
+        padding: 15px;
+        cursor: pointer;
+        border-radius: 50%;
+        z-index: 10;
+        transition: background 0.3s ease;
     }
     
     .quote-overlay {
@@ -213,27 +186,6 @@
         padding: 20px;
         text-align: center;
     }
-    
-    .quote-overlay h3 {
-        margin: 0 0 8px 0;
-        font-size: 24px;
-        color: #FF8C00;
-    }
-    
-    .quote-overlay p {
-        margin: 0;
-        font-size: 18px;
-    }
-
-        .quote {
-            text-align: center;
-            color: #FF8C00;
-            font-size: 35px;
-            font-weight: bold;
-            margin-top: 20px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
         .search-language {
             display: flex;
             justify-content: center;
@@ -1139,6 +1091,7 @@
 
 
 </html>
+
 
 
 
