@@ -28,74 +28,76 @@
         }
 
         /* Header Section */
-        header {
-            background: linear-gradient(135deg, #1a2a6c, #2c3e50); /* Deep blue gradient */; /* White background for clean official look */
-            padding: 20px 40px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+       header {
+  background: #ffffff; /* White background for clean official look */
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-        /* Heading area */
-        .headers {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+/* Heading area */
+.headers {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-        .logo {
-            height: 90px;
-        }
+.logo {
+    height: 90px;
+    width: auto;
+}
 
-        .mainheading {
-            font-size: 45px;
-            font-weight: bold;
-            color:linear-gradient(to right, #D4AF37, #B8860B);
-            background: linear-gradient(to right, #228B22, #32CD32);
-    
-            padding: 5px 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
+.mainheading {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: bold;
+    color: #2c3e50;
+    background: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+/* Navigation Menu */
+.topnav {
+  margin-top: 20px;
+  /* background: linear-gradient(90deg, #34495e, #2c3e50); Stylish dark gradient */
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.topnav ul li {
+  display: inline-block;
+}
+.topnav ul {
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 70px;
+}
 
-        /* Navigation Menu */
-        .topnav {
-            margin-top: 20px;
-            background: linear-gradient(to right, #228B22, #006400);
-            padding: 15px 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .topnav ul li {
-            display: inline-block;
-        }
-        .topnav ul {
-            list-style: none;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 70px;
-        }
+.topnav ul li a {
+   display: inline-block;
+  color: #2c3e50; /* normal text color */
+  padding: 10px 5px;
+  border-radius: 8px;
+  text-decoration: none; /* remove underline */
+  transition: all 0.3s ease; /* smooth effect */
+  font-size: 22px;   /* 👈 change this value */
+  font-weight: 600;
+}
 
-        .topnav ul li a {
-            display: inline-block;
-            color: #ecf0f1; /* normal text color */
-            padding: 10px 5px;
-            border-radius: 8px;
-            text-decoration: none; /* remove underline */
-            transition: all 0.3s ease; /* smooth effect */
-            font-size: 22px;   /* 👈 change this value */
-            font-weight: 600;
-        }
 
-        .topnav ul li a:hover {
-           background: #ff8c00; /* Orange background on hover */
-        color: #ffffff; /* White text on hover */
-            padding: 12px 24px; /* increase size on hover */
-            border-radius: 12px; /* smoother corners */
-        }
+.topnav ul li a:hover {
+    background: #696969; /* #2F4F4F    #6495ED*/
+  color: #000; /* keep text visible */
+  padding: 12px 24px; /* increase size on hover */
+  border-radius: 12px; /* smoother corners */
+}
+
+
 
         /* Hover underline animation */
         .topnav ul li a::after {
@@ -1101,6 +1103,7 @@
 
 
 </html>
+
 
 
 
