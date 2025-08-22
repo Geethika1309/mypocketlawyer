@@ -2594,7 +2594,7 @@ Yours sincerely,
 
 
   {
-  id: "ipc-379",
+  id: "theft",
  title:{
  en : "Theft - IPC 379",
 te:"దొంగతనం - IPC 379",
@@ -7169,6 +7169,7 @@ Sincerely,
 },
 
 ];
+
 
 
 
