@@ -1,4 +1,310 @@
 const lawData = [
+  // Fundamental Rights
+{
+  id: "fundamental-rights",
+  title: {
+    en: "Fundamental Rights under the Indian Constitution",
+    te: "భారత రాజ్యాంగంలోని మౌలిక హక్కులు",
+    hi: "भारतीय संविधान में मौलिक अधिकार"
+  },
+  keywords: {
+    en: ["fundamental rights", "constitution", "right to equality", "freedom", "constitutional rights", "education", "justice"],
+    te: ["మౌలిక హక్కులు", "రాజ్యాంగం", "సమానత్వ హక్కు", "స్వేచ్ఛ", "రాజ్యాంగ హక్కులు", "విద్య", "న్యాయం"],
+    hi: ["मौलिक अधिकार", "संविधान", "समानता का अधिकार", "स्वतंत्रता", "संवैधानिक अधिकार", "शिक्षा", "न्याय"]
+  },
+  section1: {
+    en: "Fundamental Rights are basic human rights guaranteed by the Indian Constitution to all citizens.",
+    te: "మౌలిక హక్కులు అనేవి భారత రాజ్యాంగం అందరు పౌరులకు హామీ ఇచ్చే మానవ హక్కులు.",
+    hi: "मौलिक अधिकार वे बुनियादी मानव अधिकार हैं जो भारतीय संविधान सभी नागरिकों को प्रदान करता है।"
+  },
+  section2: {
+    en: "If your rights are violated: you can approach the High Court or the Supreme Court under Article 32 and 226.",
+    te: "మీ హక్కులు ఉల్లంఘించబడితే: ఆర్టికల్ 32 మరియు 226 కింద హైకోర్టు లేదా సుప్రీంకోర్టును సంప్రదించవచ్చు.",
+    hi: "यदि आपके अधिकारों का उल्लंघन होता है: आप अनुच्छेद 32 और 226 के तहत उच्च न्यायालय या सर्वोच्च न्यायालय जा सकते हैं।"
+  },
+  section3: {
+    en: ["Aadhaar Card", "Any legal notice", "Supporting documents"],
+    te: ["ఆధార్ కార్డు", "ఏదైనా న్యాయ నోటీసు", "మద్దతు పత్రాలు"],
+    hi: ["आधार कार्ड", "कोई कानूनी नोटिस", "सहायक दस्तावेज़"]
+  },
+  section4: {
+    en: `To,  
+The Registrar,  
+Supreme Court of India,  
+New Delhi.  
+
+Subject: Petition for enforcement of Fundamental Rights  
+
+Respected Sir/Madam,  
+I am writing to seek enforcement of my Fundamental Rights as guaranteed under the Constitution of India. My right to equality and freedom has been violated due to [describe incident briefly].  
+
+I kindly request the Hon’ble Court to take necessary steps to restore my rights and deliver justice.  
+
+Yours faithfully,  
+[Your Name]  
+[Contact Details]`,
+    
+    te: `కు,  
+రిజిస్ట్రార్,  
+భారత సుప్రీం కోర్టు,  
+న్యూ ఢిల్లీ.  
+
+విషయం: మౌలిక హక్కుల అమలు కోసం పిటిషన్  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+భారత రాజ్యాంగం హామీ ఇచ్చిన నా మౌలిక హక్కులను అమలు చేయమని ఈ పిటిషన్‌ను సమర్పిస్తున్నాను. నా సమానత్వ హక్కు మరియు స్వేచ్ఛ [ఘటన వివరించండి] కారణంగా ఉల్లంఘించబడింది.  
+
+దయచేసి న్యాయాన్ని అందించి నా హక్కులను పునరుద్ధరించే చర్యలు తీసుకోవాలని వేడుకుంటున్నాను.  
+
+మీ విధేయుడు,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+
+    hi: `प्रति,  
+रजिस्ट्रार,  
+भारत का सर्वोच्च न्यायालय,  
+नई दिल्ली।  
+
+विषय: मौलिक अधिकारों के प्रवर्तन हेतु याचिका  
+
+महोदय/महोदया,  
+मैं भारतीय संविधान के तहत प्रदत्त मेरे मौलिक अधिकारों के प्रवर्तन हेतु यह याचिका प्रस्तुत कर रहा/रही हूँ। मेरा समानता और स्वतंत्रता का अधिकार [घटना लिखें] के कारण उल्लंघित हुआ है।  
+
+कृपया माननीय न्यायालय आवश्यक कार्रवाई कर मेरे अधिकार बहाल करे और न्याय प्रदान करे।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// Curfew Regulations
+{
+  id: "curfew-regulations",
+  title: {
+    en: "Curfew Regulations",
+    te: "కర్ఫ్యూ నిబంధనలు",
+    hi: "कर्फ्यू नियम"
+  },
+  keywords: {
+    en: ["curfew", "law and order", "emergency", "restrictions", "prohibition"],
+    te: ["కర్ఫ్యూ", "చట్టం మరియు క్రమం", "అత్యవసర పరిస్థితి", "పరిమితులు", "నిషేధం"],
+    hi: ["कर्फ्यू", "कानून व्यवस्था", "आपातकाल", "प्रतिबंध", "निषेध"]
+  },
+  section1: {
+    en: "Curfew regulations are imposed by authorities during emergencies to maintain law and order.",
+    te: "కర్ఫ్యూ నిబంధనలు అత్యవసర పరిస్థితుల్లో చట్టం మరియు క్రమాన్ని కాపాడటానికి విధించబడతాయి.",
+    hi: "कर्फ्यू नियम आपातकाल के दौरान कानून और व्यवस्था बनाए रखने के लिए लागू किए जाते हैं।"
+  },
+  section2: {
+    en: "If caught violating curfew: you may face penalties, arrest, or imprisonment depending on the severity.",
+    te: "కర్ఫ్యూ ఉల్లంఘించినట్లయితే: మీరు జరిమానాలు, అరెస్టు లేదా జైలు శిక్షను ఎదుర్కోవలసి ఉంటుంది.",
+    hi: "कर्फ्यू तोड़ने पर: आपको जुर्माना, गिरफ्तारी या कारावास का सामना करना पड़ सकता है।"
+  },
+  section3: {
+    en: ["ID Proof", "Work Permission Letter (if exempted)", "Emergency documents"],
+    te: ["ఐడీ ప్రూఫ్", "పని అనుమతి లేఖ (ఉన్నట్లయితే)", "అత్యవసర పత్రాలు"],
+    hi: ["पहचान पत्र", "काम की अनुमति पत्र (यदि छूट हो)", "आपातकालीन दस्तावेज़"]
+  },
+  section4: {
+    en: `To,  
+The Station House Officer,  
+[Police Station Name],  
+[City].  
+
+Subject: Request for Curfew Pass  
+
+Respected Sir/Madam,  
+I request you to kindly issue me a curfew pass as I am required to travel for [reason: medical/emergency/work].  
+
+I assure you that I will follow all safety protocols and restrictions.  
+
+Yours faithfully,  
+[Your Name]  
+[Contact Details]`,
+    
+    te: `కు,  
+స్టేషన్ హౌస్ అధికారి,  
+[పోలీసు స్టేషన్ పేరు],  
+[నగరం].  
+
+విషయం: కర్ఫ్యూ పాస్ కోసం విజ్ఞప్తి  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+నేను [వైద్యం/అత్యవసర/పని] కోసం ప్రయాణించాల్సి ఉన్నందున దయచేసి నాకు కర్ఫ్యూ పాస్ జారీ చేయమని ప్రార్థిస్తున్నాను.  
+
+నేను అన్ని భద్రతా నిబంధనలు మరియు పరిమితులను పాటిస్తానని హామీ ఇస్తున్నాను.  
+
+మీ విధేయుడు,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+
+    hi: `प्रति,  
+स्टेशन हाउस अधिकारी,  
+[पुलिस स्टेशन का नाम],  
+[शहर]।  
+
+विषय: कर्फ्यू पास हेतु आवेदन  
+
+महोदय/महोदया,  
+मैं [चिकित्सा/आपातकाल/कार्य] हेतु यात्रा करने के लिए कर्फ्यू पास जारी करने का अनुरोध करता/करती हूँ।  
+
+मैं आश्वासन देता/देती हूँ कि सभी सुरक्षा नियमों और प्रतिबंधों का पालन करूंगा/करूंगी।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// Check Bounce
+{
+  id: "check-bounce",
+  title: {
+    en: "Check Bounce - Negotiable Instruments Act, Section 138",
+    te: "చెక్ బౌన్స్ - నెగోషియబుల్ ఇన్‌స్ట్రుమెంట్స్ యాక్ట్, సెక్షన్ 138",
+    hi: "चेक बाउंस - परक्राम्य लिखत अधिनियम, धारा 138"
+  },
+  keywords: {
+    en: ["check bounce", "section 138", "dishonour of cheque", "bank", "payment failure"],
+    te: ["చెక్ బౌన్స్", "సెక్షన్ 138", "చెక్ తిరస్కరణ", "బ్యాంక్", "చెల్లింపు వైఫల్యం"],
+    hi: ["चेक बाउंस", "धारा 138", "चेक अस्वीकृति", "बैंक", "भुगतान विफलता"]
+  },
+  section1: {
+    en: "Dishonour of cheque is a criminal offence under Section 138 of the Negotiable Instruments Act.",
+    te: "చెక్ తిరస్కరణ నెగోషియబుల్ ఇన్‌స్ట్రుమెంట్స్ యాక్ట్ సెక్షన్ 138 ప్రకారం క్రిమినల్ నేరం.",
+    hi: "चेक अस्वीकृति परक्राम्य लिखत अधिनियम की धारा 138 के तहत एक आपराधिक अपराध है।"
+  },
+  section2: {
+    en: "If your cheque is dishonoured: you must issue a legal notice within 30 days and file a case if unpaid within 15 days.",
+    te: "మీ చెక్ తిరస్కరించబడితే: మీరు 30 రోజుల్లో న్యాయ నోటీసు పంపాలి మరియు 15 రోజుల్లో చెల్లించకపోతే కేసు వేయాలి.",
+    hi: "यदि आपका चेक अस्वीकृत होता है: तो आपको 30 दिनों के भीतर कानूनी नोटिस भेजना होगा और 15 दिनों में भुगतान न होने पर मामला दर्ज करना होगा।"
+  },
+  section3: {
+    en: ["Dishonoured Cheque", "Bank Memo", "Copy of Legal Notice", "Acknowledgement receipt"],
+    te: ["తిరస్కరించబడిన చెక్", "బ్యాంక్ మెమో", "న్యాయ నోటీసు కాపీ", "అక్నాలెడ్జ్‌మెంట్ రసీదు"],
+    hi: ["अस्वीकृत चेक", "बैंक मेमो", "कानूनी नोटिस की प्रति", "प्राप्ति रसीद"]
+  },
+  section4: {
+    en: `To,  
+The Court of [City],  
+
+Subject: Complaint under Section 138 of the Negotiable Instruments Act  
+
+Respected Sir/Madam,  
+I am filing this complaint regarding the dishonour of a cheque issued by [name of drawer] amounting to Rs. [amount]. Despite repeated requests, the drawer has failed to make payment.  
+
+I kindly request the Hon’ble Court to take necessary action under Section 138 of the Negotiable Instruments Act.  
+
+Yours sincerely,  
+[Your Name]  
+[Contact Details]`,
+    
+    te: `కు,  
+[నగరం] కోర్టు,  
+
+విషయం: నెగోషియబుల్ ఇన్‌స్ట్రుమెంట్స్ యాక్ట్ సెక్షన్ 138 ప్రకారం ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[డ్రాయర్ పేరు] రూ. [మొత్తం] చెక్ జారీ చేసిన చెక్ తిరస్కరించబడినందుకు ఈ ఫిర్యాదు చేస్తున్నాను. పునరావృత విజ్ఞప్తుల తర్వాత కూడా చెల్లింపు జరగలేదు.  
+
+దయచేసి న్యాయస్థానం అవసరమైన చర్యలు తీసుకోవాలని ప్రార్థిస్తున్నాను.  
+
+మీ విధేయుడు,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+
+    hi: `प्रति,  
+न्यायालय, [शहर]  
+
+विषय: परक्राम्य लिखत अधिनियम की धारा 138 के तहत शिकायत  
+
+महोदय/महोदया,  
+[ड्रॉअर का नाम] द्वारा जारी ₹[राशि] का चेक अस्वीकृत होने पर मैं यह शिकायत दर्ज कर रहा/रही हूँ। कई बार अनुरोध करने के बाद भी भुगतान नहीं किया गया।  
+
+कृपया माननीय न्यायालय आवश्यक कार्रवाई करे।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
+
+// Banking Disputes
+{
+  id: "banking-disputes",
+  title: {
+    en: "Banking Disputes and Consumer Protection",
+    te: "బ్యాంకింగ్ వివాదాలు మరియు వినియోగదారుల రక్షణ",
+    hi: "बैंकिंग विवाद और उपभोक्ता संरक्षण"
+  },
+  keywords: {
+    en: ["banking disputes", "fraud", "ATM issues", "loan disputes", "consumer rights"],
+    te: ["బ్యాంకింగ్ వివాదాలు", "మోసం", "ఏటీఎం సమస్యలు", "ఋణ వివాదాలు", "వినియోగదారుల హక్కులు"],
+    hi: ["बैंकिंग विवाद", "धोखाधड़ी", "एटीएम समस्याएँ", "ऋण विवाद", "उपभोक्ता अधिकार"]
+  },
+  section1: {
+    en: "Banking disputes include issues like fraud, wrong deductions, ATM withdrawal failures, and loan disputes.",
+    te: "బ్యాంకింగ్ వివాదాలలో మోసం, తప్పు డెడక్షన్లు, ఏటీఎం విత్‌డ్రా వైఫల్యాలు, రుణ వివాదాలు ఉంటాయి.",
+    hi: "बैंकिंग विवादों में धोखाधड़ी, गलत कटौती, एटीएम निकासी विफलता और ऋण विवाद शामिल हैं।"
+  },
+  section2: {
+    en: "First, file a complaint with your bank. If unresolved within 30 days, approach the Banking Ombudsman or Consumer Forum.",
+    te: "ముందుగా మీ బ్యాంకులో ఫిర్యాదు చేయండి. 30 రోజుల్లో పరిష్కారం కానట్లయితే, బ్యాంకింగ్ ఒంబుడ్స్‌మన్ లేదా వినియోగదారుల ఫోరమ్‌ను సంప్రదించండి.",
+    hi: "पहले अपने बैंक में शिकायत करें। यदि 30 दिनों में समाधान नहीं होता, तो बैंकिंग लोकपाल या उपभोक्ता फोरम से संपर्क करें।"
+  },
+  section3: {
+    en: ["Bank Statements", "Transaction Slips", "Complaint Copy", "Acknowledgement from Bank"],
+    te: ["బ్యాంక్ స్టేట్‌మెంట్స్", "ట్రాన్సాక్షన్ స్లిప్స్", "ఫిర్యాదు కాపీ", "బ్యాంక్ నుండి అంగీకారం"],
+    hi: ["बैंक स्टेटमेंट", "लेनदेन पर्ची", "शिकायत की प्रति", "बैंक से स्वीकृति"]
+  },
+  section4: {
+    en: `To,  
+The Banking Ombudsman,  
+[City/Region].  
+
+Subject: Complaint regarding banking dispute  
+
+Respected Sir/Madam,  
+I am writing to lodge a complaint against [Bank Name] regarding [nature of dispute]. Despite repeated complaints, the issue remains unresolved.  
+
+I kindly request your intervention and necessary action to resolve the matter.  
+
+Yours faithfully,  
+[Your Name]  
+[Contact Details]`,
+    
+    te: `కు,  
+బ్యాంకింగ్ ఒంబుడ్స్‌మన్,  
+[నగరం/ప్రాంతం].  
+
+విషయం: బ్యాంకింగ్ వివాదంపై ఫిర్యాదు  
+
+గౌరవనీయులైన సర్/మేడమ్,  
+[బ్యాంక్ పేరు]పై [వివాదం స్వభావం] సంబంధించి ఈ ఫిర్యాదు చేస్తున్నాను. పునరావృత ఫిర్యాదులు చేసినప్పటికీ సమస్య పరిష్కరించబడలేదు.  
+
+దయచేసి జోక్యం చేసుకుని తగిన చర్యలు తీసుకోవాలని ప్రార్థిస్తున్నాను.  
+
+మీ విధేయుడు,  
+[మీ పేరు]  
+[సంప్రదింపు వివరాలు]`,
+
+    hi: `प्रति,  
+बैंकिंग लोकपाल,  
+[शहर/क्षेत्र]।  
+
+विषय: बैंकिंग विवाद के संबंध में शिकायत  
+
+महोदय/महोदया,  
+मैं [बैंक का नाम] के खिलाफ [विवाद का विवरण] संबंधी शिकायत दर्ज कर रहा/रही हूँ। कई बार शिकायत करने के बावजूद समस्या का समाधान नहीं हुआ।  
+
+कृपया आवश्यक कार्रवाई कर समाधान दिलवाने की कृपा करें।  
+
+भवदीय,  
+[आपका नाम]  
+[संपर्क विवरण]`
+  }
+},
   {
     id: "ipc-354d",
     title: 
@@ -6863,5 +7169,6 @@ Sincerely,
 },
 
 ];
+
 
 
