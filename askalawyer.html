@@ -169,6 +169,18 @@
       border: 1px solid #f5c6cb;
     }
     
+    /* Thank you message - matching contact page style */
+    .thank-you-message {
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+      display: none;
+      text-align: center;
+      padding: 10px;
+      background-color: #d4edda;
+      border-radius: 6px;
+    }
+    
     /* Footer */
     .site-footer {
       background-color: #1e1e2f;
@@ -298,7 +310,7 @@
     <div id="statusMessage" class="status-message"></div>
     
     <!-- IMPORTANT: Use the token provided in your FormSubmit email -->
-    <form id="consultationForm" action="https://formsubmit.co/061260aaa7ba9f076e8a7a3125f672fe" method="POST">
+    <form id="consultationForm" action="https://formsubmit.co/pocketlawyerindia1950@gmail.com" method="POST">
       <!-- Add your custom hidden fields here -->
       <input type="hidden" name="_subject" value="New Lawyer Consultation Request">
       <input type="hidden" name="_template" value="table">
@@ -339,6 +351,9 @@
       <textarea id="message" name="message" rows="6" placeholder="Describe your issue in detail..." required data-placeholder="lawyerdetail"></textarea>
 
       <button type="submit" data-translate="lawyersubmit">Submit Request</button>
+
+      <!-- Thank you message that matches contact page style -->
+      <p id="thankYou" class="thank-you-message">✅ Thank you! Your consultation request has been submitted.</p>
 
       <p class="note" data-translate="lawyernote">We will connect you with a legal expert shortly through your preferred method.</p>
     </form>
@@ -402,16 +417,48 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('consultationForm');
-      const statusMessage = document.getElementById('statusMessage');
+      const thankYou = document.getElementById('thankYou');
       
-      // Show a message that FormSubmit is being activated
-      showMessage('FormSubmit activation in progress. Please make sure you clicked the activation link in your email.', 'success');
-      
-      function showMessage(message, type) {
-        statusMessage.innerHTML = message;
-        statusMessage.className = `status-message ${type}`;
-        statusMessage.style.display = 'block';
-      }
+      // Add event listener for form submission
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        
+        // Show loading state if needed
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+        
+        // Send form data using fetch API
+        fetch("https://formsubmit.co/ajax/pocketlawyerindia1950@gmail.com", {
+          method: "POST",
+          body: formData
+        })
+        .then(response => {
+          if (response.ok) {
+            // Success - show thank you message and reset form
+            form.reset();
+            thankYou.style.display = "block";
+            
+            // Hide thank you message after 5 seconds
+            setTimeout(() => {
+              thankYou.style.display = "none";
+            }, 5000);
+          } else {
+            alert("Something went wrong. Please try again.");
+          }
+        })
+        .catch(error => {
+          alert("Error: " + error.message);
+        })
+        .finally(() => {
+          // Restore button state
+          submitButton.textContent = originalText;
+          submitButton.disabled = false;
+        });
+      });
     });
   </script>
 </body>
