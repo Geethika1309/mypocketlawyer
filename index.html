@@ -444,102 +444,102 @@
             cursor: pointer;
         }
 
-        /* Chatbot Floating Button */
-        #chatbot-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 25px;
-            background: #ff5722;
-            border: none;
-            color: white;
-            font-size: 24px;
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 2000;
-        }
+        /* Chatbot Styles */
+#chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 320px;
+    height: 400px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 2000;
+    font-family: 'Segoe UI', sans-serif;
+}
 
-        /* Chatbot Container */
-        #chatbot-container {
-            position: fixed;
-            bottom: 90px;
-            right: 25px;
-            width: 320px;
-            height: 400px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 2000;
-            font-family: 'Segoe UI', sans-serif;
-        }
+#chatbot-header {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        #chatbot-header {
-            background: #2c3e50;
-            color: white;
-            padding: 12px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+#chatbot-close {
+    cursor: pointer;
+    font-size: 18px;
+}
 
-        #chatbot-close {
-            cursor: pointer;
-            font-size: 18px;
-        }
+#chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 
-        #chatbot-messages {
-            flex: 1;
-            padding: 10px;
-            overflow-y: auto;
-            font-size: 14px;
-            background: #f9f9f9;
-        }
+.message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 80%;
+    line-height: 1.4;
+}
 
-        .bot-msg {
-            background: #e1f5fe;
-            padding: 8px 12px;
-            border-radius: 10px;
-            margin: 5px 0;
-            width: fit-content;
-            max-width: 80%;
-        }
+.bot-message {
+    background: #e1f5fe;
+    align-self: flex-start;
+}
 
-        .user-msg {
-            background: #ffccbc;
-            padding: 8px 12px;
-            border-radius: 10px;
-            margin: 5px 0;
-            width: fit-content;
-            max-width: 80%;
-            margin-left: auto;
-        }
+.user-message {
+    background: #ffccbc;
+    align-self: flex-end;
+    margin-left: auto;
+}
 
-        #chatbot-input-container {
-            display: flex;
-            border-top: 1px solid #ccc;
-        }
+#chatbot-input-container {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
 
-        #chatbot-input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            outline: none;
-        }
+#chatbot-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
 
-        #chatbot-send {
-            background: #ff5722;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-        }
+#chatbot-send {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
 
+#chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    background: #ff5722;
+    border: none;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 2000;
+}
     </style>
 
 </head>
@@ -667,20 +667,20 @@
 
             </div>
         </div>
-        <!-- Add this just before </body> -->
-        <div id="chatbot-container">
-            <div id="chatbot-header">
-            🤖 Pocket Lawyer Assistant
-            <span id="chatbot-close">&times;</span>
-            </div>
-            <div id="chatbot-messages"></div>
-            <div id="chatbot-input-container">
-            <input type="text" id="chatbot-input" placeholder="Type your question..." />
-            <button id="chatbot-send">Send</button>
-            </div>
-        </div>
 
-        <button id="chatbot-toggle">💬</button>
+        <div id="chatbot-container">
+    <div id="chatbot-header">
+        🤖 Pocket Lawyer Assistant
+        <span id="chatbot-close">&times;</span>
+    </div>
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Type your question..." />
+        <button id="chatbot-send">Send</button>
+    </div>
+</div>
+
+<button id="chatbot-toggle">💬</button>
 
        
 
@@ -871,15 +871,16 @@
                 alert("Please enter a search term");
             }
         });
-        const chatbotToggle = document.getElementById("chatbot-toggle");
-        const chatbotContainer = document.getElementById("chatbot-container");
-        const chatbotClose = document.getElementById("chatbot-close");
-        const chatbotMessages = document.getElementById("chatbot-messages");
-        const chatbotInput = document.getElementById("chatbot-input");
-        const chatbotSend = document.getElementById("chatbot-send");
+        // Chatbot functionality
+const chatbotToggle = document.getElementById("chatbot-toggle");
+const chatbotContainer = document.getElementById("chatbot-container");
+const chatbotClose = document.getElementById("chatbot-close");
+const chatbotMessages = document.getElementById("chatbot-messages");
+const chatbotInput = document.getElementById("chatbot-input");
+const chatbotSend = document.getElementById("chatbot-send");
 
-        // Intent-based responses (smarter matching)
-        const intents = [
+// Improved intent-based responses with better matching
+const intents = [
     // --- Greetings ---
     {
         keywords: ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"],
@@ -1012,60 +1013,82 @@
         response: "We value your feedback to improve our services. Please share your suggestions with us. 👉 <a href='contact.html'>Provide Feedback</a>"
     }
 ];
-  const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
-    chatbotToggle.addEventListener("click", () => {
-  chatbotContainer.style.display = "flex";
-  chatbotToggle.style.display = "none";
 
-  // Show default welcome message only when opening
-  addMessage("👋 Hello! Welcome to our Legal Help Chatbot.<br>💡 You can ask me about laws, IPC sections, complaints, documents, or get guidance.", "bot-msg");
+const defaultResponse = "🤔 I'm not sure I understand. Could you try asking about legal topics, consultation, documents, or how to file a complaint?";
+
+// Improved matching function
+function getBotReply(userMsg) {
+    // Convert to lowercase for case-insensitive matching
+    const lowerUserMsg = userMsg.toLowerCase();
+    
+    // Check for exact matches first
+    for (let intent of intents) {
+        for (let keyword of intent.keywords) {
+            // Check for exact word matches for better precision
+            const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+            if (regex.test(lowerUserMsg)) {
+                return intent.response;
+            }
+        }
+    }
+    
+    // If no exact match, check for partial matches
+    for (let intent of intents) {
+        for (let keyword of intent.keywords) {
+            if (lowerUserMsg.includes(keyword)) {
+                return intent.response;
+            }
+        }
+    }
+    
+    return defaultResponse;
+}
+
+// Chatbot UI functionality
+chatbotToggle.addEventListener("click", () => {
+    chatbotContainer.style.display = "flex";
+    chatbotToggle.style.display = "none";
+    
+    // Show welcome message only when first opening
+    if (chatbotMessages.children.length === 0) {
+        addMessage("👋 Hello! I'm Pocket Lawyer Assistant. I can help you with legal information, consultation, documents, and more. How can I assist you today?", "bot-message");
+    }
 });
 
-
- 
-
-  chatbotClose.addEventListener("click", () => {
+chatbotClose.addEventListener("click", () => {
     chatbotContainer.style.display = "none";
     chatbotToggle.style.display = "block";
-  });
+});
 
-  chatbotSend.addEventListener("click", sendMessage);
-  chatbotInput.addEventListener("keypress", (e) => {
+chatbotSend.addEventListener("click", sendMessage);
+chatbotInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") sendMessage();
-  });
+});
 
-  function sendMessage() {
+function sendMessage() {
     const msg = chatbotInput.value.trim();
     if (!msg) return;
 
     // Show user message
-    addMessage(msg, "user-msg");
+    addMessage(msg, "user-message");
 
-    // Bot reply
-    const reply = getBotReply(msg.toLowerCase());
-    setTimeout(() => addMessage(reply, "bot-msg"), 500);
+    // Bot reply with slight delay for natural feel
+    setTimeout(() => {
+        const reply = getBotReply(msg);
+        addMessage(reply, "bot-message");
+    }, 600);
 
     chatbotInput.value = "";
-  }
+}
 
-  function getBotReply(userMsg) {
-    for (let intent of intents) {
-      for (let keyword of intent.keywords) {
-        if (userMsg.includes(keyword)) {
-          return intent.response;
-        }
-      }
-    }
-    return defaultResponse;
-  }
-
-  function addMessage(text, className) {
+function addMessage(text, className) {
     const div = document.createElement("div");
-    div.className = className;
+    div.className = `message ${className}`;
     div.innerHTML = text;
     chatbotMessages.appendChild(div);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
+}
+
 
     </script>
 
@@ -1075,6 +1098,7 @@
 
 
 </html>
+
 
 
 
