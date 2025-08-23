@@ -343,12 +343,31 @@
         }
 
         .card {
-            background-color: #F5F5F5;
-            border-radius: 12px;
-            padding: 20px;
-            width: 300px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
+    background-color: #F5F5F5;
+    border-radius: 12px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover animation */
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+/* Hidden initially */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Visible after scroll */
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
         .card p {
             color: #37474F;
@@ -632,13 +651,13 @@
                 </div>
             </div>
             <div class="work-section">
-                <h1 class="work" id="howitworks">How it works?</h1>
+                <h1 class="work scroll-animate" id="howitworks">How it works?</h1>
                 <h2 id="step1"><span class="one">Step1 : </span><span class="two">Search your problem</span></h2>
                 <h2 id="step2"><span class="one">Step2 : </span><span class="two">Read legal info</span></h2>
                 <h2 id="step3"><span class="one">Step3 : </span><span class="two">Generate a document</span></h2>
                 <h2 id="step4"><span class="one">Step4 : </span><span class="two">Take action</span></h2>
             </div>
-            <div class="benifit-section">
+            <div class="benifit-section scroll-animate">
                 <h1 class="benifits" id="benefits">Benefits</h1>
                 <h2 class="benifit" id="b1">👤 No lawyer needed for small issues
                 </h2>
@@ -646,7 +665,7 @@
                 <h2 class="benifit" id="b3">📄 Free document generation</h2>
                 <h2 class="benifit" id="b4">📖 Legal info in simple words</h2>
             </div>
-            <div class="testimonials">
+            <div class="testimonials scroll-animate">
                 <h1 class="report" id="testimonialTitle">Testimonials</h1>
                 <h2 class="users" id="testimonialSubtitle" style="text-align: center; color:#0D47A1;">What Users Say
                 </h2>
@@ -1136,6 +1155,37 @@ document.addEventListener('click', function(e) {
     }
 });
 
+        //scrolling
+
+        document.addEventListener("DOMContentLoaded", function() {
+    const scrollElements = document.querySelectorAll(".scroll-animate");
+
+    function elementInView(el, offset = 100) {
+        const elementTop = el.getBoundingClientRect().top;
+        return elementTop <= (window.innerHeight - offset);
+    }
+
+    function displayScrollElement(el) {
+        el.classList.add("visible");
+    }
+
+    function hideScrollElement(el) {
+        el.classList.remove("visible");
+    }
+
+    function handleScrollAnimation() {
+        scrollElements.forEach((el) => {
+            if (elementInView(el, 100)) {
+                displayScrollElement(el);
+            } else {
+                hideScrollElement(el);
+            }
+        });
+    }
+
+    window.addEventListener("scroll", handleScrollAnimation);
+    handleScrollAnimation(); // Run once on load
+});
     </script>
 
     <script src="lawdata.js"></script>
@@ -1144,6 +1194,7 @@ document.addEventListener('click', function(e) {
 
 
 </html>
+
 
 
 
