@@ -872,6 +872,8 @@
             }
         });
         // Chatbot functionality
+<script>
+// Chatbot functionality
 const chatbotToggle = document.getElementById("chatbot-toggle");
 const chatbotContainer = document.getElementById("chatbot-container");
 const chatbotClose = document.getElementById("chatbot-close");
@@ -1016,10 +1018,39 @@ const intents = [
 
 const defaultResponse = "🤔 I'm not sure I understand. Could you try asking about legal topics, consultation, documents, or how to file a complaint?";
 
+// Function to handle specific legal topics
+function handleLegalTopic(topic) {
+    return `For detailed information about ${topic}, I recommend using our search feature. 
+    <br><br>1. Type "${topic}" in the search bar at the top of the page
+    <br>2. Select your preferred language
+    <br>3. Click "Search Law" to get comprehensive information
+    <br><br>You can also browse our <a href="lawcategories.html">Law Categories</a> for related information.`;
+}
+
 // Improved matching function
 function getBotReply(userMsg) {
     // Convert to lowercase for case-insensitive matching
     const lowerUserMsg = userMsg.toLowerCase();
+    
+    // Check for specific legal topics that should use search
+    const legalTopics = [
+        "traffic", "violation", "speeding", "fine", "challan", "license",
+        "rent", "tenant", "landlord", "lease", "eviction",
+        "consumer", "product", "warranty", "refund", "fraud",
+        "cyber", "bullying", "online", "digital", "safety", "privacy",
+        "women", "safety", "harassment", "domestic", "violence",
+        "property", "dispute", "ownership", "boundary",
+        "family", "divorce", "marriage", "custody", "alimony",
+        "criminal", "complaint", "fir", "police", "arrest",
+        "employment", "job", "salary", "termination", "contract"
+    ];
+    
+    // Check if the message contains any legal topic keywords
+    const foundTopic = legalTopics.find(topic => lowerUserMsg.includes(topic));
+    
+    if (foundTopic) {
+        return handleLegalTopic(foundTopic);
+    }
     
     // Check for exact matches first
     for (let intent of intents) {
@@ -1089,6 +1120,23 @@ function addMessage(text, className) {
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
+// Function to populate search bar from chatbot
+function populateSearch(query) {
+    const searchBar = document.getElementById("searchQuery");
+    if (searchBar) {
+        searchBar.value = query;
+        searchBar.focus();
+    }
+}
+
+// Add click handler for search suggestions in chatbot messages
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('search-suggestion')) {
+        const searchTerm = e.target.getAttribute('data-search');
+        populateSearch(searchTerm);
+    }
+});
+</script>
 
     </script>
 
@@ -1098,6 +1146,7 @@ function addMessage(text, className) {
 
 
 </html>
+
 
 
 
