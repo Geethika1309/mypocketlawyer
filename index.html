@@ -880,168 +880,138 @@
 
         // Intent-based responses (smarter matching)
         const intents = [
-        // --- Small Talk ---
-        {
-            keywords: ["hello", "hi", "hey"],
-            response: "Hello! 👋 How can I help you today?"
-        },
-        {
-            keywords: ["how are you", "how r u", "how are u"],
-            response: "I'm doing great, thanks for asking! 😊 How are you doing?"
-        },
-        {
-            keywords: ["thank you", "thanks", "thx"],
-            response: "You're most welcome! 🙏 Happy to help."
-        },
-        {
-            keywords: ["bye", "goodbye", "see you"],
-            response: "Goodbye! 👋 Have a wonderful day!"
-        },
-        {
-            keywords: ["good morning", "good afternoon", "good evening"],
-            response: "Good day! 🌞 Hope you're doing well."
-        },
-        {
-            keywords: ["joke", "funny", "make me laugh"],
-            response: "😂 Why don’t skeletons fight each other? Because they don’t have the guts!"
-        },
-        {
-            keywords: ["who are you", "what are you", "about you"],
-            response: "I'm your friendly legal chatbot 🤖 here to guide you with information about laws, complaints, and more!"
-        },
+    // --- Greetings ---
+    {
+        keywords: ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"],
+        response: "Hello! Welcome to Pocket Lawyer. How may I assist you with legal guidance today?"
+    },
+    {
+        keywords: ["how are you", "how r u", "how are u"],
+        response: "I'm functioning well, thank you. I'm here to provide legal information and assistance. How can I help you?"
+    },
 
-        // --- Website Related ---
-        {
-            keywords: ["problem", "issue", "not working", "website error"],
-            response: "Oh no! 😟 Sorry about the issue. Please describe the problem in contact page, and we’ll work on fixing it right away."
-        },
-        {
-            keywords: ["importance of website", "why this site", "purpose", "use of this website"],
-            response: "🌐 This website is created to spread awareness about laws, guide people in filing complaints, and help citizens understand their rights in a simple way."
-        },
-        {
-            keywords: ["who built this website", "creator", "developer", "owner","Who created this website"],
-            response: "👩‍🎓 This website was proudly developed by Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla. 🎓✨"
-        },
-        {
-            keywords: ["feedback", "suggestion"],
-            response: "💡 We’d love to hear your feedback! Please share your suggestions with us."
-        },
-        {
-            keywords: ["update", "latest", "new laws"],
-            response: "📢 Our website is regularly updated with the latest laws and information. Check the law categories for updates."
-        },
-        {
-            keywords: ["about us", "who are we"],
-            response: "👩‍💻 We are Diploma final year students — Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla — working to make legal knowledge simple for everyone."
-        },
+    // --- Gratitude ---
+    {
+        keywords: ["thank you", "thanks", "thx", "thank"],
+        response: "You're welcome. Is there anything else you'd like to know about our legal services?"
+    },
 
-        // --- Legal Guidance ---
-        {
-            keywords: ["ipc", "section", "law", "indian penal code"],
-            response: "📖 If you’re looking for details about IPC sections or specific laws, you can explore our law categories 👉 <a href='lawcategories.html'>Law Categories</a>."
-        },
-        {
-            keywords: ["rights", "fundamental rights"],
-            response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
-        },
-        {
-            keywords: ["police complaint", "FIR"],
-            response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
-        },
-        {
-            keywords: ["court", "legal process", "judge"],
-            response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
-        },
+    // --- Farewell ---
+    {
+        keywords: ["bye", "goodbye", "see you", "exit", "quit"],
+        response: "Thank you for visiting Pocket Lawyer. Remember, we're here to help with all your legal queries."
+    },
 
-        // --- Emergency / Help ---
-        {
-            keywords: ["emergency", "urgent", "help me now"],
-            response: "🚨 If this is an emergency, please contact your nearest police station or dial 100 immediately."
-        },
-        {
-            keywords: ["harassment", "abuse", "violence"],
-            response: "💔 If you are facing harassment or violence, please reach out to the authorities immediately. You can also explore your rights here 👉 <a href='lawcategories.html'>Law Categories</a>."
-        },
+    // --- Website Information ---
+    {
+        keywords: ["who are you", "what are you", "about you", "your purpose"],
+        response: "I am Pocket Lawyer's virtual assistant, designed to provide legal information and guide you to appropriate resources on our platform."
+    },
+    {
+        keywords: ["who built this website", "creator", "developer", "owner", "who created"],
+        response: "Pocket Lawyer was developed by Geethika Reddy Marujolla, Reshma Shaik, and Snehitha Reddy Moilla - Diploma final year students at Loyola Polytechnic."
+    },
+    {
+        keywords: ["what is this website", "purpose of website", "what does this site do"],
+        response: "Pocket Lawyer provides legal information, document generation services, and lawyer consultation to make legal assistance accessible to all citizens."
+    },
 
-        // --- Navigation ---
-        {
-            keywords: ["home", "start", "main page"],
-            response: "You can go to Home here 👉 <a href='index.html'>Home</a>"
-        },
-        {
-            keywords: ["categories", "laws", "law categories"],
-            response: "Browse laws here 👉 <a href='lawcategories.html'>Law Categories</a>"
-        },
-        {
-            keywords: ["documents", "generate", "create document", "complaint letter"],
-            response: "Generate documents here 👉 <a href='generatedocuments.html'>Generate Documents</a>"
-        },
-        {
-            keywords: ["lawyer", "ask", "advice", "help from lawyer"],
-            response: "Need advice? Go here 👉 <a href='askalawyer.html'>Ask a Lawyer</a>"
-        },
-        {
-            keywords: ["contact", "phone", "email", "address", "support"],
-            response: "Reach us here 👉 <a href='contact.html'>Contact</a>"
-        },
-        {
-            keywords: ["complaint", "file complaint", "raise issue"],
-            response: "You can learn how to file a complaint 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>"
-        },
-        {
-    keywords: ["consumer", "product", "fraud", "complaints"],
-    response: "See consumer rights here 👉 <a href='consumercomplaints.html'>Consumer Complaints</a>"
-  },
-  {
-    keywords: ["help", "assist", "guidance"],
-    response: "I'm here to help! 🤝 What do you need assistance with?"
-  },
-  {
-    keywords: ["time", "date", "today"],
-    response: "I can’t track real-time clock ⏰, but you can check your device for the latest date and time."
-  },
-    // --- Extra Questions ---
-{
-  keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer","lawyer","consult a lawyer"],
-  response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
-},
-{
-  keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
-  response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
-},
-{
-  keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important","importance of law"],
-  response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
-},
-{
-    keywords: ["rights", "fundamental rights"],
-    response: "📖 You can explore your fundamental rights under the Constitution in the Law Categories section 👉 <a href='lawcategories.html'>Law Categories</a>."
-  },
-  {
-    keywords: ["police complaint", "FIR"],
-    response: "🚔 You can learn how to file a police complaint or FIR here 👉 <a href='howtofileacomplaint.html'>File a Complaint</a>."
-  },
-  {
-    keywords: ["court", "legal process", "judge"],
-    response: "⚖ The court process can be complex, but we provide simplified guides in the Law Categories section."
-  },
+    // --- Legal Consultation ---
+    {
+        keywords: ["consult lawyer", "talk to lawyer", "legal advice", "need lawyer", "speak with attorney", "how can i consult a lawyer"],
+        response: "You can consult with a qualified lawyer through our 'Ask a Lawyer' service. We'll connect you based on your specific legal needs. 👉 <a href='askalawyer.html'>Consult a Lawyer Now</a>"
+    },
+    {
+        keywords: ["how does consultation work", "process for lawyer consultation", "how to get legal advice"],
+        response: "Our consultation process: 1) Fill out the consultation form 2) Specify your legal issue 3) Choose preferred contact method 4) A lawyer will contact you shortly. 👉 <a href='askalawyer.html'>Start Consultation</a>"
+    },
+    {
+        keywords: ["what legal issues", "types of legal problems", "kinds of cases"],
+        response: "We handle various legal matters including: Property disputes, Family law, Criminal cases, Cyber crimes, Consumer complaints, and Employment issues. 👉 <a href='lawcategories.html'>Browse Legal Categories</a>"
+    },
 
-  // --- Extra Questions ---
-  {
-    keywords: ["contact a lawyer", "talk to lawyer", "lawyer help", "connect lawyer"],
-    response: "⚖ You can contact a lawyer directly through our Ask a Lawyer section 👉 <a href='askalawyer.html'>Contact a Lawyer</a>."
-  },
-  {
-    keywords: ["search", "search bar", "find law", "popular laws", "popular law categories"],
-    response: "🔎 Our Home Page has a Search Bar and Popular Law Categories section where you can quickly find the laws that matter most. 👉 <a href='index.html'>Home Page</a>"
-  },
-  {
-    keywords: ["importance of knowing law", "why know law", "law awareness", "why laws are important"],
-    response: "📖 Knowing the law is important because it protects your rights, prevents exploitation, and helps you take informed decisions. Legal awareness empowers every citizen. 💡"
-  },
+    // --- Legal Information ---
+    {
+        keywords: ["ipc", "indian penal code", "sections", "law sections"],
+        response: "The Indian Penal Code contains laws defining crimes and punishments. You can explore specific IPC sections in our law categories. 👉 <a href='lawcategories.html'>Explore IPC Sections</a>"
+    },
+    {
+        keywords: ["rights", "my rights", "fundamental rights", "legal rights"],
+        response: "Indian citizens have various rights under the Constitution including equality, freedom, and protection against exploitation. 👉 <a href='lawcategories.html'>Learn About Your Rights</a>"
+    },
+    {
+        keywords: ["new laws", "recent laws", "legal updates", "law changes"],
+        response: "We regularly update our content with recent legal developments. Check our law categories for the latest information. 👉 <a href='lawcategories.html'>Check Legal Updates</a>"
+    },
+
+    // --- Document Services ---
+    {
+        keywords: ["generate document", "create legal document", "make complaint letter", "legal forms"],
+        response: "We provide automated generation of various legal documents and complaint letters. 👉 <a href='generatedocuments.html'>Generate Documents</a>"
+    },
+    {
+        keywords: ["what documents", "types of documents", "legal forms available"],
+        response: "We can generate: Complaint letters, Legal notices, Rental agreements, and various application forms. 👉 <a href='generatedocuments.html'>View Document Options</a>"
+    },
+
+    // --- Complaint Assistance ---
+    {
+        keywords: ["file complaint", "lodge complaint", "police complaint", "FIR", "how to file FIR"],
+        response: "We provide guidance on filing police complaints and FIRs with proper procedures. 👉 <a href='howtofileacomplaint.html'>Learn How to File a Complaint</a>"
+    },
+    {
+        keywords: ["consumer complaint", "product issue", "fraud", "consumer court"],
+        response: "For consumer-related issues and complaints, we have dedicated resources. 👉 <a href='consumercomplaints.html'>Consumer Complaint Assistance</a>"
+    },
+
+    // --- Emergency ---
+    {
+        keywords: ["emergency", "urgent help", "immediate assistance", "help now"],
+        response: "For emergencies requiring immediate attention, please contact your local police station (100) or emergency services."
+    },
+    {
+        keywords: ["harassment", "abuse", "violence", "threat", "danger"],
+        response: "If you're in immediate danger, please contact local authorities (100). For legal guidance on these matters, visit our law categories. 👉 <a href='lawcategories.html'>Legal Protection Resources</a>"
+    },
+
+    // --- Navigation ---
+    {
+        keywords: ["home", "main page", "start over"],
+        response: "Return to our homepage 👉 <a href='index.html'>Home</a>"
+    },
+    {
+        keywords: ["law categories", "browse laws", "legal topics"],
+        response: "Explore our comprehensive law categories 👉 <a href='lawcategories.html'>Law Categories</a>"
+    },
+    {
+        keywords: ["contact", "support", "email", "phone", "address"],
+        response: "Contact our support team 👉 <a href='contact.html'>Contact Information</a>"
+    },
+    {
+        keywords: ["search", "find", "look for"],
+        response: "Use the search function on our homepage to find specific legal information. 👉 <a href='index.html'>Search Legal Topics</a>"
+    },
+
+    // --- General Help ---
+    {
+        keywords: ["help", "assistance", "support", "what can you do"],
+        response: "I can help you with: Legal information, Lawyer consultation, Document generation, Complaint guidance, and Navigation assistance. What do you need help with?"
+    },
+    {
+        keywords: ["how to use", "how this works", "getting started"],
+        response: "Simply: 1) Browse law categories for information 2) Generate documents if needed 3) Consult a lawyer for specific advice 4) Contact us for further support."
+    },
+
+    // --- Website Issues ---
+    {
+        keywords: ["problem", "issue", "not working", "error", "bug"],
+        response: "I apologize for the inconvenience. Please describe the issue or contact us directly for technical support. 👉 <a href='contact.html'>Report Problem</a>"
+    },
+    {
+        keywords: ["feedback", "suggestion", "comment"],
+        response: "We value your feedback to improve our services. Please share your suggestions with us. 👉 <a href='contact.html'>Provide Feedback</a>"
+    }
 ];
-
   const defaultResponse = "🤔 Sorry, I didn’t understand. Try asking about <b>Home, Categories, Documents, Lawyer, Contact, or Complaints</b>.";
     chatbotToggle.addEventListener("click", () => {
   chatbotContainer.style.display = "flex";
@@ -1105,6 +1075,7 @@
 
 
 </html>
+
 
 
 
