@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pocket Lawyer - Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
         
-        body {
+        body, html {
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+        
+        /* Login Container */
+        .login-main-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,14 +31,14 @@
             position: relative;
         }
         
-        body::before {
+        .login-main-container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
         }
         
@@ -47,26 +55,24 @@
             z-index: 1;
         }
         
+        .login-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .login-logo img {
+            height: 90px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        
         .login-container h2 {
             text-align: center;
             margin-bottom: 30px;
             font-size: 28px;
             color: #fff;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .logo i {
-            font-size: 50px;
-            color: #4e54c8;
-            background: white;
-            padding: 15px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Garamond', serif;
         }
         
         .input-group {
@@ -104,7 +110,7 @@
             font-size: 18px;
         }
         
-        .btn {
+        .login-btn {
             width: 100%;
             padding: 15px;
             border: none;
@@ -115,9 +121,10 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
         }
         
-        .btn:hover {
+        .login-btn:hover {
             background: linear-gradient(45deg, #3f44af, #7a80e0);
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
@@ -196,35 +203,38 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">
-            <i class="fas fa-scale-balanced"></i>
+    <!-- Login Page -->
+    <div class="login-main-container">
+        <div class="login-container">
+            <div class="login-logo">
+                <img src="logo_transparent_resized(1).png" alt="Pocket Lawyer Logo">
+            </div>
+            <h2>Pocket Lawyer Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <div class="register-link">
+                    Don't have an account? <a href="#">Register Now</a>
+                </div>
+            </form>
         </div>
-        <h2>Pocket Lawyer Login</h2>
-        <form id="loginForm">
-            <div class="input-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" id="email" placeholder="Email Address" required>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" id="password" placeholder="Password" required>
-            </div>
-            <div class="remember-forgot">
-                <label>
-                    <input type="checkbox"> Remember me
-                </label>
-                <a href="#">Forgot Password?</a>
-            </div>
-            <button type="submit" class="btn">Login</button>
-            <div class="register-link">
-                Don't have an account? <a href="#">Register Now</a>
-            </div>
-        </form>
-    </div>
 
-    <div class="notification" id="notification">
-        Login details have been sent to your email!
+        <div class="notification" id="notification">
+            Login details have been sent to your email!
+        </div>
     </div>
 
     <script>
@@ -239,17 +249,27 @@
             
             // For demonstration purposes, we'll just show a notification
             const notification = document.getElementById('notification');
+            notification.textContent = `Login details sent to: ${email}`;
             notification.classList.add('show');
             
             // Simulate sending email (in a real app, this would be a server-side function)
             console.log(`Sending login details to: ${email}`);
             console.log(`Email content: Email: ${email}, Password: ${password}`);
             
+            // Save login state
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userEmail', email);
+            
             // Redirect to index page after a short delay
             setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 2500);
+                window.location.href = 'index.html'; // Redirect to your actual index page
+            }, 2000);
         });
+
+        // Check if user is already logged in (from previous session)
+        if(localStorage.getItem('isLoggedIn') === 'true') {
+            window.location.href = 'index.html'; // Redirect to index if already logged in
+        }
     </script>
 </body>
 </html>
