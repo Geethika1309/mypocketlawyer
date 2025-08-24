@@ -348,6 +348,27 @@
             margin-top: 5px;
             padding-left: 15px;
         }
+        
+        .debug-info {
+            margin-top: 20px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            display: none;
+        }
+        
+        .debug-toggle {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .debug-toggle a {
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -387,6 +408,15 @@
                     Don't have an account? <a id="registerNow">Register Now</a>
                 </div>
             </form>
+            
+            <div class="debug-toggle">
+                <a id="toggleDebug">Show Debug Info</a>
+            </div>
+            
+            <div class="debug-info" id="debugInfo">
+                <h3>Debug Information:</h3>
+                <div id="debugContent"></div>
+            </div>
             
             <div class="test-accounts">
                 <h3>Test Accounts (for demonstration):</h3>
@@ -439,6 +469,9 @@
         const closeButtons = document.querySelectorAll('.close');
         const resetPasswordBtn = document.getElementById('resetPasswordBtn');
         const registerBtn = document.getElementById('registerBtn');
+        const toggleDebug = document.getElementById('toggleDebug');
+        const debugInfo = document.getElementById('debugInfo');
+        const debugContent = document.getElementById('debugContent');
         
         // Test accounts for demonstration
         const testAccounts = {
@@ -471,6 +504,42 @@
             
             // Add event listeners for modals
             setupModalListeners();
+            
+            // Debug toggle
+            toggleDebug.addEventListener('click', () => {
+                const isDebugVisible = debugInfo.style.display === 'block';
+                debugInfo.style.display = isDebugVisible ? 'none' : 'block';
+                toggleDebug.textContent = isDebugVisible ? 'Show Debug Info' : 'Hide Debug Info';
+                
+                if (!isDebugVisible) {
+                    updateDebugInfo();
+                }
+            });
+        }
+        
+        // Update debug information
+        function updateDebugInfo() {
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+            let debugHTML = '<p><strong>Registered Users in LocalStorage:</strong></p>';
+            
+            if (Object.keys(registeredUsers).length === 0) {
+                debugHTML += '<p>No registered users found.</p>';
+            } else {
+                debugHTML += '<ul>';
+                for (const email in registeredUsers) {
+                    debugHTML += `<li>Email: ${email} | Password: ${registeredUsers[email].password} | Name: ${registeredUsers[email].name}</li>`;
+                }
+                debugHTML += '</ul>';
+            }
+            
+            debugHTML += `<p><strong>Test Accounts:</strong></p>`;
+            debugHTML += '<ul>';
+            for (const email in testAccounts) {
+                debugHTML += `<li>Email: ${email} | Password: ${testAccounts[email]}</li>`;
+            }
+            debugHTML += '</ul>';
+            
+            debugContent.innerHTML = debugHTML;
         }
         
         // Set up modal event listeners
@@ -561,6 +630,11 @@
                 showNotification('Registration successful! You can now login.', 'success');
                 registerModal.classList.remove('show');
                 
+                // Update debug info if visible
+                if (debugInfo.style.display === 'block') {
+                    updateDebugInfo();
+                }
+                
                 // Clear the form
                 document.getElementById('registerName').value = '';
                 document.getElementById('registerEmail').value = '';
@@ -633,22 +707,26 @@
             }
         });
         
-        // Validate user credentials - FIXED: Now checks both test accounts and registered users
+        // Validate user credentials - FIXED: Now properly checks both test accounts and registered users
         async function validateCredentials(email, password) {
             // Simulate API call delay
             await new Promise(resolve => setTimeout(resolve, 1000));
             
             // Check test accounts first
             if (testAccounts[email] && testAccounts[email] === password) {
+                console.log("Logged in with test account:", email);
                 return true;
             }
             
-            // Check registered users
-            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+            // Check registered users - FIXED THE BUG HERE
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '{}');
             if (registeredUsers[email] && registeredUsers[email].password === password) {
+                console.log("Logged in with registered account:", email);
                 return true;
             }
             
+            console.log("Login failed for:", email);
+            console.log("Registered users:", registeredUsers);
             return false;
         }
         
