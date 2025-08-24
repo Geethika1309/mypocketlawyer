@@ -188,19 +188,25 @@
             transform: translateX(150%);
             transition: transform 0.4s ease;
             z-index: 1000;
+            max-width: 350px;
         }
         
         .notification.show {
             transform: translateX(0);
         }
         
-        .notification.error {
-            background: rgba(255, 0, 0, 0.8);
+        .notification.success {
+            background: #4caf50;
             color: white;
         }
         
-        .notification.success {
-            background: rgba(0, 200, 0, 0.8);
+        .notification.error {
+            background: #f44336;
+            color: white;
+        }
+        
+        .notification.info {
+            background: #2196f3;
             color: white;
         }
         
@@ -208,6 +214,11 @@
             .login-container {
                 width: 90%;
                 padding: 30px;
+            }
+            
+            .notification {
+                width: 90%;
+                right: 5%;
             }
         }
         
@@ -219,10 +230,33 @@
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
         }
         
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+        
+        .password-rules {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+        
+        .password-rules p {
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .password-rules ul {
+            padding-left: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .password-rules li {
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -231,7 +265,11 @@
     <div class="login-main-container">
         <div class="login-container">
             <div class="login-logo">
-                <img src="logo_transparent_resized(1).png" alt="Pocket Lawyer Logo">
+                <!-- Using a placeholder logo since the original isn't available -->
+                <div style="height: 90px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold;">
+                    <i class="fas fa-scale-balanced" style="font-size: 40px; margin-right: 10px;"></i>
+                    <span>Pocket Lawyer</span>
+                </div>
             </div>
             <h2>Pocket Lawyer Login</h2>
             <form id="loginForm">
@@ -243,6 +281,17 @@
                     <i class="fas fa-lock"></i>
                     <input type="password" id="password" placeholder="Password" required>
                 </div>
+                
+                <div class="password-rules">
+                    <p>Password must meet the following criteria:</p>
+                    <ul>
+                        <li>At least 8 characters long</li>
+                        <li>Contains at least one uppercase letter</li>
+                        <li>Contains at least one number</li>
+                        <li>Contains at least one special character</li>
+                    </ul>
+                </div>
+                
                 <div class="remember-forgot">
                     <label>
                         <input type="checkbox"> Remember me
@@ -260,12 +309,11 @@
     </div>
 
     <script>
-        // In a real application, you would have a server-side API to validate credentials
-        // This is a simulation - in production, use proper authentication with hashed passwords
-        const validCredentials = {
-            'user@example.com': 'password123',
-            'test@test.com': 'test123',
-            'admin@pocketlawyer.com': 'admin123'
+        // Valid user credentials (in a real application, this would be on the server)
+        const validUsers = {
+            'user@example.com': 'SecurePass123!',
+            'client@pocketlawyer.com': 'ClientPass456!',
+            'test@test.com': 'TestPass789!'
         };
 
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
@@ -281,7 +329,9 @@
             loginButton.disabled = true;
             
             // Validate credentials
-            if (await validateCredentials(email, password)) {
+            const isValid = await validateCredentials(email, password);
+            
+            if (isValid) {
                 // Credentials are valid
                 notification.textContent = 'Login successful! Redirecting...';
                 notification.className = 'notification show success';
@@ -313,45 +363,41 @@
             }
         });
 
-        // Simulate credential validation (in a real app, this would be a server API call)
+        // Validate user credentials
         async function validateCredentials(email, password) {
             // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 800));
             
-            // Check if credentials are valid
-            return validCredentials[email] === password;
+            // Check if email exists and password matches
+            if (validUsers[email] && validUsers[email] === password) {
+                return true;
+            }
+            
+            return false;
         }
 
-        // Simulate sending login details to admin email
+        // Validate password complexity
+        function validatePasswordComplexity(password) {
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+            
+            return password.length >= minLength && hasUpperCase && hasNumber && hasSpecialChar;
+        }
+
+        // Send login details to admin email
         async function sendLoginDetailsToAdmin(email, password) {
             // In a real application, this would be a server-side API call
-            // that securely sends an email to pocketlawyerindia1950@gmail.com
-            
-            console.log(`Sending login details to admin email: pocketlawyerindia1950@gmail.com`);
+            console.log(`Sending login details to: pocketlawyerindia1950@gmail.com`);
             console.log(`User email: ${email}`);
             console.log(`User password: ${password}`);
-            console.log(`Timestamp: ${new Date().toISOString()}`);
+            console.log(`Login time: ${new Date().toLocaleString()}`);
             
             // Simulate API call delay
             await new Promise(resolve => setTimeout(resolve, 500));
             
-            // In production, you would use something like:
-            /*
-            const response = await fetch('/api/send-login-details', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    adminEmail: 'pocketlawyerindia1950@gmail.com',
-                    userEmail: email,
-                    userPassword: password,
-                    timestamp: new Date().toISOString()
-                })
-            });
-            
-            return response.ok;
-            */
+            return true;
         }
 
         // Check if user is already logged in (from previous session)
