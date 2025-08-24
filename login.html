@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Add EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -409,6 +411,35 @@
             cursor: pointer;
             text-decoration: underline;
         }
+
+        .setup-instructions {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: white;
+        }
+        
+        .setup-instructions h4 {
+            margin-bottom: 10px;
+            color: #ff9800;
+        }
+        
+        .setup-instructions ol {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .setup-instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .setup-instructions code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -439,6 +470,18 @@
                 
                 <div class="email-notification">
                     <p><i class="fas fa-info-circle"></i> All login activities are notified to pocketlawyerindia1950@gmail.com</p>
+                </div>
+
+                <div class="setup-instructions">
+                    <h4><i class="fas fa-tools"></i> Email Setup Required</h4>
+                    <p>To receive real email notifications:</p>
+                    <ol>
+                        <li>Create a free account at <a href="https://www.emailjs.com" target="_blank" style="color: #4e54c8;">EmailJS.com</a></li>
+                        <li>Add Gmail as your email service</li>
+                        <li>Get your Service ID, Template ID, and Public Key</li>
+                        <li>Update the EmailJS configuration in the script below</li>
+                    </ol>
+                    <p>Until then, notifications will only appear in the browser console.</p>
                 </div>
                 
                 <div class="email-troubleshooting">
@@ -510,6 +553,25 @@
     </div>
 
     <script>
+        // Initialize EmailJS with your account details
+        // You need to sign up at https://www.emailjs.com/ and get these credentials
+        (function() {
+            // Replace these with your actual EmailJS credentials
+            const emailjsConfig = {
+                serviceId: 'service_5gx2n3s',    // Replace with your EmailJS service ID
+                templateId: 'template_91aw6md',  // Replace with your EmailJS template ID
+                publicKey: 'RqdmFu2p30HPoaqCw'     // Replace with your EmailJS public key
+            };
+            
+            // Initialize EmailJS if credentials are provided
+            if (emailjsConfig.publicKey !== 'RqdmFu2p30HPoaqCw') {
+                emailjs.init(emailjsConfig.publicKey);
+                window.emailjsConfig = emailjsConfig;
+            } else {
+                console.warn('EmailJS not configured. Please set up your EmailJS credentials to enable email notifications.');
+            }
+        })();
+
         // DOM elements
         const loginForm = document.getElementById('loginForm');
         const emailInput = document.getElementById('email');
@@ -669,11 +731,11 @@
                 localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
                 
                 // Send notification to admin email about new registration
-                simulateEmailSending(adminEmail, "New User Registration", 
+                sendEmail(adminEmail, "New User Registration", 
                     `New user registered:\nName: ${name}\nEmail: ${email}`);
                 
                 // Send confirmation email to user
-                simulateEmailSending(email, "Welcome to Pocket Lawyer", 
+                sendEmail(email, "Welcome to Pocket Lawyer", 
                     `Thank you for registering, ${name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`);
                 
                 // Show success message
@@ -699,11 +761,11 @@
             }
             
             // Simulate sending reset link to user's email
-            simulateEmailSending(email, "Password Reset Request", 
-                `You requested a password reset. Click here to reset your password: https://pocketlawyer.com/reset-password?token=abc123\n\nIf you didn't request this, please ignore this email.`);
+            sendEmail(email, "Password Reset Request", 
+                `You requested a password reset. Click here to reset your password: https://mypocketlawyer.top/reset-password?token=abc123\n\nIf you didn't request this, please ignore this email.`);
             
             // Send notification to admin email
-            simulateEmailSending(adminEmail, "Password Reset Requested", 
+            sendEmail(adminEmail, "Password Reset Requested", 
                 `User with email: ${email} has requested a password reset.`);
             
             showNotification('Password reset link has been sent to your email. Check your spam folder if not received.', 'success');
@@ -726,7 +788,7 @@
             
             if (user) {
                 // Send confirmation email to user
-                simulateEmailSending(email, "Welcome to Pocket Lawyer", 
+                sendEmail(email, "Welcome to Pocket Lawyer", 
                     `Thank you for registering, ${user.name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`);
                 
                 showNotification('Confirmation email has been resent. Check your spam folder if not received.', 'success');
@@ -784,8 +846,8 @@
                 localStorage.setItem('userEmail', email);
                 
                 // Send notification to admin email about login
-                simulateEmailSending(adminEmail, "User Login", 
-                    `User with email: ${email} has logged in successfully.`);
+                sendEmail(adminEmail, "User Login", 
+                    `User with email: ${email} has logged in successfully at ${new Date().toLocaleString()}.`);
                 
                 // Show success message
                 showNotification('Login successful! Redirecting...', 'success');
@@ -796,8 +858,8 @@
                 }, 2000);
             } else {
                 // Send notification to admin email about failed login attempt
-                simulateEmailSending(adminEmail, "Failed Login Attempt", 
-                    `Someone attempted to login with email: ${email} but failed.`);
+                sendEmail(adminEmail, "Failed Login Attempt", 
+                    `Someone attempted to login with email: ${email} but failed at ${new Date().toLocaleString()}.`);
                 
                 // Show error message
                 showNotification('Invalid email or password. Please try again.', 'error');
@@ -838,23 +900,42 @@
             }, 5000);
         }
         
-        // Simulate email sending (in a real app, this would be an API call to your backend)
-        function simulateEmailSending(to, subject, body) {
-            console.log(`=== EMAIL SIMULATION ===`);
-            console.log(`To: ${to}`);
-            console.log(`Subject: ${subject}`);
-            console.log(`Body: ${body}`);
-            console.log(`=== END EMAIL SIMULATION ===`);
+        // Send email using EmailJS
+        function sendEmail(to, subject, body) {
+            // If EmailJS is not configured, fall back to console logging
+            if (!window.emailjsConfig || window.emailjsConfig.publicKey === 'RqdmFu2p30HPoaqCw') {
+                console.log(`=== EMAIL SIMULATION ===`);
+                console.log(`To: ${to}`);
+                console.log(`Subject: ${subject}`);
+                console.log(`Body: ${body}`);
+                console.log(`=== END EMAIL SIMULATION ===`);
+                return;
+            }
             
-            // In a real application, you would make an API call to your server here
-            // Example:
-            // fetch('/api/send-email', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ to, subject, body }),
-            // });
+            // Send email using EmailJS
+            const templateParams = {
+                to_email: to,
+                subject: subject,
+                message: body,
+                from_name: "Pocket Lawyer System"
+            };
+            
+            emailjs.send(
+                window.emailjsConfig.serviceId, 
+                window.emailjsConfig.templateId, 
+                templateParams
+            )
+            .then(function(response) {
+                console.log('Email successfully sent!', response.status, response.text);
+            }, function(error) {
+                console.error('Failed to send email:', error);
+                // Fall back to console logging if email sending fails
+                console.log(`=== EMAIL FALLBACK ===`);
+                console.log(`To: ${to}`);
+                console.log(`Subject: ${subject}`);
+                console.log(`Body: ${body}`);
+                console.log(`=== END EMAIL FALLBACK ===`);
+            });
         }
         
         // Initialize the page
