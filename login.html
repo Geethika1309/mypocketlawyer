@@ -466,7 +466,7 @@
                 forgotPasswordModal.classList.add('show');
             });
             
-            // Register link
+            // Register link - FIXED: This was the main issue
             registerLink.addEventListener('click', () => {
                 registerModal.classList.add('show');
             });
@@ -501,7 +501,7 @@
                 }
             });
             
-            // Register button
+            // Register button - FIXED: Added proper registration functionality
             registerBtn.addEventListener('click', () => {
                 const name = document.getElementById('registerName').value;
                 const email = document.getElementById('registerEmail').value;
