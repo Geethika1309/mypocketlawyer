@@ -142,13 +142,13 @@
         (function() {
             // Replace these with your actual EmailJS credentials
             const emailjsConfig = {
-                serviceId: 'service_5gx2n3s',    // Replace with your EmailJS service ID
-                templateId: 'template_91aw6md',  // Replace with your EmailJS template ID
-                publicKey: 'RqdmFu2p30HPoaqCw'     // Replace with your EmailJS public key
+                serviceId: 'YOUR_SERVICE_ID',    // Replace with your EmailJS service ID
+                templateId: 'YOUR_TEMPLATE_ID',  // Replace with your EmailJS template ID
+                publicKey: 'YOUR_PUBLIC_KEY'     // Replace with your EmailJS public key
             };
             
             // Initialize EmailJS if credentials are provided
-            if (emailjsConfig.publicKey && emailjsConfig.publicKey !== 'RqdmFu2p30HPoaqCw') {
+            if (emailjsConfig.publicKey && emailjsConfig.publicKey !== 'YOUR_PUBLIC_KEY') {
                 emailjs.init(emailjsConfig.publicKey);
                 window.emailjsConfig = emailjsConfig;
                 console.log('EmailJS initialized successfully');
@@ -518,7 +518,7 @@
         // Send email using EmailJS
         function sendEmail(to, subject, body) {
             // If EmailJS is not configured, fall back to console logging
-            if (!window.emailjsConfig || window.emailjsConfig.publicKey === 'RqdmFu2p30HPoaqCw') {
+            if (!window.emailjsConfig || window.emailjsConfig.publicKey === 'YOUR_PUBLIC_KEY') {
                 console.log(`=== EMAIL SIMULATION ===`);
                 console.log(`To: ${to}`);
                 console.log(`Subject: ${subject}`);
