@@ -585,6 +585,7 @@
                     <li><a href="generatedocuments.html" id="gene">✍ Generate Documents</a></li>
                     <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
                     <li><a href="contact.html" id="contact">📞 Contact</a></li>
+                    <li><a href="#" id="logoutBtn">🚪 Logout</a></li>
                 </ul>
             </nav>
         </header>
@@ -1204,6 +1205,17 @@ document.addEventListener('click', function(e) {
     localStorage.removeItem('userEmail');
     window.location.href = 'login.html';
 }
+
+// Add event listener for the logout button
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            logout();
+        });
+    }
+});
     </script>
 
     <script src="lawdata.js"></script>
@@ -1212,6 +1224,7 @@ document.addEventListener('click', function(e) {
 
 
 </html>
+
 
 
 
