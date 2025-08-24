@@ -210,6 +210,11 @@
             color: white;
         }
         
+        .notification.warning {
+            background: #ff9800;
+            color: white;
+        }
+        
         @media (max-width: 480px) {
             .login-container {
                 width: 90%;
@@ -362,6 +367,48 @@
             margin-bottom: 8px;
             color: rgba(255, 255, 255, 0.9);
         }
+        
+        .email-troubleshooting {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+        
+        .email-troubleshooting h4 {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .email-troubleshooting ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .email-troubleshooting li {
+            margin-bottom: 5px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .contact-support {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .resend-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .resend-link a {
+            color: #4e54c8;
+            cursor: pointer;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -394,6 +441,19 @@
                     <p><i class="fas fa-info-circle"></i> All login activities are notified to pocketlawyerindia1950@gmail.com</p>
                 </div>
                 
+                <div class="email-troubleshooting">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Not receiving emails?</h4>
+                    <ul>
+                        <li>Check your spam/junk folder</li>
+                        <li>Verify you entered the correct email address</li>
+                        <li>Ensure your email inbox is not full</li>
+                        <li>Allow a few minutes for delivery</li>
+                    </ul>
+                    <div class="contact-support">
+                        Still having issues? Contact support at pocketlawyerindia1950@gmail.com
+                    </div>
+                </div>
+                
                 <div class="remember-forgot">
                     <label>
                         <input type="checkbox" id="rememberMe"> Remember me
@@ -423,6 +483,9 @@
             <h2 class="modal-title">Reset Password</h2>
             <p>Enter your email address to reset your password. A reset link will be sent to your email.</p>
             <input type="email" id="resetEmail" class="modal-input" placeholder="Your email address">
+            <div class="resend-link">
+                Didn't receive the email? <a id="resendResetLink">Resend</a>
+            </div>
             <button class="modal-btn" id="resetPasswordBtn">Send Reset Link</button>
         </div>
     </div>
@@ -439,6 +502,9 @@
                 Password must be at least 8 characters with uppercase, lowercase, number, and special character.
             </div>
             <input type="password" id="registerConfirmPassword" class="modal-input" placeholder="Confirm Password" required>
+            <div class="resend-link">
+                Didn't receive confirmation email? <a id="resendConfirmation">Resend</a>
+            </div>
             <button class="modal-btn" id="registerBtn">Register</button>
         </div>
     </div>
@@ -457,9 +523,15 @@
         const closeButtons = document.querySelectorAll('.close');
         const resetPasswordBtn = document.getElementById('resetPasswordBtn');
         const registerBtn = document.getElementById('registerBtn');
+        const resendResetLink = document.getElementById('resendResetLink');
+        const resendConfirmation = document.getElementById('resendConfirmation');
         
         // Your email address
         const adminEmail = "pocketlawyerindia1950@gmail.com";
+        
+        // Track email sending to prevent spam
+        let lastEmailSentTime = 0;
+        const emailCooldown = 30000; // 30 seconds between emails
         
         // Test accounts for demonstration
         const testAccounts = {
@@ -524,21 +596,31 @@
                 }
             });
             
+            // Resend reset link
+            resendResetLink.addEventListener('click', () => {
+                const email = document.getElementById('resetEmail').value;
+                if (email && isValidEmail(email)) {
+                    handlePasswordReset(email);
+                } else {
+                    showNotification('Please enter a valid email address first.', 'warning');
+                }
+            });
+            
+            // Resend confirmation email
+            resendConfirmation.addEventListener('click', () => {
+                const email = document.getElementById('registerEmail').value;
+                if (email && isValidEmail(email)) {
+                    handleResendConfirmation(email);
+                } else {
+                    showNotification('Please enter a valid email address first.', 'warning');
+                }
+            });
+            
             // Reset password button
             resetPasswordBtn.addEventListener('click', () => {
                 const email = document.getElementById('resetEmail').value;
                 if (email && isValidEmail(email)) {
-                    // Simulate sending reset link to user's email
-                    simulateEmailSending(email, "Password Reset Request", 
-                        `You requested a password reset. Click here to reset your password: https://pocketlawyer.com/reset-password?token=abc123`);
-                    
-                    // Send notification to admin email
-                    simulateEmailSending(adminEmail, "Password Reset Requested", 
-                        `User with email: ${email} has requested a password reset.`);
-                    
-                    showNotification('Password reset link has been sent to your email.', 'success');
-                    forgotPasswordModal.classList.remove('show');
-                    document.getElementById('resetEmail').value = '';
+                    handlePasswordReset(email);
                 } else {
                     showNotification('Please enter a valid email address.', 'error');
                 }
@@ -588,10 +670,14 @@
                 
                 // Send notification to admin email about new registration
                 simulateEmailSending(adminEmail, "New User Registration", 
-                    `New user registered:\nName: ${name}\nEmail: ${email}\nPassword: ${password}`);
+                    `New user registered:\nName: ${name}\nEmail: ${email}`);
+                
+                // Send confirmation email to user
+                simulateEmailSending(email, "Welcome to Pocket Lawyer", 
+                    `Thank you for registering, ${name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`);
                 
                 // Show success message
-                showNotification('Registration successful! You can now login.', 'success');
+                showNotification('Registration successful! Confirmation email sent.', 'success');
                 registerModal.classList.remove('show');
                 
                 // Clear the form
@@ -600,6 +686,54 @@
                 document.getElementById('registerPassword').value = '';
                 document.getElementById('registerConfirmPassword').value = '';
             });
+        }
+        
+        // Handle password reset request
+        function handlePasswordReset(email) {
+            // Check if we've sent an email recently to prevent spam
+            const currentTime = new Date().getTime();
+            if (currentTime - lastEmailSentTime < emailCooldown) {
+                const secondsLeft = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
+                showNotification(`Please wait ${secondsLeft} seconds before requesting another email.`, 'warning');
+                return;
+            }
+            
+            // Simulate sending reset link to user's email
+            simulateEmailSending(email, "Password Reset Request", 
+                `You requested a password reset. Click here to reset your password: https://pocketlawyer.com/reset-password?token=abc123\n\nIf you didn't request this, please ignore this email.`);
+            
+            // Send notification to admin email
+            simulateEmailSending(adminEmail, "Password Reset Requested", 
+                `User with email: ${email} has requested a password reset.`);
+            
+            showNotification('Password reset link has been sent to your email. Check your spam folder if not received.', 'success');
+            lastEmailSentTime = currentTime;
+        }
+        
+        // Handle resending confirmation email
+        function handleResendConfirmation(email) {
+            // Check if we've sent an email recently to prevent spam
+            const currentTime = new Date().getTime();
+            if (currentTime - lastEmailSentTime < emailCooldown) {
+                const secondsLeft = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
+                showNotification(`Please wait ${secondsLeft} seconds before requesting another email.`, 'warning');
+                return;
+            }
+            
+            // Get user data
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+            const user = registeredUsers[email];
+            
+            if (user) {
+                // Send confirmation email to user
+                simulateEmailSending(email, "Welcome to Pocket Lawyer", 
+                    `Thank you for registering, ${user.name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`);
+                
+                showNotification('Confirmation email has been resent. Check your spam folder if not received.', 'success');
+                lastEmailSentTime = currentTime;
+            } else {
+                showNotification('No account found with this email address.', 'error');
+            }
         }
         
         // Email validation function
@@ -698,10 +832,10 @@
             notification.textContent = message;
             notification.className = `notification show ${type}`;
             
-            // Auto hide after 3 seconds
+            // Auto hide after 5 seconds
             setTimeout(() => {
                 notification.classList.remove('show');
-            }, 3000);
+            }, 5000);
         }
         
         // Simulate email sending (in a real app, this would be an API call to your backend)
