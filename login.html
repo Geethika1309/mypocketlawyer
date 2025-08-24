@@ -263,6 +263,10 @@
             justify-content: center;
         }
         
+        .modal.show {
+            display: flex;
+        }
+        
         .modal-content {
             background-color: #fefefe;
             margin: auto;
@@ -273,11 +277,14 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             color: #333;
+            position: relative;
         }
         
         .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
             color: #aaa;
-            float: right;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
@@ -421,6 +428,8 @@
         const forgotPasswordModal = document.getElementById('forgotPasswordModal');
         const registerModal = document.getElementById('registerModal');
         const closeButtons = document.querySelectorAll('.close');
+        const resetPasswordBtn = document.getElementById('resetPasswordBtn');
+        const registerBtn = document.getElementById('registerBtn');
         
         // Test accounts for demonstration
         const testAccounts = {
@@ -445,6 +454,96 @@
                 emailInput.value = rememberedEmail;
                 document.getElementById('rememberMe').checked = true;
             }
+            
+            // Add event listeners for modals
+            setupModalListeners();
+        }
+        
+        // Set up modal event listeners
+        function setupModalListeners() {
+            // Forgot password link
+            forgotPasswordLink.addEventListener('click', () => {
+                forgotPasswordModal.classList.add('show');
+            });
+            
+            // Register link
+            registerLink.addEventListener('click', () => {
+                registerModal.classList.add('show');
+            });
+            
+            // Close buttons
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    forgotPasswordModal.classList.remove('show');
+                    registerModal.classList.remove('show');
+                });
+            });
+            
+            // Close modal when clicking outside of it
+            window.addEventListener('click', (e) => {
+                if (e.target === forgotPasswordModal) {
+                    forgotPasswordModal.classList.remove('show');
+                }
+                if (e.target === registerModal) {
+                    registerModal.classList.remove('show');
+                }
+            });
+            
+            // Reset password button
+            resetPasswordBtn.addEventListener('click', () => {
+                const email = document.getElementById('resetEmail').value;
+                if (email && isValidEmail(email)) {
+                    showNotification('Password reset link has been sent to your email.', 'success');
+                    forgotPasswordModal.classList.remove('show');
+                    document.getElementById('resetEmail').value = '';
+                } else {
+                    showNotification('Please enter a valid email address.', 'error');
+                }
+            });
+            
+            // Register button
+            registerBtn.addEventListener('click', () => {
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('registerConfirmPassword').value;
+                
+                if (!name || !email || !password || !confirmPassword) {
+                    showNotification('Please fill in all fields.', 'error');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showNotification('Please enter a valid email address.', 'error');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showNotification('Passwords do not match.', 'error');
+                    return;
+                }
+                
+                if (password.length < 8) {
+                    showNotification('Password must be at least 8 characters long.', 'error');
+                    return;
+                }
+                
+                // Simulate registration process
+                showNotification('Registration successful! You can now login.', 'success');
+                registerModal.classList.remove('show');
+                
+                // Clear the form
+                document.getElementById('registerName').value = '';
+                document.getElementById('registerEmail').value = '';
+                document.getElementById('registerPassword').value = '';
+                document.getElementById('registerConfirmPassword').value = '';
+            });
+        }
+        
+        // Email validation function
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
         }
         
         // Handle login form submission
@@ -535,32 +634,6 @@
                 notification.classList.remove('show');
             }, 3000);
         }
-        
-        // Event listeners for modals
-        forgotPasswordLink.addEventListener('click', () => {
-            forgotPasswordModal.style.display = 'flex';
-        });
-        
-        registerLink.addEventListener('click', () => {
-            registerModal.style.display = 'flex';
-        });
-        
-        closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                forgotPasswordModal.style.display = 'none';
-                registerModal.style.display = 'none';
-            });
-        });
-        
-        // Close modal when clicking outside of it
-        window.addEventListener('click', (e) => {
-            if (e.target === forgotPasswordModal) {
-                forgotPasswordModal.style.display = 'none';
-            }
-            if (e.target === registerModal) {
-                registerModal.style.display = 'none';
-            }
-        });
         
         // Initialize the page
         init();
