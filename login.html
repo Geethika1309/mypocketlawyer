@@ -1095,28 +1095,49 @@
     
        // Send OTP email to user
 function sendOtpEmail(email, otp) {
+    // Use the exact parameter names that your EmailJS template expects
     const templateParams = {
-        to_email: email, // This sends to user's email
+        to_email: email, // Make sure your template uses {{to_email}}
+        user_email: email, // Alternative parameter name
+        email: email, // Another common parameter name
         from_name: "Pocket Lawyer",
         to_name: "User",
+        user_name: "User", // Alternative parameter name
+        otp_code: otp, // Use a descriptive parameter name
         message: `Your OTP for password reset is: ${otp}. This OTP will expire in 2 minutes.`,
-        subject: "Password Reset OTP - Pocket Lawyer"
+        subject: "Password Reset OTP - Pocket Lawyer",
+        reply_to: "pocketlawyerindia1950@gmail.com" // Add reply-to address
     };
     
+    // Add debug logging
+    console.log("Sending OTP email to:", email);
+    console.log("OTP:", otp);
+    console.log("Template params:", templateParams);
+    
     emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-        .then(() => {
+        .then((response) => {
+            console.log('EmailJS response:', response);
             showNotification('OTP sent to your email address.', 'success');
             
-            // Also send a copy to admin for notification
-            sendEmail(
-                adminEmail, 
-                "Password Reset Request - Pocket Lawyer", 
-                `A password reset request was made for email: ${email} at ${new Date().toLocaleString()}`
-            );
+            // Also send notification to admin (without OTP)
+            const adminParams = {
+                to_email: adminEmail,
+                from_name: "Pocket Lawyer System",
+                to_name: "Admin",
+                message: `Password reset was requested for: ${email} at ${new Date().toLocaleString()}`,
+                subject: "Password Reset Request Notification"
+            };
+            
+            emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, adminParams)
+                .then(() => console.log('Admin notified'))
+                .catch(error => console.error('Admin notify failed:', error));
         })
         .catch((error) => {
             console.error('Failed to send OTP email:', error);
             showNotification('Failed to send OTP email. Please try again.', 'error');
+            
+            // For testing/demo purposes, show OTP on screen
+            showNotification(`DEBUG: OTP would be: ${otp} (Email sending failed)`, 'info');
         });
 }
     
