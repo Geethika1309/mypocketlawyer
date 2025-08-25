@@ -485,6 +485,25 @@
             font-size: 18px;
             cursor: pointer;
         }
+
+        .phone-input-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .country-code {
+            padding: 12px 15px;
+            background: #f5f5f5;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+        }
+        
+        .phone-input {
+            flex: 1;
+            border-radius: 0 5px 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -558,10 +577,15 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 class="modal-title">Reset Password</h2>
-            <p>Enter your email address to reset your password. A reset OTP will be sent to your email.</p>
-            <input type="email" id="resetEmail" class="modal-input" placeholder="Your email address">
+            <p>Enter your phone number to reset your password. A reset OTP will be sent to your phone via SMS.</p>
+            
+            <div class="phone-input-container">
+                <div class="country-code">+91</div>
+                <input type="tel" id="resetPhone" class="modal-input phone-input" placeholder="Phone Number" required pattern="[0-9]{10}">
+            </div>
+            
             <div class="resend-link">
-                Didn't receive the email? <a id="resendResetLink">Resend</a>
+                Didn't receive the SMS? <a id="resendResetLink">Resend</a>
             </div>
             <button class="modal-btn" id="resetPasswordBtn">Send OTP</button>
         </div>
@@ -572,7 +596,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 class="modal-title">Verify OTP</h2>
-            <p>We've sent a 6-digit OTP to your email. Please enter it below to reset your password.</p>
+            <p>We've sent a 6-digit OTP to your phone. Please enter it below to reset your password.</p>
             <div class="otp-input-container">
                 <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
                 <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
@@ -619,6 +643,11 @@
             <input type="text" id="registerName" class="modal-input" placeholder="Full Name" required>
             <input type="email" id="registerEmail" class="modal-input" placeholder="Email Address" required>
             
+            <div class="phone-input-container">
+                <div class="country-code">+91</div>
+                <input type="tel" id="registerPhone" class="modal-input phone-input" placeholder="Phone Number" required pattern="[0-9]{10}">
+            </div>
+            
             <div class="modal-input-group">
                 <input type="password" id="registerPassword" class="modal-input" placeholder="Password" required>
                 <i class="fas fa-eye modal-toggle-password" id="toggleRegisterPassword"></i>
@@ -634,7 +663,7 @@
             </div>
             
             <div class="resend-link">
-                Didn't receive confirmation email? <a id="resendConfirmation">Resend</a>
+                Didn't receive confirmation? <a id="resendConfirmation">Resend</a>
             </div>
             <button class="modal-btn" id="registerBtn">Register</button>
         </div>
@@ -665,19 +694,21 @@
     const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
     const toggleNewPassword = document.getElementById('toggleNewPassword');
     const toggleConfirmNewPassword = document.getElementById('toggleConfirmNewPassword');
+    const resetPhoneInput = document.getElementById('resetPhone');
+    const registerPhoneInput = document.getElementById('registerPhone');
     
     // Your email address
     const adminEmail = "pocketlawyerindia1950@gmail.com";
     
-    // Track email sending to prevent spam
-    let lastEmailSentTime = 0;
-    const emailCooldown = 30000; // 30 seconds between emails
+    // Track SMS sending to prevent spam
+    let lastSmsSentTime = 0;
+    const smsCooldown = 30000; // 30 seconds between SMS
     
     // OTP variables
     let otpTimer;
     let otpExpiryTime;
     let generatedOtp;
-    let resetEmail;
+    let resetPhone;
     
     // Test accounts for demonstration
     const testAccounts = {
@@ -685,18 +716,8 @@
         'test@test.com': 'TestPass789!'
     };
     
-    // EmailJS configuration - Hardcoded values
-    const emailjsConfig = {
-        serviceId: 'service_cdydpib',
-        templateId: 'template_91aw6md',
-        publicKey: 'PZIFaVPi-Ytb6jNvs'
-    };
-    
     // Initialize the page
     function init() {
-        // Initialize EmailJS with hardcoded values
-        emailjs.init(emailjsConfig.publicKey);
-        
         // Initialize registered users if not exists
         if (!localStorage.getItem('registeredUsers')) {
             localStorage.setItem('registeredUsers', JSON.stringify({}));
@@ -727,8 +748,8 @@
         // Add password toggle functionality
         setupPasswordToggles();
         
-        // Debug EmailJS configuration
-        console.log("EmailJS initialized with:", emailjsConfig);
+        // Add phone number validation
+        setupPhoneValidation();
     }
     
     // Setup password toggle functionality
@@ -773,6 +794,17 @@
         });
     }
     
+    // Setup phone number validation
+    function setupPhoneValidation() {
+        resetPhoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+        
+        registerPhoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+    }
+    
     // Handle login form submission
     async function handleLogin(e) {
         e.preventDefault();
@@ -812,9 +844,6 @@
                     localStorage.removeItem('rememberedEmail');
                 }
                 
-                // Send login notification email
-                sendLoginNotification(email);
-                
                 // Show success message
                 showNotification('Login successful! Redirecting...', 'success');
                 
@@ -833,78 +862,6 @@
             loginButton.innerHTML = originalText;
             loginButton.disabled = false;
         }
-    }
-    
-    // Send login notification email
-    function sendLoginNotification(email) {
-        const loginTime = new Date().toLocaleString();
-        const userIP = "Unknown"; // In a real app, you'd get this from the server
-        
-        // Get user agent information
-        const userAgent = navigator.userAgent;
-        
-        // Create login details message
-        const loginDetails = `
-            User Login Details:
-            - Email: ${email}
-            - Login Time: ${loginTime}
-            - IP Address: ${userIP}
-            - User Agent: ${userAgent}
-            - Device: ${getDeviceType()}
-            - Browser: ${getBrowserName()}
-            - Platform: ${getPlatform()}
-        `;
-        
-        // Send email to admin
-        sendEmail(
-            adminEmail, 
-            "User Login Notification - Pocket Lawyer", 
-            `A user has logged into your Pocket Lawyer website:\n\n${loginDetails}`
-        );
-        
-        console.log("Login notification sent for:", email);
-    }
-    
-    // Helper function to get device type
-    function getDeviceType() {
-        const ua = navigator.userAgent;
-        if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-            return "Tablet";
-        }
-        if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-            return "Mobile";
-        }
-        return "Desktop";
-    }
-    
-    // Helper function to get browser name
-    function getBrowserName() {
-        const userAgent = navigator.userAgent;
-        if (userAgent.indexOf("Chrome") > -1) {
-            return "Chrome";
-        } else if (userAgent.indexOf("Safari") > -1) {
-            return "Safari";
-        } else if (userAgent.indexOf("Firefox") > -1) {
-            return "Firefox";
-        } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
-            return "Internet Explorer";
-        } else if (userAgent.indexOf("Edge") > -1) {
-            return "Edge";
-        } else if (userAgent.indexOf("Opera") > -1) {
-            return "Opera";
-        }
-        return "Unknown Browser";
-    }
-    
-    // Helper function to get platform
-    function getPlatform() {
-        const userAgent = navigator.userAgent;
-        if (userAgent.indexOf("Win") > -1) return "Windows";
-        if (userAgent.indexOf("Mac") > -1) return "MacOS";
-        if (userAgent.indexOf("Linux") > -1) return "Linux";
-        if (userAgent.indexOf("Android") > -1) return "Android";
-        if (userAgent.indexOf("like Mac") > -1) return "iOS";
-        return "Unknown Platform";
     }
     
     // Set up modal event listeners
@@ -947,31 +904,32 @@
         
         // Resend reset link
         resendResetLink.addEventListener('click', () => {
-            const email = document.getElementById('resetEmail').value;
-            if (email && isValidEmail(email)) {
-                handlePasswordReset(email);
+            const phone = resetPhoneInput.value;
+            if (phone && isValidPhone(phone)) {
+                handlePasswordReset(phone);
             } else {
-                showNotification('Please enter a valid email address first.', 'warning');
+                showNotification('Please enter a valid phone number first.', 'warning');
             }
         });
         
-        // Resend confirmation email
+        // Resend confirmation
         resendConfirmation.addEventListener('click', () => {
-            const email = document.getElementById('registerEmail').value;
-            if (email && isValidEmail(email)) {
-                handleResendConfirmation(email);
+            const phone = registerPhoneInput.value;
+            if (phone && isValidPhone(phone)) {
+                // In a real app, you would resend confirmation here
+                showNotification('Confirmation code sent to your phone.', 'success');
             } else {
-                showNotification('Please enter a valid email address first.', 'warning');
+                showNotification('Please enter a valid phone number first.', 'warning');
             }
         });
         
         // Reset password button
         resetPasswordBtn.addEventListener('click', () => {
-            const email = document.getElementById('resetEmail').value;
-            if (email && isValidEmail(email)) {
-                handlePasswordReset(email);
+            const phone = resetPhoneInput.value;
+            if (phone && isValidPhone(phone)) {
+                handlePasswordReset(phone);
             } else {
-                showNotification('Please enter a valid email address.', 'error');
+                showNotification('Please enter a valid 10-digit phone number.', 'error');
             }
         });
         
@@ -1002,8 +960,18 @@
             
             // Update password in registered users
             const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-            if (registeredUsers[resetEmail]) {
-                registeredUsers[resetEmail].password = newPassword;
+            
+            // Find user by phone number
+            let userEmail = null;
+            for (const email in registeredUsers) {
+                if (registeredUsers[email].phone === resetPhone) {
+                    userEmail = email;
+                    break;
+                }
+            }
+            
+            if (userEmail) {
+                registeredUsers[userEmail].password = newPassword;
                 localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
                 
                 showNotification('Password reset successfully! You can now login with your new password.', 'success');
@@ -1013,7 +981,7 @@
                     window.location.reload();
                 }, 1500);
             } else {
-                showNotification('Email not found. Please register first.', 'error');
+                showNotification('Phone number not found. Please register first.', 'error');
             }
         });
         
@@ -1021,16 +989,22 @@
         registerBtn.addEventListener('click', () => {
             const name = document.getElementById('registerName').value.trim();
             const email = document.getElementById('registerEmail').value.trim();
+            const phone = document.getElementById('registerPhone').value;
             const password = document.getElementById('registerPassword').value;
             const confirmPassword = document.getElementById('registerConfirmPassword').value;
             
-            if (!name || !email || !password || !confirmPassword) {
+            if (!name || !email || !phone || !password || !confirmPassword) {
                 showNotification('Please fill in all fields.', 'error');
                 return;
             }
             
             if (!isValidEmail(email)) {
                 showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            if (!isValidPhone(phone)) {
+                showNotification('Please enter a valid 10-digit phone number.', 'error');
                 return;
             }
             
@@ -1049,44 +1023,54 @@
             registeredUsers[email] = {
                 name: name,
                 password: password,
-                email: email
+                email: email,
+                phone: phone
             };
             localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
             
-            // Send welcome email
-            sendWelcomeEmail(email, name);
+            // Simulate sending welcome SMS
+            simulateSendSms(phone, `Welcome to Pocket Lawyer, ${name}! Your account has been successfully created.`);
             
             showNotification('Registration successful! You can now login.', 'success');
             registerModal.classList.remove('show');
         });
     }
     
-    // Handle password reset request
-    function handlePasswordReset(email) {
-        // Check if email is registered
+        // Handle password reset request
+    function handlePasswordReset(phone) {
+        // Check if phone is registered
         const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-        if (!registeredUsers[email] && !testAccounts[email]) {
-            showNotification('Email not found. Please register first.', 'error');
+        let isPhoneRegistered = false;
+        
+        for (const email in registeredUsers) {
+            if (registeredUsers[email].phone === phone) {
+                isPhoneRegistered = true;
+                break;
+            }
+        }
+        
+        if (!isPhoneRegistered) {
+            showNotification('This phone number is not registered. Please sign up first.', 'error');
             return;
         }
         
-        // Check email cooldown
+        // Check SMS cooldown
         const currentTime = new Date().getTime();
-        if (currentTime - lastEmailSentTime < emailCooldown) {
-            const remainingTime = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
+        if (currentTime - lastSmsSentTime < smsCooldown) {
+            const remainingTime = Math.ceil((smsCooldown - (currentTime - lastSmsSentTime)) / 1000);
             showNotification(`Please wait ${remainingTime} seconds before requesting another OTP.`, 'warning');
             return;
         }
         
         // Generate OTP
         generatedOtp = generateOtp();
-        resetEmail = email;
+        resetPhone = phone;
         
-        // Send OTP email
-        sendOtpEmail(email, generatedOtp);
+        // Simulate sending SMS (in a real app, this would call an SMS API)
+        simulateSendSms(phone, `Your Pocket Lawyer OTP is: ${generatedOtp}. It will expire in 2 minutes.`);
         
-        // Show OTP on screen as fallback
-        showNotification(`OTP sent to ${email}. If you don't receive it, use this: ${generatedOtp}`, 'info', 10000);
+        // Update last SMS sent time
+        lastSmsSentTime = currentTime;
         
         // Show OTP modal
         forgotPasswordModal.classList.remove('show');
@@ -1095,83 +1079,7 @@
         // Start OTP timer
         startOtpTimer();
         
-        // Update last email sent time
-        lastEmailSentTime = currentTime;
-    }
-    
-    // Send OTP email to user - PROPERLY FIXED version
-function sendOtpEmail(email, otp) {
-    console.log("Attempting to send OTP to:", email);
-    
-    // Try ALL possible parameter names that EmailJS templates commonly use
-    const templateParams = {
-        // Try every possible "to" parameter name
-        to_email: email,
-        email: email,
-        user_email: email,
-        recipient: email,
-        to: email,
-        
-        // OTP content
-        otp: otp,
-        otp_code: otp,
-        code: otp,
-        verification_code: otp,
-        
-        // Other parameters
-        from_name: "Pocket Lawyer",
-        user_name: "User",
-        message: `Your OTP for password reset is: ${otp}. This OTP will expire in 2 minutes.`,
-        subject: "Password Reset OTP - Pocket Lawyer",
-        reply_to: adminEmail
-    };
-    
-    console.log("Using parameters:", templateParams);
-    
-    emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-        .then((response) => {
-            console.log('Email sent successfully:', response);
-            showNotification('OTP sent to your email address. Check your inbox.', 'success');
-        })
-        .catch((error) => {
-            console.error('Failed to send OTP email:', error);
-            showNotification('Failed to send OTP email. Please try again later.', 'error');
-        });
-}    
-    // Send welcome email to new users
-    function sendWelcomeEmail(email, name) {
-        const templateParams = {
-            to_email: email,
-            from_name: "Pocket Lawyer",
-            to_name: name,
-            message: `Welcome to Pocket Lawyer, ${name}! Your account has been successfully created.`,
-            subject: "Welcome to Pocket Lawyer"
-        };
-        
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-            .then(() => {
-                console.log('Welcome email sent to:', email);
-            })
-            .catch((error) => {
-                console.error('Failed to send welcome email:', error);
-            });
-    }
-    
-    // Handle resend confirmation email
-    function handleResendConfirmation(email) {
-        const currentTime = new Date().getTime();
-        if (currentTime - lastEmailSentTime < emailCooldown) {
-            const remainingTime = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
-            showNotification(`Please wait ${remainingTime} seconds before requesting another email.`, 'warning');
-            return;
-        }
-        
-        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-        const name = registeredUsers[email] ? registeredUsers[email].name : "User";
-        
-        sendWelcomeEmail(email, name);
-        showNotification('Confirmation email sent successfully.', 'success');
-        lastEmailSentTime = currentTime;
+        showNotification('OTP sent to your phone number.', 'success');
     }
     
     // Generate a 6-digit OTP
@@ -1179,46 +1087,41 @@ function sendOtpEmail(email, otp) {
         return Math.floor(100000 + Math.random() * 900000).toString();
     }
     
-    // Start OTP timer (2 minutes)
+    // Start OTP expiration timer
     function startOtpTimer() {
-        const timerElement = document.getElementById('otpTimer');
-        let timeLeft = 120; // 2 minutes in seconds
+        clearInterval(otpTimer);
         
-        // Clear any existing timer
-        if (otpTimer) {
-            clearInterval(otpTimer);
-        }
+        const timerDisplay = document.getElementById('otpTimer');
+        otpExpiryTime = new Date().getTime() + 120000; // 2 minutes from now
         
-        // Set expiry time
-        otpExpiryTime = new Date().getTime() + (timeLeft * 1000);
+        updateTimerDisplay(timerDisplay);
         
-        // Update timer immediately
-        updateTimerDisplay(timerElement, timeLeft);
-        
-        // Start countdown
         otpTimer = setInterval(() => {
-            timeLeft--;
+            const timeLeft = updateTimerDisplay(timerDisplay);
             
             if (timeLeft <= 0) {
                 clearInterval(otpTimer);
-                timerElement.innerHTML = 'OTP expired. <a href="#" id="resendOtp">Resend OTP</a>';
-                
-                // Add event listener for resend link
-                document.getElementById('resendOtp').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    handlePasswordReset(resetEmail);
-                });
-            } else {
-                updateTimerDisplay(timerElement, timeLeft);
+                showNotification('OTP has expired. Please request a new one.', 'error');
             }
         }, 1000);
     }
     
     // Update OTP timer display
-    function updateTimerDisplay(timerElement, seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        timerElement.textContent = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    function updateTimerDisplay(timerDisplay) {
+        const now = new Date().getTime();
+        const timeLeft = otpExpiryTime - now;
+        
+        if (timeLeft <= 0) {
+            timerDisplay.textContent = 'OTP expired';
+            return 0;
+        }
+        
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        timerDisplay.textContent = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        return timeLeft;
     }
     
     // Verify OTP entered by user
@@ -1236,14 +1139,6 @@ function sendOtpEmail(email, otp) {
         }
         
         if (enteredOtp === generatedOtp) {
-            // Check if OTP is expired
-            const currentTime = new Date().getTime();
-            if (currentTime > otpExpiryTime) {
-                showNotification('OTP has expired. Please request a new one.', 'error');
-                return;
-            }
-            
-            // OTP is valid and not expired
             clearInterval(otpTimer);
             otpModal.classList.remove('show');
             resetPasswordModal.classList.add('show');
@@ -1257,9 +1152,58 @@ function sendOtpEmail(email, otp) {
     function moveToNext(currentInput) {
         const nextInput = currentInput.nextElementSibling;
         
-        if (currentInput.value.length === 1 && nextInput) {
+        // Only allow numbers
+        currentInput.value = currentInput.value.replace(/\D/g, '');
+        
+        if (currentInput.value !== '' && nextInput) {
             nextInput.focus();
         }
+        
+        // Auto-submit if all fields are filled
+        const allInputs = document.querySelectorAll('.otp-input');
+        const allFilled = Array.from(allInputs).every(input => input.value !== '');
+        
+        if (allFilled) {
+            verifyOtp();
+        }
+    }
+    
+    // Simulate sending SMS (in a real app, this would call an SMS API)
+    function simulateSendSms(phone, message) {
+        console.log(`SMS to ${phone}: ${message}`);
+        // In a real implementation, you would use an SMS service like Twilio, Nexmo, etc.
+        // Example: 
+        // twilioClient.messages.create({
+        //     body: message,
+        //     to: phone,
+        //     from: '+1234567890'
+        // });
+    }
+    
+    // Validate email format
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    // Validate phone number format (10 digits)
+    function isValidPhone(phone) {
+        return /^\d{10}$/.test(phone);
+    }
+    
+    // Check if password meets strength requirements
+    function isStrongPassword(password) {
+        const minLength = 8;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        
+        return password.length >= minLength && 
+               hasUpperCase && 
+               hasLowerCase && 
+               hasNumbers && 
+               hasSpecialChar;
     }
     
     // Validate user credentials
@@ -1278,51 +1222,18 @@ function sendOtpEmail(email, otp) {
         return false;
     }
     
-    // Check if email is valid
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    // Check if password is strong
-    function isStrongPassword(password) {
-        // At least 8 characters, with uppercase, lowercase, number, and special character
-        const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        return strongRegex.test(password);
-    }
-    
     // Show notification
-    function showNotification(message, type, duration = 5000) {
+    function showNotification(message, type) {
         notification.textContent = message;
         notification.className = 'notification ' + type;
         notification.classList.add('show');
         
-        // Auto hide after specified duration
         setTimeout(() => {
             notification.classList.remove('show');
-        }, duration);
+        }, 5000);
     }
     
-    // Send email using EmailJS
-    function sendEmail(toEmail, subject, message) {
-        const templateParams = {
-            to_email: toEmail,
-            from_name: "Pocket Lawyer",
-            to_name: "Admin",
-            message: message,
-            subject: subject
-        };
-        
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-            .then(() => {
-                console.log('Email sent successfully to:', toEmail);
-            })
-            .catch((error) => {
-                console.error('Failed to send email:', error);
-            });
-    }
-    
-    // Initialize the application when DOM is loaded
+    // Initialize the application
     document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
