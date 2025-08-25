@@ -1099,51 +1099,45 @@
         lastEmailSentTime = currentTime;
     }
     
-    // Send OTP email to user - FIXED version
-    function sendOtpEmail(email, otp) {
-        console.log("Sending OTP to:", email);
-        
-        // Create a custom template that forces sending to user
-        const templateParams = {
-            to_email: email,  // This should be the dynamic parameter
-            user_email: email, // Try different parameter names
-            email: email,     // Another common parameter name
-            recipient: email, // Another option
-            to: email,        // Simple parameter name
-            from_name: "Pocket Lawyer",
-            user_name: "User",
-            otp_code: otp,
-            message: `Your OTP for password reset is: ${otp}. This OTP will expire in 2 minutes.`,
-            subject: "Password Reset OTP - Pocket Lawyer",
-            reply_to: adminEmail
-        };
-        
-        console.log("Using parameters:", templateParams);
-        
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-            .then((response) => {
-                console.log('Email sent successfully:', response);
-                showNotification('OTP sent to your email address.', 'success');
-            })
-            .catch((error) => {
-                console.error('Failed to send OTP email:', error);
-                showNotification('Email service temporarily unavailable. Use the OTP shown on screen.', 'error');
-            });
-            
-        // Always send a notification to admin
-        const adminParams = {
-            to_email: adminEmail,
-            from_name: "Pocket Lawyer System",
-            to_name: "Admin",
-            message: `Password reset was requested for: ${email} at ${new Date().toLocaleString()}`,
-            subject: "Password Reset Request Notification - Pocket Lawyer"
-        };
-        
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, adminParams)
-            .then(() => console.log('Admin notified'))
-            .catch(error => console.error('Failed to notify admin:', error));
-    }
+    // Send OTP email to user - PROPERLY FIXED version
+function sendOtpEmail(email, otp) {
+    console.log("Attempting to send OTP to:", email);
     
+    // Try ALL possible parameter names that EmailJS templates commonly use
+    const templateParams = {
+        // Try every possible "to" parameter name
+        to_email: email,
+        email: email,
+        user_email: email,
+        recipient: email,
+        to: email,
+        
+        // OTP content
+        otp: otp,
+        otp_code: otp,
+        code: otp,
+        verification_code: otp,
+        
+        // Other parameters
+        from_name: "Pocket Lawyer",
+        user_name: "User",
+        message: `Your OTP for password reset is: ${otp}. This OTP will expire in 2 minutes.`,
+        subject: "Password Reset OTP - Pocket Lawyer",
+        reply_to: adminEmail
+    };
+    
+    console.log("Using parameters:", templateParams);
+    
+    emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
+        .then((response) => {
+            console.log('Email sent successfully:', response);
+            showNotification('OTP sent to your email address. Check your inbox.', 'success');
+        })
+        .catch((error) => {
+            console.error('Failed to send OTP email:', error);
+            showNotification('Failed to send OTP email. Please try again later.', 'error');
+        });
+}    
     // Send welcome email to new users
     function sendWelcomeEmail(email, name) {
         const templateParams = {
