@@ -16,12 +16,12 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', sans-serif;
         }
-        
+       
         body, html {
             height: 100%;
             background-color: #f4f4f4;
         }
-        
+       
         /* Login Container */
         .login-main-container {
             display: flex;
@@ -32,7 +32,7 @@
             background-size: cover;
             position: relative;
         }
-        
+       
         .login-main-container::before {
             content: '';
             position: absolute;
@@ -43,7 +43,7 @@
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
         }
-        
+       
         .login-container {
             position: relative;
             width: 400px;
@@ -56,18 +56,18 @@
             color: white;
             z-index: 1;
         }
-        
+       
         .login-logo {
             text-align: center;
             margin-bottom: 20px;
         }
-        
+       
         .login-logo img {
             height: 90px;
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
-        
+       
         .login-container h2 {
             text-align: center;
             margin-bottom: 30px;
@@ -76,12 +76,12 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             font-family: 'Garamond', serif;
         }
-        
+       
         .input-group {
             position: relative;
             margin-bottom: 30px;
         }
-        
+       
         .input-group input {
             width: 100%;
             padding: 15px 45px 15px 50px;
@@ -94,16 +94,16 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+       
         .input-group input::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
-        
+       
         .input-group input:focus {
             background: rgba(255, 255, 255, 0.25);
             box-shadow: 0 0 10px rgba(78, 84, 200, 0.6);
         }
-        
+       
         .input-group i {
             position: absolute;
             left: 18px;
@@ -111,7 +111,7 @@
             color: rgba(255, 255, 255, 0.8);
             font-size: 18px;
         }
-        
+       
         .toggle-password {
             position: absolute;
             right: 18px;
@@ -121,7 +121,7 @@
             cursor: pointer;
             z-index: 2; /* Added to ensure it's above other elements */
         }
-        
+       
         .login-btn {
             width: 100%;
             padding: 15px;
@@ -135,48 +135,48 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             font-weight: bold;
         }
-        
+       
         .login-btn:hover {
             background: linear-gradient(45deg, #3f44af, #7a80e0);
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-        
+       
         .remember-forgot {
             display: flex;
             justify-content: space-between;
             margin: 15px 0;
             font-size: 14px;
         }
-        
+       
         .remember-forgot label {
             display: flex;
             align-items: center;
             color: rgba(255, 255, 255, 0.9);
         }
-        
+       
         .remember-forgot input {
             margin-right: 5px;
         }
-        
+       
         .remember-forgot a {
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             transition: color 0.3s ease;
             cursor: pointer;
         }
-        
+       
         .remember-forgot a:hover {
             color: #8f94fb;
             text-decoration: underline;
         }
-        
+       
         .register-link {
             text-align: center;
             margin-top: 25px;
             font-size: 14px;
         }
-        
+       
         .register-link a {
             color: #8f94fb;
             text-decoration: none;
@@ -184,12 +184,12 @@
             transition: color 0.3s ease;
             cursor: pointer;
         }
-        
+       
         .register-link a:hover {
             text-decoration: underline;
             color: #4e54c8;
         }
-        
+       
         .notification {
             position: fixed;
             top: 20px;
@@ -202,43 +202,43 @@
             z-index: 1000;
             max-width: 350px;
         }
-        
+       
         .notification.show {
             transform: translateX(0);
         }
-        
+       
         .notification.success {
             background: #4caf50;
             color: white;
         }
-        
+       
         .notification.error {
             background: #f44336;
             color: white;
         }
-        
+       
         .notification.info {
             background: #2196f3;
             color: white;
         }
-        
+       
         .notification.warning {
             background: #ff9800;
             color: white;
         }
-        
+       
         @media (max-width: 480px) {
             .login-container {
                 width: 90%;
                 padding: 30px;
             }
-            
+           
             .notification {
                 width: 90%;
                 right: 5%;
             }
         }
-        
+       
         .loading {
             display: inline-block;
             width: 20px;
@@ -249,11 +249,11 @@
             animation: spin 1s ease-in-out infinite;
             margin-right: 10px;
         }
-        
+       
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
+       
         .password-info {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
@@ -261,12 +261,12 @@
             margin-top: 20px;
             font-size: 13px;
         }
-        
+       
         .password-info p {
             margin-bottom: 8px;
             color: rgba(255, 255, 255, 0.9);
         }
-        
+       
         .modal {
             display: none;
             position: fixed;
@@ -279,11 +279,11 @@
             align-items: center;
             justify-content: center;
         }
-        
+       
         .modal.show {
             display: flex;
         }
-        
+       
         .modal-content {
             background-color: #fefefe;
             margin: auto;
@@ -296,7 +296,7 @@
             color: #333;
             position: relative;
         }
-        
+       
         .close {
             position: absolute;
             top: 10px;
@@ -306,20 +306,20 @@
             font-weight: bold;
             cursor: pointer;
         }
-        
+       
         .close:hover,
         .close:focus {
             color: black;
             text-decoration: none;
         }
-        
+       
         .modal-title {
             font-size: 24px;
             margin-bottom: 20px;
             color: #4e54c8;
             text-align: center;
         }
-        
+       
         .modal-input {
             width: 100%;
             padding: 12px 15px;
@@ -328,7 +328,7 @@
             border-radius: 5px;
             font-size: 16px;
         }
-        
+       
         .modal-btn {
             width: 100%;
             padding: 12px;
@@ -340,7 +340,7 @@
             cursor: pointer;
             margin-top: 15px;
         }
-        
+       
         .test-accounts {
             margin-top: 20px;
             background: rgba(255, 255, 255, 0.1);
@@ -348,24 +348,24 @@
             padding: 15px;
             font-size: 13px;
         }
-        
+       
         .test-accounts h3 {
             margin-bottom: 10px;
             color: rgba(255, 255, 255, 0.9);
         }
-        
+       
         .test-accounts p {
             margin-bottom: 5px;
             color: rgba(255, 255, 255, 0.8);
         }
-        
+       
         .password-requirements {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.8);
             margin-top: 5px;
             padding-left: 15px;
         }
-        
+       
         .email-notification {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
@@ -374,12 +374,12 @@
             font-size: 13px;
             text-align: center;
         }
-        
+       
         .email-notification p {
             margin-bottom: 8px;
             color: rgba(255, 255, 255, 0.9);
         }
-        
+       
         .email-troubleshooting {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
@@ -387,35 +387,35 @@
             margin-top: 20px;
             font-size: 13px;
         }
-        
+       
         .email-troubleshooting h4 {
             margin-bottom: 10px;
             color: rgba(255, 255, 255, 0.9);
         }
-        
+       
         .email-troubleshooting ul {
             padding-left: 20px;
             margin-bottom: 10px;
         }
-        
+       
         .email-troubleshooting li {
             margin-bottom: 5px;
             color: rgba(255, 255, 255, 0.8);
         }
-        
+       
         .contact-support {
             text-align: center;
             margin-top: 15px;
             padding-top: 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+       
         .resend-link {
             text-align: center;
             margin-top: 15px;
             font-size: 14px;
         }
-        
+       
         .resend-link a {
             color: #4e54c8;
             cursor: pointer;
@@ -429,13 +429,13 @@
             text-align: center;
             display: none;
         }
-        
+       
         .email-status.success {
             background: rgba(76, 175, 80, 0.2);
             border: 1px solid #4caf50;
             display: block;
         }
-        
+       
         .email-status.error {
             background: rgba(244, 67, 54, 0.2);
             border: 1px solid #f44336;
@@ -447,7 +447,7 @@
             justify-content: space-between;
             margin: 15px 0;
         }
-        
+       
         .otp-input {
             width: 45px;
             height: 45px;
@@ -456,19 +456,19 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        
+       
         .otp-timer {
             text-align: center;
             margin-top: 10px;
             font-size: 14px;
             color: #666;
         }
-        
+       
         .modal-input-group {
             position: relative;
             margin: 15px 0;
         }
-        
+       
         .modal-input-group input {
             width: 100%;
             padding: 12px 40px 12px 15px;
@@ -476,7 +476,7 @@
             border-radius: 5px;
             font-size: 16px;
         }
-        
+       
         .modal-toggle-password {
             position: absolute;
             right: 15px;
@@ -490,7 +490,7 @@
             display: flex;
             align-items: center;
         }
-        
+       
         .country-code {
             padding: 12px 15px;
             background: #f5f5f5;
@@ -499,24 +499,10 @@
             border-radius: 5px 0 0 5px;
             font-size: 16px;
         }
-        
+       
         .phone-input {
             flex: 1;
             border-radius: 0 5px 5px 0;
-        }
-        
-        .sms-info {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 13px;
-            text-align: center;
-        }
-        
-        .sms-info p {
-            margin-bottom: 8px;
-            color: rgba(255, 255, 255, 0.9);
         }
     </style>
 </head>
@@ -542,15 +528,28 @@
                     <input type="password" id="password" placeholder="Password" required>
                     <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                 </div>
-                
+               
                 <div class="password-info">
                     <p>Login with your registered email and password.</p>
                 </div>
-                
-                <div class="sms-info">
-                    <p><i class="fas fa-sms"></i> All login activities are notified via SMS to your registered phone number</p>
+               
+                <div class="email-notification">
+                    <p><i class="fas fa-info-circle"></i> All login activities are notified to pocketlawyerindia1950@gmail.com</p>
                 </div>
-                
+               
+                <div class="email-troubleshooting">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Not receiving emails?</h4>
+                    <ul>
+                        <li>Check your spam/junk folder</li>
+                        <li>Verify you entered the correct email address</li>
+                        <li>Ensure your email inbox is not full</li>
+                        <li>Allow a few minutes for delivery</li>
+                    </ul>
+                    <div class="contact-support">
+                        Still having issues? Contact support at pocketlawyerindia1950@gmail.com
+                    </div>
+                </div>
+               
                 <div class="remember-forgot">
                     <label>
                         <input type="checkbox" id="rememberMe"> Remember me
@@ -562,7 +561,7 @@
                     Don't have an account? <a id="registerNow">Register Now</a>
                 </div>
             </form>
-            
+           
             <div class="test-accounts">
                 <h3>Test Accounts (for demonstration):</h3>
                 <p>Email: user@example.com | Password: SecurePass123!</p>
@@ -578,17 +577,17 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 class="modal-title">Reset Password</h2>
-            <p>Enter your email address to reset your password. A reset OTP will be sent to your phone via SMS.</p>
-            
-            <div class="modal-input-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" id="resetEmail" class="modal-input" placeholder="Email Address" required>
+            <p>Enter your phone number to reset your password. A reset OTP will be sent to your phone via SMS.</p>
+           
+            <div class="phone-input-container">
+                <div class="country-code">+91</div>
+                <input type="tel" id="resetPhone" class="modal-input phone-input" placeholder="Phone Number" required pattern="[0-9]{10}">
             </div>
-            
+           
             <div class="resend-link">
                 Didn't receive the SMS? <a id="resendResetLink">Resend</a>
             </div>
-            <button class="modal-btn" id="resetPasswordBtn">Send OTP via SMS</button>
+            <button class="modal-btn" id="resetPasswordBtn">Send OTP</button>
         </div>
     </div>
 
@@ -617,21 +616,21 @@
             <span class="close">&times;</span>
             <h2 class="modal-title">Create New Password</h2>
             <p>Please enter your new password below.</p>
-            
+           
             <div class="modal-input-group">
                 <input type="password" id="newPassword" class="modal-input" placeholder="New Password" required>
                 <i class="fas fa-eye modal-toggle-password" id="toggleNewPassword"></i>
             </div>
-            
+           
             <div class="modal-input-group">
                 <input type="password" id="confirmNewPassword" class="modal-input" placeholder="Confirm New Password" required>
                 <i class="fas fa-eye modal-toggle-password" id="toggleConfirmNewPassword"></i>
             </div>
-            
+           
             <div class="password-requirements" style="color: #666;">
                 Password must be at least 8 characters with uppercase, lowercase, number, and special character.
             </div>
-            
+           
             <button class="modal-btn" id="savePasswordBtn">Save New Password</button>
         </div>
     </div>
@@ -643,26 +642,26 @@
             <h2 class="modal-title">Create Account</h2>
             <input type="text" id="registerName" class="modal-input" placeholder="Full Name" required>
             <input type="email" id="registerEmail" class="modal-input" placeholder="Email Address" required>
-            
+           
             <div class="phone-input-container">
                 <div class="country-code">+91</div>
                 <input type="tel" id="registerPhone" class="modal-input phone-input" placeholder="Phone Number" required pattern="[0-9]{10}">
             </div>
-            
+           
             <div class="modal-input-group">
                 <input type="password" id="registerPassword" class="modal-input" placeholder="Password" required>
                 <i class="fas fa-eye modal-toggle-password" id="toggleRegisterPassword"></i>
             </div>
-            
+           
             <div class="password-requirements" style="color: #666;">
                 Password must be at least 8 characters with uppercase, lowercase, number, and special character.
             </div>
-            
+           
             <div class="modal-input-group">
                 <input type="password" id="registerConfirmPassword" class="modal-input" placeholder="Confirm Password" required>
                 <i class="fas fa-eye modal-toggle-password" id="toggleConfirmPassword"></i>
             </div>
-            
+           
             <div class="resend-link">
                 Didn't receive confirmation? <a id="resendConfirmation">Resend</a>
             </div>
@@ -670,827 +669,572 @@
         </div>
     </div>
 
-    <!-- SMS OTP Verification Modal -->
-    <div id="smsOtpModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 class="modal-title">Verify Phone Number</h2>
-            <p>We've sent a 6-digit OTP to your phone. Please enter it below to verify your number.</p>
-            <div class="otp-input-container">
-                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'sms')">
-                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'sms')">
-                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'sms')">
-                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'sms')">
-                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'sms')">
-                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'sms')">
-            </div>
-            <div class="otp-timer" id="smsOtpTimer">Resend OTP in: 02:00</div>
-            <button class="modal-btn" id="verifySmsOtpBtn">Verify OTP</button>
-        </div>
-    </div>
-
     <script>
-    // Initialize EmailJS with your public key
-(function() {
-    emailjs.init("PZIFaVPi-Ytb6jNvs"); // Replace with your actual EmailJS public key
-})();
-
-// DOM elements
-const loginForm = document.getElementById('loginForm');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const loginButton = document.getElementById('loginButton');
-const notification = document.getElementById('notification');
-const forgotPasswordLink = document.getElementById('forgotPassword');
-const registerLink = document.getElementById('registerNow');
-const forgotPasswordModal = document.getElementById('forgotPasswordModal');
-const otpModal = document.getElementById('otpModal');
-const resetPasswordModal = document.getElementById('resetPasswordModal');
-const registerModal = document.getElementById('registerModal');
-const smsOtpModal = document.getElementById('smsOtpModal');
-const closeButtons = document.querySelectorAll('.close');
-const resetPasswordBtn = document.getElementById('resetPasswordBtn');
-const registerBtn = document.getElementById('registerBtn');
-const resendResetLink = document.getElementById('resendResetLink');
-const resendConfirmation = document.getElementById('resendConfirmation');
-const verifyOtpBtn = document.getElementById('verifyOtpBtn');
-const savePasswordBtn = document.getElementById('savePasswordBtn');
-const verifySmsOtpBtn = document.getElementById('verifySmsOtpBtn');
-const togglePassword = document.getElementById('togglePassword');
-const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
-const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-const toggleNewPassword = document.getElementById('toggleNewPassword');
-const toggleConfirmNewPassword = document.getElementById('toggleConfirmNewPassword');
-const resetEmailInput = document.getElementById('resetEmail');
-const registerPhoneInput = document.getElementById('registerPhone');
-
-// Your email address
-const adminEmail = "pocketlawyerindia1950@gmail.com";
-
-// Track email sending to prevent spam
-let lastEmailSentTime = 0;
-let lastSmsSentTime = 0;
-const emailCooldown = 30000; // 30 seconds between emails
-const smsCooldown = 30000; // 30 seconds between SMS
-
-// OTP variables
-let otpTimer;
-let otpExpiryTime;
-let generatedOtp;
-let resetEmail;
-
-// SMS OTP variables
-let smsOtpTimer;
-let smsOtpExpiryTime;
-let generatedSmsOtp;
-let userPhone;
-
-// Test accounts for demonstration
-const testAccounts = {
-    'user@example.com': {password: 'SecurePass123!', phone: '9876543210'},
-    'test@test.com': {password: 'TestPass789!', phone: '9123456780'}
-};
-
-// Initialize the page
-function init() {
-    // Initialize registered users if not exists
-    if (!localStorage.getItem('registeredUsers')) {
-        localStorage.setItem('registeredUsers', JSON.stringify({}));
-    }
-    
-    // Check if user is already logged in
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-        const userEmail = localStorage.getItem('userEmail');
-        showNotification(`Welcome back! You are already logged in as ${userEmail}`, 'info');
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 2000);
-    }
-    
-    // Load saved email if "Remember me" was checked
-    const rememberedEmail = localStorage.getItem('rememberedEmail');
-    if (rememberedEmail) {
-        emailInput.value = rememberedEmail;
-        document.getElementById('rememberMe').checked = true;
-    }
-    
-    // Add event listeners for modals
-    setupModalListeners();
-    
-    // Add form submit listener
-    loginForm.addEventListener('submit', handleLogin);
-    
-    // Add password toggle functionality
-    setupPasswordToggles();
-    
-    // Add phone number validation
-    setupPhoneValidation();
-}
-
-// Setup password toggle functionality
-function setupPasswordToggles() {
-    togglePassword.addEventListener('click', function() {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-    });
-    
-    toggleRegisterPassword.addEventListener('click', function() {
-        const input = document.getElementById('registerPassword');
-        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-        input.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-    });
-    
-    toggleConfirmPassword.addEventListener('click', function() {
-        const input = document.getElementById('registerConfirmPassword');
-        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-        input.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-    });
-    
-    toggleNewPassword.addEventListener('click', function() {
-        const input = document.getElementById('newPassword');
-        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-        input.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-    });
-    
-    toggleConfirmNewPassword.addEventListener('click', function() {
-        const input = document.getElementById('confirmNewPassword');
-        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-        input.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-    });
-}
-
-// Setup phone number validation
-function setupPhoneValidation() {
-    registerPhoneInput.addEventListener('input', function() {
-        this.value = this.value.replace(/\D/g, '').slice(0, 10);
-    });
-}
-
-// Handle login form submission
-async function handleLogin(e) {
-    e.preventDefault();
-    
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
-    const rememberMe = document.getElementById('rememberMe').checked;
-    
-    // Validate inputs
-    if (!email || !password) {
-        showNotification('Please enter both email and password.', 'error');
-        return;
-    }
-    
-    if (!isValidEmail(email)) {
-        showNotification('Please enter a valid email address.', 'error');
-        return;
-    }
-    
-    // Show loading state
-    const originalText = loginButton.innerHTML;
-    loginButton.innerHTML = '<span class="loading"></span> Logging in...';
-    loginButton.disabled = true;
-    
-    try {
-        // Validate credentials
-        const isValid = await validateCredentials(email, password);
-        
-        if (isValid) {
-            // Send login notification via SMS
-            const userPhone = await getUserPhone(email);
-            if (userPhone) {
-                sendLoginSms(userPhone, email);
-            }
-            
-            // Save login state
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('userEmail', email);
-            
-            if (rememberMe) {
-                localStorage.setItem('rememberedEmail', email);
-            } else {
-                localStorage.removeItem('rememberedEmail');
-            }
-            
-            // Show success message
-            showNotification('Login successful! Redirecting...', 'success');
-            
-            // Redirect after a short delay
+    // DOM elements
+    const loginForm = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const loginButton = document.getElementById('loginButton');
+    const notification = document.getElementById('notification');
+    const forgotPasswordLink = document.getElementById('forgotPassword');
+    const registerLink = document.getElementById('registerNow');
+    const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+    const otpModal = document.getElementById('otpModal');
+    const resetPasswordModal = document.getElementById('resetPasswordModal');
+    const registerModal = document.getElementById('registerModal');
+    const closeButtons = document.querySelectorAll('.close');
+    const resetPasswordBtn = document.getElementById('resetPasswordBtn');
+    const registerBtn = document.getElementById('registerBtn');
+    const resendResetLink = document.getElementById('resendResetLink');
+    const resendConfirmation = document.getElementById('resendConfirmation');
+    const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+    const savePasswordBtn = document.getElementById('savePasswordBtn');
+    const togglePassword = document.getElementById('togglePassword');
+    const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
+    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+    const toggleNewPassword = document.getElementById('toggleNewPassword');
+    const toggleConfirmNewPassword = document.getElementById('toggleConfirmNewPassword');
+    const resetPhoneInput = document.getElementById('resetPhone');
+    const registerPhoneInput = document.getElementById('registerPhone');
+   
+    // Your email address
+    const adminEmail = "pocketlawyerindia1950@gmail.com";
+   
+    // Track SMS sending to prevent spam
+    let lastSmsSentTime = 0;
+    const smsCooldown = 30000; // 30 seconds between SMS
+   
+    // OTP variables
+    let otpTimer;
+    let otpExpiryTime;
+    let generatedOtp;
+    let resetPhone;
+   
+    // Test accounts for demonstration
+    const testAccounts = {
+        'user@example.com': 'SecurePass123!',
+        'test@test.com': 'TestPass789!'
+    };
+   
+    // Initialize the page
+    function init() {
+        // Initialize registered users if not exists
+        if (!localStorage.getItem('registeredUsers')) {
+            localStorage.setItem('registeredUsers', JSON.stringify({}));
+        }
+       
+        // Check if user is already logged in
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            const userEmail = localStorage.getItem('userEmail');
+            showNotification(`Welcome back! You are already logged in as ${userEmail}`, 'info');
             setTimeout(() => {
                 window.location.href = 'index.html';
             }, 2000);
-        } else {
-            showNotification('Invalid email or password.', 'error');
+        }
+       
+        // Load saved email if "Remember me" was checked
+        const rememberedEmail = localStorage.getItem('rememberedEmail');
+        if (rememberedEmail) {
+            emailInput.value = rememberedEmail;
+            document.getElementById('rememberMe').checked = true;
+        }
+       
+        // Add event listeners for modals
+        setupModalListeners();
+       
+        // Add form submit listener
+        loginForm.addEventListener('submit', handleLogin);
+       
+        // Add password toggle functionality
+        setupPasswordToggles();
+       
+        // Add phone number validation
+        setupPhoneValidation();
+    }
+   
+    // Setup password toggle functionality
+    function setupPasswordToggles() {
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+       
+        toggleRegisterPassword.addEventListener('click', function() {
+            const input = document.getElementById('registerPassword');
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+       
+        toggleConfirmPassword.addEventListener('click', function() {
+            const input = document.getElementById('registerConfirmPassword');
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+       
+        toggleNewPassword.addEventListener('click', function() {
+            const input = document.getElementById('newPassword');
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+       
+        toggleConfirmNewPassword.addEventListener('click', function() {
+            const input = document.getElementById('confirmNewPassword');
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    }
+   
+    // Setup phone number validation
+    function setupPhoneValidation() {
+        resetPhoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+       
+        registerPhoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+    }
+   
+    // Handle login form submission
+    async function handleLogin(e) {
+        e.preventDefault();
+       
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+       
+        // Validate inputs
+        if (!email || !password) {
+            showNotification('Please enter both email and password.', 'error');
+            return;
+        }
+       
+        if (!isValidEmail(email)) {
+            showNotification('Please enter a valid email address.', 'error');
+            return;
+        }
+       
+        // Show loading state
+        const originalText = loginButton.innerHTML;
+        loginButton.innerHTML = '<span class="loading"></span> Logging in...';
+        loginButton.disabled = true;
+       
+        try {
+            // Validate credentials
+            const isValid = await validateCredentials(email, password);
+           
+            if (isValid) {
+                // Save login state
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+               
+                if (rememberMe) {
+                    localStorage.setItem('rememberedEmail', email);
+                } else {
+                    localStorage.removeItem('rememberedEmail');
+                }
+               
+                // Show success message
+                showNotification('Login successful! Redirecting...', 'success');
+               
+                // Redirect after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } else {
+                showNotification('Invalid email or password.', 'error');
+                loginButton.innerHTML = originalText;
+                loginButton.disabled = false;
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            showNotification('An error occurred during login.', 'error');
             loginButton.innerHTML = originalText;
             loginButton.disabled = false;
         }
-    } catch (error) {
-        console.error('Login error:', error);
-        showNotification('An error occurred during login.', 'error');
-        loginButton.innerHTML = originalText;
-        loginButton.disabled = false;
     }
-}
-
-// Set up modal event listeners
-function setupModalListeners() {
-    // Forgot password link
-    forgotPasswordLink.addEventListener('click', () => {
-        forgotPasswordModal.classList.add('show');
-    });
-    
-    // Register link
-    registerLink.addEventListener('click', () => {
-        registerModal.classList.add('show');
-    });
-    
-    // Close buttons
-    closeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            forgotPasswordModal.classList.remove('show');
-            otpModal.classList.remove('show');
-            resetPasswordModal.classList.remove('show');
-            registerModal.classList.remove('show');
-            smsOtpModal.classList.remove('show');
+   
+    // Set up modal event listeners
+    function setupModalListeners() {
+        // Forgot password link
+        forgotPasswordLink.addEventListener('click', () => {
+            forgotPasswordModal.classList.add('show');
         });
-    });
-    
-    // Close modal when clicking outside of it
-    window.addEventListener('click', (e) => {
-        if (e.target === forgotPasswordModal) {
-            forgotPasswordModal.classList.remove('show');
-        }
-        if (e.target === otpModal) {
-            otpModal.classList.remove('show');
-        }
-        if (e.target === resetPasswordModal) {
-            resetPasswordModal.classList.remove('show');
-        }
-        if (e.target === registerModal) {
-            registerModal.classList.remove('show');
-        }
-        if (e.target === smsOtpModal) {
-            smsOtpModal.classList.remove('show');
-        }
-    });
-    
-    // Resend reset link
-    resendResetLink.addEventListener('click', () => {
-        const email = resetEmailInput.value;
-        if (email && isValidEmail(email)) {
-            handlePasswordReset(email);
-        } else {
-            showNotification('Please enter a valid email address first.', 'warning');
-        }
-    });
-    
-    // Resend confirmation
-    resendConfirmation.addEventListener('click', () => {
-        const phone = registerPhoneInput.value;
-        if (phone && isValidPhone(phone)) {
-            setupPhoneVerification(phone);
-        } else {
-            showNotification('Please enter a valid phone number first.', 'warning');
-        }
-    });
-    
-    // Reset password button
-    resetPasswordBtn.addEventListener('click', () => {
-        const email = resetEmailInput.value;
-        if (email && isValidEmail(email)) {
-            handlePasswordReset(email);
-        } else {
-            showNotification('Please enter a valid email address.', 'error');
-        }
-    });
-    
-    // Verify OTP button
-    verifyOtpBtn.addEventListener('click', () => {
-        verifyOtp();
-    });
-    
-    // Verify SMS OTP button
-    verifySmsOtpBtn.addEventListener('click', () => {
-        verifySmsOtp();
-    });
-    
-    // Save new password button
-    savePasswordBtn.addEventListener('click', () => {
-        const newPassword = document.getElementById('newPassword').value;
-        const confirmPassword = document.getElementById('confirmNewPassword').value;
-        
-        if (!newPassword || !confirmPassword) {
-            showNotification('Please fill in both password fields.', 'error');
-            return;
-        }
-        
-        if (!isStrongPassword(newPassword)) {
-            showNotification('Password must be at least 8 characters with uppercase, lowercase, number, and special character.', 'error');
-            return;
-        }
-        
-        if (newPassword !== confirmPassword) {
-            showNotification('Passwords do not match.', 'error');
-            return;
-        }
-        
-        // Update password in registered users
-        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-        
-        // Find user by email
-        if (registeredUsers[resetEmail]) {
-            registeredUsers[resetEmail].password = newPassword;
-            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
-            
-            showNotification('Password reset successfully! You can now login with your new password.', 'success');
-            resetPasswordModal.classList.remove('show');
-            
-            setTimeout(() => {
+       
+        // Register link
+        registerLink.addEventListener('click', () => {
+            registerModal.classList.add('show');
+        });
+       
+        // Close buttons
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                forgotPasswordModal.classList.remove('show');
+                otpModal.classList.remove('show');
                 resetPasswordModal.classList.remove('show');
-            }, 2000);
-        } else {
-            showNotification('User not found. Please register first.', 'error');
+                registerModal.classList.remove('show');
+            });
+        });
+       
+        // Close modal when clicking outside of it
+        window.addEventListener('click', (e) => {
+            if (e.target === forgotPasswordModal) {
+                forgotPasswordModal.classList.remove('show');
+            }
+            if (e.target === otpModal) {
+                otpModal.classList.remove('show');
+            }
+            if (e.target === resetPasswordModal) {
+                resetPasswordModal.classList.remove('show');
+            }
+            if (e.target === registerModal) {
+                registerModal.classList.remove('show');
+            }
+        });
+       
+        // Resend reset link
+        resendResetLink.addEventListener('click', () => {
+            const phone = resetPhoneInput.value;
+            if (phone && isValidPhone(phone)) {
+                handlePasswordReset(phone);
+            } else {
+                showNotification('Please enter a valid phone number first.', 'warning');
+            }
+        });
+       
+        // Resend confirmation
+        resendConfirmation.addEventListener('click', () => {
+            const phone = registerPhoneInput.value;
+            if (phone && isValidPhone(phone)) {
+                // In a real app, you would resend confirmation here
+                showNotification('Confirmation code sent to your phone.', 'success');
+            } else {
+                showNotification('Please enter a valid phone number first.', 'warning');
+            }
+        });
+       
+        // Reset password button
+        resetPasswordBtn.addEventListener('click', () => {
+            const phone = resetPhoneInput.value;
+            if (phone && isValidPhone(phone)) {
+                handlePasswordReset(phone);
+            } else {
+                showNotification('Please enter a valid 10-digit phone number.', 'error');
+            }
+        });
+       
+        // Verify OTP button
+        verifyOtpBtn.addEventListener('click', () => {
+            verifyOtp();
+        });
+       
+        // Save new password button
+        savePasswordBtn.addEventListener('click', () => {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmNewPassword').value;
+           
+            if (!newPassword || !confirmPassword) {
+                showNotification('Please fill in both password fields.', 'error');
+                return;
+            }
+           
+            if (!isStrongPassword(newPassword)) {
+                showNotification('Password must be at least 8 characters with uppercase, lowercase, number, and special character.', 'error');
+                return;
+            }
+           
+            if (newPassword !== confirmPassword) {
+                showNotification('Passwords do not match.', 'error');
+                return;
+            }
+           
+            // Update password in registered users
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+           
+            // Find user by phone number
+            let userEmail = null;
+            for (const email in registeredUsers) {
+                if (registeredUsers[email].phone === resetPhone) {
+                    userEmail = email;
+                    break;
+                }
+            }
+           
+            if (userEmail) {
+                registeredUsers[userEmail].password = newPassword;
+                localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+               
+                showNotification('Password reset successfully! You can now login with your new password.', 'success');
+                resetPasswordModal.classList.remove('show');
+               
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            } else {
+                showNotification('Phone number not found. Please register first.', 'error');
+            }
+        });
+       
+        // Register button
+        registerBtn.addEventListener('click', () => {
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+           
+            if (!name || !email || !phone || !password || !confirmPassword) {
+                showNotification('Please fill in all fields.', 'error');
+                return;
+            }
+           
+            if (!isValidEmail(email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+           
+            if (!isValidPhone(phone)) {
+                showNotification('Please enter a valid 10-digit phone number.', 'error');
+                return;
+            }
+           
+            if (!isStrongPassword(password)) {
+                showNotification('Password must be at least 8 characters with uppercase, lowercase, number, and special character.', 'error');
+                return;
+            }
+           
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match.', 'error');
+                return;
+            }
+           
+            // Save user to localStorage
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+            registeredUsers[email] = {
+                name: name,
+                password: password,
+                email: email,
+                phone: phone
+            };
+            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+           
+            // Simulate sending welcome SMS
+            simulateSendSms(phone, `Welcome to Pocket Lawyer, ${name}! Your account has been successfully created.`);
+           
+            showNotification('Registration successful! You can now login.', 'success');
+            registerModal.classList.remove('show');
+        });
+    }
+   
+        // Handle password reset request
+    function handlePasswordReset(phone) {
+        // Check if phone is registered
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+        let isPhoneRegistered = false;
+       
+        for (const email in registeredUsers) {
+            if (registeredUsers[email].phone === phone) {
+                isPhoneRegistered = true;
+                break;
+            }
         }
-    });
-    
-    // Register button
-    registerBtn.addEventListener('click', () => {
-        handleRegistration();
-    });
-}
-
-// Handle password reset request
-async function handlePasswordReset(email) {
-    // Check cooldown
-    const currentTime = Date.now();
-    if (currentTime - lastSmsSentTime < smsCooldown) {
-        const remainingTime = Math.ceil((smsCooldown - (currentTime - lastSmsSentTime)) / 1000);
-        showNotification(`Please wait ${remainingTime} seconds before requesting another OTP.`, 'warning');
-        return;
-    }
-    
-    // Validate email
-    if (!isValidEmail(email)) {
-        showNotification('Please enter a valid email address.', 'error');
-        return;
-    }
-    
-    // Check if user exists
-    const userExists = await checkUserExists(email);
-    if (!userExists) {
-        showNotification('No account found with this email address.', 'error');
-        return;
-    }
-    
-    // Get user's phone number
-    const userPhone = await getUserPhone(email);
-    if (!userPhone) {
-        showNotification('No phone number associated with this account.', 'error');
-        return;
-    }
-    
-    // Show loading state
-    resetPasswordBtn.innerHTML = '<span class="loading"></span> Sending OTP...';
-    resetPasswordBtn.disabled = true;
-    
-    try {
-        // Generate and send OTP via SMS
-        await sendOtpSms(userPhone, email);
-        
-        // Save email for later use
-        resetEmail = email;
-        
-        // Show success message
-        showNotification(`OTP sent to your phone ending with ${userPhone.slice(-4)}`, 'success');
-        
-        // Close forgot password modal and open OTP modal
+       
+        if (!isPhoneRegistered) {
+            showNotification('This phone number is not registered. Please sign up first.', 'error');
+            return;
+        }
+       
+        // Check SMS cooldown
+        const currentTime = new Date().getTime();
+        if (currentTime - lastSmsSentTime < smsCooldown) {
+            const remainingTime = Math.ceil((smsCooldown - (currentTime - lastSmsSentTime)) / 1000);
+            showNotification(`Please wait ${remainingTime} seconds before requesting another OTP.`, 'warning');
+            return;
+        }
+       
+        // Generate OTP
+        generatedOtp = generateOtp();
+        resetPhone = phone;
+       
+        // Simulate sending SMS (in a real app, this would call an SMS API)
+        simulateSendSms(phone, `Your Pocket Lawyer OTP is: ${generatedOtp}. It will expire in 2 minutes.`);
+       
+        // Update last SMS sent time
+        lastSmsSentTime = currentTime;
+       
+        // Show OTP modal
         forgotPasswordModal.classList.remove('show');
         otpModal.classList.add('show');
-        
+       
         // Start OTP timer
         startOtpTimer();
-        
-        // Update last SMS sent time
-        lastSmsSentTime = Date.now();
-    } catch (error) {
-        console.error('Error sending OTP:', error);
-        showNotification('Failed to send OTP. Please try again.', 'error');
-    } finally {
-        // Reset button state
-        resetPasswordBtn.innerHTML = 'Send OTP via SMS';
-        resetPasswordBtn.disabled = false;
+       
+        showNotification('OTP sent to your phone number.', 'success');
     }
-}
-
-// Send OTP via SMS
-async function sendOtpSms(phoneNumber, email) {
-    return new Promise((resolve, reject) => {
-        // Generate 6-digit OTP
-        generatedOtp = generateOtp();
-        
-        // In a real application, you would integrate with an SMS gateway like Twilio here
-        // For demo purposes, we'll simulate the SMS sending process
-        
-        console.log(`Simulating SMS sent to ${phoneNumber}: Your OTP for password reset is ${generatedOtp}`);
-        
-        // Simulate API call delay
-        setTimeout(() => {
-            // In a real implementation, you would check the response from your SMS service
-            resolve({ success: true, message: 'OTP sent successfully' });
-        }, 1500);
-    });
-}
-
-// Send login notification via SMS
-async function sendLoginSms(phoneNumber, email) {
-    // In a real application, you would integrate with an SMS gateway
-    console.log(`Simulating login notification SMS to ${phoneNumber}: Login detected for your Pocket Lawyer account from ${email} at ${new Date().toLocaleString()}`);
-    
-    // For demo purposes, we'll just log this to the console
-    return Promise.resolve({ success: true });
-}
-
-// Start OTP timer
-function startOtpTimer() {
-    // Clear any existing timer
-    if (otpTimer) {
+   
+    // Generate a 6-digit OTP
+    function generateOtp() {
+        return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+   
+    // Start OTP expiration timer
+    function startOtpTimer() {
         clearInterval(otpTimer);
+       
+        const timerDisplay = document.getElementById('otpTimer');
+        otpExpiryTime = new Date().getTime() + 120000; // 2 minutes from now
+       
+        updateTimerDisplay(timerDisplay);
+       
+        otpTimer = setInterval(() => {
+            const timeLeft = updateTimerDisplay(timerDisplay);
+           
+            if (timeLeft <= 0) {
+                clearInterval(otpTimer);
+                showNotification('OTP has expired. Please request a new one.', 'error');
+            }
+        }, 1000);
     }
-    
-    // Set expiry time (2 minutes from now)
-    otpExpiryTime = Date.now() + 2 * 60 * 1000;
-    
-    // Update timer immediately
-    updateOtpTimer();
-    
-    // Set interval to update timer every second
-    otpTimer = setInterval(updateOtpTimer, 1000);
-}
-
-// Update OTP timer display
-function updateOtpTimer() {
-    const currentTime = Date.now();
-    const timeLeft = otpExpiryTime - currentTime;
-    
-    if (timeLeft <= 0) {
-        // Timer expired
-        clearInterval(otpTimer);
-        document.getElementById('otpTimer').textContent = 'OTP expired';
-        verifyOtpBtn.disabled = true;
-        return;
+   
+    // Update OTP timer display
+    function updateTimerDisplay(timerDisplay) {
+        const now = new Date().getTime();
+        const timeLeft = otpExpiryTime - now;
+       
+        if (timeLeft <= 0) {
+            timerDisplay.textContent = 'OTP expired';
+            return 0;
+        }
+       
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+       
+        timerDisplay.textContent = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+       
+        return timeLeft;
     }
-    
-    // Calculate minutes and seconds
-    const minutes = Math.floor(timeLeft / 60000);
-    const seconds = Math.floor((timeLeft % 60000) / 1000);
-    
-    // Update display
-    document.getElementById('otpTimer').textContent = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
-
-// Verify OTP
-function verifyOtp() {
-    // Get OTP from input fields
-    const otpInputs = document.querySelectorAll('#otpModal .otp-input');
-    const enteredOtp = Array.from(otpInputs).map(input => input.value).join('');
-    
-    // Validate OTP
-    if (enteredOtp.length !== 6) {
-        showNotification('Please enter the complete 6-digit OTP.', 'error');
-        return;
+   
+    // Verify OTP entered by user
+    function verifyOtp() {
+        const otpInputs = document.querySelectorAll('.otp-input');
+        let enteredOtp = '';
+       
+        otpInputs.forEach(input => {
+            enteredOtp += input.value;
+        });
+       
+        if (enteredOtp.length !== 6) {
+            showNotification('Please enter the complete 6-digit OTP.', 'error');
+            return;
+        }
+       
+        if (enteredOtp === generatedOtp) {
+            clearInterval(otpTimer);
+            otpModal.classList.remove('show');
+            resetPasswordModal.classList.add('show');
+            showNotification('OTP verified successfully. Please set your new password.', 'success');
+        } else {
+            showNotification('Invalid OTP. Please try again.', 'error');
+        }
     }
-    
-    if (enteredOtp !== generatedOtp) {
-        showNotification('Invalid OTP. Please try again.', 'error');
-        return;
-    }
-    
-    // Check if OTP is expired
-    if (Date.now() > otpExpiryTime) {
-        showNotification('OTP has expired. Please request a new one.', 'error');
-        return;
-    }
-    
-    // OTP is valid
-    showNotification('OTP verified successfully!', 'success');
-    
-    // Close OTP modal and open reset password modal
-    otpModal.classList.remove('show');
-    resetPasswordModal.classList.add('show');
-    
-    // Clear OTP timer
-    clearInterval(otpTimer);
-}
-
-// Handle user registration
-async function handleRegistration() {
-    const name = document.getElementById('registerName').value.trim();
-    const email = document.getElementById('registerEmail').value.trim();
-    const phone = document.getElementById('registerPhone').value;
-    const password = document.getElementById('registerPassword').value;
-    const confirmPassword = document.getElementById('registerConfirmPassword').value;
-    
-    // Validate inputs
-    if (!name || !email || !phone || !password || !confirmPassword) {
-        showNotification('Please fill in all fields.', 'error');
-        return;
-    }
-    
-    if (!isValidEmail(email)) {
-        showNotification('Please enter a valid email address.', 'error');
-        return;
-    }
-    
-    if (!isValidPhone(phone)) {
-        showNotification('Please enter a valid 10-digit phone number.', 'error');
-        return;
-    }
-    
-    if (!isStrongPassword(password)) {
-        showNotification('Password must be at least 8 characters with uppercase, lowercase, number, and special character.', 'error');
-        return;
-    }
-    
-    if (password !== confirmPassword) {
-        showNotification('Passwords do not match.', 'error');
-        return;
-    }
-    
-    // Check if user already exists
-    const userExists = await checkUserExists(email);
-    if (userExists) {
-        showNotification('An account with this email already exists.', 'error');
-        return;
-    }
-    
-    // Show loading state
-    registerBtn.innerHTML = '<span class="loading"></span> Registering...';
-    registerBtn.disabled = true;
-    
-    try {
-        // In a real application, you would send the verification SMS here
-        // For demo, we'll simulate the process
-        await setupPhoneVerification(phone);
-        
-        // Store registration data temporarily
-        sessionStorage.setItem('tempRegistration', JSON.stringify({
-            name, email, phone, password
-        }));
-        
-        // Close register modal and open SMS OTP modal
-        registerModal.classList.remove('show');
-        smsOtpModal.classList.add('show');
-        
-        // Start SMS OTP timer
-        startSmsOtpTimer();
-    } catch (error) {
-        console.error('Registration error:', error);
-        showNotification('Registration failed. Please try again.', 'error');
-    } finally {
-        // Reset button state
-        registerBtn.innerHTML = 'Register';
-        registerBtn.disabled = false;
-    }
-}
-
-// Setup phone verification
-async function setupPhoneVerification(phoneNumber) {
-    return new Promise((resolve, reject) => {
-        // Generate 6-digit OTP
-        generatedSmsOtp = generateOtp();
-        userPhone = phoneNumber;
-        
-        // In a real application, you would integrate with an SMS gateway
-        console.log(`Simulating SMS sent to ${phoneNumber}: Your Pocket Lawyer verification code is ${generatedSmsOtp}`);
-        
-        // Simulate API call delay
-        setTimeout(() => {
-            resolve({ success: true });
-        }, 1500);
-    });
-}
-
-// Start SMS OTP timer
-function startSmsOtpTimer() {
-    // Clear any existing timer
-    if (smsOtpTimer) {
-        clearInterval(smsOtpTimer);
-    }
-    
-    // Set expiry time (2 minutes from now)
-    smsOtpExpiryTime = Date.now() + 2 * 60 * 1000;
-    
-    // Update timer immediately
-    updateSmsOtpTimer();
-    
-    // Set interval to update timer every second
-    smsOtpTimer = setInterval(updateSmsOtpTimer, 1000);
-}
-
-// Update SMS OTP timer display
-function updateSmsOtpTimer() {
-    const currentTime = Date.now();
-    const timeLeft = smsOtpExpiryTime - currentTime;
-    
-    if (timeLeft <= 0) {
-        // Timer expired
-        clearInterval(smsOtpTimer);
-        document.getElementById('smsOtpTimer').textContent = 'OTP expired';
-        verifySmsOtpBtn.disabled = true;
-        return;
-    }
-    
-    // Calculate minutes and seconds
-    const minutes = Math.floor(timeLeft / 60000);
-    const seconds = Math.floor((timeLeft % 60000) / 1000);
-    
-    // Update display
-    document.getElementById('smsOtpTimer').textContent = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
-
-// Verify SMS OTP for registration
-function verifySmsOtp() {
-    // Get OTP from input fields
-    const otpInputs = document.querySelectorAll('#smsOtpModal .otp-input');
-    const enteredOtp = Array.from(otpInputs).map(input => input.value).join('');
-    
-    // Validate OTP
-    if (enteredOtp.length !== 6) {
-        showNotification('Please enter the complete 6-digit OTP.', 'error');
-        return;
-    }
-    
-    if (enteredOtp !== generatedSmsOtp) {
-        showNotification('Invalid OTP. Please try again.', 'error');
-        return;
-    }
-    
-    // Check if OTP is expired
-    if (Date.now() > smsOtpExpiryTime) {
-        showNotification('OTP has expired. Please request a new one.', 'error');
-        return;
-    }
-    
-    // OTP is valid - complete registration
-    completeRegistration();
-}
-
-// Complete registration process
-function completeRegistration() {
-    // Get temporary registration data
-    const tempData = JSON.parse(sessionStorage.getItem('tempRegistration'));
-    
-    if (!tempData) {
-        showNotification('Registration data not found. Please try again.', 'error');
-        return;
-    }
-    
-    // Save user to registered users
-    const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-    registeredUsers[tempData.email] = {
-        name: tempData.name,
-        password: tempData.password,
-        phone: tempData.phone
-    };
-    
-    localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
-    
-    // Clear temporary data
-    sessionStorage.removeItem('tempRegistration');
-    
-    // Show success message
-    showNotification('Registration successful! You can now login.', 'success');
-    
-    // Close SMS OTP modal
-    smsOtpModal.classList.remove('show');
-    
-    // Clear SMS OTP timer
-    clearInterval(smsOtpTimer);
-}
-
-// Validate user credentials
-async function validateCredentials(email, password) {
-    // Check test accounts first
-    if (testAccounts[email] && testAccounts[email].password === password) {
-        return true;
-    }
-    
-    // Check registered users
-    const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-    if (registeredUsers[email] && registeredUsers[email].password === password) {
-        return true;
-    }
-    
-    return false;
-}
-
-// Check if user exists
-async function checkUserExists(email) {
-    // Check test accounts
-    if (testAccounts[email]) {
-        return true;
-    }
-    
-    // Check registered users
-    const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-    if (registeredUsers[email]) {
-        return true;
-    }
-    
-    return false;
-}
-
-// Get user's phone number
-async function getUserPhone(email) {
-    // Check test accounts
-    if (testAccounts[email]) {
-        return testAccounts[email].phone;
-    }
-    
-    // Check registered users
-    const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-    if (registeredUsers[email]) {
-        return registeredUsers[email].phone;
-    }
-    
-    return null;
-}
-
-// Generate a 6-digit OTP
-function generateOtp() {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
-// Show notification
-function showNotification(message, type) {
-    notification.textContent = message;
-    notification.className = 'notification ' + type;
-    notification.classList.add('show');
-    
-    // Auto hide after 5 seconds
-    setTimeout(() => {
-        notification.classList.remove('show');
-    }, 5000);
-}
-
-// Validate email format
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// Validate phone number format
-function isValidPhone(phone) {
-    const phoneRegex = /^\d{10}$/;
-    return phoneRegex.test(phone);
-}
-
-// Check if password is strong
-function isStrongPassword(password) {
-    // At least 8 characters, one uppercase, one lowercase, one number, one special character
-    const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return strongRegex.test(password);
-}
-
-// Move to next OTP input field
-function moveToNext(input, type = 'reset') {
-    const maxLength = parseInt(input.getAttribute('maxlength'));
-    const currentLength = input.value.length;
-    
-    if (currentLength === maxLength) {
-        const nextInput = input.nextElementSibling;
-        if (nextInput && nextInput.classList.contains('otp-input')) {
+   
+    // Move to next OTP input field
+    function moveToNext(currentInput) {
+        const nextInput = currentInput.nextElementSibling;
+       
+        // Only allow numbers
+        currentInput.value = currentInput.value.replace(/\D/g, '');
+       
+        if (currentInput.value !== '' && nextInput) {
             nextInput.focus();
         }
-    }
-    
-    // Auto verify if all fields are filled
-    if (type === 'sms') {
-        const otpInputs = document.querySelectorAll('#smsOtpModal .otp-input');
-        const allFilled = Array.from(otpInputs).every(input => input.value.length === 1);
-        if (allFilled) {
-            verifySmsOtp();
-        }
-    } else {
-        const otpInputs = document.querySelectorAll('#otpModal .otp-input');
-        const allFilled = Array.from(otpInputs).every(input => input.value.length === 1);
+       
+        // Auto-submit if all fields are filled
+        const allInputs = document.querySelectorAll('.otp-input');
+        const allFilled = Array.from(allInputs).every(input => input.value !== '');
+       
         if (allFilled) {
             verifyOtp();
         }
     }
-}
-
-// Initialize the application when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
+   
+    // Simulate sending SMS (in a real app, this would call an SMS API)
+    function simulateSendSms(phone, message) {
+        console.log(`SMS to ${phone}: ${message}`);
+        // In a real implementation, you would use an SMS service like Twilio, Nexmo, etc.
+        // Example:
+        // twilioClient.messages.create({
+        //     body: message,
+        //     to: phone,
+        //     from: '+1234567890'
+        // });
+    }
+   
+    // Validate email format
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+   
+    // Validate phone number format (10 digits)
+    function isValidPhone(phone) {
+        return /^\d{10}$/.test(phone);
+    }
+   
+    // Check if password meets strength requirements
+    function isStrongPassword(password) {
+        const minLength = 8;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+       
+        return password.length >= minLength &&
+               hasUpperCase &&
+               hasLowerCase &&
+               hasNumbers &&
+               hasSpecialChar;
+    }
+   
+    // Validate user credentials
+    async function validateCredentials(email, password) {
+        // Check test accounts first
+        if (testAccounts[email] && testAccounts[email] === password) {
+            return true;
+        }
+       
+        // Check registered users
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+        if (registeredUsers[email] && registeredUsers[email].password === password) {
+            return true;
+        }
+       
+        return false;
+    }
+   
+    // Show notification
+    function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = 'notification ' + type;
+        notification.classList.add('show');
+       
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 5000);
+    }
+   
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
