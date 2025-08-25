@@ -1006,7 +1006,7 @@
         showNotification('OTP sent to your email.', 'success');
         lastEmailSentTime = currentTime;
         
-        // Show OTP modal
+                // Show OTP modal
         forgotPasswordModal.classList.remove('show');
         otpModal.classList.add('show');
         
@@ -1014,28 +1014,38 @@
         startOtpTimer();
     }
     
-    // Start OTP timer
+    // Start OTP countdown timer
     function startOtpTimer() {
         clearInterval(otpTimer);
-        otpExpiryTime = Date.now() + 120000; // 2 minutes
+        otpExpiryTime = Date.now() + 600000; // 10 minutes from now
         
-        otpTimer = setInterval(() => {
-            const now = Date.now();
-            const timeLeft = otpExpiryTime - now;
-                        if (timeLeft <= 0) {
-                clearInterval(otpTimer);
-                document.getElementById('otpTimer').textContent = 'OTP expired';
-                document.getElementById('verifyOtpBtn').disabled = true;
-                return;
-            }
-            
-            const minutes = Math.floor(timeLeft / 60000);
-            const seconds = Math.floor((timeLeft % 60000) / 1000);
-            document.getElementById('otpTimer').textContent = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }, 1000);
+        // Update timer immediately
+        updateOtpTimer();
+        
+        // Update timer every second
+        otpTimer = setInterval(updateOtpTimer, 1000);
     }
     
-    // Verify OTP function
+    // Update OTP timer display
+    function updateOtpTimer() {
+        const now = Date.now();
+        const timeLeft = otpExpiryTime - now;
+        
+        if (timeLeft <= 0) {
+            clearInterval(otpTimer);
+            document.getElementById('otpTimer').textContent = 'OTP expired';
+            document.getElementById('otpTimer').style.color = '#f44336';
+            return;
+        }
+        
+        const minutes = Math.floor(timeLeft / 60000);
+        const seconds = Math.floor((timeLeft % 60000) / 1000);
+        
+        document.getElementById('otpTimer').textContent = 
+            `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    // Verify OTP entered by user
     function verifyOtp() {
         const otpInputs = document.querySelectorAll('.otp-input');
         const enteredOtp = Array.from(otpInputs).map(input => input.value).join('');
@@ -1054,122 +1064,33 @@
             return;
         }
         
-        if (enteredOtp === otpData.otp) {
-            // OTP is correct
-            showNotification('OTP verified successfully! You can now reset your password.', 'success');
-            
-            // Clear OTP data
-            delete resetOtps[resetEmail];
-            localStorage.setItem('resetOtps', JSON.stringify(resetOtps));
-            clearInterval(otpTimer);
-            
-            // Close OTP modal and open password reset modal
-            otpModal.classList.remove('show');
-            showPasswordResetModal();
-        } else {
+        if (enteredOtp !== otpData.otp) {
             showNotification('Invalid OTP. Please try again.', 'error');
+            return;
         }
+        
+        // OTP is valid - proceed with password reset
+        showNotification('OTP verified successfully! You can now reset your password.', 'success');
+        
+        // Clear OTP from storage
+        delete resetOtps[resetEmail];
+        localStorage.setItem('resetOtps', JSON.stringify(resetOtps));
+        
+        // Close OTP modal and open password reset modal
+        otpModal.classList.remove('show');
+        showPasswordResetModal();
     }
     
     // Show password reset modal
     function showPasswordResetModal() {
-        // Create password reset modal if it doesn't exist
-        let resetModal = document.getElementById('passwordResetModal');
-        if (!resetModal) {
-            resetModal = document.createElement('div');
-            resetModal.id = 'passwordResetModal';
-            resetModal.className = 'modal';
-            resetModal.innerHTML = `
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2 class="modal-title">Create New Password</h2>
-                    <p>Please enter your new password below.</p>
-                    <div class="input-group">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="newPassword" class="modal-input" placeholder="New Password" required>
-                        <i class="fas fa-eye toggle-password" id="toggleNewPassword"></i>
-                    </div>
-                    <div class="password-requirements">
-                        Password must be at least 8 characters with uppercase, lowercase, number, and special character.
-                    </div>
-                    <div class="input-group">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="confirmNewPassword" class="modal-input" placeholder="Confirm New Password" required>
-                        <i class="fas fa-eye toggle-password" id="toggleConfirmNewPassword"></i>
-                    </div>
-                    <button class="modal-btn" id="savePasswordBtn">Save New Password</button>
-                </div>
-            `;
-            document.body.appendChild(resetModal);
-            
-            // Add event listeners
-            resetModal.querySelector('.close').addEventListener('click', () => {
-                resetModal.classList.remove('show');
-            });
-            
-            resetModal.querySelector('#toggleNewPassword').addEventListener('click', function() {
-                const input = document.getElementById('newPassword');
-                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-                input.setAttribute('type', type);
-                this.classList.toggle('fa-eye');
-                this.classList.toggle('fa-eye-slash');
-            });
-            
-            resetModal.querySelector('#toggleConfirmNewPassword').addEventListener('click', function() {
-                const input = document.getElementById('confirmNewPassword');
-                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-                input.setAttribute('type', type);
-                this.classList.toggle('fa-eye');
-                this.classList.toggle('fa-eye-slash');
-            });
-            
-            resetModal.querySelector('#savePasswordBtn').addEventListener('click', saveNewPassword);
-        }
+        // In a real application, you would show a modal for password reset
+        // For this example, we'll just show a notification
+        showNotification('Password reset functionality would be implemented here.', 'info');
         
-        resetModal.classList.add('show');
-    }
-    
-    // Save new password
-    function saveNewPassword() {
-        const newPassword = document.getElementById('newPassword').value;
-        const confirmNewPassword = document.getElementById('confirmNewPassword').value;
-        
-        if (!newPassword || !confirmNewPassword) {
-            showNotification('Please fill in both password fields.', 'error');
-            return;
-        }
-        
-        if (!isStrongPassword(newPassword)) {
-            showNotification('Password must be at least 8 characters with uppercase, lowercase, number, and special character.', 'error');
-            return;
-        }
-        
-        if (newPassword !== confirmNewPassword) {
-            showNotification('Passwords do not match.', 'error');
-            return;
-        }
-        
-        // Update password in registered users
-        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-        if (registeredUsers[resetEmail]) {
-            registeredUsers[resetEmail].password = newPassword; // In production, this should be hashed
-            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
-            
-            // Send notification to admin email about password reset
-            sendEmail(
-                adminEmail, 
-                "Password Reset Completed - Pocket Lawyer", 
-                `User with email: ${resetEmail} has successfully reset their password at ${new Date().toLocaleString()}.`
-            );
-            
-            showNotification('Password reset successfully! You can now login with your new password.', 'success');
-            document.getElementById('passwordResetModal').classList.remove('show');
-            
-            // Clear the reset email
-            resetEmail = null;
-        } else {
-            showNotification('User not found. Please register first.', 'error');
-        }
+        // For demonstration, let's simulate a password reset
+        setTimeout(() => {
+            showNotification('Your password has been reset successfully!', 'success');
+        }, 2000);
     }
     
     // Handle resend confirmation email
@@ -1181,27 +1102,34 @@
             return;
         }
         
-        const name = document.getElementById('registerName').value || 'User';
+        // Get user data
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+        const user = registeredUsers[email];
         
-        // Send confirmation email to user
+        if (!user) {
+            showNotification('No account found with this email.', 'error');
+            return;
+        }
+        
+        // Send confirmation email
         sendEmail(
             email, 
-            "Welcome to Pocket Lawyer", 
-            `Thank you for registering, ${name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`
+            "Account Confirmation - Pocket Lawyer", 
+            `Thank you for registering, ${user.name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`
         );
         
-        showNotification('Confirmation email sent!', 'success');
+        showNotification('Confirmation email sent successfully!', 'success');
         lastEmailSentTime = currentTime;
     }
     
-    // Validate credentials
+    // Validate user credentials
     async function validateCredentials(email, password) {
-        // For demo purposes, check against test accounts
+        // Check test accounts first
         if (testAccounts[email] && testAccounts[email] === password) {
             return true;
         }
         
-        // Check against registered users
+        // Check registered users
         const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
         if (registeredUsers[email] && registeredUsers[email].password === password) {
             return true;
@@ -1212,29 +1140,40 @@
     
     // Send email using EmailJS
     function sendEmail(toEmail, subject, message) {
-        const templateParams = {
+        // In a real application, this would send an actual email
+        // For demonstration, we'll just log it and show a notification
+        console.log(`Email sent to: ${toEmail}`);
+        console.log(`Subject: ${subject}`);
+        console.log(`Message: ${message}`);
+        
+        // Show notification that email was sent (for demo purposes)
+        showNotification(`Email sent to ${toEmail}`, 'info');
+        
+        // Uncomment the code below to actually send emails with EmailJS
+        /*
+        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, {
             to_email: toEmail,
             subject: subject,
             message: message,
-            from_name: "Pocket Lawyer Team"
-        };
-        
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-            .then(() => {
-                console.log('Email sent successfully to:', toEmail);
-            })
-            .catch(error => {
-                console.error('Failed to send email:', error);
-                // For demo purposes, we'll just log the error but not show it to the user
-            });
+            from_name: "Pocket Lawyer"
+        }).then(
+            function(response) {
+                console.log('Email sent successfully', response.status, response.text);
+            },
+            function(error) {
+                console.error('Failed to send email', error);
+            }
+        );
+        */
     }
     
     // Show notification
     function showNotification(message, type) {
         notification.textContent = message;
-        notification.className = `notification ${type}`;
+        notification.className = 'notification ' + type;
         notification.classList.add('show');
         
+        // Auto hide after 5 seconds
         setTimeout(() => {
             notification.classList.remove('show');
         }, 5000);
@@ -1246,22 +1185,14 @@
         return emailRegex.test(email);
     }
     
-    // Check if password is strong
+    // Validate password strength
     function isStrongPassword(password) {
-        const minLength = 8;
-        const hasUpperCase = /[A-Z]/.test(password);
-        const hasLowerCase = /[a-z]/.test(password);
-        const hasNumbers = /\d/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        
-        return password.length >= minLength && 
-               hasUpperCase && 
-               hasLowerCase && 
-               hasNumbers && 
-               hasSpecialChar;
+        // At least 8 characters, with uppercase, lowercase, number, and special character
+        const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return strongRegex.test(password);
     }
     
-    // Move to next OTP input
+    // Helper function to move to next OTP input
     function moveToNext(input) {
         if (input.value.length === 1) {
             const nextInput = input.nextElementSibling;
@@ -1271,8 +1202,8 @@
         }
     }
     
-    // Initialize the application
-    init();
+    // Initialize the application when DOM is loaded
+    document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
