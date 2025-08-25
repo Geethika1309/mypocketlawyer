@@ -3,348 +3,943 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pocket Lawyer - Email Configuration</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Pocket Lawyer - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Add EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
         
-        body {
-            background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+        body, html {
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+        
+        /* Login Container */
+        .login-main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            max-width: 900px;
-            overflow: hidden;
-        }
-        
-        .header {
-            background: #4e54c8;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .header h1 i {
-            margin-right: 15px;
-            font-size: 32px;
-        }
-        
-        .content {
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        
-        .card {
-            background: #f9f9f9;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .card h2 {
-            color: #4e54c8;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .card h2 i {
-            margin-right: 10px;
-        }
-        
-        .card p {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .email-flow {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 20px 0;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
-        
-        .email-step {
-            text-align: center;
-            flex: 1;
+            background: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+            background-size: cover;
             position: relative;
         }
         
-        .email-step:not(:last-child):after {
-            content: "→";
+        .login-main-container::before {
+            content: '';
             position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 24px;
-            color: #4e54c8;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
         }
         
-        .email-icon {
-            width: 70px;
-            height: 70px;
-            background: #4e54c8;
+        .login-container {
+            position: relative;
+            width: 400px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin: 0 auto 15px;
+            z-index: 1;
         }
         
-        .email-desc {
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .email-address {
-            color: #4e54c8;
-            font-weight: 700;
-            margin-top: 5px;
-            display: block;
-        }
-        
-        .config-section {
-            background: #e8f4ff;
-            border-left: 5px solid #4e54c8;
-            padding: 20px;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        
-        .config-section h3 {
-            color: #4e54c8;
-            margin-bottom: 15px;
-        }
-        
-        .code-block {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-            margin: 15px 0;
-            line-height: 1.5;
-        }
-        
-        .comment {
-            color: #75715e;
-        }
-        
-        .property {
-            color: #a6e22e;
-        }
-        
-        .value {
-            color: #e6db74;
-        }
-        
-        .btn {
-            background: #4e54c8;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            transition: background 0.3s;
-        }
-        
-        .btn:hover {
-            background: #3a3eb3;
-        }
-        
-        .btn i {
-            margin-right: 8px;
-        }
-        
-        .footer {
+        .login-logo {
             text-align: center;
-            padding: 20px;
-            background: #f1f1f1;
-            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .login-logo img {
+            height: 90px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Garamond', serif;
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px 15px 15px 50px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 10px rgba(78, 84, 200, 0.6);
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 18px;
+            top: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #4e54c8, #8f94fb);
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(45deg, #3f44af, #7a80e0);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
             font-size: 14px;
         }
         
-        @media (max-width: 768px) {
-            .email-flow {
-                flex-direction: column;
-                gap: 30px;
+        .remember-forgot label {
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .remember-forgot input {
+            margin-right: 5px;
+        }
+        
+        .remember-forgot a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .remember-forgot a:hover {
+            color: #8f94fb;
+            text-decoration: underline;
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        
+        .register-link a {
+            color: #8f94fb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+            color: #4e54c8;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+            z-index: 1000;
+            max-width: 350px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .notification.error {
+            background: #f44336;
+            color: white;
+        }
+        
+        .notification.info {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .notification.warning {
+            background: #ff9800;
+            color: white;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                width: 90%;
+                padding: 30px;
             }
             
-            .email-step:not(:last-child):after {
-                content: "↓";
-                right: 50%;
-                top: auto;
-                bottom: -30px;
-                transform: translateX(50%);
+            .notification {
+                width: 90%;
+                right: 5%;
             }
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .password-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+        
+        .password-info p {
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 25px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: #333;
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4e54c8;
+            text-align: center;
+        }
+        
+        .modal-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .modal-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #4e54c8, #8f94fb);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        .test-accounts {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 13px;
+        }
+        
+        .test-accounts h3 {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .test-accounts p {
+            margin-bottom: 5px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .password-requirements {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 5px;
+            padding-left: 15px;
+        }
+        
+        .email-notification {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+            text-align: center;
+        }
+        
+        .email-notification p {
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .email-troubleshooting {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+        
+        .email-troubleshooting h4 {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .email-troubleshooting ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .email-troubleshooting li {
+            margin-bottom: 5px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .contact-support {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .resend-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .resend-link a {
+            color: #4e54c8;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .setup-instructions {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: white;
+        }
+        
+        .setup-instructions h4 {
+            margin-bottom: 10px;
+            color: #ff9800;
+        }
+        
+        .setup-instructions ol {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .setup-instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .setup-instructions code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 5px;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-scale-balanced"></i> Pocket Lawyer Email Configuration</h1>
-            <p>Fix for password reset functionality</p>
-        </div>
-        
-        <div class="content">
-            <div class="card">
-                <h2><i class="fas fa-question-circle"></i> The Problem</h2>
-                <p>Your current implementation is trying to send password reset emails from your admin email to your admin email, which doesn't help users reset their passwords.</p>
+    <!-- Login Page -->
+    <div class="login-main-container">
+        <div class="login-container">
+            <div class="login-logo">
+                <!-- Using a placeholder logo since the original isn't available -->
+                <div style="height: 90px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold;">
+                    <i class="fas fa-scale-balanced" style="font-size: 40px; margin-right: 10px;"></i>
+                    <span>Pocket Lawyer</span>
+                </div>
             </div>
-            
-            <div class="card">
-                <h2><i class="fas fa-check-circle"></i> The Solution</h2>
-                <p>You need to configure EmailJS to send emails <strong>from</strong> your pocketlawyerindia1950@gmail.com account <strong>to</strong> the user's email address.</p>
+            <h2>Pocket Lawyer Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
                 
-                <div class="email-flow">
-                    <div class="email-step">
-                        <div class="email-icon">
-                            <i class="fas fa-paper-plane"></i>
-                        </div>
-                        <div class="email-desc">Sender</div>
-                        <span class="email-address">pocketlawyerindia1950@gmail.com</span>
-                    </div>
-                    
-                    <div class="email-step">
-                        <div class="email-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="email-desc">Email Service</div>
-                        <span class="email-address">EmailJS</span>
-                    </div>
-                    
-                    <div class="email-step">
-                        <div class="email-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="email-desc">Recipient</div>
-                        <span class="email-address">User's Email</span>
+                <div class="password-info">
+                    <p>Login with your registered email and password.</p>
+                </div>
+                
+                <div class="email-notification">
+                    <p><i class="fas fa-info-circle"></i> All login activities are notified to pocketlawyerindia1950@gmail.com</p>
+                </div>
+
+                <div class="setup-instructions">
+                    <h4><i class="fas fa-tools"></i> Email Setup Required</h4>
+                    <p>To receive real email notifications:</p>
+                    <ol>
+                        <li>Create a free account at <a href="https://www.emailjs.com" target="_blank" style="color: #4e54c8;">EmailJS.com</a></li>
+                        <li>Add Gmail as your email service</li>
+                        <li>Get your Service ID, Template ID, and Public Key</li>
+                        <li>Update the EmailJS configuration in the script below</li>
+                    </ol>
+                    <p>Until then, notifications will only appear in the browser console.</p>
+                </div>
+                
+                <div class="email-troubleshooting">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Not receiving emails?</h4>
+                    <ul>
+                        <li>Check your spam/junk folder</li>
+                        <li>Verify you entered the correct email address</li>
+                        <li>Ensure your email inbox is not full</li>
+                        <li>Allow a few minutes for delivery</li>
+                    </ul>
+                    <div class="contact-support">
+                        Still having issues? Contact support at pocketlawyerindia1950@gmail.com
                     </div>
                 </div>
                 
-                <div class="config-section">
-                    <h3><i class="fas fa-cog"></i> EmailJS Configuration</h3>
-                    <p>Make sure your EmailJS template is configured correctly:</p>
-                    
-                    <div class="code-block">
-                        <span class="comment">// In your EmailJS template, use:</span><br>
-                        <span class="property">to_email</span>: <span class="value">{{user_email}}</span> <span class="comment">// User's email address</span><br>
-                        <span class="property">from_name</span>: <span class="value">Pocket Lawyer</span><br>
-                        <span class="property">message</span>: <span class="value">Reset link: {{reset_link}}</span><br>
-                        <span class="property">reply_to</span>: <span class="value">pocketlawyerindia1950@gmail.com</span>
-                    </div>
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> Remember me
+                    </label>
+                    <a id="forgotPassword">Forgot Password?</a>
                 </div>
-            </div>
-            
-            <div class="card">
-                <h2><i class="fas fa-code"></i> JavaScript Fix</h2>
-                <p>Update your <code>handlePasswordReset</code> function to send the email to the user, not the admin:</p>
-                
-                <div class="code-block">
-                    <span class="comment">// Current (incorrect) code:</span><br>
-                    <span class="property">sendEmail</span>(<span class="value">adminEmail</span>, <span class="value">"Password Reset Request"</span>, <span class="value">resetMessage</span>);<br><br>
-                    
-                    <span class="comment">// Fixed code:</span><br>
-                    <span class="property">sendEmail</span>(<span class="value">email</span>, <span class="value">"Password Reset Request"</span>, <span class="value">resetMessage</span>);<br>
-                    <span class="comment">// Also send a notification to admin</span><br>
-                    <span class="property">sendEmail</span>(<span class="value">adminEmail</span>, <span class="value">"Password Reset Requested"</span>, <span class="value">`User ${email} requested a password reset.`</span>);
+                <button type="submit" class="login-btn" id="loginButton">Login</button>
+                <div class="register-link">
+                    Don't have an account? <a id="registerNow">Register Now</a>
                 </div>
-                
-                <p>This way, the reset link goes to the user, and you get a notification about the reset request.</p>
-            </div>
+            </form>
             
-            <div class="card">
-                <h2><i class="fas fa-envelope"></i> Testing Your Setup</h2>
-                <p>Before implementing, test your EmailJS configuration:</p>
-                
-                <ol style="margin-left: 20px; margin-bottom: 20px;">
-                    <li>Verify your EmailJS account is connected to your Gmail</li>
-                    <li>Test the email template in EmailJS dashboard</li>
-                    <li>Make sure your domain is verified in EmailJS</li>
-                    <li>Test with a real email address you have access to</li>
-                </ol>
-                
-                <button class="btn" onclick="alert('In a real implementation, this would test your EmailJS configuration')">
-                    <i class="fas fa-paper-plane"></i> Test Email Configuration
-                </button>
+            <div class="test-accounts">
+                <h3>Test Accounts (for demonstration):</h3>
+                <p>Email: user@example.com | Password: SecurePass123!</p>
+                <p>Email: test@test.com | Password: TestPass789!</p>
             </div>
         </div>
-        
-        <div class="footer">
-            <p>Pocket Lawyer &copy; 2023. Email configuration helper.</p>
+
+        <div class="notification" id="notification"></div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Reset Password</h2>
+            <p>Enter your email address to reset your password. A reset link will be sent to your email.</p>
+            <input type="email" id="resetEmail" class="modal-input" placeholder="Your email address">
+            <div class="resend-link">
+                Didn't receive the email? <a id="resendResetLink">Resend</a>
+            </div>
+            <button class="modal-btn" id="resetPasswordBtn">Send Reset Link</button>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Create Account</h2>
+            <input type="text" id="registerName" class="modal-input" placeholder="Full Name" required>
+            <input type="email" id="registerEmail" class="modal-input" placeholder="Email Address" required>
+            <input type="password" id="registerPassword" class="modal-input" placeholder="Password" required>
+            <div class="password-requirements">
+                Password must be at least 8 characters with uppercase, lowercase, number, and special character.
+            </div>
+            <input type="password" id="registerConfirmPassword" class="modal-input" placeholder="Confirm Password" required>
+            <div class="resend-link">
+                Didn't receive confirmation email? <a id="resendConfirmation">Resend</a>
+            </div>
+            <button class="modal-btn" id="registerBtn">Register</button>
         </div>
     </div>
 
     <script>
-        // This is a simplified version of what your fixed code should do
-        function sendEmail(to, subject, body) {
-            // In your actual code, this would use EmailJS
-            console.log(`Sending email to: ${to}`);
-            console.log(`Subject: ${subject}`);
-            console.log(`Body: ${body}`);
-            
-            // This is how you would initialize EmailJS with your credentials
+        // Initialize EmailJS with your account details
+        // You need to sign up at https://www.emailjs.com/ and get these credentials
+        (function() {
+            // Replace these with your actual EmailJS credentials
             const emailjsConfig = {
-                serviceId: 'service_5gx2n3s',
-                templateId: 'template_91aw6md',
-                publicKey: 'RqdmFu2p30HPoaqCw'
+                serviceId: 'YOUR_SERVICE_ID',    // Replace with your EmailJS service ID
+                templateId: 'YOUR_TEMPLATE_ID',  // Replace with your EmailJS template ID
+                publicKey: 'YOUR_PUBLIC_KEY'     // Replace with your EmailJS public key
             };
             
-            // Remember to initialize EmailJS with your public key
-            // emailjs.init(emailjsConfig.publicKey);
+            // Initialize EmailJS if credentials are provided
+            if (emailjsConfig.publicKey !== 'YOUR_PUBLIC_KEY') {
+                emailjs.init(emailjsConfig.publicKey);
+                window.emailjsConfig = emailjsConfig;
+            } else {
+                console.warn('EmailJS not configured. Please set up your EmailJS credentials to enable email notifications.');
+            }
+        })();
+
+        // DOM elements
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginButton = document.getElementById('loginButton');
+        const notification = document.getElementById('notification');
+        const forgotPasswordLink = document.getElementById('forgotPassword');
+        const registerLink = document.getElementById('registerNow');
+        const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeButtons = document.querySelectorAll('.close');
+        const resetPasswordBtn = document.getElementById('resetPasswordBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const resendResetLink = document.getElementById('resendResetLink');
+        const resendConfirmation = document.getElementById('resendConfirmation');
+        
+        // Your email address
+        const adminEmail = "pocketlawyerindia1950@gmail.com";
+        
+        // Track email sending to prevent spam
+        let lastEmailSentTime = 0;
+        const emailCooldown = 30000; // 30 seconds between emails
+        
+        // Test accounts for demonstration
+        const testAccounts = {
+            'user@example.com': 'SecurePass123!',
+            'test@test.com': 'TestPass789!'
+        };
+        
+        // Initialize the page
+        function init() {
+            // Initialize registered users if not exists
+            if (!localStorage.getItem('registeredUsers')) {
+                localStorage.setItem('registeredUsers', JSON.stringify({}));
+            }
+            
+            // Check if user is already logged in
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                const userEmail = localStorage.getItem('userEmail');
+                showNotification(`Welcome back! You are already logged in as ${userEmail}`, 'info');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+            
+            // Load saved email if "Remember me" was checked
+            const rememberedEmail = localStorage.getItem('rememberedEmail');
+            if (rememberedEmail) {
+                emailInput.value = rememberedEmail;
+                document.getElementById('rememberMe').checked = true;
+            }
+            
+            // Add event listeners for modals
+            setupModalListeners();
         }
         
-        // This is how the fixed handlePasswordReset function should work
-        function handlePasswordReset(userEmail) {
-            const adminEmail = "pocketlawyerindia1950@gmail.com";
-            const resetToken = "generated_reset_token";
-            const resetLink = `https://mypocketlawyer.top/reset-password?token=${resetToken}`;
+        // Set up modal event listeners
+        function setupModalListeners() {
+            // Forgot password link
+            forgotPasswordLink.addEventListener('click', () => {
+                forgotPasswordModal.classList.add('show');
+            });
             
-            // Send reset email to USER (not admin)
-            const userMessage = `You requested a password reset. Click here: ${resetLink}`;
-            sendEmail(userEmail, "Password Reset Request", userMessage);
+            // Register link
+            registerLink.addEventListener('click', () => {
+                registerModal.classList.add('show');
+            });
             
-            // Send notification to ADMIN
-            const adminMessage = `User ${userEmail} requested a password reset.`;
-            sendEmail(adminEmail, "Password Reset Requested", adminMessage);
+            // Close buttons
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    forgotPasswordModal.classList.remove('show');
+                    registerModal.classList.remove('show');
+                });
+            });
+            
+            // Close modal when clicking outside of it
+            window.addEventListener('click', (e) => {
+                if (e.target === forgotPasswordModal) {
+                    forgotPasswordModal.classList.remove('show');
+                }
+                if (e.target === registerModal) {
+                    registerModal.classList.remove('show');
+                }
+            });
+            
+            // Resend reset link
+            resendResetLink.addEventListener('click', () => {
+                const email = document.getElementById('resetEmail').value;
+                if (email && isValidEmail(email)) {
+                    handlePasswordReset(email);
+                } else {
+                    showNotification('Please enter a valid email address first.', 'warning');
+                }
+            });
+            
+            // Resend confirmation email
+            resendConfirmation.addEventListener('click', () => {
+                const email = document.getElementById('registerEmail').value;
+                if (email && isValidEmail(email)) {
+                    handleResendConfirmation(email);
+                } else {
+                    showNotification('Please enter a valid email address first.', 'warning');
+                }
+            });
+            
+            // Reset password button
+            resetPasswordBtn.addEventListener('click', () => {
+                const email = document.getElementById('resetEmail').value;
+                if (email && isValidEmail(email)) {
+                    handlePasswordReset(email);
+                } else {
+                    showNotification('Please enter a valid email address.', 'error');
+                }
+            });
+            
+            // Register button
+            registerBtn.addEventListener('click', () => {
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('registerConfirmPassword').value;
+                
+                if (!name || !email || !password || !confirmPassword) {
+                    showNotification('Please fill in all fields.', 'error');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showNotification('Please enter a valid email address.', 'error');
+                    return;
+                }
+                
+                if (!isStrongPassword(password)) {
+                    showNotification('Password must be at least 8 characters with uppercase, lowercase, number, and special character.', 'error');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showNotification('Passwords do not match.', 'error');
+                    return;
+                }
+                
+                // Check if user already exists
+                const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+                if (registeredUsers[email]) {
+                    showNotification('This email is already registered.', 'error');
+                    return;
+                }
+                
+                // Store user data with password (in a real app, you would hash this)
+                registeredUsers[email] = {
+                    name: name,
+                    password: password  // In production, this should be hashed
+                };
+                
+                localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+                
+                // Send notification to admin email about new registration
+                sendEmail(adminEmail, "New User Registration", 
+                    `New user registered:\nName: ${name}\nEmail: ${email}`);
+                
+                // Send confirmation email to user
+                sendEmail(email, "Welcome to Pocket Lawyer", 
+                    `Thank you for registering, ${name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`);
+                
+                // Show success message
+                showNotification('Registration successful! Confirmation email sent.', 'success');
+                registerModal.classList.remove('show');
+                
+                // Clear the form
+                document.getElementById('registerName').value = '';
+                document.getElementById('registerEmail').value = '';
+                document.getElementById('registerPassword').value = '';
+                document.getElementById('registerConfirmPassword').value = '';
+            });
         }
+        
+        // Handle password reset request
+        function handlePasswordReset(email) {
+            // Check if we've sent an email recently to prevent spam
+            const currentTime = new Date().getTime();
+            if (currentTime - lastEmailSentTime < emailCooldown) {
+                const secondsLeft = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
+                showNotification(`Please wait ${secondsLeft} seconds before requesting another email.`, 'warning');
+                return;
+            }
+            
+            // Simulate sending reset link to user's email
+            sendEmail(email, "Password Reset Request", 
+                `You requested a password reset. Click here to reset your password: https://pocketlawyer.com/reset-password?token=abc123\n\nIf you didn't request this, please ignore this email.`);
+            
+            // Send notification to admin email
+            sendEmail(adminEmail, "Password Reset Requested", 
+                `User with email: ${email} has requested a password reset.`);
+            
+            showNotification('Password reset link has been sent to your email. Check your spam folder if not received.', 'success');
+            lastEmailSentTime = currentTime;
+        }
+        
+        // Handle resending confirmation email
+        function handleResendConfirmation(email) {
+            // Check if we've sent an email recently to prevent spam
+            const currentTime = new Date().getTime();
+            if (currentTime - lastEmailSentTime < emailCooldown) {
+                const secondsLeft = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
+                showNotification(`Please wait ${secondsLeft} seconds before requesting another email.`, 'warning');
+                return;
+            }
+            
+            // Get user data
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+            const user = registeredUsers[email];
+            
+            if (user) {
+                // Send confirmation email to user
+                sendEmail(email, "Welcome to Pocket Lawyer", 
+                    `Thank you for registering, ${user.name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`);
+                
+                showNotification('Confirmation email has been resent. Check your spam folder if not received.', 'success');
+                lastEmailSentTime = currentTime;
+            } else {
+                showNotification('No account found with this email address.', 'error');
+            }
+        }
+        
+        // Email validation function
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Password strength validation
+        function isStrongPassword(password) {
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+            
+            return password.length >= minLength && 
+                   hasUpperCase && 
+                   hasLowerCase && 
+                   hasNumbers && 
+                   hasSpecialChar;
+        }
+        
+        // Handle login form submission
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            
+            // Show loading state
+            loginButton.innerHTML = '<span class="loading"></span> Verifying...';
+            loginButton.disabled = true;
+            
+            // Validate credentials
+            const isValid = await validateCredentials(email, password);
+            
+            if (isValid) {
+                // Save "Remember me" preference
+                if (document.getElementById('rememberMe').checked) {
+                    localStorage.setItem('rememberedEmail', email);
+                } else {
+                    localStorage.removeItem('rememberedEmail');
+                }
+                
+                // Save login state
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                
+                // Send notification to admin email about login
+                sendEmail(adminEmail, "User Login", 
+                    `User with email: ${email} has logged in successfully at ${new Date().toLocaleString()}.`);
+                
+                // Show success message
+                showNotification('Login successful! Redirecting...', 'success');
+                
+                // Redirect to index page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } else {
+                // Send notification to admin email about failed login attempt
+                sendEmail(adminEmail, "Failed Login Attempt", 
+                    `Someone attempted to login with email: ${email} but failed at ${new Date().toLocaleString()}.`);
+                
+                // Show error message
+                showNotification('Invalid email or password. Please try again.', 'error');
+                
+                // Reset button
+                loginButton.innerHTML = 'Login';
+                loginButton.disabled = false;
+            }
+        });
+        
+        // Validate user credentials
+        async function validateCredentials(email, password) {
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Check test accounts first
+            if (testAccounts[email] && testAccounts[email] === password) {
+                return true;
+            }
+            
+            // Check registered users
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+            if (registeredUsers[email] && registeredUsers[email].password === password) {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        // Show notification
+        function showNotification(message, type) {
+            notification.textContent = message;
+            notification.className = `notification show ${type}`;
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Send email using EmailJS
+        function sendEmail(to, subject, body) {
+            // If EmailJS is not configured, fall back to console logging
+            if (!window.emailjsConfig || window.emailjsConfig.publicKey === 'YOUR_PUBLIC_KEY') {
+                console.log(`=== EMAIL SIMULATION ===`);
+                console.log(`To: ${to}`);
+                console.log(`Subject: ${subject}`);
+                console.log(`Body: ${body}`);
+                console.log(`=== END EMAIL SIMULATION ===`);
+                return;
+            }
+            
+            // Send email using EmailJS
+            const templateParams = {
+                to_email: to,
+                subject: subject,
+                message: body,
+                from_name: "Pocket Lawyer System"
+            };
+            
+            emailjs.send(
+                window.emailjsConfig.serviceId, 
+                window.emailjsConfig.templateId, 
+                templateParams
+            )
+            .then(function(response) {
+                console.log('Email successfully sent!', response.status, response.text);
+            }, function(error) {
+                console.error('Failed to send email:', error);
+                // Fall back to console logging if email sending fails
+                console.log(`=== EMAIL FALLBACK ===`);
+                console.log(`To: ${to}`);
+                console.log(`Subject: ${subject}`);
+                console.log(`Body: ${body}`);
+                console.log(`=== END EMAIL FALLBACK ===`);
+            });
+        }
+        
+        // Initialize the page
+        init();
     </script>
 </body>
 </html>
