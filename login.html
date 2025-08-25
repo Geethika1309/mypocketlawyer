@@ -1093,25 +1093,32 @@
         lastEmailSentTime = currentTime;
     }
     
-        // Send OTP email to user
-    function sendOtpEmail(email, otp) {
-        const templateParams = {
-            to_email: email, // Fixed: Send to user's email, not admin
-            from_name: "Pocket Lawyer",
-            to_name: "User",
-            message: `Your OTP for password reset is: ${otp}. This OTP will expire in 2 minutes.`,
-            subject: "Password Reset OTP - Pocket Lawyer"
-        };
-        
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-            .then(() => {
-                showNotification('OTP sent to your email address.', 'success');
-            })
-            .catch((error) => {
-                console.error('Failed to send OTP email:', error);
-                showNotification('Failed to send OTP email. Please try again.', 'error');
-            });
-    }
+       // Send OTP email to user
+function sendOtpEmail(email, otp) {
+    const templateParams = {
+        to_email: email, // This sends to user's email
+        from_name: "Pocket Lawyer",
+        to_name: "User",
+        message: `Your OTP for password reset is: ${otp}. This OTP will expire in 2 minutes.`,
+        subject: "Password Reset OTP - Pocket Lawyer"
+    };
+    
+    emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
+        .then(() => {
+            showNotification('OTP sent to your email address.', 'success');
+            
+            // Also send a copy to admin for notification
+            sendEmail(
+                adminEmail, 
+                "Password Reset Request - Pocket Lawyer", 
+                `A password reset request was made for email: ${email} at ${new Date().toLocaleString()}`
+            );
+        })
+        .catch((error) => {
+            console.error('Failed to send OTP email:', error);
+            showNotification('Failed to send OTP email. Please try again.', 'error');
+        });
+}
     
     // Send welcome email to new users
     function sendWelcomeEmail(email, name) {
