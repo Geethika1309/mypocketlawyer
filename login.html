@@ -1184,7 +1184,7 @@
     async function sendLoginNotification(email) {
         try {
             // Initialize EmailJS with your public key
-            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual EmailJS public key
+            emailjs.init("PZIFaVPi-Ytb6jNvs"); // Replace with your actual EmailJS public key
             
             // Prepare email parameters
             const templateParams = {
@@ -1198,7 +1198,7 @@
             };
             
             // Send email using EmailJS
-            await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams);
+            await emailjs.send("service_cdydpib", "template_91aw6md", templateParams);
             
             console.log("Login notification sent successfully");
         } catch (error) {
