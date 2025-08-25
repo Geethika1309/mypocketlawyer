@@ -412,70 +412,6 @@
             text-decoration: underline;
         }
 
-        .setup-instructions {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 13px;
-            color: white;
-        }
-        
-        .setup-instructions h4 {
-            margin-bottom: 10px;
-            color: #ff9800;
-        }
-        
-        .setup-instructions ol {
-            padding-left: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .setup-instructions li {
-            margin-bottom: 8px;
-        }
-        
-        .setup-instructions code {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        
-        .config-form {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 13px;
-            color: white;
-        }
-        
-        .config-form h4 {
-            margin-bottom: 10px;
-            color: #4e54c8;
-        }
-        
-        .config-input {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        
-        .config-btn {
-            width: 100%;
-            padding: 10px;
-            background: linear-gradient(45deg, #4e54c8, #8f94fb);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        
         .email-status {
             margin-top: 10px;
             padding: 10px;
@@ -525,27 +461,6 @@
                 
                 <div class="email-notification">
                     <p><i class="fas fa-info-circle"></i> All login activities are notified to pocketlawyerindia1950@gmail.com</p>
-                </div>
-
-                <div class="config-form">
-                    <h4><i class="fas fa-cog"></i> EmailJS Configuration</h4>
-                    <input type="text" id="serviceId" class="config-input" placeholder="EmailJS Service ID">
-                    <input type="text" id="templateId" class="config-input" placeholder="EmailJS Template ID">
-                    <input type="text" id="publicKey" class="config-input" placeholder="EmailJS Public Key">
-                    <button type="button" class="config-btn" id="saveConfig">Save Configuration</button>
-                    <div id="configStatus" class="email-status"></div>
-                </div>
-                
-                <div class="setup-instructions">
-                    <h4><i class="fas fa-tools"></i> Email Setup Instructions</h4>
-                    <ol>
-                        <li>Create a free account at <a href="https://www.emailjs.com" target="_blank" style="color: #4e54c8;">EmailJS.com</a></li>
-                        <li>Add Gmail as your email service (pocketlawyerindia1950@gmail.com)</li>
-                        <li>Create an email template for password reset emails</li>
-                        <li>Get your Service ID, Template ID, and Public Key from EmailJS dashboard</li>
-                        <li>Enter these details in the form above and click "Save Configuration"</li>
-                    </ol>
-                    <p>Until configured, notifications will only appear in the browser console.</p>
                 </div>
                 
                 <div class="email-troubleshooting">
@@ -632,11 +547,6 @@
     const registerBtn = document.getElementById('registerBtn');
     const resendResetLink = document.getElementById('resendResetLink');
     const resendConfirmation = document.getElementById('resendConfirmation');
-    const saveConfigBtn = document.getElementById('saveConfig');
-    const serviceIdInput = document.getElementById('serviceId');
-    const templateIdInput = document.getElementById('templateId');
-    const publicKeyInput = document.getElementById('publicKey');
-    const configStatus = document.getElementById('configStatus');
     
     // Your email address
     const adminEmail = "pocketlawyerindia1950@gmail.com";
@@ -651,8 +561,8 @@
         'test@test.com': 'TestPass789!'
     };
     
-    // EmailJS configuration
-    let emailjsConfig = {
+    // EmailJS configuration - Hardcoded values
+    const emailjsConfig = {
         serviceId: 'service_cdydpib',
         templateId: 'template_91aw6md',
         publicKey: 'PZIFaVPi-Ytb6jNvs'
@@ -660,21 +570,8 @@
     
     // Initialize the page
     function init() {
-        // Load saved configuration if exists
-        const savedConfig = localStorage.getItem('emailjsConfig');
-        if (savedConfig) {
-            emailjsConfig = JSON.parse(savedConfig);
-            serviceIdInput.value = emailjsConfig.serviceId;
-            templateIdInput.value = emailjsConfig.templateId;
-            publicKeyInput.value = emailjsConfig.publicKey;
-            
-            // Initialize EmailJS
-            if (emailjsConfig.publicKey) {
-                emailjs.init(emailjsConfig.publicKey);
-                configStatus.textContent = 'EmailJS configured successfully!';
-                configStatus.className = 'email-status success';
-            }
-        }
+        // Initialize EmailJS with hardcoded values
+        emailjs.init(emailjsConfig.publicKey);
         
         // Initialize registered users if not exists
         if (!localStorage.getItem('registeredUsers')) {
@@ -865,28 +762,6 @@
             }
             if (e.target === registerModal) {
                 registerModal.classList.remove('show');
-            }
-        });
-        
-        // Save configuration button
-        saveConfigBtn.addEventListener('click', () => {
-            emailjsConfig.serviceId = serviceIdInput.value;
-            emailjsConfig.templateId = templateIdInput.value;
-            emailjsConfig.publicKey = publicKeyInput.value;
-            
-            if (emailjsConfig.serviceId && emailjsConfig.templateId && emailjsConfig.publicKey) {
-                localStorage.setItem('emailjsConfig', JSON.stringify(emailjsConfig));
-                
-                // Initialize EmailJS
-                emailjs.init(emailjsConfig.publicKey);
-                
-                configStatus.textContent = 'Configuration saved successfully!';
-                configStatus.className = 'email-status success';
-                
-                showNotification('EmailJS configuration saved successfully!', 'success');
-            } else {
-                configStatus.textContent = 'Please fill all fields';
-                configStatus.className = 'email-status error';
             }
         });
         
