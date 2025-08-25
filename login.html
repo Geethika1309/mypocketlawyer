@@ -462,6 +462,28 @@
             font-size: 14px;
             color: #666;
         }
+        
+        .modal-input-group {
+            position: relative;
+            margin: 15px 0;
+        }
+        
+        .modal-input-group input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .modal-toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 12px;
+            color: #777;
+            font-size: 18px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -535,12 +557,12 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 class="modal-title">Reset Password</h2>
-            <p>Enter your email address to reset your password. A reset link will be sent to your email.</p>
+            <p>Enter your email address to reset your password. A reset OTP will be sent to your email.</p>
             <input type="email" id="resetEmail" class="modal-input" placeholder="Your email address">
             <div class="resend-link">
                 Didn't receive the email? <a id="resendResetLink">Resend</a>
             </div>
-            <button class="modal-btn" id="resetPasswordBtn">Send Reset Link</button>
+            <button class="modal-btn" id="resetPasswordBtn">Send OTP</button>
         </div>
     </div>
 
@@ -563,6 +585,31 @@
         </div>
     </div>
 
+    <!-- Reset Password Modal -->
+    <div id="resetPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Create New Password</h2>
+            <p>Please enter your new password below.</p>
+            
+            <div class="modal-input-group">
+                <input type="password" id="newPassword" class="modal-input" placeholder="New Password" required>
+                <i class="fas fa-eye modal-toggle-password" id="toggleNewPassword"></i>
+            </div>
+            
+            <div class="modal-input-group">
+                <input type="password" id="confirmNewPassword" class="modal-input" placeholder="Confirm New Password" required>
+                <i class="fas fa-eye modal-toggle-password" id="toggleConfirmNewPassword"></i>
+            </div>
+            
+            <div class="password-requirements" style="color: #666;">
+                Password must be at least 8 characters with uppercase, lowercase, number, and special character.
+            </div>
+            
+            <button class="modal-btn" id="savePasswordBtn">Save New Password</button>
+        </div>
+    </div>
+
     <!-- Register Modal -->
     <div id="registerModal" class="modal">
         <div class="modal-content">
@@ -570,19 +617,21 @@
             <h2 class="modal-title">Create Account</h2>
             <input type="text" id="registerName" class="modal-input" placeholder="Full Name" required>
             <input type="email" id="registerEmail" class="modal-input" placeholder="Email Address" required>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
+            
+            <div class="modal-input-group">
                 <input type="password" id="registerPassword" class="modal-input" placeholder="Password" required>
-                <i class="fas fa-eye toggle-password" id="toggleRegisterPassword"></i>
+                <i class="fas fa-eye modal-toggle-password" id="toggleRegisterPassword"></i>
             </div>
-            <div class="password-requirements">
+            
+            <div class="password-requirements" style="color: #666;">
                 Password must be at least 8 characters with uppercase, lowercase, number, and special character.
             </div>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
+            
+            <div class="modal-input-group">
                 <input type="password" id="registerConfirmPassword" class="modal-input" placeholder="Confirm Password" required>
-                <i class="fas fa-eye toggle-password" id="toggleConfirmPassword"></i>
+                <i class="fas fa-eye modal-toggle-password" id="toggleConfirmPassword"></i>
             </div>
+            
             <div class="resend-link">
                 Didn't receive confirmation email? <a id="resendConfirmation">Resend</a>
             </div>
@@ -601,6 +650,7 @@
     const registerLink = document.getElementById('registerNow');
     const forgotPasswordModal = document.getElementById('forgotPasswordModal');
     const otpModal = document.getElementById('otpModal');
+    const resetPasswordModal = document.getElementById('resetPasswordModal');
     const registerModal = document.getElementById('registerModal');
     const closeButtons = document.querySelectorAll('.close');
     const resetPasswordBtn = document.getElementById('resetPasswordBtn');
@@ -608,9 +658,12 @@
     const resendResetLink = document.getElementById('resendResetLink');
     const resendConfirmation = document.getElementById('resendConfirmation');
     const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+    const savePasswordBtn = document.getElementById('savePasswordBtn');
     const togglePassword = document.getElementById('togglePassword');
     const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
     const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+    const toggleNewPassword = document.getElementById('toggleNewPassword');
+    const toggleConfirmNewPassword = document.getElementById('toggleConfirmNewPassword');
     
     // Your email address
     const adminEmail = "pocketlawyerindia1950@gmail.com";
@@ -693,6 +746,22 @@
         
         toggleConfirmPassword.addEventListener('click', function() {
             const input = document.getElementById('registerConfirmPassword');
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+        
+        toggleNewPassword.addEventListener('click', function() {
+            const input = document.getElementById('newPassword');
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+        
+        toggleConfirmNewPassword.addEventListener('click', function() {
+            const input = document.getElementById('confirmNewPassword');
             const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
             input.setAttribute('type', type);
             this.classList.toggle('fa-eye');
@@ -851,6 +920,7 @@
             button.addEventListener('click', () => {
                 forgotPasswordModal.classList.remove('show');
                 otpModal.classList.remove('show');
+                resetPasswordModal.classList.remove('show');
                 registerModal.classList.remove('show');
             });
         });
@@ -862,6 +932,9 @@
             }
             if (e.target === otpModal) {
                 otpModal.classList.remove('show');
+            }
+            if (e.target === resetPasswordModal) {
+                resetPasswordModal.classList.remove('show');
             }
             if (e.target === registerModal) {
                 registerModal.classList.remove('show');
@@ -903,6 +976,43 @@
             verifyOtp();
         });
         
+        // Save new password button
+        savePasswordBtn.addEventListener('click', () => {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmNewPassword').value;
+            
+            if (!newPassword || !confirmPassword) {
+                showNotification('Please fill in both password fields.', 'error');
+                return;
+            }
+            
+            if (!isStrongPassword(newPassword)) {
+                showNotification('Password must be at least 8 characters with uppercase, lowercase, number, and special character.', 'error');
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                showNotification('Passwords do not match.', 'error');
+                return;
+            }
+            
+            // Update password in registered users
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+            if (registeredUsers[resetEmail]) {
+                registeredUsers[resetEmail].password = newPassword;
+                localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+                
+                showNotification('Password reset successfully! You can now login with your new password.', 'success');
+                resetPasswordModal.classList.remove('show');
+                
+                // Clear the form
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmNewPassword').value = '';
+            } else {
+                showNotification('User not found. Please register first.', 'error');
+            }
+        });
+        
         // Register button
         registerBtn.addEventListener('click', () => {
             const name = document.getElementById('registerName').value;
@@ -910,7 +1020,7 @@
             const password = document.getElementById('registerPassword').value;
             const confirmPassword = document.getElementById('registerConfirmPassword').value;
             
-            if (!name || !email || !password || !confirmPassword) {
+                        if (!name || !email || !password || !confirmPassword) {
                 showNotification('Please fill in all fields.', 'error');
                 return;
             }
@@ -933,28 +1043,23 @@
             // Check if user already exists
             const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
             if (registeredUsers[email]) {
-                showNotification('This email is already registered.', 'error');
+                showNotification('An account with this email already exists.', 'error');
                 return;
             }
             
-            // Store user data with password (in a real app, you would hash this)
+            // Save new user
             registeredUsers[email] = {
                 name: name,
-                password: password  // In production, this should be hashed
+                password: password,
+                email: email
             };
             
             localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
             
-            // Send notification to admin email about new registration
-            sendEmail(adminEmail, "New User Registration", 
-                `New user registered:\nName: ${name}\nEmail: ${email}`);
+            // Send registration notification
+            sendRegistrationNotification(email, name);
             
-            // Send confirmation email to user
-            sendEmail(email, "Welcome to Pocket Lawyer", 
-                `Thank you for registering, ${name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`);
-            
-            // Show success message
-            showNotification('Registration successful! Confirmation email sent.', 'success');
+            showNotification('Registration successful! You can now login.', 'success');
             registerModal.classList.remove('show');
             
             // Clear the form
@@ -967,162 +1072,206 @@
     
     // Handle password reset request
     function handlePasswordReset(email) {
-        // Check if we've sent an email recently to prevent spam
-        const currentTime = new Date().getTime();
-        if (currentTime - lastEmailSentTime < emailCooldown) {
-            const secondsLeft = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
-            showNotification(`Please wait ${secondsLeft} seconds before requesting another email.`, 'warning');
+        // Check if email is registered
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+        if (!registeredUsers[email] && !testAccounts[email]) {
+            showNotification('No account found with this email address.', 'error');
             return;
         }
         
-        // Store the email for OTP verification
+        // Check email cooldown
+        const currentTime = new Date().getTime();
+        if (currentTime - lastEmailSentTime < emailCooldown) {
+            const remainingTime = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
+            showNotification(`Please wait ${remainingTime} seconds before requesting another OTP.`, 'warning');
+            return;
+        }
+        
+        // Generate OTP
+        generatedOtp = generateOtp();
         resetEmail = email;
         
-        // Generate OTP (6 digits)
-        generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
-        
-        // Store the OTP with expiration (10 minutes)
-        const resetOtps = JSON.parse(localStorage.getItem('resetOtps') || '{}');
-        resetOtps[email] = {
-            otp: generatedOtp,
-            expires: Date.now() + 600000 // 10 minutes
-        };
-        localStorage.setItem('resetOtps', JSON.stringify(resetOtps));
-        
-        // Send OTP email to user
-        sendEmail(
-            email, 
-            "Password Reset OTP - Pocket Lawyer", 
-            `You requested a password reset. Your OTP is: ${generatedOtp}\n\nThis OTP will expire in 10 minutes.\n\nIf you didn't request this, please ignore this email.`
-        );
-        
-        // Send notification to admin email
-        sendEmail(
-            adminEmail, 
-            "Password Reset Requested - Pocket Lawyer", 
-            `User with email: ${email} has requested a password reset at ${new Date().toLocaleString()}.`
-        );
-        
-        showNotification('OTP sent to your email.', 'success');
-        lastEmailSentTime = currentTime;
-        
-                // Show OTP modal
-        forgotPasswordModal.classList.remove('show');
-        otpModal.classList.add('show');
+        // Send OTP via email
+        sendOtpEmail(email, generatedOtp);
         
         // Start OTP timer
         startOtpTimer();
+        
+        // Show OTP modal
+        forgotPasswordModal.classList.remove('show');
+        otpModal.classList.add('show');
+        
+        // Update last email sent time
+        lastEmailSentTime = currentTime;
+        
+        showNotification('OTP sent to your email address.', 'success');
     }
     
-    // Start OTP countdown timer
-    function startOtpTimer() {
-        clearInterval(otpTimer);
-        otpExpiryTime = Date.now() + 600000; // 10 minutes from now
-        
-        // Update timer immediately
-        updateOtpTimer();
-        
-        // Update timer every second
-        otpTimer = setInterval(updateOtpTimer, 1000);
-    }
-    
-    // Update OTP timer display
-    function updateOtpTimer() {
-        const now = Date.now();
-        const timeLeft = otpExpiryTime - now;
-        
-        if (timeLeft <= 0) {
-            clearInterval(otpTimer);
-            document.getElementById('otpTimer').textContent = 'OTP expired';
-            document.getElementById('otpTimer').style.color = '#f44336';
+    // Handle resend confirmation email
+    function handleResendConfirmation(email) {
+        // Check email cooldown
+        const currentTime = new Date().getTime();
+        if (currentTime - lastEmailSentTime < emailCooldown) {
+            const remainingTime = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
+            showNotification(`Please wait ${remainingTime} seconds before requesting another email.`, 'warning');
             return;
         }
         
-        const minutes = Math.floor(timeLeft / 60000);
-        const seconds = Math.floor((timeLeft % 60000) / 1000);
+        // Send confirmation email
+        sendConfirmationEmail(email);
         
-        document.getElementById('otpTimer').textContent = 
-            `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        // Update last email sent time
+        lastEmailSentTime = currentTime;
+        
+        showNotification('Confirmation email sent.', 'success');
     }
     
-    // Verify OTP entered by user
+    // Send OTP email
+    function sendOtpEmail(email, otp) {
+        const templateParams = {
+            to_email: email,
+            from_name: "Pocket Lawyer",
+            subject: "Password Reset OTP - Pocket Lawyer",
+            message: `Your OTP for password reset is: ${otp}. This OTP will expire in 2 minutes.`
+        };
+        
+        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
+            .then(() => {
+                console.log("OTP email sent successfully to:", email);
+            })
+            .catch(error => {
+                console.error("Failed to send OTP email:", error);
+                // For demo purposes, we'll show the OTP in the console
+                console.log("Demo OTP:", otp);
+                showNotification("OTP sent (check console for demo OTP: " + otp + ")", "info");
+            });
+    }
+    
+    // Send confirmation email
+    function sendConfirmationEmail(email) {
+        const templateParams = {
+            to_email: email,
+            from_name: "Pocket Lawyer",
+            subject: "Registration Confirmation - Pocket Lawyer",
+            message: "Thank you for registering with Pocket Lawyer. Your account has been successfully created."
+        };
+        
+        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
+            .then(() => {
+                console.log("Confirmation email sent successfully to:", email);
+            })
+            .catch(error => {
+                console.error("Failed to send confirmation email:", error);
+                showNotification("Email service temporarily unavailable.", "info");
+            });
+    }
+    
+    // Send registration notification to admin
+    function sendRegistrationNotification(email, name) {
+        const registrationTime = new Date().toLocaleString();
+        
+        const templateParams = {
+            to_email: adminEmail,
+            from_name: "Pocket Lawyer",
+            subject: "New User Registration - Pocket Lawyer",
+            message: `A new user has registered on your Pocket Lawyer website:\n\n- Name: ${name}\n- Email: ${email}\n- Registration Time: ${registrationTime}`
+        };
+        
+        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
+            .then(() => {
+                console.log("Registration notification sent to admin");
+            })
+            .catch(error => {
+                console.error("Failed to send registration notification:", error);
+            });
+    }
+    
+    // Generate a 6-digit OTP
+    function generateOtp() {
+        return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+    
+    // Start OTP timer (2 minutes)
+    function startOtpTimer() {
+        clearInterval(otpTimer);
+        
+        const timerElement = document.getElementById('otpTimer');
+        otpExpiryTime = new Date().getTime() + 2 * 60 * 1000; // 2 minutes from now
+        
+        otpTimer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = otpExpiryTime - now;
+            
+            if (distance <= 0) {
+                clearInterval(otpTimer);
+                timerElement.innerHTML = "OTP expired";
+                generatedOtp = null;
+                return;
+            }
+            
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            timerElement.innerHTML = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }, 1000);
+    }
+    
+    // Verify OTP
     function verifyOtp() {
         const otpInputs = document.querySelectorAll('.otp-input');
-        const enteredOtp = Array.from(otpInputs).map(input => input.value).join('');
+        let enteredOtp = '';
+        
+        otpInputs.forEach(input => {
+            enteredOtp += input.value;
+        });
         
         if (enteredOtp.length !== 6) {
             showNotification('Please enter the complete 6-digit OTP.', 'error');
             return;
         }
         
-        // Check if OTP is valid
-        const resetOtps = JSON.parse(localStorage.getItem('resetOtps') || '{}');
-        const otpData = resetOtps[resetEmail];
-        
-        if (!otpData || Date.now() > otpData.expires) {
-            showNotification('OTP has expired. Please request a new one.', 'error');
-            return;
-        }
-        
-        if (enteredOtp !== otpData.otp) {
+        if (enteredOtp === generatedOtp) {
+            clearInterval(otpTimer);
+            otpModal.classList.remove('show');
+            resetPasswordModal.classList.add('show');
+            showNotification('OTP verified successfully.', 'success');
+        } else {
             showNotification('Invalid OTP. Please try again.', 'error');
-            return;
         }
-        
-        // OTP is valid - proceed with password reset
-        showNotification('OTP verified successfully! You can now reset your password.', 'success');
-        
-        // Clear OTP from storage
-        delete resetOtps[resetEmail];
-        localStorage.setItem('resetOtps', JSON.stringify(resetOtps));
-        
-        // Close OTP modal and open password reset modal
-        otpModal.classList.remove('show');
-        showPasswordResetModal();
     }
     
-    // Show password reset modal
-    function showPasswordResetModal() {
-        // In a real application, you would show a modal for password reset
-        // For this example, we'll just show a notification
-        showNotification('Password reset functionality would be implemented here.', 'info');
-        
-        // For demonstration, let's simulate a password reset
-        setTimeout(() => {
-            showNotification('Your password has been reset successfully!', 'success');
-        }, 2000);
+    // Move to next OTP input field
+    function moveToNext(input) {
+        if (input.value.length === 1) {
+            const nextInput = input.nextElementSibling;
+            if (nextInput) {
+                nextInput.focus();
+            }
+        }
     }
     
-    // Handle resend confirmation email
-    function handleResendConfirmation(email) {
-        const currentTime = new Date().getTime();
-        if (currentTime - lastEmailSentTime < emailCooldown) {
-            const secondsLeft = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
-            showNotification(`Please wait ${secondsLeft} seconds before requesting another email.`, 'warning');
-            return;
-        }
-        
-        // Get user data
-        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-        const user = registeredUsers[email];
-        
-        if (!user) {
-            showNotification('No account found with this email.', 'error');
-            return;
-        }
-        
-        // Send confirmation email
-        sendEmail(
-            email, 
-            "Account Confirmation - Pocket Lawyer", 
-            `Thank you for registering, ${user.name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`
-        );
-        
-        showNotification('Confirmation email sent successfully!', 'success');
-        lastEmailSentTime = currentTime;
+    // Validate email format
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
     
-    // Validate user credentials
+    // Validate password strength
+    function isStrongPassword(password) {
+        const minLength = 8;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        
+        return password.length >= minLength && 
+               hasUpperCase && 
+               hasLowerCase && 
+               hasNumbers && 
+               hasSpecialChar;
+    }
+    
+    // Validate login credentials
     async function validateCredentials(email, password) {
         // Check test accounts first
         if (testAccounts[email] && testAccounts[email] === password) {
@@ -1138,68 +1287,33 @@
         return false;
     }
     
-    // Send email using EmailJS
-    function sendEmail(toEmail, subject, message) {
-        // In a real application, this would send an actual email
-        // For demonstration, we'll just log it and show a notification
-        console.log(`Email sent to: ${toEmail}`);
-        console.log(`Subject: ${subject}`);
-        console.log(`Message: ${message}`);
-        
-        // Show notification that email was sent (for demo purposes)
-        showNotification(`Email sent to ${toEmail}`, 'info');
-        
-        // Uncomment the code below to actually send emails with EmailJS
-        /*
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, {
-            to_email: toEmail,
-            subject: subject,
-            message: message,
-            from_name: "Pocket Lawyer"
-        }).then(
-            function(response) {
-                console.log('Email sent successfully', response.status, response.text);
-            },
-            function(error) {
-                console.error('Failed to send email', error);
-            }
-        );
-        */
-    }
-    
     // Show notification
     function showNotification(message, type) {
         notification.textContent = message;
         notification.className = 'notification ' + type;
         notification.classList.add('show');
         
-        // Auto hide after 5 seconds
         setTimeout(() => {
             notification.classList.remove('show');
         }, 5000);
     }
     
-    // Validate email format
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    // Validate password strength
-    function isStrongPassword(password) {
-        // At least 8 characters, with uppercase, lowercase, number, and special character
-        const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        return strongRegex.test(password);
-    }
-    
-    // Helper function to move to next OTP input
-    function moveToNext(input) {
-        if (input.value.length === 1) {
-            const nextInput = input.nextElementSibling;
-            if (nextInput && nextInput.classList.contains('otp-input')) {
-                nextInput.focus();
-            }
-        }
+    // Send email using EmailJS
+    function sendEmail(to, subject, message) {
+        const templateParams = {
+            to_email: to,
+            from_name: "Pocket Lawyer",
+            subject: subject,
+            message: message
+        };
+        
+        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
+            .then(() => {
+                console.log("Email sent successfully to:", to);
+            })
+            .catch(error => {
+                console.error("Failed to send email:", error);
+            });
     }
     
     // Initialize the application when DOM is loaded
