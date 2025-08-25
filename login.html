@@ -119,6 +119,7 @@
             color: rgba(255, 255, 255, 0.8);
             font-size: 18px;
             cursor: pointer;
+            z-index: 2; /* Added to ensure it's above other elements */
         }
         
         .login-btn {
@@ -1003,24 +1004,24 @@
                 localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
                 
                 showNotification('Password reset successfully! You can now login with your new password.', 'success');
-                resetPasswordModal.classList.remove('show');
+                                resetPasswordModal.classList.remove('show');
                 
-                // Clear the form
-                document.getElementById('newPassword').value = '';
-                document.getElementById('confirmNewPassword').value = '';
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
             } else {
-                showNotification('User not found. Please register first.', 'error');
+                showNotification('Email not found. Please register first.', 'error');
             }
         });
         
         // Register button
         registerBtn.addEventListener('click', () => {
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
             const password = document.getElementById('registerPassword').value;
             const confirmPassword = document.getElementById('registerConfirmPassword').value;
             
-                        if (!name || !email || !password || !confirmPassword) {
+            if (!name || !email || !password || !confirmPassword) {
                 showNotification('Please fill in all fields.', 'error');
                 return;
             }
@@ -1040,33 +1041,20 @@
                 return;
             }
             
-            // Check if user already exists
+            // Save user to localStorage
             const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-            if (registeredUsers[email]) {
-                showNotification('An account with this email already exists.', 'error');
-                return;
-            }
-            
-            // Save new user
             registeredUsers[email] = {
                 name: name,
                 password: password,
                 email: email
             };
-            
             localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
             
-            // Send registration notification
-            sendRegistrationNotification(email, name);
+            // Send welcome email
+            sendWelcomeEmail(email, name);
             
             showNotification('Registration successful! You can now login.', 'success');
             registerModal.classList.remove('show');
-            
-            // Clear the form
-            document.getElementById('registerName').value = '';
-            document.getElementById('registerEmail').value = '';
-            document.getElementById('registerPassword').value = '';
-            document.getElementById('registerConfirmPassword').value = '';
         });
     }
     
@@ -1075,7 +1063,7 @@
         // Check if email is registered
         const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
         if (!registeredUsers[email] && !testAccounts[email]) {
-            showNotification('No account found with this email address.', 'error');
+            showNotification('Email not found. Please register first.', 'error');
             return;
         }
         
@@ -1091,25 +1079,61 @@
         generatedOtp = generateOtp();
         resetEmail = email;
         
-        // Send OTP via email
+        // Send OTP email
         sendOtpEmail(email, generatedOtp);
-        
-        // Start OTP timer
-        startOtpTimer();
         
         // Show OTP modal
         forgotPasswordModal.classList.remove('show');
         otpModal.classList.add('show');
         
+        // Start OTP timer
+        startOtpTimer();
+        
         // Update last email sent time
         lastEmailSentTime = currentTime;
+    }
+    
+    // Send OTP email to user
+    function sendOtpEmail(email, otp) {
+        const templateParams = {
+            to_email: email, // Fixed: Send to user's email, not admin
+            from_name: "Pocket Lawyer",
+            to_name: "User",
+            message: `Your OTP for password reset is: ${otp}. This OTP will expire in 2 minutes.`,
+            subject: "Password Reset OTP - Pocket Lawyer"
+        };
         
-        showNotification('OTP sent to your email address.', 'success');
+        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
+            .then(() => {
+                showNotification('OTP sent to your email address.', 'success');
+            })
+            .catch((error) => {
+                console.error('Failed to send OTP email:', error);
+                showNotification('Failed to send OTP email. Please try again.', 'error');
+            });
+    }
+    
+    // Send welcome email to new users
+    function sendWelcomeEmail(email, name) {
+        const templateParams = {
+            to_email: email,
+            from_name: "Pocket Lawyer",
+            to_name: name,
+            message: `Welcome to Pocket Lawyer, ${name}! Your account has been successfully created.`,
+            subject: "Welcome to Pocket Lawyer"
+        };
+        
+        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
+            .then(() => {
+                console.log('Welcome email sent to:', email);
+            })
+            .catch((error) => {
+                console.error('Failed to send welcome email:', error);
+            });
     }
     
     // Handle resend confirmation email
     function handleResendConfirmation(email) {
-        // Check email cooldown
         const currentTime = new Date().getTime();
         if (currentTime - lastEmailSentTime < emailCooldown) {
             const remainingTime = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
@@ -1117,73 +1141,12 @@
             return;
         }
         
-        // Send confirmation email
-        sendConfirmationEmail(email);
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+        const name = registeredUsers[email] ? registeredUsers[email].name : "User";
         
-        // Update last email sent time
+        sendWelcomeEmail(email, name);
+        showNotification('Confirmation email sent successfully.', 'success');
         lastEmailSentTime = currentTime;
-        
-        showNotification('Confirmation email sent.', 'success');
-    }
-    
-    // Send OTP email
-    function sendOtpEmail(email, otp) {
-        const templateParams = {
-            to_email: email,
-            from_name: "Pocket Lawyer",
-            subject: "Password Reset OTP - Pocket Lawyer",
-            message: `Your OTP for password reset is: ${otp}. This OTP will expire in 2 minutes.`
-        };
-        
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-            .then(() => {
-                console.log("OTP email sent successfully to:", email);
-            })
-            .catch(error => {
-                console.error("Failed to send OTP email:", error);
-                // For demo purposes, we'll show the OTP in the console
-                console.log("Demo OTP:", otp);
-                showNotification("OTP sent (check console for demo OTP: " + otp + ")", "info");
-            });
-    }
-    
-    // Send confirmation email
-    function sendConfirmationEmail(email) {
-        const templateParams = {
-            to_email: email,
-            from_name: "Pocket Lawyer",
-            subject: "Registration Confirmation - Pocket Lawyer",
-            message: "Thank you for registering with Pocket Lawyer. Your account has been successfully created."
-        };
-        
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-            .then(() => {
-                console.log("Confirmation email sent successfully to:", email);
-            })
-            .catch(error => {
-                console.error("Failed to send confirmation email:", error);
-                showNotification("Email service temporarily unavailable.", "info");
-            });
-    }
-    
-    // Send registration notification to admin
-    function sendRegistrationNotification(email, name) {
-        const registrationTime = new Date().toLocaleString();
-        
-        const templateParams = {
-            to_email: adminEmail,
-            from_name: "Pocket Lawyer",
-            subject: "New User Registration - Pocket Lawyer",
-            message: `A new user has registered on your Pocket Lawyer website:\n\n- Name: ${name}\n- Email: ${email}\n- Registration Time: ${registrationTime}`
-        };
-        
-        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
-            .then(() => {
-                console.log("Registration notification sent to admin");
-            })
-            .catch(error => {
-                console.error("Failed to send registration notification:", error);
-            });
     }
     
     // Generate a 6-digit OTP
@@ -1193,30 +1156,47 @@
     
     // Start OTP timer (2 minutes)
     function startOtpTimer() {
-        clearInterval(otpTimer);
-        
         const timerElement = document.getElementById('otpTimer');
-        otpExpiryTime = new Date().getTime() + 2 * 60 * 1000; // 2 minutes from now
+        let timeLeft = 120; // 2 minutes in seconds
         
+        // Clear any existing timer
+        if (otpTimer) {
+            clearInterval(otpTimer);
+        }
+        
+        // Set expiry time
+        otpExpiryTime = new Date().getTime() + (timeLeft * 1000);
+        
+        // Update timer immediately
+        updateTimerDisplay(timerElement, timeLeft);
+        
+        // Start countdown
         otpTimer = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = otpExpiryTime - now;
+            timeLeft--;
             
-            if (distance <= 0) {
+            if (timeLeft <= 0) {
                 clearInterval(otpTimer);
-                timerElement.innerHTML = "OTP expired";
-                generatedOtp = null;
-                return;
+                timerElement.innerHTML = 'OTP expired. <a href="#" id="resendOtp">Resend OTP</a>';
+                
+                // Add event listener for resend link
+                document.getElementById('resendOtp').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handlePasswordReset(resetEmail);
+                });
+            } else {
+                updateTimerDisplay(timerElement, timeLeft);
             }
-            
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            timerElement.innerHTML = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }, 1000);
     }
     
-    // Verify OTP
+    // Update OTP timer display
+    function updateTimerDisplay(timerElement, seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        timerElement.textContent = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
+    
+    // Verify OTP entered by user
     function verifyOtp() {
         const otpInputs = document.querySelectorAll('.otp-input');
         let enteredOtp = '';
@@ -1231,47 +1211,33 @@
         }
         
         if (enteredOtp === generatedOtp) {
+            // Check if OTP is expired
+            const currentTime = new Date().getTime();
+            if (currentTime > otpExpiryTime) {
+                showNotification('OTP has expired. Please request a new one.', 'error');
+                return;
+            }
+            
+            // OTP is valid and not expired
             clearInterval(otpTimer);
             otpModal.classList.remove('show');
             resetPasswordModal.classList.add('show');
-            showNotification('OTP verified successfully.', 'success');
+            showNotification('OTP verified successfully. Please set your new password.', 'success');
         } else {
             showNotification('Invalid OTP. Please try again.', 'error');
         }
     }
     
     // Move to next OTP input field
-    function moveToNext(input) {
-        if (input.value.length === 1) {
-            const nextInput = input.nextElementSibling;
-            if (nextInput) {
-                nextInput.focus();
-            }
+    function moveToNext(currentInput) {
+        const nextInput = currentInput.nextElementSibling;
+        
+        if (currentInput.value.length === 1 && nextInput) {
+            nextInput.focus();
         }
     }
     
-    // Validate email format
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    // Validate password strength
-    function isStrongPassword(password) {
-        const minLength = 8;
-        const hasUpperCase = /[A-Z]/.test(password);
-        const hasLowerCase = /[a-z]/.test(password);
-        const hasNumbers = /\d/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        
-        return password.length >= minLength && 
-               hasUpperCase && 
-               hasLowerCase && 
-               hasNumbers && 
-               hasSpecialChar;
-    }
-    
-    // Validate login credentials
+    // Validate user credentials
     async function validateCredentials(email, password) {
         // Check test accounts first
         if (testAccounts[email] && testAccounts[email] === password) {
@@ -1287,37 +1253,52 @@
         return false;
     }
     
+    // Check if email is valid
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    // Check if password is strong
+    function isStrongPassword(password) {
+        // At least 8 characters, with uppercase, lowercase, number, and special character
+        const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return strongRegex.test(password);
+    }
+    
     // Show notification
     function showNotification(message, type) {
         notification.textContent = message;
         notification.className = 'notification ' + type;
         notification.classList.add('show');
         
+        // Auto hide after 5 seconds
         setTimeout(() => {
             notification.classList.remove('show');
         }, 5000);
     }
     
     // Send email using EmailJS
-    function sendEmail(to, subject, message) {
+    function sendEmail(toEmail, subject, message) {
         const templateParams = {
-            to_email: to,
+            to_email: toEmail,
             from_name: "Pocket Lawyer",
-            subject: subject,
-            message: message
+            to_name: "Admin",
+            message: message,
+            subject: subject
         };
         
         emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
             .then(() => {
-                console.log("Email sent successfully to:", to);
+                console.log('Email sent successfully to:', toEmail);
             })
-            .catch(error => {
-                console.error("Failed to send email:", error);
+            .catch((error) => {
+                console.error('Failed to send email:', error);
             });
     }
     
     // Initialize the application when DOM is loaded
     document.addEventListener('DOMContentLoaded', init);
-    </script>
+</script>
 </body>
 </html>
