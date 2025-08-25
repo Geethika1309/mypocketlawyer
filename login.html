@@ -577,15 +577,15 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 class="modal-title">Reset Password</h2>
-            <p>Enter your phone number to reset your password. A reset OTP will be sent to your phone via SMS.</p>
+            <p>Enter your email address to reset your password. A reset OTP will be sent to your email.</p>
             
-            <div class="phone-input-container">
-                <div class="country-code">+91</div>
-                <input type="tel" id="resetPhone" class="modal-input phone-input" placeholder="Phone Number" required pattern="[0-9]{10}">
+            <div class="modal-input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="resetEmail" class="modal-input" placeholder="Email Address" required>
             </div>
             
             <div class="resend-link">
-                Didn't receive the SMS? <a id="resendResetLink">Resend</a>
+                Didn't receive the email? <a id="resendResetLink">Resend</a>
             </div>
             <button class="modal-btn" id="resetPasswordBtn">Send OTP</button>
         </div>
@@ -596,7 +596,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 class="modal-title">Verify OTP</h2>
-            <p>We've sent a 6-digit OTP to your phone. Please enter it below to reset your password.</p>
+            <p>We've sent a 6-digit OTP to your email. Please enter it below to reset your password.</p>
             <div class="otp-input-container">
                 <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
                 <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
@@ -670,6 +670,11 @@
     </div>
 
     <script>
+    // Initialize EmailJS with your public key
+    (function() {
+        emailjs.init("PZIFaVPi-Ytb6jNvs"); // Replace with your actual EmailJS public key
+    })();
+    
     // DOM elements
     const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
@@ -694,21 +699,21 @@
     const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
     const toggleNewPassword = document.getElementById('toggleNewPassword');
     const toggleConfirmNewPassword = document.getElementById('toggleConfirmNewPassword');
-    const resetPhoneInput = document.getElementById('resetPhone');
+    const resetEmailInput = document.getElementById('resetEmail');
     const registerPhoneInput = document.getElementById('registerPhone');
     
     // Your email address
     const adminEmail = "pocketlawyerindia1950@gmail.com";
     
-    // Track SMS sending to prevent spam
-    let lastSmsSentTime = 0;
-    const smsCooldown = 30000; // 30 seconds between SMS
+    // Track email sending to prevent spam
+    let lastEmailSentTime = 0;
+    const emailCooldown = 30000; // 30 seconds between emails
     
     // OTP variables
     let otpTimer;
     let otpExpiryTime;
     let generatedOtp;
-    let resetPhone;
+    let resetEmail;
     
     // Test accounts for demonstration
     const testAccounts = {
@@ -796,10 +801,6 @@
     
     // Setup phone number validation
     function setupPhoneValidation() {
-        resetPhoneInput.addEventListener('input', function() {
-            this.value = this.value.replace(/\D/g, '').slice(0, 10);
-        });
-        
         registerPhoneInput.addEventListener('input', function() {
             this.value = this.value.replace(/\D/g, '').slice(0, 10);
         });
@@ -904,11 +905,11 @@
         
         // Resend reset link
         resendResetLink.addEventListener('click', () => {
-            const phone = resetPhoneInput.value;
-            if (phone && isValidPhone(phone)) {
-                handlePasswordReset(phone);
+            const email = resetEmailInput.value;
+            if (email && isValidEmail(email)) {
+                handlePasswordReset(email);
             } else {
-                showNotification('Please enter a valid phone number first.', 'warning');
+                showNotification('Please enter a valid email address first.', 'warning');
             }
         });
         
@@ -925,11 +926,11 @@
         
         // Reset password button
         resetPasswordBtn.addEventListener('click', () => {
-            const phone = resetPhoneInput.value;
-            if (phone && isValidPhone(phone)) {
-                handlePasswordReset(phone);
+            const email = resetEmailInput.value;
+            if (email && isValidEmail(email)) {
+                handlePasswordReset(email);
             } else {
-                showNotification('Please enter a valid 10-digit phone number.', 'error');
+                showNotification('Please enter a valid email address.', 'error');
             }
         });
         
@@ -961,17 +962,9 @@
             // Update password in registered users
             const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
             
-            // Find user by phone number
-            let userEmail = null;
-            for (const email in registeredUsers) {
-                if (registeredUsers[email].phone === resetPhone) {
-                    userEmail = email;
-                    break;
-                }
-            }
-            
-            if (userEmail) {
-                registeredUsers[userEmail].password = newPassword;
+            // Find user by email
+            if (registeredUsers[resetEmail]) {
+                registeredUsers[resetEmail].password = newPassword;
                 localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
                 
                 showNotification('Password reset successfully! You can now login with your new password.', 'success');
@@ -981,7 +974,7 @@
                     window.location.reload();
                 }, 1500);
             } else {
-                showNotification('Phone number not found. Please register first.', 'error');
+                showNotification('Email not found. Please register first.', 'error');
             }
         });
         
@@ -1036,205 +1029,250 @@
         });
     }
     
-        // Handle password reset request
-    function handlePasswordReset(phone) {
-        // Check if phone is registered
-        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-        let isPhoneRegistered = false;
-        
-        for (const email in registeredUsers) {
-            if (registeredUsers[email].phone === phone) {
-                isPhoneRegistered = true;
-                break;
-            }
-        }
-        
-        if (!isPhoneRegistered) {
-            showNotification('This phone number is not registered. Please sign up first.', 'error');
-            return;
-        }
-        
-        // Check SMS cooldown
-        const currentTime = new Date().getTime();
-        if (currentTime - lastSmsSentTime < smsCooldown) {
-            const remainingTime = Math.ceil((smsCooldown - (currentTime - lastSmsSentTime)) / 1000);
-            showNotification(`Please wait ${remainingTime} seconds before requesting another OTP.`, 'warning');
-            return;
-        }
-        
-        // Generate OTP
-        generatedOtp = generateOtp();
-        resetPhone = phone;
-        
-        // Simulate sending SMS (in a real app, this would call an SMS API)
-        simulateSendSms(phone, `Your Pocket Lawyer OTP is: ${generatedOtp}. It will expire in 2 minutes.`);
-        
-        // Update last SMS sent time
-        lastSmsSentTime = currentTime;
-        
-        // Show OTP modal
-        forgotPasswordModal.classList.remove('show');
-        otpModal.classList.add('show');
-        
-        // Start OTP timer
-        startOtpTimer();
-        
-        showNotification('OTP sent to your phone number.', 'success');
+    // Handle password reset request
+function handlePasswordReset(email) {
+    // Check if email is valid
+    if (!isValidEmail(email)) {
+        showNotification('Please enter a valid email address.', 'error');
+        return;
     }
-    
-    // Generate a 6-digit OTP
-    function generateOtp() {
-        return Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Check if email is registered
+    const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+    if (!registeredUsers[email] && !testAccounts[email]) {
+        showNotification('This email is not registered. Please sign up first.', 'error');
+        return;
     }
+
+    // Check email cooldown to prevent spam
+    const currentTime = new Date().getTime();
+    if (currentTime - lastEmailSentTime < emailCooldown) {
+        const remainingTime = Math.ceil((emailCooldown - (currentTime - lastEmailSentTime)) / 1000);
+        showNotification(`Please wait ${remainingTime} seconds before requesting another OTP.`, 'warning');
+        return;
+    }
+
+    // Show loading state
+    resetPasswordBtn.innerHTML = '<span class="loading"></span> Sending OTP...';
+    resetPasswordBtn.disabled = true;
+
+    // Generate OTP
+    generatedOtp = generateOtp();
+    resetEmail = email;
     
-    // Start OTP expiration timer
-    function startOtpTimer() {
-        clearInterval(otpTimer);
-        
-        const timerDisplay = document.getElementById('otpTimer');
-        otpExpiryTime = new Date().getTime() + 120000; // 2 minutes from now
-        
-        updateTimerDisplay(timerDisplay);
-        
-        otpTimer = setInterval(() => {
-            const timeLeft = updateTimerDisplay(timerDisplay);
+    // Prepare email template parameters
+    const templateParams = {
+        to_email: email,
+        otp_code: generatedOtp,
+        app_name: "Pocket Lawyer",
+        expiry_time: "2 minutes"
+    };
+
+    // Send OTP via EmailJS
+    emailjs.send('service_cdydpib', 'template_91aw6md', templateParams)
+        .then(function(response) {
+            console.log('OTP email sent successfully!', response.status, response.text);
             
-            if (timeLeft <= 0) {
-                clearInterval(otpTimer);
-                showNotification('OTP has expired. Please request a new one.', 'error');
-            }
-        }, 1000);
-    }
-    
-    // Update OTP timer display
-    function updateTimerDisplay(timerDisplay) {
-        const now = new Date().getTime();
-        const timeLeft = otpExpiryTime - now;
-        
-        if (timeLeft <= 0) {
-            timerDisplay.textContent = 'OTP expired';
-            return 0;
-        }
-        
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        
-        timerDisplay.textContent = `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        
-        return timeLeft;
-    }
-    
-    // Verify OTP entered by user
-    function verifyOtp() {
-        const otpInputs = document.querySelectorAll('.otp-input');
-        let enteredOtp = '';
-        
-        otpInputs.forEach(input => {
-            enteredOtp += input.value;
+            // Update last email sent time
+            lastEmailSentTime = currentTime;
+            
+            // Show success notification
+            showNotification(`OTP sent to ${email}. Please check your inbox.`, 'success');
+            
+            // Close forgot password modal and open OTP modal
+            forgotPasswordModal.classList.remove('show');
+            otpModal.classList.add('show');
+            
+            // Start OTP timer
+            startOtpTimer();
+            
+            // Reset button state
+            resetPasswordBtn.innerHTML = 'Send OTP';
+            resetPasswordBtn.disabled = false;
+        })
+        .catch(function(error) {
+            console.error('Failed to send OTP email:', error);
+            
+            // Show error notification
+            showNotification('Failed to send OTP. Please try again later.', 'error');
+            
+            // Reset button state
+            resetPasswordBtn.innerHTML = 'Send OTP';
+            resetPasswordBtn.disabled = false;
+            
+            // For demo purposes, still show OTP modal even if email fails
+            // In a real app, you might want to remove this
+            showNotification('Demo mode: OTP would be ' + generatedOtp, 'info');
+            forgotPasswordModal.classList.remove('show');
+            otpModal.classList.add('show');
+            startOtpTimer();
         });
-        
-        if (enteredOtp.length !== 6) {
-            showNotification('Please enter the complete 6-digit OTP.', 'error');
-            return;
-        }
-        
-        if (enteredOtp === generatedOtp) {
-            clearInterval(otpTimer);
-            otpModal.classList.remove('show');
-            resetPasswordModal.classList.add('show');
-            showNotification('OTP verified successfully. Please set your new password.', 'success');
-        } else {
-            showNotification('Invalid OTP. Please try again.', 'error');
-        }
+}
+
+// Generate a 6-digit OTP
+function generateOtp() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+// Start OTP expiration timer
+function startOtpTimer() {
+    clearInterval(otpTimer);
+    
+    // Set expiry time to 2 minutes from now
+    otpExpiryTime = new Date().getTime() + 2 * 60 * 1000;
+    
+    // Update timer immediately
+    updateOtpTimer();
+    
+    // Update timer every second
+    otpTimer = setInterval(updateOtpTimer, 1000);
+}
+
+// Update OTP timer display
+function updateOtpTimer() {
+    const now = new Date().getTime();
+    const distance = otpExpiryTime - now;
+    
+    // If the countdown is over
+    if (distance < 0) {
+        clearInterval(otpTimer);
+        document.getElementById('otpTimer').innerHTML = 'OTP expired';
+        verifyOtpBtn.disabled = true;
+        return;
     }
     
-    // Move to next OTP input field
-    function moveToNext(currentInput) {
-        const nextInput = currentInput.nextElementSibling;
-        
-        // Only allow numbers
-        currentInput.value = currentInput.value.replace(/\D/g, '');
-        
-        if (currentInput.value !== '' && nextInput) {
-            nextInput.focus();
-        }
-        
-        // Auto-submit if all fields are filled
-        const allInputs = document.querySelectorAll('.otp-input');
-        const allFilled = Array.from(allInputs).every(input => input.value !== '');
-        
-        if (allFilled) {
-            verifyOtp();
-        }
+    // Calculate minutes and seconds
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Display the result
+    document.getElementById('otpTimer').innerHTML = 
+        `Resend OTP in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// Verify entered OTP
+function verifyOtp() {
+    // Get all OTP input values
+    const otpInputs = document.querySelectorAll('.otp-input');
+    let enteredOtp = '';
+    
+    otpInputs.forEach(input => {
+        enteredOtp += input.value;
+    });
+    
+    // Validate OTP
+    if (enteredOtp.length !== 6) {
+        showNotification('Please enter the complete 6-digit OTP.', 'error');
+        return;
     }
     
-    // Simulate sending SMS (in a real app, this would call an SMS API)
-    function simulateSendSms(phone, message) {
-        console.log(`SMS to ${phone}: ${message}`);
-        // In a real implementation, you would use an SMS service like Twilio, Nexmo, etc.
-        // Example: 
-        // twilioClient.messages.create({
-        //     body: message,
-        //     to: phone,
-        //     from: '+1234567890'
-        // });
+    if (enteredOtp !== generatedOtp) {
+        showNotification('Invalid OTP. Please try again.', 'error');
+        return;
     }
     
-    // Validate email format
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+    // Check if OTP is expired
+    const now = new Date().getTime();
+    if (now > otpExpiryTime) {
+        showNotification('OTP has expired. Please request a new one.', 'error');
+        return;
     }
     
-    // Validate phone number format (10 digits)
-    function isValidPhone(phone) {
-        return /^\d{10}$/.test(phone);
+    // OTP is valid
+    showNotification('OTP verified successfully!', 'success');
+    
+    // Close OTP modal and open reset password modal
+    otpModal.classList.remove('show');
+    resetPasswordModal.classList.add('show');
+    
+    // Clear OTP inputs
+    clearOtpInputs();
+}
+
+// Clear all OTP input fields
+function clearOtpInputs() {
+    const otpInputs = document.querySelectorAll('.otp-input');
+    otpInputs.forEach(input => {
+        input.value = '';
+    });
+}
+
+// Move to next OTP input field
+function moveToNext(currentInput) {
+    const nextInput = currentInput.nextElementSibling;
+    
+    // If input has a value and there's a next input, focus it
+    if (currentInput.value && nextInput) {
+        nextInput.focus();
     }
     
-    // Check if password meets strength requirements
-    function isStrongPassword(password) {
-        const minLength = 8;
-        const hasUpperCase = /[A-Z]/.test(password);
-        const hasLowerCase = /[a-z]/.test(password);
-        const hasNumbers = /\d/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        
-        return password.length >= minLength && 
-               hasUpperCase && 
-               hasLowerCase && 
-               hasNumbers && 
-               hasSpecialChar;
+    // Auto-submit if all fields are filled
+    const otpInputs = document.querySelectorAll('.otp-input');
+    const allFilled = Array.from(otpInputs).every(input => input.value);
+    
+    if (allFilled) {
+        verifyOtp();
+    }
+}
+
+// Validate email format
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Validate phone number format
+function isValidPhone(phone) {
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phone);
+}
+
+// Validate password strength
+function isStrongPassword(password) {
+    // At least 8 characters, one uppercase, one lowercase, one number, one special character
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+}
+
+// Validate user credentials
+async function validateCredentials(email, password) {
+    // In a real application, this would be an API call
+    // For demo purposes, we're using localStorage and test accounts
+    
+    // Check test accounts
+    if (testAccounts[email] && testAccounts[email] === password) {
+        return true;
     }
     
-    // Validate user credentials
-    async function validateCredentials(email, password) {
-        // Check test accounts first
-        if (testAccounts[email] && testAccounts[email] === password) {
-            return true;
-        }
-        
-        // Check registered users
-        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-        if (registeredUsers[email] && registeredUsers[email].password === password) {
-            return true;
-        }
-        
-        return false;
+    // Check registered users
+    const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+    if (registeredUsers[email] && registeredUsers[email].password === password) {
+        return true;
     }
     
-    // Show notification
-    function showNotification(message, type) {
-        notification.textContent = message;
-        notification.className = 'notification ' + type;
-        notification.classList.add('show');
-        
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 5000);
-    }
+    return false;
+}
+
+// Show notification
+function showNotification(message, type) {
+    notification.textContent = message;
+    notification.className = 'notification ' + type;
+    notification.classList.add('show');
     
-    // Initialize the application
-    document.addEventListener('DOMContentLoaded', init);
+    // Auto hide after 5 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 5000);
+}
+
+// Simulate sending SMS (for demo purposes)
+function simulateSendSms(phone, message) {
+    console.log(`SMS to ${phone}: ${message}`);
+    // In a real app, this would integrate with an SMS service
+}
+
+// Initialize the application when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
