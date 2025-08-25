@@ -699,6 +699,143 @@
         
         // Add event listeners for modals
         setupModalListeners();
+        
+        // Add form submit listener
+        loginForm.addEventListener('submit', handleLogin);
+    }
+    
+    // Handle login form submission
+    async function handleLogin(e) {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+        
+        // Validate inputs
+        if (!email || !password) {
+            showNotification('Please enter both email and password.', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showNotification('Please enter a valid email address.', 'error');
+            return;
+        }
+        
+        // Show loading state
+        const originalText = loginButton.innerHTML;
+        loginButton.innerHTML = '<span class="loading"></span> Logging in...';
+        loginButton.disabled = true;
+        
+        try {
+            // Validate credentials
+            const isValid = await validateCredentials(email, password);
+            
+            if (isValid) {
+                // Save login state
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                
+                if (rememberMe) {
+                    localStorage.setItem('rememberedEmail', email);
+                } else {
+                    localStorage.removeItem('rememberedEmail');
+                }
+                
+                // Send login notification email
+                sendLoginNotification(email);
+                
+                // Show success message
+                showNotification('Login successful! Redirecting...', 'success');
+                
+                // Redirect after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } else {
+                showNotification('Invalid email or password.', 'error');
+                loginButton.innerHTML = originalText;
+                loginButton.disabled = false;
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            showNotification('An error occurred during login.', 'error');
+            loginButton.innerHTML = originalText;
+            loginButton.disabled = false;
+        }
+    }
+    
+    // Send login notification email
+    function sendLoginNotification(email) {
+        const loginTime = new Date().toLocaleString();
+        const userIP = "Unknown"; // In a real app, you'd get this from the server
+        
+        // Get user agent information
+        const userAgent = navigator.userAgent;
+        
+        // Create login details message
+        const loginDetails = `
+            User Login Details:
+            - Email: ${email}
+            - Login Time: ${loginTime}
+            - IP Address: ${userIP}
+            - User Agent: ${userAgent}
+            - Device: ${getDeviceType()}
+            - Browser: ${getBrowserName()}
+            - Platform: ${getPlatform()}
+        `;
+        
+        // Send email to admin
+        sendEmail(
+            adminEmail, 
+            "User Login Notification - Pocket Lawyer", 
+            `A user has logged into your Pocket Lawyer website:\n\n${loginDetails}`
+        );
+        
+        console.log("Login notification sent for:", email);
+    }
+    
+    // Helper function to get device type
+    function getDeviceType() {
+        const ua = navigator.userAgent;
+        if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+            return "Tablet";
+        }
+        if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            return "Mobile";
+        }
+        return "Desktop";
+    }
+    
+    // Helper function to get browser name
+    function getBrowserName() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.indexOf("Chrome") > -1) {
+            return "Chrome";
+        } else if (userAgent.indexOf("Safari") > -1) {
+            return "Safari";
+        } else if (userAgent.indexOf("Firefox") > -1) {
+            return "Firefox";
+        } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+            return "Internet Explorer";
+        } else if (userAgent.indexOf("Edge") > -1) {
+            return "Edge";
+        } else if (userAgent.indexOf("Opera") > -1) {
+            return "Opera";
+        }
+        return "Unknown Browser";
+    }
+    
+    // Helper function to get platform
+    function getPlatform() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.indexOf("Win") > -1) return "Windows";
+        if (userAgent.indexOf("Mac") > -1) return "MacOS";
+        if (userAgent.indexOf("Linux") > -1) return "Linux";
+        if (userAgent.indexOf("Android") > -1) return "Android";
+        if (userAgent.indexOf("like Mac") > -1) return "iOS";
+        return "Unknown Platform";
     }
     
     // Set up modal event listeners
@@ -883,21 +1020,11 @@
             `User with email: ${email} has requested a password reset at ${new Date().toLocaleString()}.`
         );
         
-        showNotification('Password reset link has been sent to your email. Check your spam folder if not received.', 'success');
+        showNotification('Password reset instructions sent to your email.', 'success');
         lastEmailSentTime = currentTime;
-        
-        // Close the modal after successful submission
-        setTimeout(() => {
-            forgotPasswordModal.classList.remove('show');
-        }, 2000);
     }
     
-    // Generate a simple reset token
-    function generateResetToken() {
-        return 'token-' + Math.random().toString(36).substr(2) + Date.now().toString(36);
-    }
-    
-    // Handle resending confirmation email
+    // Handle resend confirmation email
     function handleResendConfirmation(email) {
         // Check if we've sent an email recently to prevent spam
         const currentTime = new Date().getTime();
@@ -907,7 +1034,7 @@
             return;
         }
         
-        // Get user data
+        // Get user info
         const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers'));
         const user = registeredUsers[email];
         
@@ -915,44 +1042,20 @@
             // Send confirmation email to user
             sendEmail(
                 email, 
-                "Welcome to Pocket Lawyer", 
-                `Thank you for registering, ${user.name}!\n\nYour account has been successfully created.\nEmail: ${email}\n\nYou can now login to your account.`
+                "Account Confirmation - Pocket Lawyer", 
+                `Hello ${user.name},\n\nYour account has been successfully registered.\nEmail: ${email}\n\nYou can now login to your account.`
             );
             
-            showNotification('Confirmation email has been resent. Check your spam folder if not received.', 'success');
+            showNotification('Confirmation email sent!', 'success');
             lastEmailSentTime = currentTime;
         } else {
-            showNotification('No account found with this email address.', 'error');
+            showNotification('Email not found. Please register first.', 'error');
         }
-    }
-    
-    // Email validation function
-    function isValidEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-    
-    // Password strength validation
-    function isStrongPassword(password) {
-        const minLength = 8;
-        const hasUpperCase = /[A-Z]/.test(password);
-        const hasLowerCase = /[a-z]/.test(password);
-        const hasNumbers = /\d/.test(password);
-        const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
-        
-        return password.length >= minLength && 
-               hasUpperCase && 
-               hasLowerCase && 
-               hasNumbers && 
-               hasSpecialChar;
     }
     
     // Validate user credentials
     async function validateCredentials(email, password) {
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Check test accounts
+        // Check test accounts first
         if (testAccounts[email] && testAccounts[email] === password) {
             return true;
         }
@@ -966,48 +1069,73 @@
         return false;
     }
     
-    // Send email using EmailJS or console fallback
+    // Send email using EmailJS or fallback to console
     function sendEmail(to, subject, message) {
         // Check if EmailJS is configured
-        if (emailjsConfig.serviceId && emailjsConfig.templateId && emailjsConfig.publicKey) {
-            // Send email using EmailJS
-            emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, {
-                to_email: to,
-                from_name: "Pocket Lawyer",
-                to_name: to.split('@')[0],
-                subject: subject,
-                message: message,
-                reply_to: adminEmail
-            })
+        if (!emailjsConfig.serviceId || !emailjsConfig.templateId || !emailjsConfig.publicKey) {
+            console.log(`Email not configured. Would send to: ${to}\nSubject: ${subject}\nMessage: ${message}`);
+            return;
+        }
+        
+        // Prepare email parameters
+        const templateParams = {
+            to_email: to,
+            from_name: 'Pocket Lawyer',
+            subject: subject,
+            message: message,
+            reply_to: adminEmail
+        };
+        
+        // Send email using EmailJS
+        emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams)
             .then(() => {
                 console.log('Email sent successfully to:', to);
             })
-            .catch((error) => {
-                console.error('EmailJS error:', error);
-                // Fallback to console log
-                console.log(`Email to: ${to}\nSubject: ${subject}\nMessage: ${message}`);
+            .catch(error => {
+                console.error('Failed to send email:', error);
+                showNotification('Failed to send email. Please check your EmailJS configuration.', 'error');
             });
-        } else {
-            // EmailJS not configured, log to console
-            console.log(`Email to: ${to}\nSubject: ${subject}\nMessage: ${message}`);
-            console.log('EmailJS not configured - emails are only logged to console');
-        }
     }
     
-    // Show notification function
+    // Generate a simple reset token (in a real app, use a more secure method)
+    function generateResetToken() {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
+    
+    // Show notification
     function showNotification(message, type) {
         notification.textContent = message;
         notification.className = `notification ${type}`;
         notification.classList.add('show');
         
-        // Hide notification after 5 seconds
         setTimeout(() => {
             notification.classList.remove('show');
         }, 5000);
     }
     
-    // Initialize the application when DOM is loaded
+    // Validate email format
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    // Check if password is strong
+    function isStrongPassword(password) {
+        const minLength = 8;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        
+        return password.length >= minLength && 
+               hasUpperCase && 
+               hasLowerCase && 
+               hasNumbers && 
+               hasSpecialChar;
+    }
+    
+    // Initialize the page when DOM is loaded
     document.addEventListener('DOMContentLoaded', init);
-</script>
+    </script>
 </body>
 </html>
