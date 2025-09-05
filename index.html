@@ -774,7 +774,7 @@
     <script src="languageManager.js"></script>
 
     <script>
-        // Image Slider Functionality - UPDATED
+        // Image Slider Functionality - FIXED
 document.addEventListener('DOMContentLoaded', function() {
     const slider = document.querySelector('.slider');
     const slides = document.querySelectorAll('.slide');
@@ -782,22 +782,74 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = document.querySelector('.slider-arrow.next');
     let currentIndex = 0;
     let autoSlideInterval;
+    let isTransitioning = false;
 
-    // Function to update slider position
+    // Function to update slider position with smooth transition
     function updateSlider() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        // Remove transition for instant reset
+        slider.style.transition = 'none';
+        slider.style.transform = `translateX(-${currentIndex * 16.666}%)`;
+        
+        // Force reflow
+        slider.offsetHeight;
+        
+        // Add transition back for smooth sliding
+        slider.style.transition = 'transform 0.8s ease-in-out';
+        slider.style.transform = `translateX(-${currentIndex * 16.666}%)`;
+        
+        // Reset flag after transition completes
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 800);
+    }
+
+    // Next slide function
+    function nextSlide() {
+        currentIndex++;
+        
+        // If we're at the end, reset to first slide without transition
+        if (currentIndex >= slides.length) {
+            currentIndex = 0;
+            
+            // Remove transition for instant reset
+            slider.style.transition = 'none';
+            slider.style.transform = `translateX(0)`;
+            
+            // Force reflow
+            slider.offsetHeight;
+            
+            // Add transition back
+            slider.style.transition = 'transform 0.8s ease-in-out';
+        }
+        
+        // Update slider position
         slider.style.transform = `translateX(-${currentIndex * 16.666}%)`;
     }
 
-    // Next slide function - UPDATED to loop back to first image
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlider();
-    }
-
-    // Previous slide function - UPDATED to loop back to last image
+    // Previous slide function
     function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateSlider();
+        currentIndex--;
+        
+        // If we're at the beginning, go to last slide
+        if (currentIndex < 0) {
+            currentIndex = slides.length - 1;
+            
+            // Remove transition for instant reset
+            slider.style.transition = 'none';
+            slider.style.transform = `translateX(-${currentIndex * 16.666}%)`;
+            
+            // Force reflow
+            slider.offsetHeight;
+            
+            // Add transition back
+            slider.style.transition = 'transform 0.8s ease-in-out';
+        }
+        
+        // Update slider position
+        slider.style.transform = `translateX(-${currentIndex * 16.666}%)`;
     }
 
     // Set up auto sliding
@@ -1209,6 +1261,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </html>
+
 
 
 
