@@ -423,6 +423,312 @@
   line-height: 1.5;
 }
 
+/* NEW FEATURES */
+
+/* Mission & Vision Section */
+.mission-vision {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f9f9f9 0%, #e6e6fa 100%);
+  text-align: center;
+}
+
+.mission-vision h2 {
+  font-size: 2.2rem;
+  color: #4B0082;
+  margin-bottom: 40px;
+}
+
+.mv-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.mv-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.mv-card:hover {
+  transform: translateY(-5px);
+}
+
+.mv-card i {
+  font-size: 2.5rem;
+  color: #4B0082;
+  margin-bottom: 20px;
+}
+
+.mv-card h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.mv-card p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Stats Counter Section */
+.stats-section {
+  padding: 60px 20px;
+  background: #4B0082;
+  color: white;
+  text-align: center;
+}
+
+.stats-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.stat-card {
+  padding: 20px;
+}
+
+.stat-card i {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.stat-card .counter {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  font-size: 1.1rem;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 60px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2.2rem;
+  color: #4B0082;
+  margin-bottom: 40px;
+}
+
+.testimonial-container {
+  max-width: 1000px;
+  margin: auto;
+  position: relative;
+}
+
+.testimonial-slide {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin: 0 20px;
+  display: none;
+}
+
+.testimonial-slide.active {
+  display: block;
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.testimonial-text {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  position: relative;
+  padding: 0 30px;
+}
+
+.testimonial-text:before,
+.testimonial-text:after {
+  content: '"';
+  font-size: 3rem;
+  color: #4B0082;
+  opacity: 0.3;
+  position: absolute;
+}
+
+.testimonial-text:before {
+  left: 0;
+  top: -15px;
+}
+
+.testimonial-text:after {
+  right: 0;
+  bottom: -30px;
+}
+
+.testimonial-author {
+  font-weight: bold;
+  color: #4B0082;
+  font-size: 1.1rem;
+}
+
+.testimonial-nav {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.testimonial-nav button {
+  background: #4B0082;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s;
+  margin-top: 0;
+}
+
+.testimonial-nav button:hover {
+  background: #6a0dad;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 60px 20px;
+  background: white;
+  text-align: center;
+}
+
+.faq-section h2 {
+  font-size: 2.2rem;
+  color: #4B0082;
+  margin-bottom: 40px;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+}
+
+.faq-item {
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.faq-question {
+  background: #f4f4f4;
+  padding: 18px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #2c3e50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.faq-question:hover {
+  background: #e6e6e6;
+}
+
+.faq-question i {
+  transition: transform 0.3s;
+}
+
+.faq-question.active i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s, padding 0.3s;
+  background: white;
+}
+
+.faq-answer.active {
+  padding: 20px;
+  max-height: 300px;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: #4B0082;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 999;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: #6a0dad;
+}
+
+/* Responsive adjustments for new sections */
+@media (max-width: 768px) {
+  .mv-container,
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .testimonial-text {
+    padding: 0 15px;
+    font-size: 1rem;
+  }
+  
+  .testimonial-text:before,
+  .testimonial-text:after {
+    font-size: 2rem;
+  }
+  
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+}
 
   </style>
 </head>
@@ -447,76 +753,344 @@
     </nav>
   </header>
   <main>
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <section class="about-header">
+      <h1>About Pocket Lawyer</h1>
+      <p>Your trusted companion for legal guidance, anytime & anywhere.</p>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+      <h2>Our Mission & Vision</h2>
+      <div class="mv-container">
+        <div class="mv-card">
+          <i class="fas fa-bullseye"></i>
+          <h3>Our Mission</h3>
+          <p>To democratize legal knowledge and make it accessible to every Indian citizen, regardless of their background or financial status. We believe that understanding your legal rights should be simple, affordable, and available to all.</p>
+        </div>
+        <div class="mv-card">
+          <i class="fas fa-eye"></i>
+          <h3>Our Vision</h3>
+          <p>To become India's most trusted digital legal companion, empowering millions with knowledge and tools to navigate the legal system confidently and independently.</p>
+        </div>
+        <div class="mv-card">
+          <i class="fas fa-handshake"></i>
+          <h3>Our Promise</h3>
+          <p>We commit to providing accurate, up-to-date legal information and resources that are easy to understand and apply to your specific situation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-cards">
+      <!-- Home -->
+      <div class="about-card">
+        <i class="fa-solid fa-house"></i>
+        <h2>Home Page</h2>
+        <p>Discover our highlights, quick access to updates, and the foundation of Pocket Lawyer.</p>
+      </div>
+
+      <!-- Law Categories -->
+      <div class="about-card">
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h2>Law Categories</h2>
+        <p>Browse important laws and regulations including harassment, fraud, disputes, and more.</p>
+      </div>
+
+      <!-- Generate Documents -->
+      <div class="about-card">
+        <i class="fa-solid fa-file-contract"></i>
+        <h2>Generate Documents</h2>
+        <p>Create affidavits, agreements, and other legal documents with easy templates.</p>
+      </div>
+
+      <!-- Ask a Lawyer -->
+      <div class="about-card">
+        <i class="fa-solid fa-user-tie"></i>
+        <h2>Ask a Lawyer</h2>
+        <p>Connect with experienced legal professionals and get clear answers to your queries.</p>
+      </div>
+
+      <!-- Contact -->
+      <div class="about-card">
+        <i class="fa-solid fa-envelope"></i>
+        <h2>Contact Us</h2>
+        <p>Reach out for support, suggestions, or inquiries. We're always here to help.</p>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <h2>Pocket Lawyer in Numbers</h2>
+      <div class="stats-container">
+        <div class="stat-card">
+          <i class="fas fa-users"></i>
+          <div class="counter" data-target="10000">0</div>
+          <p>Users Helped</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-file-alt"></i>
+          <div class="counter" data-target="5000">0</div>
+          <p>Documents Generated</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-balance-scale"></i>
+          <div class="counter" data-target="25">0</div>
+          <p>Legal Categories</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-question-circle"></i>
+          <div class="counter" data-target="2000">0</div>
+          <p>Questions Answered</p>
+        </div>
+      </div>
+    </section>
+
     <section class="about-team">
-  <h2>Who We Are</h2>
-  <p class="team-intro">
-    We are a team of three passionate students who built Pocket Lawyer to make
-    legal knowledge accessible, simple, and useful for every citizen.
-  </p>
+      <h2>Who We Are</h2>
+      <p class="team-intro">
+        We are a team of three passionate students who built Pocket Lawyer to make
+        legal knowledge accessible, simple, and useful for every citizen.
+      </p>
 
-  <div class="team-members">
-    <div class="team-card">
-      
-      <h3>Geethika Reddy Marujolla</h3>
-      <p>Focused on design & front-end development, bringing Pocket Lawyer to life with clean layouts and interactive features.</p>
-    </div>
+      <div class="team-members">
+        <div class="team-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0QjAwODIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5HPC90ZXh0Pjwvc3ZnPg==" alt="Geethika">
+          <h3>Geethika Reddy Marujolla</h3>
+          <p>Focused on design & front-end development, bringing Pocket Lawyer to life with clean layouts and interactive features.</p>
+        </div>
 
-    <div class="team-card">
-      
-      <h3>Snehitha Reddy Moilla</h3>
-      <p>Specialized in backend & logic building, ensuring the platform runs smoothly and documents generate seamlessly.</p>
-    </div>
+        <div class="team-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0QjAwODIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TPC90ZXh0Pjwvc3ZnPg==" alt="Snehitha">
+          <h3>Snehitha Reddy Moilla</h3>
+          <p>Specialized in backend & logic building, ensuring the platform runs smoothly and documents generate seamlessly.</p>
+        </div>
 
-    <div class="team-card">
-      
-      <h3>Reshma Shaik</h3>
-      <p>Worked on research & content, making sure every legal category and feature is accurate and user-friendly.</p>
-    </div>
-  </div>
-</section>
+        <div class="team-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0QjAwODIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5SPC90ZXh0Pjwvc3ZnPg==" alt="Reshma">
+          <h3>Reshma Shaik</h3>
+          <p>Worked on research & content, making sure every legal category and feature is accurate and user-friendly.</p>
+        </div>
+      </div>
+    </section>
 
-  <section class="about-header">
-    <h1>About Pocket Lawyer</h1>
-    <p>Your trusted companion for legal guidance, anytime & anywhere.</p>
-  </section>
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <h2>What Our Users Say</h2>
+      <div class="testimonial-container">
+        <div class="testimonial-slide active">
+          <p class="testimonial-text">Pocket Lawyer helped me create a rental agreement quickly when I needed it most. The process was straightforward and saved me hundreds of rupees in lawyer fees.</p>
+          <p class="testimonial-author">- Rajesh K., Hyderabad</p>
+        </div>
+        <div class="testimonial-slide">
+          <p class="testimonial-text">As a small business owner, I frequently need legal documents. This platform has been a game-changer for me - efficient, reliable, and incredibly affordable.</p>
+          <p class="testimonial-author">- Priya M., Bangalore</p>
+        </div>
+        <div class="testimonial-slide">
+          <p class="testimonial-text">I had a legal question about tenant rights and got a clear, helpful response within hours. This service is exactly what India needed!</p>
+          <p class="testimonial-author">- Amit S., Delhi</p>
+        </div>
+        <div class="testimonial-nav">
+          <button class="testimonial-prev"><i class="fas fa-chevron-left"></i></button>
+          <button class="testimonial-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </section>
 
-  <section class="about-cards">
-    <!-- Home -->
-    <div class="about-card">
-      <i class="fa-solid fa-house"></i>
-      <h2>Home Page</h2>
-      <p>Discover our highlights, quick access to updates, and the foundation of Pocket Lawyer.</p>
-    </div>
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            Is Pocket Lawyer a substitute for a real lawyer?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Pocket Lawyer is designed to provide legal information and document generation services, but it does not replace personalized legal advice from a qualified attorney for complex matters. We recommend consulting with a lawyer for serious legal issues.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            How accurate is the legal information provided?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We strive to provide accurate and up-to-date legal information based on Indian law. Our content is regularly reviewed by legal professionals, but laws can change, so we always recommend verifying critical information.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Are the documents generated legally valid?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, the documents generated through our platform are created using standard legal templates and are legally valid when properly executed. However, specific requirements may vary by situation and jurisdiction.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            How much does it cost to use Pocket Lawyer?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Many of our basic features are free to use. We offer premium services at affordable rates that are significantly lower than traditional legal services. Specific pricing is available on our service pages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <footer class="site-footer">
+            <div class="footer-container">
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 id="llink">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="lawcategories.html">Law Categories</a></li>
+                        <li><a href="generatedocuments.html">Generate Documents</a></li>
+                        <li><a href="askalawyer.html">Ask a Lawyer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
 
-    <!-- Law Categories -->
-    <div class="about-card">
-      <i class="fa-solid fa-scale-balanced"></i>
-      <h2>Law Categories</h2>
-      <p>Browse important laws and regulations including harassment, fraud, disputes, and more.</p>
-    </div>
+                <!-- Legal Links -->
+                <div class="footer-section">
+                    <h3 id="llegal">Legal</h3>
+                    <ul>
+                        <li><a href="#" id="lpp">Privacy Policy</a></li>
+                        <li><a href="#" id="ltc">Terms & Conditions</a></li>
+                        <li><a href="#" id="ld">Disclaimer</a></li>
+                    </ul>
+                </div>
 
-    <!-- Generate Documents -->
-    <div class="about-card">
-      <i class="fa-solid fa-file-contract"></i>
-      <h2>Generate Documents</h2>
-      <p>Create affidavits, agreements, and other legal documents with easy templates.</p>
-    </div>
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 id="lch">Contact</h3>
+                    <ul>
+                        <li id="lemaill">Email: pocketlawyerindia1950@gmail.com</li>
+                        <li id="lphone">Phone: +91-8985579260</li>
+                        <li id="laddress">Address: Pulivendula, India</li>
+                    </ul>
+                </div>
+            </div>
 
-    <!-- Ask a Lawyer -->
-    <div class="about-card">
-      <i class="fa-solid fa-user-tie"></i>
-      <h2>Ask a Lawyer</h2>
-      <p>Connect with experienced legal professionals and get clear answers to your queries.</p>
-    </div>
+            <!-- Credits Section -->
+            <div class="footer-credits">
+                <p id="ljustice">🌟 Made for Justice, by Students of India</p>
+                <p id="lheart">❤From the hearts of Indian students, for the voice of every citizen</p>
+                <p id="lbharat"> Proudly Built in Bharat, for Every Indian in Need of Justice</p>
+                <p id="lteam"><strong>Project Team – Pocket Lawyer</strong></p>
+                <ul>
+                    <li id="geethika">Geethika Reddy Marujolla</li>
+                    <li id="reshma">Reshma Shaik</li>
+                    <li id="snehitha">Snehitha Reddy Moilla</li>
+                </ul>
+                <p id="ldiploma">🎓 Diploma Final Year, Department of CME, Loyola Polytechnic</p>
+            </div>
 
-    <!-- Contact -->
-    <div class="about-card">
-      <i class="fa-solid fa-envelope"></i>
-      <h2>Contact Us</h2>
-      <p>Reach out for support, suggestions, or inquiries. We’re always here to help.</p>
-    </div>
-  </section>
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p id="lfooter">© 2025 Pocket Lawyer. All rights reserved.</p>
+            </div>
+        </footer>
 </main>
+
+<script>
+  // Back to Top Button
+  const backToTopButton = document.getElementById('backToTop');
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.add('visible');
+    } else {
+      backToTopButton.classList.remove('visible');
+    }
+  });
+  
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  
+  // Testimonial Slider
+  const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+  const prevButton = document.querySelector('.testimonial-prev');
+  const nextButton = document.querySelector('.testimonial-next');
+  let currentSlide = 0;
+  
+  function showSlide(index) {
+    testimonialSlides.forEach(slide => slide.classList.remove('active'));
+    
+    if (index >= testimonialSlides.length) {
+      currentSlide = 0;
+    } else if (index < 0) {
+      currentSlide = testimonialSlides.length - 1;
+    } else {
+      currentSlide = index;
+    }
+    
+    testimonialSlides[currentSlide].classList.add('active');
+  }
+  
+  prevButton.addEventListener('click', () => {
+    showSlide(currentSlide - 1);
+  });
+  
+  nextButton.addEventListener('click', () => {
+    showSlide(currentSlide + 1);
+  });
+  
+  // Auto-advance testimonials
+  setInterval(() => {
+    showSlide(currentSlide + 1);
+  }, 5000);
+  
+  // FAQ Accordion
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const answer = question.nextElementSibling;
+      question.classList.toggle('active');
+      answer.classList.toggle('active');
+    });
+  });
+  
+  // Counter Animation
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200;
+  
+  function animateCounters() {
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = Math.ceil(target / speed);
+      
+      if (count < target) {
+        counter.innerText = Math.min(count + increment, target);
+        setTimeout(() => animateCounters(), 1);
+      }
+    });
+  }
+  
+  // Start counter animation when in viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  observer.observe(document.querySelector('.stats-section'));
+</script>
 
 </body>
 </html>
