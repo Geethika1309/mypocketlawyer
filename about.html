@@ -6,153 +6,27 @@
   <title>About Us - Pocket Lawyer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <style>
-    /* General Styling */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      color: #fff;
-    }
-
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      background: rgba(0, 0, 0, 0.3);
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      animation: fadeDown 1s ease-in-out;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      animation: fadeUp 1.2s ease-in-out;
-    }
-
-    /* Sections */
-    .menu-sections {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 40px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s, background 0.3s;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.05);
-      background: rgba(255, 255, 255, 0.25);
-    }
-
-    .card i {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      transition: transform 0.3s;
-    }
-
-    .card:hover i {
-      transform: rotate(10deg) scale(1.1);
-    }
-
-    .card h2 {
-      margin: 10px 0;
-      font-size: 1.4rem;
-    }
-
-    .card p {
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-
-    /* Animated Button */
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      border-radius: 25px;
-      background: #fff;
-      color: #333;
-      font-weight: bold;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .btn:hover {
-      background: #ffcc00;
-      color: #000;
-      transform: scale(1.1);
-    }
-
-    /* Animations */
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>About Pocket Lawyer</h1>
-    <p>Your trusted companion for legal guidance, anytime & anywhere.</p>
+ <header>
+    <div class="headers">
+      <img class="logo" src="logo_transparent_resized(1).png" alt="Pocket Lawyer Logo">
+      <h1 class="mainheading" id="mainheading">Pocket Lawyer</h1>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="topnav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html" id="home">🏠 Home</a></li>
+        <li><a href="lawcategories.html" id="lawc">⚖ Law Categories</a></li>
+        <li><a href="generatedocuments.html" id="gene">✍ Generate Documents</a></li>
+        <li><a href="askalawyer.html" id="aska">💬 Ask a Lawyer</a></li>
+        <li><a href="contact.html" id="contact">📞 Contact</a></li>
+      </ul>
+    </nav>
   </header>
-
-  <section class="menu-sections">
-    <!-- Home -->
-    <div class="card">
-      <i class="fa-solid fa-house"></i>
-      <h2>Home Page</h2>
-      <p>Explore the foundation of Pocket Lawyer. Get quick access to highlights, updates, and a user-friendly introduction to our services.</p>
-      <a href="index.html" class="btn">Go to Home</a>
-    </div>
-
-    <!-- Law Categories -->
-    <div class="card">
-      <i class="fa-solid fa-scale-balanced"></i>
-      <h2>Law Categories</h2>
-      <p>Browse through important laws and regulations including harassment, fraud, banking disputes, environment laws, and more.</p>
-      <a href="lawcategories.html" class="btn">Explore Laws</a>
-    </div>
-
-    <!-- Generate Documents -->
-    <div class="card">
-      <i class="fa-solid fa-file-contract"></i>
-      <h2>Generate Documents</h2>
-      <p>Create legal documents easily, from affidavits to agreements, with simple templates that save your time.</p>
-      <a href="documents.html" class="btn">Generate Now</a>
-    </div>
-
-    <!-- Ask a Lawyer -->
-    <div class="card">
-      <i class="fa-solid fa-user-tie"></i>
-      <h2>Ask a Lawyer</h2>
-      <p>Connect with experienced legal professionals and get answers to your queries with ease and confidence.</p>
-      <a href="asklawyer.html" class="btn">Ask Now</a>
-    </div>
-
-    <!-- Contact -->
-    <div class="card">
-      <i class="fa-solid fa-envelope"></i>
-      <h2>Contact Us</h2>
-      <p>Reach out for support, suggestions, or any inquiries. We're here to help you at every step.</p>
-      <a href="contact.html" class="btn">Contact</a>
-    </div>
-  </section>
-
 </body>
 </html>
