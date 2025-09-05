@@ -592,6 +592,7 @@
         </header>
 
         <!-- Image Slider Section -->
+<!-- Image Slider Section -->
 <div class="slider-container">
     <div class="slider">
         <div class="slide">
@@ -612,7 +613,6 @@
     </div>
     <div class="slider-arrow prev">&#10094;</div>
     <div class="slider-arrow next">&#10095;</div>
-    
 </div>
         <div style="margin-right: 250px; padding: 20px;" class="content scroll-animate">
             <h1 class="quote" id="quote">Know Your Rights. Get Help Instantly.</h1>
@@ -774,79 +774,63 @@
     <script src="languageManager.js"></script>
 
     <script>
-        // Image Slider Functionality - ADDED
-        document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.querySelector('.slider');
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.slider-dot');
-            const prevBtn = document.querySelector('.slider-arrow.prev');
-            const nextBtn = document.querySelector('.slider-arrow.next');
-            let currentIndex = 0;
-            let autoSlideInterval;
+        // Image Slider Functionality - UPDATED
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.slider-arrow.prev');
+    const nextBtn = document.querySelector('.slider-arrow.next');
+    let currentIndex = 0;
+    let autoSlideInterval;
 
-            // Function to update slider position
-            function updateSlider() {
-                slider.style.transform = `translateX(-${currentIndex * 16.666}%)`;
-                
-                // Update active dot
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                });
-            }
+    // Function to update slider position
+    function updateSlider() {
+        slider.style.transform = `translateX(-${currentIndex * 16.666}%)`;
+    }
 
-            // Next slide function
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % slides.length;
-                updateSlider();
-            }
+    // Next slide function - UPDATED to loop back to first image
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+    }
 
-            // Previous slide function
-            function prevSlide() {
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                updateSlider();
-            }
+    // Previous slide function - UPDATED to loop back to last image
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlider();
+    }
 
-            // Set up auto sliding
-            function startAutoSlide() {
-                autoSlideInterval = setInterval(nextSlide, 3000); // Change slide every 5 seconds
-            }
+    // Set up auto sliding
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+    }
 
-            // Stop auto sliding
-            function stopAutoSlide() {
-                clearInterval(autoSlideInterval);
-            }
+    // Stop auto sliding
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
 
-            // Event listeners for arrows
-            nextBtn.addEventListener('click', () => {
-                stopAutoSlide();
-                nextSlide();
-                startAutoSlide();
-            });
+    // Event listeners for arrows
+    nextBtn.addEventListener('click', () => {
+        stopAutoSlide();
+        nextSlide();
+        startAutoSlide();
+    });
 
-            prevBtn.addEventListener('click', () => {
-                stopAutoSlide();
-                prevSlide();
-                startAutoSlide();
-            });
+    prevBtn.addEventListener('click', () => {
+        stopAutoSlide();
+        prevSlide();
+        startAutoSlide();
+    });
 
-            // Event listeners for dots
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    stopAutoSlide();
-                    currentIndex = index;
-                    updateSlider();
-                    startAutoSlide();
-                });
-            });
+    // Pause auto sliding when hovering over slider
+    const sliderContainer = document.querySelector('.slider-container');
+    sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+    sliderContainer.addEventListener('mouseleave', startAutoSlide);
 
-            // Pause auto sliding when hovering over slider
-            const sliderContainer = document.querySelector('.slider-container');
-            sliderContainer.addEventListener('mouseenter', stopAutoSlide);
-            sliderContainer.addEventListener('mouseleave', startAutoSlide);
-
-            // Start auto sliding initially
-            startAutoSlide();
-        });
+    // Start auto sliding initially
+    startAutoSlide();
+});
        
         // Original functionality
         document.getElementById("searchLawBtn").addEventListener("click", function () {
@@ -1225,6 +1209,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </html>
+
 
 
 
