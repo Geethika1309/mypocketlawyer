@@ -1,5 +1,6 @@
 const translations = {
     en: {
+        homeabout:"About Us",
         contactnamepl:"Your Name",
         contactemailpl:"Your Email",
         contactplpl:"Your Message or Concern...",
@@ -607,6 +608,7 @@ Yours sincerely,
     },
 
     hi: {
+        homeabout:"हमारे बारे में",
         contactnamepl:"आपका नाम",
         contactemailpl:"आपकी ईमेल",
         contactplpl:"आपका संदेश या समस्या...",
@@ -1214,6 +1216,7 @@ ccheading:" उपभोक्ता शिकायतें",
     generatebutton:"बनाएं",
     },
     te: {
+        homeabout:"మా గురించి",
         contactnamepl:"మీ పేరు",
         contactemailpl:"మీ ఇమెయిల్",
         contactplpl:"మీ సందేశం లేదా సమస్య...",
@@ -1935,6 +1938,7 @@ function applyTranslations(lang) {
     }
   });
 }
+
 
 
 
