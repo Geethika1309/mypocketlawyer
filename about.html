@@ -280,6 +280,85 @@
         gap: 20px;
       }
     }
+    /* About Us Page */
+.about-header {
+  text-align: center;
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.about-header h1 {
+  font-size: 2.5rem;
+  color: #4B0082;
+  margin-bottom: 15px;
+  animation: fadeDown 1s ease-in-out;
+}
+
+.about-header p {
+  font-size: 1.2rem;
+  color: #333;
+  animation: fadeUp 1.2s ease-in-out;
+}
+
+/* Cards Layout */
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.about-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.about-card i {
+  font-size: 2rem;
+  color: #4B0082;
+  margin-bottom: 10px;
+  transition: transform 0.3s;
+}
+
+.about-card:hover i {
+  transform: rotate(8deg) scale(1.1);
+}
+
+.about-card h2 {
+  font-size: 1.4rem;
+  margin: 10px 0;
+  color: #2c3e50;
+}
+
+.about-card p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Animations */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
   </style>
 </head>
 <body>
@@ -302,5 +381,49 @@
       </ul>
     </nav>
   </header>
+  <main>
+  <section class="about-header">
+    <h1>About Pocket Lawyer</h1>
+    <p>Your trusted companion for legal guidance, anytime & anywhere.</p>
+  </section>
+
+  <section class="about-cards">
+    <!-- Home -->
+    <div class="about-card">
+      <i class="fa-solid fa-house"></i>
+      <h2>Home Page</h2>
+      <p>Discover our highlights, quick access to updates, and the foundation of Pocket Lawyer.</p>
+    </div>
+
+    <!-- Law Categories -->
+    <div class="about-card">
+      <i class="fa-solid fa-scale-balanced"></i>
+      <h2>Law Categories</h2>
+      <p>Browse important laws and regulations including harassment, fraud, disputes, and more.</p>
+    </div>
+
+    <!-- Generate Documents -->
+    <div class="about-card">
+      <i class="fa-solid fa-file-contract"></i>
+      <h2>Generate Documents</h2>
+      <p>Create affidavits, agreements, and other legal documents with easy templates.</p>
+    </div>
+
+    <!-- Ask a Lawyer -->
+    <div class="about-card">
+      <i class="fa-solid fa-user-tie"></i>
+      <h2>Ask a Lawyer</h2>
+      <p>Connect with experienced legal professionals and get clear answers to your queries.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="about-card">
+      <i class="fa-solid fa-envelope"></i>
+      <h2>Contact Us</h2>
+      <p>Reach out for support, suggestions, or inquiries. We’re always here to help.</p>
+    </div>
+  </section>
+</main>
+
 </body>
 </html>
