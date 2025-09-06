@@ -36,6 +36,8 @@ class LanguageManager {
        'trafficheading': 'trafficheading',
       'trp': 'trp',
        'trafficheading': 'trafficheading',
+      'homeabout':'homeabout',
+      'logoutBtn':'logoutBtn',
         'trp': 'trp',
          'trh2': 'trh2',
           'trp2': 'trp2',
@@ -188,4 +190,5 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 });
+
 
