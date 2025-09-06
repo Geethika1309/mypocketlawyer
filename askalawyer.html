@@ -462,8 +462,23 @@
         });
       });
     });
+    // Initialize on DOM load
+document.addEventListener("DOMContentLoaded", () => {
+  // Set language from localStorage or default to 'en'
+  languageManager.applyTranslations();
+
+  // Update language selector (if present)
+  const langSelector = document.getElementById("languageSelector");
+  if (langSelector) {
+    langSelector.value = languageManager.currentLanguage;
+    langSelector.addEventListener("change", (e) => {
+      languageManager.setLanguage(e.target.value);
+    });
+  }
+});
   </script>
 </body>
 </html>
+
 
 
