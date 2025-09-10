@@ -40,7 +40,7 @@ const translations = {
         aboutp20:"- Priya M., Bangalore",
         aboutp21:"I had a legal question about tenant rights and got a clear, helpful response within hours. This service is exactly what India needed!",
         aboutp22:"- Amit S., Delhi",
-        aboutfrequent:"Frequently Asked Questions<",
+        aboutfrequent:"Frequently Asked Questions",
         aboutq1:"Is Pocket Lawyer completely free?",
         aboutp23:"Yes! Pocket Lawyer is 100% free to use. We believe that legal assistance should be accessible to everyone regardless of their financial situation. There are no hidden fees, subscription costs, or premium paywalls - all features are completely free.",
         aboutq2:"How is Pocket Lawyer free? What's the catch?",
@@ -2116,6 +2116,7 @@ function applyTranslations(lang) {
     }
   });
 }
+
 
 
 
