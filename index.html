@@ -615,7 +615,16 @@
     <div class="slider-arrow next">&#10095;</div>
 </div>
         <div style="margin-right: 250px; padding: 20px;" class="content scroll-animate">
-            <h1 class="quote" id="quote">Know Your Rights. Get Help Instantly.</h1>
+            <!-- Know Your Rights Flashcards -->
+<section class="rights-flashcards" style="text-align:center; margin:30px auto; max-width:800px;">
+  <h2 style="color:#d9534f;">⚖️ Know Your Rights</h2>
+  <div class="flashcard" id="flashcard-box" 
+       style="background:#fff; padding:20px; margin-top:15px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); font-size:18px; transition:0.5s;">
+    Loading rights...
+  </div>
+  <button onclick="prevFlashcard()" style="margin:15px; padding:8px 16px; border:none; border-radius:5px; background:#6c63ff; color:white; cursor:pointer;">⬅ Prev</button>
+  <button onclick="nextFlashcard()" style="margin:15px; padding:8px 16px; border:none; border-radius:5px; background:#6c63ff; color:white; cursor:pointer;">Next ➡</button>
+</section>
             <div class="search-language scroll-animate">
                 <input type="text" id="searchQuery" class="searchbar" placeholder="Search your legal problem..."
                     id="lsearch">
@@ -774,6 +783,33 @@
     <script src="languageManager.js"></script>
 
     <script>
+        const flashcards = [
+    "You have the right to file an FIR at any police station, not just where the incident happened.",
+    "No employer can withhold your salary without legal grounds.",
+    "As a consumer, you can demand a bill for every purchase you make.",
+    "Women cannot be arrested after sunset and before sunrise, except in special circumstances with court permission.",
+    "You have the right to legal aid if you cannot afford a lawyer."
+  ];
+
+  let currentIndex = 0;
+  const flashcardBox = document.getElementById("flashcard-box");
+
+  function showFlashcard(index) {
+    flashcardBox.innerHTML = flashcards[index];
+  }
+
+  function nextFlashcard() {
+    currentIndex = (currentIndex + 1) % flashcards.length;
+    showFlashcard(currentIndex);
+  }
+
+  function prevFlashcard() {
+    currentIndex = (currentIndex - 1 + flashcards.length) % flashcards.length;
+    showFlashcard(currentIndex);
+  }
+
+  // Show first flashcard on load
+  showFlashcard(currentIndex);
         // Image Slider Functionality - FIXED
 document.addEventListener('DOMContentLoaded', function() {
     const slider = document.querySelector('.slider');
@@ -1261,6 +1297,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </html>
+
 
 
 
