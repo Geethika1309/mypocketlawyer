@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Know Your Rights - Pocket Lawyer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f5f7fa, #e6ebf1);
+      color: #333;
+    }
+
+    header {
+      background: #2c3e50;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 32px;
+      color: #2c3e50;
+    }
+
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .right-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s forwards;
+    }
+
+    .right-card:nth-child(1) { animation-delay: 0.2s; }
+    .right-card:nth-child(2) { animation-delay: 0.4s; }
+    .right-card:nth-child(3) { animation-delay: 0.6s; }
+    .right-card:nth-child(4) { animation-delay: 0.8s; }
+    .right-card:nth-child(5) { animation-delay: 1s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .right-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .right-card i {
+      font-size: 40px;
+      color: #ff5722;
+      margin-bottom: 15px;
+    }
+
+    .right-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .right-card p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 40px auto 0;
+      padding: 12px 25px;
+      background: #ff5722;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      text-align: center;
+      width: fit-content;
+    }
+
+    .back-btn:hover {
+      background: #e64a19;
+    }
+  </style>
+</head>
+<body>
+
+  <header>⚖ Know Your Rights</header>
+
+  <div class="container">
+    <h1>Your Fundamental Citizen Rights</h1>
+
+    <div class="rights-grid">
+      <div class="right-card">
+        <i class="fas fa-file-signature"></i>
+        <h3>Right to File an FIR</h3>
+        <p>You have the right to file an FIR at any police station, not just where the incident happened.</p>
+      </div>
+
+      <div class="right-card">
+        <i class="fas fa-female"></i>
+        <h3>Women’s Safety</h3>
+        <p>Women cannot be arrested after sunset and before sunrise, except in special circumstances with court permission.</p>
+      </div>
+
+      <div class="right-card">
+        <i class="fas fa-gavel"></i>
+        <h3>Right to Legal Aid</h3>
+        <p>Every person has the right to free legal aid if they cannot afford a lawyer.</p>
+      </div>
+
+      <div class="right-card">
+        <i class="fas fa-id-card"></i>
+        <h3>Right to Privacy</h3>
+        <p>No one can check your phone or personal documents without proper legal authority.</p>
+      </div>
+
+      <div class="right-card">
+        <i class="fas fa-balance-scale"></i>
+        <h3>Right Against Harassment</h3>
+        <p>You cannot be forced or threatened by authorities without proper legal grounds.</p>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+</body>
+</html>
