@@ -566,6 +566,27 @@
 }
  
 
+.helpline-container {
+    position: relative;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.helpline-toggle {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.helpline-toggle:hover {
+    background-color: #c0392b;
+}
+
 .helpline-numbers {
     display: none;
     position: absolute;
@@ -611,56 +632,6 @@
 .helpline-category strong {
     color: #e74c3c;
 }
-        .helpline-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 20px 0;
-}
-
-.helpline-container {
-    position: relative;
-    display: inline-block;
-}
-
-.helpline-toggle {
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.helpline-toggle:hover {
-    background-color: #1a252f;
-}
-
-.helpline-numbers {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 350px;
-    max-width: 500px;
-    max-height: 400px;
-    overflow-y: auto;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    border-radius: 5px;
-    padding: 15px;
-    z-index: 1000;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 5px;
-}
-
-.helpline-container:hover .helpline-numbers {
-    display: block;
-}
-
     </style>
 
 </head>
@@ -1412,6 +1383,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </html>
+
 
 
 
