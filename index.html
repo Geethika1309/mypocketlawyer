@@ -564,7 +564,7 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     z-index: 2000;
 }
-        .helpline-container {
+ .helpline-container {
     position: relative;
     display: inline-block;
     margin: 20px 0;
@@ -589,7 +589,10 @@
     display: none;
     position: absolute;
     background-color: white;
-    min-width: 300px;
+    min-width: 350px;
+    max-width: 500px;
+    max-height: 400px;
+    overflow-y: auto;
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     border-radius: 5px;
     padding: 15px;
@@ -605,6 +608,12 @@
 
 .helpline-category {
     margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.helpline-category:last-child {
+    border-bottom: none;
 }
 
 .helpline-category h4 {
@@ -701,22 +710,48 @@
         <div class="helpline-category">
             <h4>Women's Safety</h4>
             <p>Women Helpline (All India): <strong>1091</strong></p>
+            <p>Domestic Violence Helpline: <strong>181</strong></p>
             <p>National Commission for Women: <strong>011-26942369</strong></p>
         </div>
         <div class="helpline-category">
             <h4>Police & Emergency</h4>
             <p>Police: <strong>100</strong></p>
             <p>Emergency Disaster Management: <strong>108</strong></p>
+            <p>Road Accident Emergency: <strong>1073</strong></p>
+            <p>Fire Department: <strong>101</strong></p>
         </div>
         <div class="helpline-category">
             <h4>Legal Aid</h4>
             <p>National Legal Services Authority: <strong>1516</strong></p>
             <p>Child Helpline: <strong>1098</strong></p>
+            <p>Senior Citizens Helpline: <strong>14567</strong></p>
+            <p>Anti Corruption Helpline: <strong>1064</strong></p>
         </div>
         <div class="helpline-category">
             <h4>Cyber Crime</h4>
             <p>Cyber Crime Helpline: <strong>155260</strong></p>
-            <p>National Cyber Crime Reporting Portal: <strong>1930</strong></p>
+            <p>National Cyber Crime Reporting: <strong>1930</strong></p>
+            <p>UPI Fraud Helpline: <strong>155260</strong></p>
+        </div>
+        <div class="helpline-category">
+            <h4>Health & Medical</h4>
+            <p>Medical Emergency: <strong>102</strong></p>
+            <p>Mental Health Rehabilitation: <strong>1800-599-0019</strong></p>
+            <p>Arogya Setu Helpline: <strong>1075</strong></p>
+            <p>National AIDS Helpline: <strong>1097</strong></p>
+            <p>Anti Poison Information: <strong>1066</strong></p>
+        </div>
+        <div class="helpline-category">
+            <h4>Consumer & Financial</h4>
+            <p>Consumer Court Helpline: <strong>1800-11-4000</strong></p>
+            <p>Income Tax Grievance: <strong>1800-425-2229</strong></p>
+            <p>RBI Banking Ombudsman: <strong>14440</strong></p>
+        </div>
+        <div class="helpline-category">
+            <h4>Transportation & Utilities</h4>
+            <p>Railway Enquiry: <strong>139</strong></p>
+            <p>Gas Leak Emergency: <strong>1906</strong></p>
+            <p>Power Failure: <strong>1912</strong></p>
         </div>
     </div>
 </div>
@@ -1344,6 +1379,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </html>
+
 
 
 
