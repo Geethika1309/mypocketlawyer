@@ -1,1 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pocket Lawyer - Bail Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            color: #ffd700;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .calculator-container {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 500px;
+        }
+        
+        .input-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-right: 1px solid #eaeaea;
+        }
+        
+        .result-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #4a6491;
+            box-shadow: 0 0 0 3px rgba(74, 100, 145, 0.2);
+        }
+        
+        .calculate-btn {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: bounceIn 1s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            60% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
+        
+        .bail-amount {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 20px 0;
+            text-align: center;
+            animation: amountAppear 0.8s ease-out;
+        }
+        
+        @keyframes amountAppear {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .result-details {
+            width: 100%;
+            margin-top: 20px;
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed #eaeaea;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .risk-level {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .low-risk {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .medium-risk {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .high-risk {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .bail-scale {
+            width: 80%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .bail-progress {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(to right, #4CAF50, #FFC107, #F44336);
+            width: 0%;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .scale-markers {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .disclaimer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-container {
+                flex-direction: column;
+            }
+            
+            .input-section {
+                border-right: none;
+                border-bottom: 1px solid #eaeaea;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .bail-amount {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-gavel logo"></i> Pocket Lawyer Bail Calculator</h1>
+            <p>Estimate bail amounts based on offense type, criminal history, and other factors</p>
+        </header>
+        
+        <div class="calculator-container">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="offense-type"><i class="fas fa-balance-scale"></i> Type of Offense</label>
+                    <select id="offense-type">
+                        <option value="misdemeanor">Misdemeanor</option>
+                        <option value="non-violent-felony">Non-Violent Felony</option>
+                        <option value="violent-felony">Violent Felony</option>
+                        <option value="dui">DUI / DWI</option>
+                        <option value="drug-possession">Drug Possession</option>
+                        <option value="drug-trafficking">Drug Trafficking</option>
+                        <option value="white-collar">White Collar Crime</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="criminal-history"><i class="fas fa-history"></i> Criminal History</label>
+                    <select id="criminal-history">
+                        <option value="none">No Prior Record</option>
+                        <option value="minor">Minor Offenses Only</option>
+                        <option value="moderate">Moderate Criminal History</option>
+                        <option value="extensive">Extensive Criminal History</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="flight-risk"><i class="fas fa-plane"></i> Flight Risk Assessment</label>
+                    <select id="flight-risk">
+                        <option value="low">Low Risk (Strong Community Ties)</option>
+                        <option value="medium">Medium Risk</option>
+                        <option value="high">High Risk (No Local Ties, Resources to Flee)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="public-safety"><i class="fas fa-shield-alt"></i> Public Safety Concern</label>
+                    <select id="public-safety">
+                        <option value="low">Low Risk to Public Safety</option>
+                        <option value="medium">Moderate Risk to Public Safety</option>
+                        <option value="high">High Risk to Public Safety</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="jurisdiction"><i class="fas fa-map-marker-alt"></i> Jurisdiction</label>
+                    <select id="jurisdiction">
+                        <option value="state">State Court</option>
+                        <option value="federal">Federal Court</option>
+                    </select>
+                </div>
+                
+                <button class="calculate-btn" id="calculate">
+                    <i class="fas fa-calculator"></i> Calculate Bail Estimate
+                </button>
+            </div>
+            
+            <div class="result-section">
+                <h2>Estimated Bail Amount</h2>
+                <div class="bail-amount" id="bail-amount">$0</div>
+                
+                <div class="bail-scale">
+                    <div class="bail-progress" id="bail-progress"></div>
+                </div>
+                <div class="scale-markers">
+                    <span>$0</span>
+                    <span>$25,000</span>
+                    <span>$50,000</span>
+                    <span>$100,000</span>
+                    <span>$250,000+</span>
+                </div>
+                
+                <div class="risk-level" id="risk-level">Low Risk</div>
+                
+                <div class="result-details">
+                    <div class="detail-item">
+                        <span>Base Amount:</span>
+                        <span id="base-amount">$0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Criminal History Factor:</span>
+                        <span id="history-factor">0%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Flight Risk Factor:</span>
+                        <span id="flight-factor">0%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Public Safety Factor:</span>
+                        <span id="safety-factor">0%</span>
+                    </div>
+                </div>
+                
+                <div class="disclaimer">
+                    <i class="fas fa-exclamation-triangle"></i> This is an estimate only. Actual bail amounts are determined by a judge based on specific case details and local laws.
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Pocket Lawyer &copy; 2023 | This tool is for informational purposes only and does not constitute legal advice.</p>
+        </footer>
+    </div>
 
+    <script>
+        document.getElementById('calculate').addEventListener('click', calculateBail);
+        
+        function calculateBail() {
+            // Get values from form
+            const offenseType = document.getElementById('offense-type').value;
+            const criminalHistory = document.getElementById('criminal-history').value;
+            const flightRisk = document.getElementById('flight-risk').value;
+            const publicSafety = document.getElementById('public-safety').value;
+            const jurisdiction = document.getElementById('jurisdiction').value;
+            
+            // Base amounts for different offense types
+            const baseAmounts = {
+                'misdemeanor': 2500,
+                'non-violent-felony': 10000,
+                'violent-felony': 50000,
+                'dui': 5000,
+                'drug-possession': 10000,
+                'drug-trafficking': 75000,
+                'white-collar': 25000
+            };
+            
+            // Multipliers for different factors
+            const historyMultipliers = {
+                'none': 1.0,
+                'minor': 1.2,
+                'moderate': 1.5,
+                'extensive': 2.0
+            };
+            
+            const flightMultipliers = {
+                'low': 1.0,
+                'medium': 1.3,
+                'high': 1.8
+            };
+            
+            const safetyMultipliers = {
+                'low': 1.0,
+                'medium': 1.4,
+                'high': 2.0
+            };
+            
+            const jurisdictionMultipliers = {
+                'state': 1.0,
+                'federal': 1.5
+            };
+            
+            // Calculate base amount
+            let baseAmount = baseAmounts[offenseType];
+            
+            // Apply multipliers
+            const historyFactor = historyMultipliers[criminalHistory];
+            const flightFactor = flightMultipliers[flightRisk];
+            const safetyFactor = safetyMultipliers[publicSafety];
+            const jurisdictionFactor = jurisdictionMultipliers[jurisdiction];
+            
+            let totalBail = baseAmount * historyFactor * flightFactor * safetyFactor * jurisdictionFactor;
+            
+            // Round to nearest 500
+            totalBail = Math.round(totalBail / 500) * 500;
+            
+            // Determine risk level
+            let riskLevel = 'low-risk';
+            let riskText = 'Low Risk';
+            
+            if (totalBail > 100000) {
+                riskLevel = 'high-risk';
+                riskText = 'High Risk';
+            } else if (totalBail > 25000) {
+                riskLevel = 'medium-risk';
+                riskText = 'Medium Risk';
+            }
+            
+            // Calculate progress bar percentage (capped at 250,000 for visualization)
+            const progressPercentage = Math.min((totalBail / 250000) * 100, 100);
+            
+            // Animate the result
+            animateBailResult(totalBail, baseAmount, historyFactor, flightFactor, safetyFactor, riskLevel, riskText, progressPercentage);
+        }
+        
+        function animateBailResult(totalBail, baseAmount, historyFactor, flightFactor, safetyFactor, riskLevel, riskText, progressPercentage) {
+            // Format currency
+            const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0
+            });
+            
+            // Animate the bail amount
+            const bailAmountElement = document.getElementById('bail-amount');
+            const progressBar = document.getElementById('bail-progress');
+            const riskLevelElement = document.getElementById('risk-level');
+            
+            // Reset and prepare for animation
+            bailAmountElement.textContent = '$0';
+            progressBar.style.width = '0%';
+            riskLevelElement.className = 'risk-level';
+            riskLevelElement.textContent = '';
+            
+            // Animate the progress bar
+            setTimeout(() => {
+                progressBar.style.width = progressPercentage + '%';
+            }, 300);
+            
+            // Animate the bail amount counter
+            let currentAmount = 0;
+            const increment = totalBail / 100;
+            const timer = setInterval(() => {
+                currentAmount += increment;
+                if (currentAmount >= totalBail) {
+                    currentAmount = totalBail;
+                    clearInterval(timer);
+                    
+                    // Show risk level after amount animation completes
+                    setTimeout(() => {
+                        riskLevelElement.textContent = riskText;
+                        riskLevelElement.classList.add(riskLevel);
+                    }, 300);
+                }
+                bailAmountElement.textContent = formatter.format(Math.round(currentAmount));
+            }, 20);
+            
+            // Update details
+            document.getElementById('base-amount').textContent = formatter.format(baseAmount);
+            document.getElementById('history-factor').textContent = Math.round((historyFactor - 1) * 100) + '%';
+            document.getElementById('flight-factor').textContent = Math.round((flightFactor - 1) * 100) + '%';
+            document.getElementById('safety-factor').textContent = Math.round((safetyFactor - 1) * 100) + '%';
+        }
+        
+        // Initialize with a default calculation
+        window.onload = function() {
+            setTimeout(calculateBail, 500);
+        };
+    </script>
+</body>
+</html>
