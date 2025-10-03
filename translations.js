@@ -1,5 +1,46 @@
 const translations = {
     en: {
+        rightsh1:"",
+        rights1:"",
+        "1rights":"",
+        rights2:"",
+        "2rights":"",
+        rights3:"",
+        "3rights":"",
+        rights4:"",
+        "4rights":"",
+        rights5:"",
+        "5rights":"",
+        rights6:"",
+        "6rights":"",
+        rights7:"",
+        "7rights":"",
+        rights8:"",
+        "8rights":"",
+        rights9:"",
+        "9rights":"",
+        rights10:"",
+        "10rights":"",
+        rights11:"",
+        "11rights":"",
+        rights12:"",
+        "12rights":"",
+        rights13:"",
+        "13rights":"",
+        rights14:"",
+        "14rights":"",
+        rights15:"",
+        "15rights":"",
+        rights16:"",
+        "16rights":"",
+        rights17:"",
+        "17rights":"",
+        rights18:"",
+        "18rights":"",
+        rights19:"",
+        "19rights":"",
+        rights20:"",
+        "20rights":"",
         aboutheading:"About Pocket Lawyer",
         aboutdesc:"Your trusted companion for legal guidance, anytime & anywhere.",
         aboutmission:"Our Mission & Vision",
@@ -2116,6 +2157,7 @@ function applyTranslations(lang) {
     }
   });
 }
+
 
 
 
