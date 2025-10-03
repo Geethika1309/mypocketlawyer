@@ -1,6 +1,6 @@
 const translations = {
     en: {
-        rightsh1:"",
+        rightsh1:"Your Fundamental Citizen Rights",
         rights1:"",
         "1rights":"",
         rights2:"",
@@ -2157,6 +2157,7 @@ function applyTranslations(lang) {
     }
   });
 }
+
 
 
 
