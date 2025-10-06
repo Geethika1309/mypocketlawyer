@@ -88,6 +88,7 @@ class LanguageManager {
                    'serachLawBtn':'searchLawBtn',
                    'ctaGenerate':'ctaGenerate',
                    'ctaQuestion':'ctaQuestion',
+                    'ctaRights':'ctaRights',
                    'popular':'popular',
                    'howitworks':'howitworks',
                    'step1':'step1',
@@ -190,5 +191,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 });
+
 
 
