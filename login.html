@@ -1181,54 +1181,37 @@ function initEmailJS() {
 }
 
 // Send login notification email - UPDATED VERSION
+// Send SMS notification instead of email
 async function sendLoginNotification(email) {
     try {
-        // Check if EmailJS is properly initialized
-        if (typeof emailjs === 'undefined') {
-            console.error("EmailJS not loaded");
-            return;
-        }
-
-        // Prepare email parameters with more detailed information
-        const templateParams = {
-            to_email: adminEmail,
-            from_name: "Pocket Lawyer Security System",
-            subject: `Login Activity - ${email}`,
-            message: `Login Alert:\n\nUser Email: ${email}\nLogin Time: ${new Date().toLocaleString()}\nIP Address: N/A (Demo Mode)\nUser Agent: ${navigator.userAgent}`,
-            user_email: email,
-            login_time: new Date().toLocaleString(),
-            login_date: new Date().toDateString(),
-            browser_info: navigator.userAgent
-        };
-
-        console.log("Attempting to send email with params:", templateParams);
-
-        // Send email using EmailJS with better error handling
-        const response = await emailjs.send(
-            "service_cdydpib", // Your service ID
-            "template_91aw6md", // Your template ID
-            templateParams
-        );
-
-        console.log("Login notification sent successfully:", response);
-        return true;
+        const message = `🔐 Pocket Lawyer Login: ${email} logged in at ${new Date().toLocaleString()}`;
         
+        // Send SMS using TextBelt (free service)
+        const response = await fetch('https://textbelt.com/text', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phone: '+918985579260', // Replace with your phone number
+                message: message,
+                key: 'textbelt' // Free key for testing
+            }),
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+            console.log('SMS sent successfully');
+        } else {
+            console.log('SMS failed, trying fallback...');
+            // Fallback to console log
+            console.log(`LOGIN ALERT: ${message}`);
+        }
     } catch (error) {
-        console.error("Failed to send login notification:", error);
-        
-        // More detailed error logging
-        if (error.text) {
-            console.error("EmailJS error details:", error.text);
-        }
-        
-        if (error.status) {
-            console.error("HTTP Status:", error.status);
-        }
-        
-        return false;
+        console.log('SMS error, logging to console:', `LOGIN: ${email} at ${new Date().toLocaleString()}`);
     }
-}
-    // Simulate sending SMS (for demo purposes)
+}    // Simulate sending SMS (for demo purposes)
     function simulateSendSms(phone, message) {
         console.log(`SMS to ${phone}: ${message}`);
         // In a real application, this would call an SMS API like Twilio
