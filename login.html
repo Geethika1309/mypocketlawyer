@@ -9,7 +9,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Add EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -541,6 +540,14 @@
                     <p><i class="fas fa-info-circle"></i> All login activities are notified to pocketlawyerindia1950@gmail.com</p>
                 </div>
                 
+                
+                
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> Remember me
+                    </label>
+                    <a id="forgotPassword">Forgot Password?</a>
+                </div>
                 <button type="submit" class="login-btn" id="loginButton">Login</button>
                 <div class="register-link">
                     Don't have an account? <a id="registerNow">Register Now</a>
@@ -553,7 +560,43 @@
         <div class="notification" id="notification"></div>
     </div>
 
-    
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Reset Password</h2>
+            <p>Enter your phone number to reset your password. A reset OTP will be sent to your phone via SMS.</p>
+            
+            <div class="phone-input-container">
+                <div class="country-code">+91</div>
+                <input type="tel" id="resetPhone" class="modal-input phone-input" placeholder="Phone Number" required pattern="[0-9]{10}">
+            </div>
+            
+            <div class="resend-link">
+                Didn't receive the SMS? <a id="resendResetLink">Resend</a>
+            </div>
+            <button class="modal-btn" id="resetPasswordBtn">Send OTP</button>
+        </div>
+    </div>
+
+    <!-- OTP Verification Modal -->
+    <div id="otpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Verify OTP</h2>
+            <p>We've sent a 6-digit OTP to your phone. Please enter it below to reset your password.</p>
+            <div class="otp-input-container">
+                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
+                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
+                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
+                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
+                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
+                <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this)">
+            </div>
+            <div class="otp-timer" id="otpTimer">Resend OTP in: 02:00</div>
+            <button class="modal-btn" id="verifyOtpBtn">Verify OTP</button>
+        </div>
+    </div>
 
     <!-- Reset Password Modal -->
     <div id="resetPasswordModal" class="modal">
