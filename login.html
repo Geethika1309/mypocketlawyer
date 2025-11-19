@@ -706,6 +706,9 @@
     
     // Initialize the page
     function init() {
+
+        // Initialize EmailJS
+    initEmailJS();
         // Initialize registered users if not exists
         if (!localStorage.getItem('registeredUsers')) {
             localStorage.setItem('registeredUsers', JSON.stringify({}));
@@ -1166,32 +1169,65 @@
     }
     
     // Send login notification email
-    async function sendLoginNotification(email) {
-        try {
-            // Initialize EmailJS with your public key
-            emailjs.init("PZIFaVPi-Ytb6jNvs"); // Replace with your actual EmailJS public key
-            
-            // Prepare email parameters
-            const templateParams = {
-                to_email: adminEmail,
-                from_name: "Pocket Lawyer Security System",
-                subject: "Login Activity Notification",
-                message: `User with email ${email} logged into Pocket Lawyer at ${new Date().toLocaleString()}.`,
-                user_email: email,
-                login_time: new Date().toLocaleString(),
-                ip_address: "N/A (Demo)" // In a real app, you would get the user's IP
-            };
-            
-            // Send email using EmailJS
-            await emailjs.send("service_cdydpib", "template_91aw6md", templateParams);
-            
-            console.log("Login notification sent successfully");
-        } catch (error) {
-            console.error("Failed to send login notification:", error);
-            // Don't show this error to the user as it doesn't affect their login
-        }
+    // Initialize EmailJS once when the page loads
+function initEmailJS() {
+    try {
+        // Replace with your actual EmailJS public key
+        emailjs.init("PZIFaVPi-Ytb6jNvs");
+        console.log("EmailJS initialized successfully");
+    } catch (error) {
+        console.error("Failed to initialize EmailJS:", error);
     }
-    
+}
+
+// Send login notification email - UPDATED VERSION
+async function sendLoginNotification(email) {
+    try {
+        // Check if EmailJS is properly initialized
+        if (typeof emailjs === 'undefined') {
+            console.error("EmailJS not loaded");
+            return;
+        }
+
+        // Prepare email parameters with more detailed information
+        const templateParams = {
+            to_email: adminEmail,
+            from_name: "Pocket Lawyer Security System",
+            subject: `Login Activity - ${email}`,
+            message: `Login Alert:\n\nUser Email: ${email}\nLogin Time: ${new Date().toLocaleString()}\nIP Address: N/A (Demo Mode)\nUser Agent: ${navigator.userAgent}`,
+            user_email: email,
+            login_time: new Date().toLocaleString(),
+            login_date: new Date().toDateString(),
+            browser_info: navigator.userAgent
+        };
+
+        console.log("Attempting to send email with params:", templateParams);
+
+        // Send email using EmailJS with better error handling
+        const response = await emailjs.send(
+            "service_cdydpib", // Your service ID
+            "template_91aw6md", // Your template ID
+            templateParams
+        );
+
+        console.log("Login notification sent successfully:", response);
+        return true;
+        
+    } catch (error) {
+        console.error("Failed to send login notification:", error);
+        
+        // More detailed error logging
+        if (error.text) {
+            console.error("EmailJS error details:", error.text);
+        }
+        
+        if (error.status) {
+            console.error("HTTP Status:", error.status);
+        }
+        
+        return false;
+    }
+}
     // Simulate sending SMS (for demo purposes)
     function simulateSendSms(phone, message) {
         console.log(`SMS to ${phone}: ${message}`);
