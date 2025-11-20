@@ -1375,11 +1375,14 @@ document.addEventListener('click', function(e) {
         window.location.href = 'login.html';
     }
 
-        function logout() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('userEmail');
+
+   function logout() {
+    localStorage.removeItem('user');       // IMPORTANT
+    localStorage.removeItem('isLoggedIn'); // if you used it
     window.location.href = 'login.html';
 }
+
+
 
 // Add event listener for the logout button
 document.addEventListener('DOMContentLoaded', function() {
@@ -1399,6 +1402,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </html>
+
 
 
 
